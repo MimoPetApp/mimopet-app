@@ -24,10 +24,11 @@ const vuexLocal = new VuexPersistence({
 
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
+    /*
     modules: {
       // example
-      modules
-    },
+    }, */
+    modules,
     plugins: [vuexLocal.plugin],
 
     // enable strict mode (adds overhead!)
