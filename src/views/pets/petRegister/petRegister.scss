@@ -1,0 +1,147 @@
+.login-form-content {
+  min-height: calc(100vh - 146px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.list-wrapper {
+  height: 220px;
+  overflow-y: scroll;
+}
+.q-field__label,
+.q-field__messages {
+  text-align: center;
+}
+
+.q-field__label {
+  font-size: 1.45rem;
+}
+
+.q-field__messages {
+  font-size: 1.5vh;
+}
+.petImg-style {
+  width: 160px;
+  height: auto;
+  object-fit: cover;
+  z-index: 1;
+  margin-bottom: -20%;
+}
+.floor-style {
+  width: 200px;
+  height: auto;
+  object-fit: cover;
+}
+.petProfileTitle-style {
+  width: 100px;
+  height: auto;
+  object-fit: cover;
+  margin-bottom: -50%;
+  z-index: 1;
+}
+.genderOptions-wrapper {
+  height: 36.5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #3e244e;
+  line-height: 22px;
+  letter-spacing: -0.4px;
+  font-weight: 600;
+  font-family: customfont600;
+}
+.genderOptions-wrapper:hover {
+  background-color: var(--colorPositive);
+}
+.genderOption-active {
+  background-color: var(--colorPositive);
+}
+.genderOptions-wrapper:focus {
+  background-color: var(--colorPositive);
+}
+.selectBtn-wrapper {
+  width: 250px;
+  height: 60px;
+  border-radius: 12px;
+  border: 1px solid #e8edf1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #d2d6dd;
+  font-weight: 600;
+  font-family: customfont600;
+}
+.selectBtn-active {
+  color: var(--colorPositive);
+  border: 1px solid var(--colorPositive);
+}
+.results-style {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: -0.4px;
+  color: var(--colorLight);
+  margin-top: -10px;
+}
+::v-deep .label-style {
+  text-align: center;
+  .q-field__inner {
+    text-align: center;
+  }
+}
+::v-deep div.control-style button.q-carousel__navigation-icon {
+  span.q-btn__content {
+    width: 18px;
+    background-color: var(--colorPositive);
+    height: 10px;
+    border-radius: 5px;
+    i {
+      display: none;
+    }
+  }
+}
+::v-deep .q-carousel__arrow .q-icon {
+  font-size: 38px;
+}
+::v-deep .q-carousel__slide {
+  padding: 50px 0px;
+}
+::v-deep .inputText-style {
+  color: #3e244e;
+  font-weight: 500;
+  font-family: customfont600;
+  text-align: center;
+  font-size: 16px;
+  letter-spacing: -0.4px;
+  line-height: 22px;
+}
+::v-deep .number-style {
+  font-weight: 700;
+  line-height: 40px;
+  letter-spacing: -2px;
+  text-align: center;
+  font-size: 36px;
+}
+::v-deep .content-wrapper {
+  .section-title {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 40px;
+    letter-spacing: -2px;
+    text-align: center;
+  }
+  .section-subtitle {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: -0.4px;
+    text-align: center;
+    color: var(--colorLight);
+  }
+}
+::v-deep .btn-style {
+  color: #e8edf1 !important;
+  i {
+    color: var(--colorPositive) !important;
+  }
+}

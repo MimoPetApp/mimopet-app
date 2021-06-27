@@ -1,0 +1,11 @@
+.pet-profile-container {
+  height: calc(100vh + 900px);
+  background: #7166f1;
+}
+
+.pet-profile-row {
+  width: calc(100vw);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

@@ -1,0 +1,35 @@
+.elevated {
+  z-index: 100;
+}
+.logo-login {
+  margin-top: -8vh;
+  margin-left: -6vh;
+}
+
+.login-form-content {
+  min-height: calc(80vh);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-self: center;
+}
+
+.group-input .q-field__control {
+  background-color: #f7f8fa !important;
+  border-radius: 8px;
+  height: 7.5vh;
+}
+
+.group-input > .q-field__inner {
+  text-align: left !important;
+}
+
+.group-input .q-field__label {
+  font-family: "customfont600";
+  font-size: 1.45rem !important;
+}
+
+.group-input .q-field__bottom {
+  font-family: "customfont600";
+  font-size: 1.16rem !important;
+}

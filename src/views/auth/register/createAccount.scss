@@ -1,0 +1,41 @@
+.termos-container {
+  height: calc(100vh - 230px);
+  overflow-y: scroll;
+}
+
+.genre-toggle {
+  border: 0 !important;
+}
+
+.genre-toggle .q-btn-item {
+  width: 38vw;
+  padding: 2.25vw;
+  margin: 0 2.25vw;
+  border-radius: 3vw !important;
+}
+
+.genre-toggle > .q-btn-item:not(:last-child) .q-btn__wrapper:before,
+.genre-toggle > .q-btn-item + .q-btn-item .q-btn__wrapper:before {
+  border-width: 2px !important;
+  border-style: solid !important;
+}
+
+.genre-toggle .q-btn-item .q-btn__wrapper .q-btn__content span {
+  font-family: "customfont700";
+  font-weight: 700;
+  font-size: 1.33rem;
+}
+
+.single-input > .q-field__inner {
+  text-align: center !important;
+}
+
+.single-input .q-field__label {
+  font-family: "customfont600";
+  font-size: 1.45rem !important;
+}
+
+.single-input .q-field__bottom {
+  font-family: "customfont600";
+  font-size: 1.16rem !important;
+}
