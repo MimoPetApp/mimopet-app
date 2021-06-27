@@ -28,19 +28,19 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions } from 'vuex'
 export default {
-  name: "ModalNotLogged",
+  name: 'ModalNotLogged',
   computed: {
-    ...mapState("auth", ["modalNotLogged"]),
+    ...mapState('auth', ['modalNotLogged'])
   },
   methods: {
-    ...mapActions("auth", ["ActionModalNotLogged"]),
+    ...mapActions('auth', ['ActionModalNotLogged']),
     beforeHideModal() {
-      this.ActionModalNotLogged({ modal: false, data: {} });
-    },
-  },
-};
+      this.ActionModalNotLogged({ modal: false, data: {} })
+    }
+  }
+}
 </script>
 
 <style></style>

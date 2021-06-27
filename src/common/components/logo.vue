@@ -6,12 +6,12 @@
 
 <script>
 export default {
-  name: "Logo",
+  name: 'Logo',
   props: {},
   data() {
-    return {};
+    return {}
   }
-};
+}
 </script>
 
 <style lang="scss">
@@ -27,7 +27,7 @@ $logo-container: 27vh;
 .logo-container {
   width: $logo-container;
   height: $logo-container;
-  background: url("~assets/get_started/vector_outline_45.svg");
+  background: url('~assets/images/vector_outline_45.svg');
   background-clip: border-box;
   background-position: center;
   background-repeat: no-repeat;

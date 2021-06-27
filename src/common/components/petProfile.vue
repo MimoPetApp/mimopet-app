@@ -11,7 +11,7 @@
     <div class="col-12">
       <p class="pet-profile-text">
         {{ parseBreed(data.breed) }}, {{ getAge(data.birthdate) }}
-        {{ $t("petProfile.extra.years") }}
+        {{ $t('petProfile.extra.years') }}
       </p>
     </div>
     <div class="row justify-center q-my-lg">
@@ -28,34 +28,29 @@
     <q-card class="pet-profile-card q-pt-xl">
       <q-card-section class="row justify-center">
         <h3 class="pet-profile-card-title">
-          {{ $t("petProfile.extra.journey") }}
+          {{ $t('petProfile.extra.journey') }}
         </h3>
         <h4 class="pet-profile-card-subtitle">
-          {{ $t("petProfile.extra.since") }} {{ 2009 }} &#128525;
+          {{ $t('petProfile.extra.since') }} {{ 2009 }} &#128525;
         </h4>
       </q-card-section>
-      <q-card-section
-        class="row justify-center items-center pet-profile-card-header q-py-lg"
-      >
+      <q-card-section class="row justify-center items-center pet-profile-card-header q-py-lg">
         <div class="column justify-center items-center">
           <span>{{ 2 }}</span>
-          <span>{{ $t("petProfile.header.vaccines") }}</span>
+          <span>{{ $t('petProfile.header.vaccines') }}</span>
         </div>
         <div class="column justify-center items-center q-mx-lg">
           <span>{{ 21 }}</span>
-          <span>{{ $t("petProfile.header.trainings") }}</span>
+          <span>{{ $t('petProfile.header.trainings') }}</span>
         </div>
         <div class="column justify-center items-center">
           <span>{{ 350 }}</span>
-          <span>{{ $t("petProfile.header.tours") }}</span>
+          <span>{{ $t('petProfile.header.tours') }}</span>
         </div>
       </q-card-section>
       <q-card-section>
         <q-timeline color="grey" layout="dense" class="pet-profile-timeline">
-          <q-timeline-entry
-            subtitle="Cadastrado em 09 de Fevereiro de 2020"
-            color="grey"
-          >
+          <q-timeline-entry subtitle="Cadastrado em 09 de Fevereiro de 2020" color="grey">
           </q-timeline-entry>
           <q-timeline-entry>
             <div class="pet-profile-timeline-entry bg-color-pink">
@@ -71,10 +66,7 @@
               <p>Aplicou Vacina V7</p>
             </div>
           </q-timeline-entry>
-          <q-timeline-entry
-            subtitle="Cadastrado em 09 de Fevereiro de 2020"
-            color="grey"
-          >
+          <q-timeline-entry subtitle="Cadastrado em 09 de Fevereiro de 2020" color="grey">
           </q-timeline-entry>
           <q-timeline-entry>
             <div class="pet-profile-timeline-entry bg-color-ice">
@@ -90,15 +82,9 @@
               <p>Aplicou Vacina V7</p>
             </div>
           </q-timeline-entry>
-          <q-timeline-entry
-            subtitle="Cadastrado em 09 de Fevereiro de 2020"
-            color="grey"
-          >
+          <q-timeline-entry subtitle="Cadastrado em 09 de Fevereiro de 2020" color="grey">
           </q-timeline-entry>
-          <q-timeline-entry
-            subtitle="Nasceu em 1 de Dezembro de 2001"
-            color="secondary"
-          >
+          <q-timeline-entry subtitle="Nasceu em 1 de Dezembro de 2001" color="secondary">
           </q-timeline-entry>
         </q-timeline>
       </q-card-section>
@@ -118,86 +104,84 @@
 </template>
 
 <script>
-import TextButton from "./textButton";
-import ConfirmDeletePet from "./confirmDeletePet";
-import { mapActions } from "vuex";
+import TextButton from './textButton'
+import ConfirmDeletePet from './confirmDeletePet'
+import { mapActions } from 'vuex'
 
 export default {
-  name: "PetProfile",
+  name: 'PetProfile',
   components: {
     TextButton,
-    ConfirmDeletePet,
+    ConfirmDeletePet
   },
   props: {
     data: {
       type: Object,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
   data() {
-    return {};
+    return {}
   },
   methods: {
-    ...mapActions("pets", ["ActionmodalDeletePet"]),
+    ...mapActions('pets', ['ActionmodalDeletePet']),
     deletePet() {
       this.ActionmodalDeletePet({
         modal: true,
         data: {
           id: this.$route.params.id,
-          name: this.data.name,
-        },
-      });
+          name: this.data.name
+        }
+      })
     },
     parseBreed(breed) {
-      return breed == "unknown"
-        ? this.$t("petProfile.extra.unknownBreed")
-        : breed;
+      return breed === 'unknown' ? this.$t('petProfile.extra.unknownBreed') : breed
     },
     parseProfilePet(profile) {
       switch (profile) {
-        case "feline":
-          return this.$t("petProfile.profile.feline");
-        case "canine":
-          return this.$t("petProfile.profile.canine");
+        case 'feline':
+          return this.$t('petProfile.profile.feline')
+        case 'canine':
+          return this.$t('petProfile.profile.canine')
         default:
-          return "";
+          return ''
       }
     },
     parseDetails(details) {
       switch (details) {
-        case "adopted":
-          return this.$t("petProfile.details.adopted");
-        case "castrated":
-          return this.$t("petProfile.details.castrated");
-        case "withSomeDisability":
-          return this.$t("petProfile.details.withSomeDisability");
+        case 'adopted':
+          return this.$t('petProfile.details.adopted')
+        case 'castrated':
+          return this.$t('petProfile.details.castrated')
+        case 'withSomeDisability':
+          return this.$t('petProfile.details.withSomeDisability')
         default:
-          return "";
+          return ''
       }
     },
     parseGender(gender) {
       switch (gender) {
-        case "male":
-          return this.$t("petProfile.gender.male");
-        case "female":
-          return this.$t("petProfile.gender.female");
+        case 'male':
+          return this.$t('petProfile.gender.male')
+        case 'female':
+          return this.$t('petProfile.gender.female')
         default:
-          return "";
+          return ''
       }
     },
     getAge(rawBirthday) {
-      var birthday = new Date(rawBirthday);
-      var ageDifMs = Date.now() - birthday.getTime();
-      var ageDate = new Date(ageDifMs);
-      return Math.abs(ageDate.getUTCFullYear() - 1970);
-    },
-  },
-};
+      const birthday = new Date(rawBirthday)
+      const ageDifMs = Date.now() - birthday.getTime()
+      const ageDate = new Date(ageDifMs)
+      return Math.abs(ageDate.getUTCFullYear() - 1970)
+    }
+  }
+}
 </script>
 
 <style>
 .pet-profile-text {
-  font-family: "customfont";
+  font-family: 'customfont';
   font-weight: 500;
   font-size: calc(20px + (32 - 20) * (100vw - 500px) / (800-500));
   color: var(--colorWhite);
@@ -206,7 +190,7 @@ export default {
 }
 
 h2.pet-profile-text {
-  font-family: "customfont700";
+  font-family: 'customfont700';
   font-weight: 600;
   font-size: calc(34px + (36 - 34) * (100vw - 500px) / (800-500));
   letter-spacing: 2px;
@@ -227,7 +211,7 @@ h2.pet-profile-text {
 }
 
 .pet-profile-card-title {
-  font-family: "customfont700";
+  font-family: 'customfont700';
   font-weight: 500;
   color: var(--colorLight);
   margin: 0 auto;
@@ -237,7 +221,7 @@ h2.pet-profile-text {
 }
 
 .pet-profile-card-subtitle {
-  font-family: "customfont600";
+  font-family: 'customfont600';
   font-weight: 500;
   color: var(--colorLight);
   margin: 0 auto;
@@ -254,7 +238,7 @@ h2.pet-profile-text {
 }
 
 .pet-profile-card-header div span:first-child {
-  font-family: "customfont700";
+  font-family: 'customfont700';
   font-weight: 500;
   color: var(--colorPrimary);
   margin: 0 auto 0.7rem auto;
@@ -264,7 +248,7 @@ h2.pet-profile-text {
 }
 
 .pet-profile-card-header div span:last-child {
-  font-family: "customfont600";
+  font-family: 'customfont600';
   font-weight: 500;
   color: var(--colorPrimary);
   margin: 0 auto 0 auto;
@@ -304,7 +288,7 @@ h2.pet-profile-text {
 }
 
 .q-timeline__subtitle span {
-  font-family: "customfont600";
+  font-family: 'customfont600';
   font-weight: 500;
   color: var(--colorPrimary) !important;
   margin: 0 auto 0 auto;

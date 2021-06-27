@@ -1,13 +1,13 @@
 /* eslint-disable no-useless-escape */
-import { mapActions } from "vuex";
-import Title from "../../../common/components/title";
-import MainButton from "../../../common/components/mainButton";
-import Container from "../../../common/components/container";
-import SingleLineForm from "../../../common/components/singleLineForm";
-import LoadingCircle from "../../../common/components/loadingCircle";
+import { mapActions } from 'vuex'
+import Title from '../../../common/components/title'
+import MainButton from '../../../common/components/mainButton'
+import Container from '../../../common/components/container'
+import SingleLineForm from '../../../common/components/singleLineForm'
+import LoadingCircle from '../../../common/components/loadingCircle'
 
 export default {
-  name: "CreateAccount",
+  name: 'CreateAccount',
   components: {
     Title,
     Container,
@@ -15,18 +15,18 @@ export default {
     LoadingCircle,
     SingleLineForm
   },
-  data() {
+  data () {
     return {
       showError: {
         email: false,
         password: false
       },
       form: {
-        email: "",
-        password: "",
-        nickname: "",
-        identificationTutor: "mother",
-        birthdate: ""
+        email: '',
+        password: '',
+        nickname: '',
+        identificationTutor: 'mother',
+        birthdate: ''
       },
       pattern: {
         email: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
@@ -36,60 +36,58 @@ export default {
       step: 1,
       maxStep: 5,
       loading: false
-    };
+    }
   },
   computed: {
-    emailIsValid() {
-      return this.validateField(this.form.email, this.pattern.email);
+    emailIsValid () {
+      return this.validateField(this.form.email, this.pattern.email)
     },
-    passwordIsValid() {
-      return this.validateField(this.form.password, this.pattern.password);
+    passwordIsValid () {
+      return this.validateField(this.form.password, this.pattern.password)
     },
-    nameIsValid() {
-      return this.validateField(this.form.nickname, this.pattern.name);
+    nameIsValid () {
+      return this.validateField(this.form.nickname, this.pattern.name)
     },
-    extraIsValid() {
-      return (
-        this.form.identificationTutor != "" && this.form.birthdate.length == 10
-      );
+    extraIsValid () {
+      return this.form.identificationTutor !== '' && this.form.birthdate.length === 10
     }
   },
-  beforeMount() {},
-  mounted() {},
+  beforeMount () { },
+  mounted () { },
   methods: {
-    ...mapActions("auth", ["ActionCreateAccount"]),
-    nextStep() {
-      if (this.step < this.maxStep) this.step += 1;
+    ...mapActions('auth', ['ActionCreateAccount']),
+    nextStep () {
+      if (this.step < this.maxStep) this.step += 1
     },
-    previousStep() {
-      if (this.step > 1) this.step -= 1;
+    previousStep () {
+      if (this.step > 1) this.step -= 1
     },
-    validateField(field, rule) {
-      if (field && rule) return rule.test(field);
-      else false;
+    validateField (field, rule) {
+      if (field && rule) return rule.test(field)
+      else return false
     },
-    onSubmitEmail() {
-      if (!this.emailIsValid) return;
-      this.nextStep();
+    onSubmitEmail () {
+      if (!this.emailIsValid) return
+      this.nextStep()
     },
-    onSubmitPassword() {
+    onSubmitPassword () {
       if (this.$refs.password.validate()) {
-        this.nextStep();
+        this.nextStep()
       }
     },
-    onSubmitName() {
-      if (!this.nameIsValid) return;
-      this.nextStep();
+    onSubmitName () {
+      if (!this.nameIsValid) return
+      this.nextStep()
     },
-    async onSubmitExtra() {
-      if (!this.extraIsValid) return;
-      this.nextStep();
-      await this.submitNewUser();
+    async onSubmitExtra () {
+      if (!this.extraIsValid) return
+      this.nextStep()
+      await this.submitNewUser()
     },
-    async submitNewUser() {
-      this.loading = true;
-      await this.ActionCreateAccount(this.form);
-      this.loading = false;
+    async submitNewUser () {
+      this.loading = true
+      await this.ActionCreateAccount(this.form)
+      this.loading = false
     }
   }
-};
+}

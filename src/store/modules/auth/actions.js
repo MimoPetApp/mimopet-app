@@ -1,91 +1,92 @@
 /* eslint-disable no-unused-vars */
-import * as types from "./mutation-types";
-import { Http } from "../../../services/http";
-import { Notify } from "quasar";
-import store from "../../../store/index";
-import { setLocalToken, deleteLocalToken } from "../../../services/storage";
+import * as types from './mutation-types'
+import { Http } from '../../../services/http'
+import { Notify } from 'quasar'
+import store from '../../../store/index'
+import { setLocalToken, deleteLocalToken } from '../../../services/storage'
 
 export const ActionCreateAccount = async ({ commit, dispatch }, payload) => {
-  await Http.post("user", payload)
+  await Http.post('user', payload)
     .then(response => {
-      dispatch("ActionModalResponseUser", {
+      dispatch('ActionModalResponseUser', {
         modal: true,
         data: {
-          msg: "Usuário criado"
+          msg: 'Usuário criado'
         }
-      });
-      store.$router.push({ name: "acesso" });
+      })
+      store.$router.push({ name: 'acesso' })
     })
     .catch(error => {
-      console.log(error);
-      dispatch("ActionModalResponseUser", {
+      console.log(error)
+      dispatch('ActionModalResponseUser', {
         modal: true,
         data: {
-          msg: "E-mail já cadastrado"
+          msg: 'E-mail já cadastrado'
         }
-      });
-    });
-};
+      })
+    })
+}
 
 export const ActionLogoutUser = async ({ commit }) => {
-  deleteLocalToken();
-  store.$router.push({ name: "hub" });
-};
+  deleteLocalToken()
+  store.$router.push({ name: 'hub' })
+}
 
 export const ActionRefreshUser = async ({ commit, dispatch }) => {
-  deleteLocalToken();
-  dispatch("ActionModalResponseUser", {
+  deleteLocalToken()
+  dispatch('ActionModalResponseUser', {
     modal: true,
     data: {
-      msg: "Sessão expirada"
+      msg: 'Sessão expirada'
     }
-  });
-  store.$router.push({ name: "acesso" });
-};
+  })
+  store.$router.push({ name: 'acesso' })
+}
 
 export const ActionLogin = async ({ commit, dispatch }, payload) => {
-  await Http.post("session", payload)
+  await Http.post('session', payload)
     .then(response => {
-      setLocalToken(response.data.token);
-      store.$router.push({ name: "home" });
+      setLocalToken(response.data.token)
+      store.$router.push({ name: 'home' })
     })
     .catch(error => {
-      dispatch("ActionModalResponseUser", {
+      dispatch('ActionModalResponseUser', {
         modal: true,
-        data: { msg: "E-mail ou senha incorretos" }
-      });
-    });
-};
+        data: { msg: 'E-mail ou senha incorretos' }
+      })
+      console.log(error)
+    })
+}
 
 export const ActionGetUser = ({ commit, dispatch }) => {
   return new Promise((resolve, reject) => {
-    Http.get("user")
+    Http.get('user')
       .then(response => {
-        commit(types.SET_USER, response.data);
-        resolve(response.data);
+        commit(types.SET_USER, response.data)
+        resolve(response.data)
       })
       .catch(error => {
-        console.log("erro", error);
-        dispatch("ActionRefreshUser");
-        reject("error");
-      });
-  });
-};
+        console.log('erro', error)
+        dispatch('ActionRefreshUser')
+        reject(error.response.data)
+      })
+  })
+}
 
 export const ActionModalNotLogged = ({ commit }, payload) => {
-  commit(types.SET_MODALNOTLOGGED, payload);
-};
+  commit(types.SET_MODALNOTLOGGED, payload)
+}
 
 export const ActionSetTokenAfter = ({ getters }, payload) => {
   Http.defaults.headers.common = {
     Authorization: `Bearer ${getters.getToken}`
-  };
-};
+  }
+}
 
 export const ActionModalResponseUser = ({ commit }, payload) => {
-  commit(types.SET_MODALRESPONSEUSER, payload);
-};
+  commit(types.SET_MODALRESPONSEUSER, payload)
+}
 
 export const ActionModalErrorServer = ({ commit }, payload) => {
-  commit(types.SET_MODALERRORSERVER, payload);
-};
+  commit(types.SET_MODALERRORSERVER, payload)
+}

@@ -19,18 +19,18 @@
 </template>
 
 <script>
-import ModalResponseUser from "../common/components/modalResponseUser";
-import ModalErrorServer from "../common/components/modalErrorServer";
+import ModalResponseUser from '../common/components/modalResponseUser'
+import ModalErrorServer from '../common/components/modalErrorServer'
 export default {
-  name: "LoginLayout",
+  name: 'LoginLayout',
   components: {
     ModalResponseUser,
-    ModalErrorServer,
+    ModalErrorServer
   },
   data() {
     return {
-      tab: "mails",
-    };
-  },
-};
+      tab: 'mails'
+    }
+  }
+}
 </script>

@@ -16,7 +16,7 @@
               input-class="group-input-content-pattern"
               filled
               no-error-icon
-              :rules="[(val) => !!val || $t('login.email.error')]"
+              :rules="[val => !!val || $t('login.email.error')]"
               @focus="showEmailLabel = false"
               @blur="showEmailLabel = form.email.length == 0"
             />
@@ -29,9 +29,8 @@
               class="group-input"
               no-error-icon
               :rules="[
-                (val) => !!val || $t('login.password.error.required'),
-                (val) =>
-                  /^(?=.{8,})/.test(val) || $t('login.password.error.min'),
+                val => !!val || $t('login.password.error.required'),
+                val => /^(?=.{8,})/.test(val) || $t('login.password.error.min')
               ]"
               @focus="showPasswordLabel = false"
               @blur="showPasswordLabel = form.password.length == 0"

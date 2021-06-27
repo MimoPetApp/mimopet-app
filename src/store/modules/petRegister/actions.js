@@ -1,63 +1,63 @@
 /* eslint-disable no-unused-vars */
-import * as types from "./mutation-types";
-import { Http } from "../../../services/http";
-import { Notify } from "quasar";
-import store from "../../index";
+import * as types from './mutation-types'
+import { Http } from '../../../services/http'
+import { Notify } from 'quasar'
+import store from '../../index'
 
 export const ActionGetPets = ({ commit, dispatch }) => {
   return new Promise((resolve, reject) => {
-    Http.get("pet")
+    Http.get('pet')
       .then(response => {
-        dispatch("ActionCommitPet", response.data);
-        dispatch("ActionSetLoadingPet", false);
-        resolve(response.data);
+        dispatch('ActionCommitPet', response.data)
+        dispatch('ActionSetLoadingPet', false)
+        resolve(response.data)
       })
       .catch(error => {
-        console.log(error);
-        reject("error");
-      });
-  });
-};
+        console.log(error)
+        reject(error.response.data)
+      })
+  })
+}
 
 export const ActionGetPetById = ({ commit, dispatch }, payload) => {
   return new Promise((resolve, reject) => {
     Http.get(`pet/${payload}`)
       .then(response => {
-        commit(types.SET_PROFILEPET, response.data);
-        dispatch("ActionSetLoadingPet", false);
-        resolve(response.data);
+        commit(types.SET_PROFILEPET, response.data)
+        dispatch('ActionSetLoadingPet', false)
+        resolve(response.data)
       })
       .catch(error => {
-        console.log(error);
-        reject("error");
-      });
-  });
-};
+        console.log(error)
+        reject(error.response.data)
+      })
+  })
+}
 
 export const ActionSetLoadingPet = ({ commit, dispatch }, payload) => {
-  commit(types.SET_LOADINGPETS, payload);
-};
+  commit(types.SET_LOADINGPETS, payload)
+}
 
 export const ActionCommitPet = ({ commit }, payload) => {
-  commit(types.SET_PETSLIST, payload);
-};
+  commit(types.SET_PETSLIST, payload)
+}
 
 export const ActionmodalDeletePet = ({ commit }, payload) => {
-  commit(types.SET_MODALDELETEPET, payload);
-};
+  commit(types.SET_MODALDELETEPET, payload)
+}
 
 export const ActionDeletePet = ({ commit, dispatch }, payload) => {
-  dispatch("ActionSetLoadingPet", true);
+  dispatch('ActionSetLoadingPet', true)
   Http.delete(`pet/${payload}`)
     .then(response => {
-      dispatch("ActionmodalDeletePet", { modal: false, data: {} });
-      store.$router.push({ name: "home" });
+      dispatch('ActionmodalDeletePet', { modal: false, data: {} })
+      store.$router.push({ name: 'home' })
     })
     .catch(error => {
-      console.log(error);
-    });
-};
+      console.log(error)
+    })
+}
 
 export const ActionPetModalList = ({ commit }, payload) => {
-  commit(types.SET_MODALDELETEPETLIST, payload);
-};
+  commit(types.SET_MODALDELETEPETLIST, payload)
+}

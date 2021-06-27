@@ -1,17 +1,23 @@
 <template>
-  <q-page class="flex flex-center">
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-vertical.svg"
-      style="width: 200px; height: 200px"
-    >
+  <q-page class="q-ma-sm">
+    <div class="text-primary text-h3 text-weight-medium">Busque locais pet friendly</div>
+    <q-input v-model="text" class="q-mt-md" filled>
+      <template v-slot:prepend> <q-icon name="search" /> </template
+    ></q-input>
   </q-page>
 </template>
 
 <script>
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'PageIndex'
-})
+// import petsList from "../common/components/pets/petsList";
+export default {
+  name: 'PageIndex',
+  data() {
+    return {
+      text: ''
+    }
+  }
+  // components:{
+  //   petsList
+  // }
+}
 </script>

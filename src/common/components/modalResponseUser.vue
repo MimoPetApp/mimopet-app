@@ -1,9 +1,5 @@
 <template>
-  <q-dialog
-    :value="modalResponseUser.modal"
-    persistent
-    @before-hide="beforeHideModal"
-  >
+  <q-dialog :value="modalResponseUser.modal" persistent @before-hide="beforeHideModal">
     <q-card style="width: 400px">
       <q-card-section>
         <div class="text-h6">Aviso</div>
@@ -21,19 +17,19 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions } from 'vuex'
 export default {
-  name: "ModalNotLogged",
+  name: 'ModalNotLogged',
   computed: {
-    ...mapState("auth", ["modalResponseUser"])
+    ...mapState('auth', ['modalResponseUser'])
   },
   methods: {
-    ...mapActions("auth", ["ActionModalResponseUser"]),
+    ...mapActions('auth', ['ActionModalResponseUser']),
     beforeHideModal() {
-      this.ActionModalResponseUser({ modal: false, data: {} });
-    },
-  },
-};
+      this.ActionModalResponseUser({ modal: false, data: {} })
+    }
+  }
+}
 </script>
 
 <style></style>

@@ -1,9 +1,9 @@
-import { default as auth } from "./auth/index";
-import { default as pets } from "./pets/index";
-import { default as petRegister } from "./petRegister/index";
+import auth from './auth/index'
+import pets from './pets/index'
+import petRegister from './petRegister/index'
 
 export default {
   auth,
   pets,
   petRegister
-};
+}

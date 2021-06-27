@@ -1,18 +1,24 @@
+// import { Http } from "../http/http";
+import pets from './modules/pets'
+import auth from './modules/auth'
+import { autentication } from '../middlewares/navigationGuards'
 
 const routes = [
   {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [
-      { path: '', component: () => import('pages/Index.vue') }
-    ]
+    component: () => import('src/layouts/mainLayout.vue'),
+    children: [...pets],
+    beforeEnter: autentication
   },
-
-  // Always leave this as last one,
-  // but you can also remove it
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('layouts/loginLayout'),
+    children: [...auth]
+  },
   {
     path: '/:catchAll(.*)*',
-    component: () => import('pages/Error404.vue')
+    component: () => import('../views/Error404.vue')
   }
 ]
 

@@ -6,8 +6,8 @@
 
 <script>
 export default {
-  name: "LoadingCircle"
-};
+  name: 'LoadingCircle'
+}
 </script>
 
 <style lang="scss">

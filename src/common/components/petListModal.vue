@@ -7,10 +7,7 @@
             <q-item v-ripple clickable :to="`/pet/${pet.id}`">
               <q-item-section>{{ pet.name }}</q-item-section>
               <q-item-section avatar>
-                <q-avatar
-                  text-color="secondary"
-                  icon="s_keyboard_arrow_right"
-                />
+                <q-avatar text-color="secondary" icon="s_keyboard_arrow_right" />
               </q-item-section>
             </q-item>
             <q-separator />
@@ -30,25 +27,25 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions } from 'vuex'
 export default {
-  name: "PetListModal",
+  name: 'PetListModal',
   data() {
     return {
-      dialog: true,
-    };
+      dialog: true
+    }
   },
   computed: {
-    ...mapState("pets", ["petsList", "modalPetList"]),
+    ...mapState('pets', ['petsList', 'modalPetList'])
   },
   methods: {
-    ...mapActions("pets", ["ActionPetModalList", "ActionSetLoadingPet"]),
+    ...mapActions('pets', ['ActionPetModalList', 'ActionSetLoadingPet']),
     hide() {
-      this.ActionSetLoadingPet(true);
-      this.ActionPetModalList({ modal: false, data: {} });
-    },
-  },
-};
+      this.ActionSetLoadingPet(true)
+      this.ActionPetModalList({ modal: false, data: {} })
+    }
+  }
+}
 </script>
 
 <style></style>

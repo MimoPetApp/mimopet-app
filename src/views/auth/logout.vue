@@ -3,16 +3,16 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions } from 'vuex'
 export default {
-  name: "Logout",
+  name: 'Logout',
   mounted() {
-    this.ActionLogoutUser();
+    this.ActionLogoutUser()
   },
   methods: {
-    ...mapActions("auth", ["ActionLogoutUser"])
+    ...mapActions('auth', ['ActionLogoutUser'])
   }
-};
+}
 </script>
 
 <style></style>

@@ -1,7 +1,7 @@
-import Title from "../../../common/components/title";
-import Logo from "../../../common/components/logo";
-import MainButton from "../../../common/components/mainButton";
-import Container from "../../../common/components/container";
+import Title from '../../../common/components/title'
+import Logo from '../../../common/components/logo'
+import MainButton from '../../../common/components/mainButton'
+import Container from '../../../common/components/container'
 export default {
   components: {
     Title,
@@ -9,4 +9,4 @@ export default {
     MainButton,
     Container
   }
-};
+}

@@ -21,11 +21,11 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions } from 'vuex'
 export default {
-  name: "ModalErrorServer",
+  name: 'ModalErrorServer',
   computed: {
-    ...mapState("auth", ["modalErrorServer"]),
+    ...mapState('auth', ['modalErrorServer'])
     // msg() {
     //   let msgs = {
     //     user_not_found: {
@@ -43,12 +43,12 @@ export default {
     // }
   },
   methods: {
-    ...mapActions("auth", ["ActionModalErrorServer"]),
+    ...mapActions('auth', ['ActionModalErrorServer']),
     beforeHideModal() {
-      this.ActionModalErrorServer({ modal: false, data: {} });
-    },
-  },
-};
+      this.ActionModalErrorServer({ modal: false, data: {} })
+    }
+  }
+}
 </script>
 
 <style></style>

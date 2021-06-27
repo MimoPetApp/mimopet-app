@@ -21,33 +21,33 @@
 
 <script>
 export default {
-  name: "HomeItem",
+  name: 'HomeItem',
   props: {
     label: {
       type: String,
-      default: "",
+      default: ''
     },
     notificationLabel: {
       type: String,
-      default: "Agendados",
+      default: 'Agendados'
     },
     notification: {
       type: Number,
-      default: 0,
+      default: 0
     },
     color: {
       type: String,
-      default: "#fe7624",
+      default: '#fe7624'
     },
     click: {
       type: Function,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
   data() {
-    return {};
-  },
-};
+    return {}
+  }
+}
 </script>
 
 <style lang="scss">

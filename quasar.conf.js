@@ -21,15 +21,10 @@ module.exports = configure(function (ctx) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli/boot-files
-    boot: [
-      'i18n',
-      'axios'
-    ],
+    boot: ['i18n', 'axios'],
 
     // https://v2.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
-    css: [
-      'app.css'
-    ],
+    css: ['~src/assets/styles/css/app.css'],
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
     extras: [
@@ -47,7 +42,7 @@ module.exports = configure(function (ctx) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
-      vueRouterMode: 'hash', // available values: 'hash', 'history'
+      vueRouterMode: 'history', // available values: 'hash', 'history'
 
       // transpile: false,
 
@@ -68,24 +63,24 @@ module.exports = configure(function (ctx) {
       // https://v2.quasar.dev/quasar-cli/handling-webpack
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
       chainWebpack (chain) {
-        chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: ['js', 'vue'] }])
+        chain.plugin('eslint-webpack-plugin').use(ESLintPlugin, [{ extensions: ['js', 'vue'] }])
       }
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
     devServer: {
       https: false,
-      port: 8080,
+      port: 3001,
       open: true // opens browser window automatically
     },
 
     // https://v2.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework
     framework: {
+      iconSet: 'material-icons', // Quasar icon set
       config: {},
 
       // iconSet: 'material-icons', // Quasar icon set
-      // lang: 'en-US', // Quasar language pack
+      lang: 'pt-BR', // Quasar language pack
 
       // For special cases outside of where the auto-import stategy can have an impact
       // (like functional components as one of the examples),
@@ -116,8 +111,7 @@ module.exports = configure(function (ctx) {
       // Tell browser when a file from the server should expire from cache (in ms)
 
       chainWebpackWebserver (chain) {
-        chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: ['js'] }])
+        chain.plugin('eslint-webpack-plugin').use(ESLintPlugin, [{ extensions: ['js'] }])
       },
 
       middlewares: [
@@ -134,8 +128,7 @@ module.exports = configure(function (ctx) {
       // for the custom service worker ONLY (/src-pwa/custom-service-worker.[js|ts])
       // if using workbox in InjectManifest mode
       chainWebpackCustomSW (chain) {
-        chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: ['js'] }])
+        chain.plugin('eslint-webpack-plugin').use(ESLintPlugin, [{ extensions: ['js'] }])
       },
 
       manifest: {
@@ -192,13 +185,11 @@ module.exports = configure(function (ctx) {
 
       packager: {
         // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
-
         // OS X / Mac App Store
         // appBundleId: '',
         // appCategoryType: '',
         // osxSign: '',
         // protocol: 'myapp://path',
-
         // Windows only
         // win32metadata: { ... }
       },
@@ -211,14 +202,12 @@ module.exports = configure(function (ctx) {
 
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
       chainWebpackMain (chain) {
-        chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: ['js'] }])
+        chain.plugin('eslint-webpack-plugin').use(ESLintPlugin, [{ extensions: ['js'] }])
       },
 
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
       chainWebpackPreload (chain) {
-        chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: ['js'] }])
+        chain.plugin('eslint-webpack-plugin').use(ESLintPlugin, [{ extensions: ['js'] }])
       }
     }
   }

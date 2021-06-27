@@ -14,37 +14,37 @@
 
 <script>
 export default {
-  name: "MainButton",
+  name: 'MainButton',
   props: {
     to: {
       type: String,
-      default: "",
+      default: ''
     },
     label: {
       type: String,
-      default: "",
+      default: ''
     },
     type: {
       type: String,
-      default: "button",
+      default: 'button'
     },
     click: {
       type: Function,
-      default: () => {},
+      default: () => {}
     },
     loading: {
       type: Boolean,
-      default: false,
+      default: false
     },
     disable: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
-    return {};
-  },
-};
+    return {}
+  }
+}
 </script>
 
 <style lang="scss">
@@ -57,7 +57,7 @@ $text-main-button-size: 1.16rem;
 }
 .main-button-text {
   font-size: $text-main-button-size;
-  font-family: "customfont600";
+  font-family: 'customfont600';
   text-transform: capitalize;
 }
 </style>

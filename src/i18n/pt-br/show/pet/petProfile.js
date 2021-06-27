@@ -1,31 +1,31 @@
 export default {
   petProfile: {
     header: {
-      vaccines: "Vacinas",
-      trainings: "Treinamentos",
-      tours: "Passeios"
+      vaccines: 'Vacinas',
+      trainings: 'Treinamentos',
+      tours: 'Passeios'
     },
     extra: {
-      years: "anos",
-      journey: "Sua jornada com o pet",
-      since: "Juntos desde",
-      unknownBreed: "Raça desconhecida"
+      years: 'anos',
+      journey: 'Sua jornada com o pet',
+      since: 'Juntos desde',
+      unknownBreed: 'Raça desconhecida'
     },
     button: {
-      delete: "Excluir pet"
+      delete: 'Excluir pet'
     },
     details: {
-      adopted: "Adotado",
-      castrated: "Castrado",
-      withSomeDisability: "Com alguma deficiência"
+      adopted: 'Adotado',
+      castrated: 'Castrado',
+      withSomeDisability: 'Com alguma deficiência'
     },
     gender: {
-      male: "Macho",
-      female: "Fêmea"
+      male: 'Macho',
+      female: 'Fêmea'
     },
     profile: {
-      feline: "Felino",
-      canine: "Canino"
+      feline: 'Felino',
+      canine: 'Canino'
     }
   }
-};
+}

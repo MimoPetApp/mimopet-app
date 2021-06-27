@@ -99,17 +99,17 @@
 
 <script>
 export default {
-  name: "Container",
+  name: 'Container',
   props: {
     hasBackground: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
-    return {};
-  },
-};
+    return {}
+  }
+}
 </script>
 
 <style lang="scss">

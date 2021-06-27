@@ -25,10 +25,10 @@
 </template>
 
 <script>
-import Title from "./title";
-import MainButton from "./mainButton";
+import Title from './title'
+import MainButton from './mainButton'
 export default {
-  name: "SingleLineForm",
+  name: 'SingleLineForm',
   components: {
     Title,
     MainButton
@@ -48,21 +48,21 @@ export default {
     },
     title: {
       type: String,
-      default: ""
+      default: ''
     },
     subtitle: {
       type: String,
-      default: ""
+      default: ''
     },
     btnLabel: {
       type: String,
-      default: "Submeter"
+      default: 'Submeter'
     }
   },
   data() {
-    return {};
+    return {}
   }
-};
+}
 </script>
 
 <style lang="scss">

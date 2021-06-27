@@ -1,12 +1,12 @@
-import { mapActions } from "vuex";
-import Logo from "../../../common/components/logo";
-import Title from "../../../common/components/title";
-import MainButton from "../../../common/components/mainButton";
-import Container from "../../../common/components/container";
-import LoadingCircle from "../../../common/components/loadingCircle";
+import { mapActions } from 'vuex'
+import Logo from '../../../common/components/logo'
+import Title from '../../../common/components/title'
+import MainButton from '../../../common/components/mainButton'
+import Container from '../../../common/components/container'
+import LoadingCircle from '../../../common/components/loadingCircle'
 
 export default {
-  name: "LoginAccount",
+  name: 'LoginAccount',
   components: {
     Title,
     MainButton,
@@ -14,36 +14,36 @@ export default {
     LoadingCircle,
     Logo
   },
-  data() {
+  data () {
     return {
       form: {
-        email: "",
-        password: ""
+        email: '',
+        password: ''
       },
       showPassword: false,
       showEmailLabel: true,
       showPasswordLabel: true,
       loading: false
-    };
+    }
   },
   computed: {
-    formIsValid() {
-      return this.form.email.length != 0 && this.form.password.length >= 8;
+    formIsValid () {
+      return this.form.email.length !== 0 && this.form.password.length >= 8
     }
   },
-  beforeMount() {},
+  beforeMount () { },
   methods: {
-    ...mapActions("auth", ["ActionLogin"]),
-    nextStep() {},
-    async onSubmitEmail() {
-      this.loading = true;
-      await this.ActionLogin(this.form);
-      this.loading = false;
+    ...mapActions('auth', ['ActionLogin']),
+    nextStep () { },
+    async onSubmitEmail () {
+      this.loading = true
+      await this.ActionLogin(this.form)
+      this.loading = false
     },
-    async wait(ms) {
+    async wait (ms) {
       return new Promise(resolve => {
-        setTimeout(resolve, ms);
-      });
+        setTimeout(resolve, ms)
+      })
     }
   }
-};
+}

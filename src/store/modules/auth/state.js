@@ -1,6 +1,6 @@
 export default {
   user: {},
-  token: "",
+  token: '',
   modalNotLogged: {
     modal: false,
     data: {}
@@ -13,4 +13,4 @@ export default {
     modal: false,
     data: {}
   }
-};
+}

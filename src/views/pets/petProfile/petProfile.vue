@@ -5,14 +5,7 @@
       <div class="pet-profile-row q-pt-md">
         <q-btn flat round color="white" size="lg" icon="arrow_back" to="/" />
         <div class="flex">
-          <q-btn
-            flat
-            round
-            color="white"
-            size="lg"
-            icon="health_and_safety"
-            to="/"
-          />
+          <q-btn flat round color="white" size="lg" icon="health_and_safety" to="/" />
           <q-btn flat round color="white" size="lg" icon="settings" to="/" />
         </div>
       </div>

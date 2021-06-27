@@ -10,4 +10,4 @@ export default {
     modal: false,
     data: {}
   }
-};
+}

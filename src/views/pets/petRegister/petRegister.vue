@@ -2,13 +2,7 @@
   <div style="background: #ffffff">
     <q-layout v-if="!loading" view="lHh Lpr lFf">
       <q-toolbar class="text-primary">
-        <q-btn
-          flat
-          round
-          dense
-          icon="s_keyboard_backspace"
-          @click="backStep()"
-        />
+        <q-btn flat round dense icon="s_keyboard_backspace" @click="backStep()" />
       </q-toolbar>
       <!-- Pet Name -->
       <Container v-if="step === 1">
@@ -20,14 +14,7 @@
               </div>
             </div>
             <div class="row">
-              <div
-                class="
-                  col-12 col-md-12 col-xs-12
-                  flex
-                  justify-center
-                  items-center
-                "
-              >
+              <div class="col-12 col-md-12 col-xs-12 flex justify-center items-center">
                 <q-input
                   ref="petName"
                   v-model="form.petName"
@@ -40,9 +27,8 @@
                   no-error-icon
                   lazy-rules
                   :rules="[
-                    (val) =>
-                      (val && val.length > 0) ||
-                      $t('petCreation.validationMessages.fieldRequired'),
+                    val =>
+                      (val && val.length > 0) || $t('petCreation.validationMessages.fieldRequired')
                   ]"
                 />
               </div>
@@ -144,10 +130,7 @@
             <div class="row">
               <div class="col-12">
                 <div class="flex flex-center">
-                  <MainButton
-                    type="submit"
-                    :label="$t('petCreation.buttons.select')"
-                  />
+                  <MainButton type="submit" :label="$t('petCreation.buttons.select')" />
                 </div>
               </div>
             </div>
@@ -166,15 +149,7 @@
               </div>
             </div>
             <div class="row q-mt-md">
-              <div
-                class="
-                  col-12 col-xs-12 col-md-12
-                  flex
-                  justify-center
-                  items-center
-                  flex
-                "
-              >
+              <div class="col-12 col-xs-12 col-md-12 flex justify-center items-center flex">
                 <q-input
                   ref="petBreed"
                   v-model="form.petBreed.name"
@@ -194,12 +169,10 @@
               </div>
             </div>
             <div class="row">
-              <div
-                class="col-12 col-md-12 col-xs-12 flex justify-end items-center"
-              >
+              <div class="col-12 col-md-12 col-xs-12 flex justify-end items-center">
                 <p class="results-style">
                   {{ listOptionsFiltered.length }}
-                  {{ $t("petCreation.placeholder.results") }}
+                  {{ $t('petCreation.placeholder.results') }}
                 </p>
               </div>
             </div>
@@ -217,10 +190,7 @@
               <div class="col-12 col-md-12 col-xs-12 list-wrapper">
                 <q-list>
                   <div v-if="listOptionsFiltered.length > 0">
-                    <div
-                      v-for="(breed, index) in listOptionsFiltered"
-                      :key="index"
-                    >
+                    <div v-for="(breed, index) in listOptionsFiltered" :key="index">
                       <q-item v-ripple clickable @click="selectBreed(index)">
                         <q-item-section>
                           <q-item-label>{{ breed.name }}</q-item-label>
@@ -234,8 +204,8 @@
                       <q-item-section>
                         <q-item-label>{{
                           !form.petBreed.name
-                            ? $t("petCreation.placeholder.searchByBreed")
-                            : $t("petCreation.placeholder.noResults")
+                            ? $t('petCreation.placeholder.searchByBreed')
+                            : $t('petCreation.placeholder.noResults')
                         }}</q-item-label>
                       </q-item-section>
                     </q-item>
@@ -270,26 +240,22 @@
         </div>
         <div
           :class="
-            form.petGender === $t('petCreation.gender.female')
-              ? 'row genderOption-active'
-              : 'row'
+            form.petGender === $t('petCreation.gender.female') ? 'row genderOption-active' : 'row'
           "
           @click="selectPetGender($t('petCreation.gender.female'))"
         >
           <div class="col-12 col-md-12 col-xs-12 genderOptions-wrapper">
-            {{ $t("petCreation.gender.female") }}
+            {{ $t('petCreation.gender.female') }}
           </div>
         </div>
         <div
           :class="
-            form.petGender === $t('petCreation.gender.male')
-              ? 'row genderOption-active'
-              : 'row'
+            form.petGender === $t('petCreation.gender.male') ? 'row genderOption-active' : 'row'
           "
           @click="selectPetGender($t('petCreation.gender.male'))"
         >
           <div class="col-12 col-md-12 col-xs-12 genderOptions-wrapper">
-            {{ $t("petCreation.gender.male") }}
+            {{ $t('petCreation.gender.male') }}
           </div>
         </div>
       </div>
@@ -314,7 +280,7 @@
                       }`"
                       @click="form.petDetails = 'adopted'"
                     >
-                      {{ $t("petCreation.buttons.adopted") }}
+                      {{ $t('petCreation.buttons.adopted') }}
                     </div>
                   </div>
                 </div>
@@ -322,13 +288,11 @@
                   <div class="flex flex-center">
                     <div
                       :class="`selectBtn-wrapper${
-                        form.petDetails === 'castrated'
-                          ? ' selectBtn-active'
-                          : ''
+                        form.petDetails === 'castrated' ? ' selectBtn-active' : ''
                       }`"
                       @click="form.petDetails = 'castrated'"
                     >
-                      {{ $t("petCreation.buttons.castrated") }}
+                      {{ $t('petCreation.buttons.castrated') }}
                     </div>
                   </div>
                 </div>
@@ -336,13 +300,11 @@
                   <div class="flex flex-center">
                     <div
                       :class="`selectBtn-wrapper${
-                        form.petDetails === 'withSomeDisability'
-                          ? ' selectBtn-active'
-                          : ''
+                        form.petDetails === 'withSomeDisability' ? ' selectBtn-active' : ''
                       }`"
                       @click="form.petDetails = 'withSomeDisability'"
                     >
-                      {{ $t("petCreation.buttons.withSomeDisability") }}
+                      {{ $t('petCreation.buttons.withSomeDisability') }}
                     </div>
                   </div>
                 </div>
@@ -377,14 +339,7 @@
               </div>
             </div>
             <div class="row">
-              <div
-                class="
-                  col-12 col-md-12 col-xs-12
-                  flex
-                  justify-center
-                  items-center
-                "
-              >
+              <div class="col-12 col-md-12 col-xs-12 flex justify-center items-center">
                 <div class="row q-gutter-sm flex justify-center items-center">
                   <div class="col-3 col-md-3 col-xs-3">
                     <div class="flex flex-center">
@@ -398,16 +353,16 @@
                         input-class="inputText-style text-center"
                         lazy-rules
                         :rules="[
-                          (val) =>
+                          val =>
                             (val && val.length > 0) ||
                             $t('petCreation.validationMessages.fieldRequired'),
-                          (val) =>
+                          val =>
                             (val &&
                               val.length === 2 &&
                               val !== '00' &&
                               parseInt(val) > 0 &&
                               parseInt(val) <= 31) ||
-                            $t('petCreation.validationMessages.dayInvalid'),
+                            $t('petCreation.validationMessages.dayInvalid')
                         ]"
                       />
                     </div>
@@ -424,16 +379,16 @@
                         input-class="inputText-style text-center"
                         lazy-rules
                         :rules="[
-                          (val) =>
+                          val =>
                             (val && val.length > 0) ||
                             $t('petCreation.validationMessages.fieldRequired'),
-                          (val) =>
+                          val =>
                             (val &&
                               val.length === 2 &&
                               val !== '00' &&
                               parseInt(val) > 0 &&
                               parseInt(val) <= 12) ||
-                            $t('petCreation.validationMessages.monthInvalid'),
+                            $t('petCreation.validationMessages.monthInvalid')
                         ]"
                       />
                     </div>
@@ -450,16 +405,16 @@
                         input-class="inputText-style text-center"
                         lazy-rules
                         :rules="[
-                          (val) =>
+                          val =>
                             (val && val.length > 0) ||
                             $t('petCreation.validationMessages.fieldRequired'),
-                          (val) =>
+                          val =>
                             (val &&
                               val.length === 4 &&
                               val !== '0000' &&
                               parseInt(val) > 0 &&
                               parseInt(val) <= new Date().getFullYear()) ||
-                            $t('petCreation.validationMessages.yearInvalid'),
+                            $t('petCreation.validationMessages.yearInvalid')
                         ]"
                       />
                     </div>
@@ -521,22 +476,16 @@
                         class="label-style"
                         lazy-rules
                         :rules="[
-                          (val) =>
+                          val =>
                             (val && val.length > 0) ||
-                            $t('petCreation.validationMessages.fieldRequired'),
+                            $t('petCreation.validationMessages.fieldRequired')
                         ]"
                       />
                     </div>
                   </div>
                   <div class="col-3 col-md-3 col-xs-3">
                     <div class="flex flex-center">
-                      <q-btn
-                        outline
-                        round
-                        class="btn-style"
-                        icon="add"
-                        @click="plusOperation()"
-                      />
+                      <q-btn outline round class="btn-style" icon="add" @click="plusOperation()" />
                     </div>
                   </div>
                 </div>
@@ -564,28 +513,12 @@
         <div class="login-form-content">
           <div class="row" style="height: 35px"></div>
           <div class="row" style="z-index: 1">
-            <div
-              class="
-                col-12 col-md-12 col-xs-12
-                flex
-                justify-center
-                items-center
-              "
-            >
-              <q-img
-                src="~/assets/images/check.png"
-                style="width: 100px; height: auto"
-              ></q-img>
+            <div class="col-12 col-md-12 col-xs-12 flex justify-center items-center">
+              <q-img src="~/assets/images/check.png" style="width: 100px; height: auto"></q-img>
             </div>
             <div
               style="margin-top: 25px"
-              class="
-                col-12 col-md-12 col-xs-12
-                flex
-                justify-center
-                items-center
-                text-center
-              "
+              class="col-12 col-md-12 col-xs-12 flex justify-center items-center text-center"
             >
               <Title
                 :text="$t('petCreation.title.petRegistered')"
@@ -597,22 +530,13 @@
           <div class="row" style="z-index: 1">
             <div class="col-12 col-md-12 col-xs-12">
               <div class="flex flex-center">
-                <MainButton
-                  :label="$t('petCreation.buttons.continue')"
-                  :click="finishRegister"
-                />
+                <MainButton :label="$t('petCreation.buttons.continue')" :click="finishRegister" />
               </div>
             </div>
           </div>
           <q-img
             src="~/assets/images/modal.png"
-            style="
-              width: 100%;
-              height: auto;
-              position: absolute;
-              bottom: 0%;
-              left: 0%;
-            "
+            style="width: 100%; height: auto; position: absolute; bottom: 0%; left: 0%"
             no-default-spinner
           ></q-img>
         </div>

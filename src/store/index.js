@@ -1,5 +1,7 @@
 import { store } from 'quasar/wrappers'
 import { createStore } from 'vuex'
+import modules from './modules'
+import VuexPersistence from 'vuex-persist'
 
 // import example from './module-example'
 
@@ -12,11 +14,21 @@ import { createStore } from 'vuex'
  * with the Store instance.
  */
 
+const vuexLocal = new VuexPersistence({
+  storage: window.localStorage,
+  key: 'mimopetapp',
+  reducer: state => ({
+    auth: state.auth
+  })
+})
+
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
     modules: {
       // example
+      modules
     },
+    plugins: [vuexLocal.plugin],
 
     // enable strict mode (adds overhead!)
     // for dev mode and --debug builds only

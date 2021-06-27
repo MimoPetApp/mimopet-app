@@ -1,59 +1,59 @@
-import { mapActions } from "vuex";
-import Title from "../../../common/components/title";
-import MainButton from "../../../common/components/mainButton";
-import Container from "../../../common/components/container";
-import LoadingCircle from "../../../common/components/loadingCircle";
+import { mapActions } from 'vuex'
+import Title from '../../../common/components/title'
+import MainButton from '../../../common/components/mainButton'
+import Container from '../../../common/components/container'
+import LoadingCircle from '../../../common/components/loadingCircle'
 
 export default {
-  name: "PetRegister",
+  name: 'PetRegister',
   components: {
     Title,
     MainButton,
     Container,
     LoadingCircle
   },
-  data() {
+  data () {
     return {
       form: {
-        petName: "",
-        petProfile: this.$t("petCreation.profileOptions.dog"),
+        petName: '',
+        petProfile: this.$t('petCreation.profileOptions.dog'),
         petBreed: {
           isUnknown: false,
-          name: ""
+          name: ''
         },
-        petGender: "",
+        petGender: '',
         petDetails: null,
-        passwordUser: "",
-        day: "",
-        month: "",
-        year: "",
-        howLong: ""
+        passwordUser: '',
+        day: '',
+        month: '',
+        year: '',
+        howLong: ''
       },
       createdPet: null,
       listOptions: [
         {
           id: 1,
-          name: "Akita"
+          name: 'Akita'
         },
         {
           id: 2,
-          name: "Yorkshire"
+          name: 'Yorkshire'
         },
         {
           id: 3,
-          name: "Yorkshire Terrier"
+          name: 'Yorkshire Terrier'
         },
         {
           id: 4,
-          name: "Vira-lata"
+          name: 'Vira-lata'
         },
         {
           id: 5,
-          name: "Splitz Alemão"
+          name: 'Splitz Alemão'
         },
         {
           id: 6,
-          name: "Dálmata"
+          name: 'Dálmata'
         }
       ],
       listOptionsFiltered: [],
@@ -62,164 +62,155 @@ export default {
       step: 1,
       loading: false,
       formHasError: [false, false]
-    };
+    }
   },
   computed: {
-    disableDateBtn() {
+    disableDateBtn () {
       if (
         this.form.day.length === 2 &&
         this.form.month.length === 2 &&
         this.form.year.length === 4
       ) {
         if (this.dayIsValid() && this.monthIsValid() && this.yearIsValid()) {
-          return false;
+          return false
         } else {
-          return true;
+          return true
         }
       } else {
-        return true;
+        return true
       }
     }
   },
-  beforeMount() {},
-  mounted() {
-    this.ActionSetHomeMenuVisibility(false);
+  beforeMount () { },
+  mounted () {
+    this.ActionSetHomeMenuVisibility(false)
   },
-  beforeRouteLeave(to, from, next) {
+  beforeRouteLeave (to, from, next) {
     // eslint-disable-next-line no-unused-vars
-    this.ActionSetHomeMenuVisibility(true);
-    next();
+    this.ActionSetHomeMenuVisibility(true)
+    next()
   },
   methods: {
-    ...mapActions("pets", ["ActionSetHomeMenuVisibility", "ActionCreatePet"]),
-    searchBreed() {
-      let aux = [];
+    ...mapActions('pets', ['ActionSetHomeMenuVisibility', 'ActionCreatePet']),
+    searchBreed () {
+      const aux = []
       if (this.form.petBreed.name) {
         this.listOptions.forEach(option => {
-          if (
-            option.name
-              .toUpperCase()
-              .includes(this.form.petBreed.name.toUpperCase())
-          ) {
-            aux.push(option);
+          if (option.name.toUpperCase().includes(this.form.petBreed.name.toUpperCase())) {
+            aux.push(option)
           }
-        });
-        this.listOptionsFiltered = aux;
+        })
+        this.listOptionsFiltered = aux
       } else {
-        this.listOptionsFiltered = [];
+        this.listOptionsFiltered = []
       }
     },
-    selectBreed(index) {
-      this.form.petBreed.name = this.listOptionsFiltered[index].name;
+    selectBreed (index) {
+      this.form.petBreed.name = this.listOptionsFiltered[index].name
     },
-    minusOperation() {
+    minusOperation () {
       if (this.form.howLong) {
         if (parseInt(this.form.howLong) !== 0) {
-          this.form.howLong = parseInt(this.form.howLong) - 1;
+          this.form.howLong = parseInt(this.form.howLong) - 1
         }
       }
     },
-    plusOperation() {
+    plusOperation () {
       if (!this.form.howLong) {
-        this.form.howLong = 1;
+        this.form.howLong = 1
       } else {
-        if (
-          parseInt(this.form.howLong) >= 0 &&
-          parseInt(this.form.howLong) < 99
-        ) {
-          this.form.howLong = parseInt(this.form.howLong) + 1;
+        if (parseInt(this.form.howLong) >= 0 && parseInt(this.form.howLong) < 99) {
+          this.form.howLong = parseInt(this.form.howLong) + 1
         }
       }
     },
-    dayIsValid() {
+    dayIsValid () {
       if (
         this.form.day &&
         this.form.day.length === 2 &&
-        this.form.day !== "00" &&
+        this.form.day !== '00' &&
         parseInt(this.form.day) > 0 &&
         parseInt(this.form.day) <= 31
       ) {
-        return true;
+        return true
       } else {
-        return false;
+        return false
       }
     },
-    monthIsValid() {
+    monthIsValid () {
       if (
         this.form.month &&
         this.form.month.length === 2 &&
-        this.form.month !== "00" &&
+        this.form.month !== '00' &&
         parseInt(this.form.month) > 0 &&
         parseInt(this.form.month) <= 12
       ) {
-        return true;
+        return true
       } else {
-        return false;
+        return false
       }
     },
-    yearIsValid() {
+    yearIsValid () {
       if (
         this.form.year &&
         this.form.year.length === 4 &&
-        this.form.year !== "0000" &&
+        this.form.year !== '0000' &&
         parseInt(this.form.year) > 0 &&
         parseInt(this.form.year) <= new Date().getFullYear()
       ) {
-        return true;
+        return true
       } else {
-        return false;
+        return false
       }
     },
-    nextStep() {
-      this.step++;
+    nextStep () {
+      this.step++
     },
-    selectPetGender(gender) {
-      this.form.petGender = gender == "Macho" ? "male" : "female";
-      this.nextStep();
+    selectPetGender (gender) {
+      this.form.petGender = gender === 'Macho' ? 'male' : 'female'
+      this.nextStep()
     },
-    backStep() {
+    backStep () {
       if (this.step > 1) {
-        this.step--;
+        this.step--
       } else {
         // this.step = 1;
-        this.$router.push({ name: "home" });
+        this.$router.push({ name: 'home' })
       }
     },
-    parseProfilePet(profile) {
+    parseProfilePet (profile) {
       switch (profile.toUpperCase()) {
-        case "FELINO":
-          return "feline";
-        case "CANINO":
-          return "canine";
+        case 'FELINO':
+          return 'feline'
+        case 'CANINO':
+          return 'canine'
         default:
-          return "";
+          return ''
       }
     },
-    async onSubmit() {
-      let body = {
+    async onSubmit () {
+      const body = {
         name: this.form.petName,
         gender: this.form.petGender,
         profilePet: this.parseProfilePet(this.form.petProfile),
         birthdate: `${this.form.year}-${this.form.month}-${this.form.day}`,
-        breed: this.form.petBreed.isUnknown
-          ? "unknown"
-          : this.form.petBreed.name,
+        breed: this.form.petBreed.isUnknown ? 'unknown' : this.form.petBreed.name,
         details: this.form.petDetails,
         togetherBy: Number(this.form.howLong)
-      };
-      this.loading = true;
-      let res = await this.ActionCreatePet(body);
-      if (res.id) {
-        this.createdPet = res;
-        this.nextStep();
       }
-      this.loading = false;
+      this.loading = true
+      const res = await this.ActionCreatePet(body)
+      if (res.id) {
+        this.createdPet = res
+        this.nextStep()
+      }
+      this.loading = false
     },
-    finishRegister() {
+    finishRegister () {
       this.$router.push({
-        name: "petdetails",
+        name: 'petdetails',
         params: { id: `${this.createdPet.id}` }
-      });
+      })
     }
   }
-};
+}
