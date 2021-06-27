@@ -1,0 +1,12 @@
+{
+  "name": "mimopetapp",
+  "version": "0.0.1",
+  "description": "Cuidado com seu pet!",
+  "author": "MimoPetApp",
+  "private": true,
+  "dependencies": {
+    "@capacitor/android": "2.4.5",
+    "@capacitor/cli": "^2.0.0",
+    "@capacitor/core": "^2.0.0"
+  }
+}
