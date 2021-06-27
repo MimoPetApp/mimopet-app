@@ -1,0 +1,52 @@
+{
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "javascript.format.placeOpenBraceOnNewLineForControlBlocks": false,
+  "javascript.format.placeOpenBraceOnNewLineForFunctions": false,
+  "typescript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "typescript.format.placeOpenBraceOnNewLineForControlBlocks": false,
+  "typescript.format.placeOpenBraceOnNewLineForFunctions": false,
+  "editor.fontFamily": "'Fira Code iScript', 'Fira Code', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "workbench.iconTheme": "vscode-great-icons",
+  "workbench.colorTheme": "Material Theme Ocean High Contrast",
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": [
+          //following will be in italic (=FlottFlott)
+          "comment",
+          "entity.name.type.class", //class names
+          "keyword", //import, export, return…
+          "storage.modifier", //static keyword
+          "storage.type", //class keyword
+          "support.class.builtin",
+          "keyword.control",
+          "constant.language",
+          "entity.other.attribute-name",
+          "string.quoted.single",
+          "entity.name.method"
+          //"entity.name.tag"
+        ], // array of Scopes to which the style should be applied to
+        "settings": {
+          "fontStyle": "italic" // the font style that should be applied
+        }
+      }
+    ]
+  },
+  "files.autoSave": "afterDelay",
+  "editor.fontSize": 16,
+  "editor.tabSize": 2,
+  "vetur.format.defaultFormatterOptions": {},
+  "vue3snippets.singleQuote": true,
+  "[vue]": {
+    "editor.defaultFormatter": "octref.vetur"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "numso.prettier-standard-vscode"
+  }
+}

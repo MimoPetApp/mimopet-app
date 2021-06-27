@@ -2,7 +2,12 @@
   <div class="q-ma-sm q-animate--scale q-mt-xl">
     <div class="text-primary text-h3 text-weight-medium">Cartão de Saúde</div>
     <q-list class="q-mt-md">
-      <q-item v-ripple clickable class="bg-blue-grey-1 q-pa-md border-pattern" :to="`/vacinas/${petProfile._id}/${petProfile.profilePet}`">
+      <q-item
+        v-ripple
+        clickable
+        class="bg-blue-grey-1 q-pa-md border-pattern"
+        :to="`/vacinas/${petProfile._id}/${petProfile.profilePet}`"
+      >
         <q-item-section avatar class="q-mr-md">
           <q-avatar size="70px" rounded class="bg-white border-pattern">
             <img class="q-pa-sm" src="~assets/images/vacinas.svg" />
@@ -28,7 +33,7 @@ export default {
       default: () => {}
     }
   },
-  data () {
+  data() {
     return {
       typesAnimals: {
         1: 'Felinos',
