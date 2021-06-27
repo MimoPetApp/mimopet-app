@@ -1,96 +1,99 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
-        <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
+    <div class="home__container">
+      <!-- Top header -->
+      <q-header v-if="hasHeader" reveal class="bg-transparent">
+        <q-toolbar>
+          <div
+            class="row justify-between items-center q-px-lg"
+            style="width: 100%"
+          >
+            <q-toolbar-title>
+              <q-img
+                src="~assets/images/mimoicon-white.svg"
+                style="width: 80px"
+              />
+            </q-toolbar-title>
 
-        <q-toolbar-title> Quasar App </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
-      </q-toolbar>
-    </q-header>
-
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered class="bg-grey-1">
-      <q-list>
-        <q-item-label header class="text-grey-8"> Essential Links </q-item-label>
-
-        <EssentialLink v-for="link in essentialLinks" :key="link.title" v-bind="link" />
-      </q-list>
-    </q-drawer>
-
-    <q-page-container>
-      <router-view />
-    </q-page-container>
+            <q-btn class="home__badge" outline color="white q-mr-md">
+              <q-icon name="notifications" class="cursor-pointer"></q-icon>
+            </q-btn>
+            <q-btn
+              class="home__badge"
+              outline
+              color="white"
+              label="Pets"
+              no-caps
+              @click="showPetList"
+            >
+              <q-badge color="white" text-color="primary" floating>{{
+                petsList.length
+              }}</q-badge>
+            </q-btn>
+          </div>
+        </q-toolbar>
+      </q-header>
+      <!-- Main container -->
+      <q-page-container>
+        <router-view />
+      </q-page-container>
+      <ModalAuth />
+      <PetListModal />
+      <q-footer v-if="hasFooter" class="bg-white flex flex-center">
+        <q-tabs v-model="tab" class="text-blue-grey-2" active-color="primary">
+          <q-route-tab default name="login" icon="s_home" :to="'/'" />
+          <q-route-tab
+            name="forgot"
+            icon="s_search"
+            :to="'/teste'"
+            class="q-mx-lg"
+          />
+          <q-route-tab name="register" icon="s_settings" :to="'/profile'" />
+        </q-tabs>
+      </q-footer>
+    </div>
   </q-layout>
 </template>
 
 <script>
-import EssentialLink from 'components/EssentialLink.vue'
+import { mapState, mapActions } from "vuex";
+import ModalAuth from "../common/components/modalNotLogged";
+import PetListModal from "../common/components/petListModal";
 
-import { defineComponent, ref } from 'vue'
-
-const linksList = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-]
-
-export default defineComponent({
-  name: 'MainLayout',
-
+export default {
+  name: "MainLayout",
   components: {
-    EssentialLink
+    ModalAuth,
+    PetListModal,
   },
-
-  setup() {
-    const leftDrawerOpen = ref(false)
-
+  data() {
     return {
-      essentialLinks: linksList,
-      leftDrawerOpen,
-      toggleLeftDrawer() {
-        leftDrawerOpen.value = !leftDrawerOpen.value
-      }
-    }
-  }
-})
+      tab: "mails",
+    };
+  },
+  computed: {
+    ...mapState("pets", ["petsList", "hasHeader", "hasFooter"]),
+  },
+  async mounted() {
+    await this.ActionGetUser();
+  },
+  methods: {
+    ...mapActions("auth", ["ActionGetUser"]),
+    ...mapActions("pets", ["ActionPetModalList"]),
+    showPetList() {
+      this.ActionPetModalList({ modal: true, data: {} });
+    },
+  },
+};
 </script>
+
+<style>
+.home__container {
+  background: #2a1e46;
+  min-height: 100vh;
+}
+
+.home__badge {
+  border-radius: 15px;
+}
+</style>
