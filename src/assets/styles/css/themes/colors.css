@@ -1,0 +1,17 @@
+:root {
+    --main-primary: #ED7545;
+    --main-secondary: #F2A16A;
+    --main-alternate: #2A1D46;
+    --main-highlight: #7066F2;
+    --main-background: #FFFFFF;
+
+    --status-warning: #FBD061;
+    --status-danger: #FF6161;
+    --status-sucess: #0FE386;
+
+    --utilities-alternate: #B9C5CB;
+    --utilities-border: #E8EDF1;
+    --utilities-clean: #F3F8FA;
+    --utilities-light: #EEEEF0;
+    --utilities-disabled: #F9F9F9;
+  }

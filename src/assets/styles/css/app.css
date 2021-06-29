@@ -1,23 +1,4 @@
 /* Global Variables*/
-@font-face {
-  font-family: customfont;
-  src: url(../../fonts/interFont.ttf);
-}
-
-@font-face {
-  font-family: customfont700;
-  src: url(../../fonts/static/Inter-Bold.ttf);
-}
-
-@font-face {
-  font-family: customfont600;
-  src: url(../../fonts/static/Inter-Regular.ttf);
-}
-
-@font-face {
-  font-family: customfont400;
-  src: url(../../fonts/static/Inter-Light.ttf);
-}
 
 :root {
   --colorWhite: #ffffff;
