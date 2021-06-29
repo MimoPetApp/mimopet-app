@@ -24,7 +24,12 @@ module.exports = configure(function (ctx) {
     boot: ['i18n', 'axios'],
 
     // https://v2.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
-    css: ['~src/assets/styles/css/app.css'],
+    css: [
+      '~src/assets/styles/css/app.css', 
+      '~src/assets/styles/css/themes/colors.css',
+      '~src/assets/styles/css/themes/font.css',
+      '~src/assets/styles/css/themes/spacing.css'
+    ],
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
     extras: [

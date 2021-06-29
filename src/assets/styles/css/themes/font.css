@@ -32,14 +32,12 @@
     --font-size-11: 72px;
 }
 
-.h1 {
-    font-family: 'customfont700';
-}
+html { font-size: var(--font-size-3); }
+body { font-family: 'customfont'; font-size: var(--font-size-3); }
 
-.h2 {
-    font-family: 'customfont700';
-}
-
-.h3 {
-    font-family: 'customfont700';
-}
+h1 { font-family: 'customfont700'; font-size: var(--font-size-9); }
+h2 { font-family: 'customfont700'; font-size: var(--font-size-8); }
+h3 { font-family: 'customfont600'; font-size: var(--font-size-7); }
+h4 { font-family: 'customfont600'; font-size: var(--font-size-6); }
+h5 { font-family: 'customfont400'; font-size: var(--font-size-5); }
+h6 { font-family: 'customfont400'; font-size: var(--font-size-4); }
