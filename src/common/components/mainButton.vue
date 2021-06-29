@@ -2,7 +2,7 @@
   <q-btn
     :to="to"
     :type="type"
-    color="positive"
+    color="main-primary"
     class="main-button no-shadow"
     :loading="loading"
     :disable="disable"

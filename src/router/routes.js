@@ -6,7 +6,7 @@ import { autentication } from '../middlewares/navigationGuards'
 const routes = [
   {
     path: '/',
-    component: () => import('src/layouts/mainLayout.vue'),
+    component: () => import('src/layouts/MainLayout.vue'),
     children: [...pets],
     beforeEnter: autentication
   },
