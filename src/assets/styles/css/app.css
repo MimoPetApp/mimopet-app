@@ -1,4 +1,5 @@
 /* Global Variables (Deprecated, DON`T USE THIS FILE)*/
+@import url('themes/quasar-wrapper.css');
 
 :root {
   --colorWhite: #ffffff;
