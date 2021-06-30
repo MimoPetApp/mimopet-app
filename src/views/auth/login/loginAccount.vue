@@ -9,7 +9,7 @@
         <div class="col-12">
           <form ref="form" @submit.prevent.stop="onSubmitEmail">
             <q-input
-              v-model="form.email"
+              v-model="form.identifier"
               type="email"
               :label="showEmailLabel ? $t('login.email.label') : ''"
               class="group-input q-mb-sm elevated"
@@ -18,7 +18,7 @@
               no-error-icon
               :rules="[val => !!val || $t('login.email.error')]"
               @focus="showEmailLabel = false"
-              @blur="showEmailLabel = form.email.length == 0"
+              @blur="showEmailLabel = form.identifier.length == 0"
             />
             <q-input
               v-model="form.password"
