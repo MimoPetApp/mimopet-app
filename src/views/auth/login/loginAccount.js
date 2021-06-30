@@ -14,10 +14,10 @@ export default {
     LoadingCircle,
     Logo
   },
-  data () {
+  data() {
     return {
       form: {
-        email: '',
+        identifier: '',
         password: ''
       },
       showPassword: false,
@@ -27,20 +27,20 @@ export default {
     }
   },
   computed: {
-    formIsValid () {
-      return this.form.email.length !== 0 && this.form.password.length >= 8
+    formIsValid() {
+      return this.form.identifier.length !== 0 && this.form.password.length >= 8
     }
   },
-  beforeMount () { },
+  beforeMount() {},
   methods: {
     ...mapActions('auth', ['ActionLogin']),
-    nextStep () { },
-    async onSubmitEmail () {
+    nextStep() {},
+    async onSubmitEmail() {
       this.loading = true
       await this.ActionLogin(this.form)
       this.loading = false
     },
-    async wait (ms) {
+    async wait(ms) {
       return new Promise(resolve => {
         setTimeout(resolve, ms)
       })

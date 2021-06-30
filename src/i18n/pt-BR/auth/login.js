@@ -1,10 +1,10 @@
 export default {
   login: {
-    title: 'Insira seus dados',
-    subtitle: 'Gestão de atividades e serviços do seus animais',
+    title: 'Acesse sua conta',
+    subtitle: 'Insira suas informações',
     mainbutton: 'Entrar',
     email: {
-      label: 'Insira o seu e-mail',
+      label: 'Seu email',
       error: 'E-mail é obrigatório',
       fail: 'E-mail não está cadastrado'
     },

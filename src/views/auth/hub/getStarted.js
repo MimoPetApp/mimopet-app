@@ -8,5 +8,10 @@ export default {
     Logo,
     MainButton,
     Container
+  },
+  methods: {
+    loginHandler() {
+      this.$router.push({ name: 'acesso' })
+    }
   }
 }
