@@ -1,5 +1,5 @@
 <template>
-  <QBtn v-bind="$attrs" />
+  <QBtn v-bind="$attrs" :color="color" :outline="isOutline" :flat="isFlat" />
 </template>
 
 <script>
@@ -8,30 +8,31 @@ import { QBtn } from 'quasar'
 export default {
   name: 'Button',
   components: { QBtn },
-  inheritAttrs: true,
   props: {
-    // color: {
-    //   type: String,
-    //   default: 'primary-filled',
-    //   validate: val => ['primary-filled', 'primary-flat', 'outline'].indexOf(val) !== -1
-    // },
+    color: {
+      type: String,
+      default: 'primary-filled',
+      validate: val => {
+        const colors = ['primary-filled', 'primary-flat', 'secondary-outline', 'secondary-bordless']
+        return colors.indexOf(val) !== -1
+      }
+    },
     rounded: {
       type: Boolean
     }
   },
   computed: {
-    // isOutline: () => {
-    //   return this.$attrs.color.includes('-outline')
-    // },
-    // isFlat: () => {
-    //   console.log()
-    //   return this.$attrs.color.includes('-bordless')
-    // }
+    isOutline: function () {
+      return this?.color?.includes('-outline')
+    },
+    isFlat: function () {
+      return this?.color?.includes('-bordless')
+    }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .bg-primary-filled {
   color: var(--main-background) !important;
   background: var(--main-primary) !important;
@@ -67,7 +68,7 @@ export default {
   }
 }
 
-.bg-secondary-bordless {
+.text-secondary-bordless {
   color: var(--main-primary) !important;
   &:disabled {
     color: var(--utilities-alternate) !important;
