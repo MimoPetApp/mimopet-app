@@ -18,6 +18,15 @@ export default {
     rounded: {
       type: Boolean
     }
+  },
+  computed: {
+    // isOutline: () => {
+    //   return this.$attrs.color.includes('-outline')
+    // },
+    // isFlat: () => {
+    //   console.log()
+    //   return this.$attrs.color.includes('-bordless')
+    // }
   }
 }
 </script>
@@ -49,6 +58,16 @@ export default {
 }
 
 .text-secondary-outline {
+  color: var(--main-primary) !important;
+  &:disabled {
+    color: var(--utilities-alternate) !important;
+  }
+  &:active {
+    color: var(--main-primary) !important;
+  }
+}
+
+.bg-secondary-bordless {
   color: var(--main-primary) !important;
   &:disabled {
     color: var(--utilities-alternate) !important;
