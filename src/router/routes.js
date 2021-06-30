@@ -17,6 +17,18 @@ const routes = [
     children: [...auth]
   },
   {
+    path: '/login-new',
+    name: 'loginNew',
+    component: () => import('src/screens/login/base/LoginBase.vue'),
+    children: [
+      {
+        path: '',
+        name: 'SignIn',
+        component: () => import('src/screens/login/LoginScreen.vue')
+      }
+    ]
+  },
+  {
     path: '/:catchAll(.*)*',
     component: () => import('../views/Error404.vue')
   }
