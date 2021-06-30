@@ -10,11 +10,11 @@ export default {
   components: { QBtn },
   inheritAttrs: true,
   props: {
-    test: {
-      type: String,
-      default: '',
-      validate: val => ['', 'secondary', 'outline'].indexOf(val) !== -1
-    },
+    // color: {
+    //   type: String,
+    //   default: 'primary-filled',
+    //   validate: val => ['primary-filled', 'primary-flat', 'outline'].indexOf(val) !== -1
+    // },
     rounded: {
       type: Boolean
     }
@@ -22,19 +22,39 @@ export default {
 }
 </script>
 
-<style scoped>
-.bg-primary {
+<style lang="scss">
+.bg-primary-filled {
   color: var(--main-background) !important;
   background: var(--main-primary) !important;
+  &:disabled {
+    color: var(--utilities-alternate) !important;
+    background: var(--utilities-border) !important;
+  }
+  &:active {
+    background: var(--main-secondary) !important;
+  }
 }
 
-.bg-secondary {
-  color: var(--main-background) !important;
-  background: var(--main-secondary) !important;
+.bg-primary-flat {
+  color: var(--main-primary) !important;
+  background: var(--main-background) !important;
+  &:disabled {
+    color: var(--utilities-alternate) !important;
+    background: var(--utilities-disabled) !important;
+  }
+  &:active {
+    color: var(--main-background) !important;
+    background: var(--main-primary) !important;
+  }
 }
 
-.bg-disabled {
-  color: var(--utilities-alternate) !important;
-  background: var(--utilities-border) !important;
+.text-secondary-outline {
+  color: var(--main-primary) !important;
+  &:disabled {
+    color: var(--utilities-alternate) !important;
+  }
+  &:active {
+    color: var(--main-primary) !important;
+  }
 }
 </style>
