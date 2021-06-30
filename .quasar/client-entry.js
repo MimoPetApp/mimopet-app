@@ -34,6 +34,12 @@ import 'quasar/dist/quasar.css'
 
 import 'src/assets/styles/css/app.css'
 
+import 'src/assets/styles/css/themes/colors.css'
+
+import 'src/assets/styles/css/themes/font.css'
+
+import 'src/assets/styles/css/themes/spacing.css'
+
 
 import createQuasarApp from './app.js'
 import quasarUserOptions from './quasar-user-options.js'
