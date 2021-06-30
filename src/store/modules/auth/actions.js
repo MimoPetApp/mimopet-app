@@ -48,6 +48,7 @@ export const ActionLogin = async ({ commit, dispatch }, payload) => {
     .then(response => {
       setLocalToken(response.data.jwt)
       store.$router.push({ name: 'home' })
+      commit(types.SET_USER, response.data.user)
     })
     .catch(error => {
       dispatch('ActionModalResponseUser', {

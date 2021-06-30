@@ -1,8 +1,8 @@
 <template>
   <div>
     <div v-if="!loadingPets">
-      <div v-if="petsList.length >= 1">
-        <PetsList :pet="petsList[0]" />
+      <div v-if="user.pets.length >= 1">
+        <PetsList :pet="user.pets[0]" />
       </div>
       <div v-else class="row">
         <q-card

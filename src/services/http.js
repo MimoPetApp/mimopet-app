@@ -5,8 +5,7 @@ import { getLocalToken } from './storage'
 const axiosInstance = axios.create({
   baseURL: process.env.API,
   headers: {
-    Accept: 'application/json',
-    'cache-control': 'no-cache'
+    Accept: 'application/json'
   }
 })
 

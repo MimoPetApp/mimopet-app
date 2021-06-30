@@ -11,7 +11,7 @@ export const ActionSetHomeMenuVisibility = ({ commit }, payload) => {
 
 export const ActionGetPets = ({ commit, dispatch }) => {
   return new Promise((resolve, reject) => {
-    Http.get('pet')
+    Http.get('pets')
       .then(response => {
         dispatch('ActionCommitPet', response.data)
         dispatch('ActionSetLoadingPet', false)
@@ -24,7 +24,7 @@ export const ActionGetPets = ({ commit, dispatch }) => {
 }
 
 export const ActionCreatePet = async ({ commit, dispatch }, payload) => {
-  const res = await Http.post('pet', payload).catch(function (error) {
+  const res = await Http.post('pets', payload).catch(function (error) {
     return error.response
   })
   return res.data
@@ -32,7 +32,7 @@ export const ActionCreatePet = async ({ commit, dispatch }, payload) => {
 
 export const ActionGetPetById = ({ commit, dispatch }, payload) => {
   return new Promise((resolve, reject) => {
-    Http.get(`pet/${payload}`)
+    Http.get(`pets/${payload}`)
       .then(response => {
         const pet = response.data[0]
         commit(types.SET_PROFILEPET, pet)

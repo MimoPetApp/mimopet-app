@@ -10,12 +10,11 @@ export default {
     // CardHealth
   },
   computed: {
-    ...mapState('pets', ['petsList', 'loadingPets'])
+    ...mapState('pets', ['petsList', 'loadingPets']),
+    ...mapState('auth', ['user'])
   },
-  mounted () {
-    this.ActionGetPets()
-  },
-  beforeRouteLeave (to, from, next) {
+  mounted() {},
+  beforeRouteLeave(to, from, next) {
     this.ActionSetLoadingPet(true)
     next()
   },

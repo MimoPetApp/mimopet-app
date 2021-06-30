@@ -11,7 +11,8 @@ export default {
     PetProfile
   },
   computed: {
-    ...mapState('pets', ['petProfile', 'loadingPets'])
+    ...mapState('pets', ['petProfile', 'loadingPets']),
+    ...mapState('auth', ['user'])
   },
   watch: {
     // eslint-disable-next-line no-unused-vars
@@ -19,12 +20,12 @@ export default {
       this.ActionGetPetById(this.$route.params.id)
     }
   },
-  mounted () {
+  mounted() {
     this.ActionGetPetById(this.$route.params.id)
     this.ActionSetHomeMenuVisibility(false)
   },
-  created () {},
-  beforeRouteLeave (to, from, next) {
+  created() {},
+  beforeRouteLeave(to, from, next) {
     this.ActionSetLoadingPet(true)
     this.ActionSetHomeMenuVisibility(true)
     next()
@@ -37,7 +38,7 @@ export default {
       'ActionmodalDeletePet',
       'ActionSetHomeMenuVisibility'
     ]),
-    deletePet () {
+    deletePet() {
       this.ActionmodalDeletePet({
         modal: true,
         data: {
