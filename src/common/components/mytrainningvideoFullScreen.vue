@@ -3,7 +3,7 @@
    
      
     <q-card class="my-card">
-      <q-video src="https://www.youtube.com/embed/k3_tw44QsZQ?rel=0" />
+      <q-video src="https://drive.google.com/file/d/1x2-bV6OjL8wxY_UId44Soa6TMZux9yZS/view" />
     </q-card>
      
    

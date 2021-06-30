@@ -11,7 +11,7 @@
       @click="$router.push({ name: 'full' })" />
       <q-video
         class="my-video"
-        src="https://www.youtube.com/embed/k3_tw44QsZQ"
+        src="https://drive.google.com/file/d/1x2-bV6OjL8wxY_UId44Soa6TMZux9yZS/view"
       />
     </q-card>
 
