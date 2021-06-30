@@ -1,35 +1,72 @@
+.login {
+  &__bottom-modal {
+    background-color: var(--main-background);
+    height: 55vh;
+    border-radius: 35px 35px 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__bottom-modal--footer {
+    background-color: var(--utilities-disabled);
+    padding: var(--spacing-3) var(--spacing-2);
+  }
+}
+
+.text-field {
+  font-family: 'customfont600';
+  color: var(--utilities-alternate);
+
+  &__content {
+    font-family: 'customfont700';
+    font-weight: 500;
+    color: var(--main-alternate);
+    font-size: var(--font-size-4);
+    margin-top: clamp(-15px, -10%, -1px);
+  }
+}
+
+.q-field {
+  font-size: var(--font-size-3);
+
+  &__marginal {
+    color: #d2d6dc; // TODO: Mapear essa cor
+  }
+
+  &__inner {
+    text-align: left !important;
+  }
+
+  &__label {
+    font-family: 'customfont600';
+    font-size: var(--font-size-4) !important;
+  }
+
+  &__bottom {
+    font-family: 'customfont600';
+    font-size: var(--font-size-3) !important;
+  }
+
+  &--filled &__control {
+    border-radius: 15px;
+    background: var(--utilities-border);
+    padding: 0 var(--spacing-4);
+  }
+
+  &--error &__bottom {
+    color: var(--status-danger) !important;
+  }
+
+  &--highlighted &__control:before {
+    background: rgba(0, 0, 0, 0) !important;
+  }
+}
+
+.text-negative {
+  color: var(--status-danger) !important;
+}
+
 .elevated {
   z-index: 100;
-}
-.logo-login {
-  margin-top: -8vh;
-  margin-left: -6vh;
-}
-
-.login-form-content {
-  min-height: calc(80vh);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-self: center;
-}
-
-.group-input .q-field__control {
-  background-color: #f7f8fa !important;
-  border-radius: 8px;
-  height: 7.5vh;
-}
-
-.group-input > .q-field__inner {
-  text-align: left !important;
-}
-
-.group-input .q-field__label {
-  font-family: 'customfont600';
-  font-size: 1.45rem !important;
-}
-
-.group-input .q-field__bottom {
-  font-family: 'customfont600';
-  font-size: 1.16rem !important;
 }

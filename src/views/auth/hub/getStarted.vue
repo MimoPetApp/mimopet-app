@@ -9,7 +9,11 @@
     <div class="get-started__bottom-modal">
       <div class="row pt-6">
         <div class="col-12" align="center">
-          <MainButton to="/login/acesso" :label="$t('getStarted.mainbutton')" />
+          <q-btn @click="loginHandler" color="main-primary" class="main-button no-shadow">
+            <span class="mimo-text main-button-text mimo-text--white">{{
+              $t('getStarted.mainbutton')
+            }}</span>
+          </q-btn>
         </div>
         <div class="col-12 mt-3" align="center">
           <q-btn flat size="md" no-caps>

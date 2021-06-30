@@ -46,7 +46,7 @@ export const ActionRefreshUser = async ({ commit, dispatch }) => {
 export const ActionLogin = async ({ commit, dispatch }, payload) => {
   await Http.post('auth/local', payload)
     .then(response => {
-      setLocalToken(response.data.token)
+      setLocalToken(response.data.jwt)
       store.$router.push({ name: 'home' })
     })
     .catch(error => {
