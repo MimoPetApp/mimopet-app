@@ -1,7 +1,7 @@
 export default {
   getStarted: {
-    title: 'Cuidado e lazer para vivenciar com seu pet',
-    subtitle: 'Gestão de atividades e serviços dos seus animais.',
+    title: 'Leve seus pets para ambientes sociais',
+    subtitle: 'Recursos de treinamento para melhorar o comportamento do pet.',
     mainbutton: 'Entrar',
     secondarybutton: 'Criar conta'
   }
