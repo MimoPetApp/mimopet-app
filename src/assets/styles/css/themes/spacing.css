@@ -6,6 +6,7 @@
   --spacing-4: 32px;
   --spacing-5: 40px;
   --spacing-6: 60px;
+  --spacing-7: 72px;
 }
 
 .m-0 {
@@ -26,6 +27,12 @@
 .m-5 {
   margin: var(--spacing-5);
 }
+.m-6 {
+  margin: var(--spacing-6);
+}
+.m-7 {
+  margin: var(--spacing-7);
+}
 
 .ml-0 {
   margin-left: var(--spacing-0);
@@ -44,6 +51,12 @@
 }
 .ml-5 {
   margin-left: var(--spacing-5);
+}
+.ml-6 {
+  margin-left: var(--spacing-6);
+}
+.ml-7 {
+  margin-left: var(--spacing-7);
 }
 
 .mt-0 {
@@ -64,6 +77,12 @@
 .mt-5 {
   margin-top: var(--spacing-5);
 }
+.mt-6 {
+  margin-top: var(--spacing-6);
+}
+.mt-7 {
+  margin-top: var(--spacing-7);
+}
 
 .mr-0 {
   margin-right: var(--spacing-0);
@@ -83,6 +102,12 @@
 .mr-5 {
   margin-right: var(--spacing-5);
 }
+.mr-6 {
+  margin-right: var(--spacing-6);
+}
+.mr-7 {
+  margin-right: var(--spacing-7);
+}
 
 .mb-0 {
   margin-bottom: var(--spacing-0);
@@ -101,6 +126,12 @@
 }
 .mb-5 {
   margin-bottom: var(--spacing-5);
+}
+.mb-6 {
+  margin-bottom: var(--spacing-6);
+}
+.mb-7 {
+  margin-bottom: var(--spacing-7);
 }
 
 .p-0 {
@@ -124,6 +155,9 @@
 .p-6 {
   padding: var(--spacing-6);
 }
+.p-7 {
+  padding: var(--spacing-7);
+}
 
 .pl-0 {
   padding-left: var(--spacing-0);
@@ -145,6 +179,9 @@
 }
 .pl-6 {
   padding-left: var(--spacing-6);
+}
+.pl-7 {
+  padding-left: var(--spacing-7);
 }
 
 .pt-0 {
@@ -168,6 +205,9 @@
 .pt-6 {
   padding-top: var(--spacing-6);
 }
+.pt-7 {
+  padding-top: var(--spacing-7);
+}
 
 .pr-0 {
   padding-right: var(--spacing-0);
@@ -190,6 +230,9 @@
 .pr-6 {
   padding-right: var(--spacing-6);
 }
+.pr-7 {
+  padding-right: var(--spacing-7);
+}
 
 .pb-0 {
   padding-bottom: var(--spacing-0);
@@ -211,4 +254,7 @@
 }
 .pb-6 {
   padding-bottom: var(--spacing-6);
+}
+.pb-7 {
+  padding-bottom: var(--spacing-7);
 }
