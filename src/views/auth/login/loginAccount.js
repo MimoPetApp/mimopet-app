@@ -36,6 +36,7 @@ export default {
     ...mapActions('auth', ['ActionLogin']),
     nextStep() {},
     async onSubmitEmail() {
+      if (!this.formIsValid) return
       this.loading = true
       await this.ActionLogin(this.form)
       this.loading = false

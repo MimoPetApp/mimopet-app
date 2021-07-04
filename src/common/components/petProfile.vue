@@ -2,31 +2,22 @@
   <div class="q-animate--scale">
     <div class="row justify-center">
       <q-avatar size="100px" class="q-mt-md">
-        <img src="https://cdn.quasar.dev/img/avatar.png" />
+        <img :src="parseProfileThumbnail(data.image[0])" />
       </q-avatar>
     </div>
     <div class="col-12">
       <h2 class="pet-profile-text">{{ data.name }}</h2>
     </div>
     <div class="col-12">
-      <p class="pet-profile-text">
-        {{ parseBreed(data.breed) }}, {{ getAge(data.birthdate) }}
-        {{ $t('petProfile.extra.years') }}
-      </p>
+      <p class="pet-profile-text">{{ parseBreed(data.breed) }}, {{ getAge(data.age) }}</p>
     </div>
     <div class="row justify-center q-my-lg">
       <span class="pet-profile-text pet-profile-badge">
-        {{ parseProfilePet(data.profilePet) }}
-      </span>
-      <span class="pet-profile-text pet-profile-badge">
         {{ parseGender(data.gender) }}
-      </span>
-      <span class="pet-profile-text pet-profile-badge">
-        {{ parseDetails(data.details) }}
       </span>
     </div>
     <q-card class="pet-profile-card q-pt-xl">
-      <q-card-section class="row justify-center">
+      <q-card-section class="column justify-center">
         <h3 class="pet-profile-card-title">
           {{ $t('petProfile.extra.journey') }}
         </h3>
@@ -169,11 +160,16 @@ export default {
           return ''
       }
     },
-    getAge(rawBirthday) {
-      const birthday = new Date(rawBirthday)
-      const ageDifMs = Date.now() - birthday.getTime()
-      const ageDate = new Date(ageDifMs)
-      return Math.abs(ageDate.getUTCFullYear() - 1970)
+    parseProfileThumbnail(image) {
+      return `${process.env.API.slice(0, -1)}${image.formats.thumbnail.url}`
+    },
+    getAge(age) {
+      switch (age) {
+        case 'SENIOR':
+          return 'Adulto'
+        default:
+          return 'Filhote'
+      }
     }
   }
 }
