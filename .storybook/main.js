@@ -16,12 +16,6 @@ module.exports = {
     config.resolve.alias['~'] = path.resolve(__dirname, '../src')
 
     config.module.rules.push({
-      test: /\.stories\.jsx?$/,
-      loaders: [require.resolve('@storybook/source-loader')],
-      enforce: 'pre'
-    })
-
-    config.module.rules.push({
       test: /\.s[ac]ss$/i,
       use: [
         'style-loader',
