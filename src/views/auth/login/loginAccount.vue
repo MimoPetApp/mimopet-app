@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Container v-if="!loading" has-background>
+    <AuthContainer v-if="!loading" has-background>
       <Logo class="ml-4 mt-4" />
       <div>
         <Title
@@ -81,7 +81,7 @@
           </div>
         </div>
       </div>
-    </Container>
+    </AuthContainer>
     <div v-else class="flex flex-center q-mt-xl">
       <LoadingCircle />
     </div>

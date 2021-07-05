@@ -5,7 +5,7 @@
         <q-btn flat round dense icon="s_keyboard_backspace" @click="backStep()" />
       </q-toolbar>
       <!-- Pet Name -->
-      <Container v-if="step === 1">
+      <AuthContainer v-if="step === 1">
         <form @submit.prevent.stop="nextStep()">
           <div class="login-form-content">
             <div class="row">
@@ -46,11 +46,11 @@
             </div>
           </div>
         </form>
-      </Container>
+      </AuthContainer>
       <!-- End Pet Name -->
 
       <!-- Pet Profile -->
-      <Container v-if="step === 2">
+      <AuthContainer v-if="step === 2">
         <form @submit.prevent.stop="nextStep()">
           <div class="login-form-content">
             <div class="row">
@@ -136,11 +136,11 @@
             </div>
           </div>
         </form>
-      </Container>
+      </AuthContainer>
       <!-- End Pet Profile -->
 
       <!-- Pet Breed -->
-      <Container v-if="step === 3">
+      <AuthContainer v-if="step === 3">
         <form @submit.prevent.stop="nextStep()">
           <div class="login-form-content">
             <div class="row">
@@ -226,7 +226,7 @@
             </div>
           </div>
         </form>
-      </Container>
+      </AuthContainer>
       <!-- End Pet Breed -->
 
       <!-- Pet Gender -->
@@ -262,7 +262,7 @@
       <!-- End Pet Gender -->
 
       <!-- Pet Details -->
-      <Container v-if="step === 5">
+      <AuthContainer v-if="step === 5">
         <form @submit.prevent.stop="nextStep()">
           <div class="login-form-content">
             <div class="row">
@@ -323,11 +323,11 @@
             </div>
           </div>
         </form>
-      </Container>
+      </AuthContainer>
       <!-- End Pet Details -->
 
       <!-- Pet Birthday -->
-      <Container v-if="step === 6">
+      <AuthContainer v-if="step === 6">
         <form @submit.prevent.stop="nextStep()">
           <div class="login-form-content">
             <div class="row">
@@ -435,11 +435,11 @@
             </div>
           </div>
         </form>
-      </Container>
+      </AuthContainer>
       <!-- End Pet Birthday -->
 
       <!-- How Long Have Pet -->
-      <Container v-if="step === 7">
+      <AuthContainer v-if="step === 7">
         <form @submit.prevent.stop="onSubmit()">
           <div class="login-form-content">
             <div class="row">
@@ -505,11 +505,11 @@
             </div>
           </div>
         </form>
-      </Container>
+      </AuthContainer>
       <!-- End How Long Have Pet -->
 
       <!-- Pet Added -->
-      <Container v-if="step === 8">
+      <AuthContainer v-if="step === 8">
         <div class="login-form-content">
           <div class="row" style="height: 35px"></div>
           <div class="row" style="z-index: 1">
@@ -540,7 +540,7 @@
             no-default-spinner
           ></q-img>
         </div>
-      </Container>
+      </AuthContainer>
       <!-- End Pet Added -->
     </q-layout>
     <div v-else class="flex flex-center q-mt-xl">

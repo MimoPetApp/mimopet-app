@@ -1,5 +1,5 @@
 <template>
-  <Container has-background>
+  <AuthContainer has-background>
     <Logo class="ml-4 mt-4" />
     <Title
       :text="$t('getStarted.title')"
@@ -34,7 +34,7 @@
         </div>
       </div>
     </div>
-  </Container>
+  </AuthContainer>
 </template>
 
 <script src="./getStarted.js"></script>

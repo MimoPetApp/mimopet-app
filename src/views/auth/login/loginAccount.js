@@ -2,7 +2,7 @@ import { mapActions } from 'vuex'
 import Logo from '../../../common/components/logo'
 import Title from '../../../common/components/title'
 import MainButton from '../../../common/components/mainButton'
-import Container from '../../../common/components/container'
+import AuthContainer from '../../../common/components/Button'
 import LoadingCircle from '../../../common/components/loadingCircle'
 
 export default {
@@ -10,7 +10,7 @@ export default {
   components: {
     Title,
     MainButton,
-    Container,
+    AuthContainer,
     LoadingCircle,
     Logo
   },
