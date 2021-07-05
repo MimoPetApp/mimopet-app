@@ -9,28 +9,50 @@
     <div class="get-started__bottom-modal">
       <div class="row pt-6">
         <div class="col-12" align="center">
-          <q-btn @click="loginHandler" color="main-primary" class="main-button no-shadow">
-            <span class="mimo-text main-button-text mimo-text--white">{{
-              $t('getStarted.mainbutton')
-            }}</span>
-          </q-btn>
+          <Button
+            @click="loginHandler"
+            color="primary-filled"
+            class="main-button no-shadow"
+            :loading="loading"
+            type="submit"
+            :label="$t('getStarted.mainbutton')"
+            no-caps
+          />
         </div>
         <div class="col-12 mt-3" align="center">
-          <q-btn flat size="md" no-caps>
-            <span class="text-main-primary">{{ $t('getStarted.secondarybutton') }}</span>
-          </q-btn>
+          <Button
+            flat
+            color="secondary-bordless"
+            class="text-weight-bold"
+            size="md"
+            no-caps
+            :label="$t('getStarted.secondarybutton')"
+          />
         </div>
       </div>
       <div class="row get-started__bottom-modal--footer">
         <div class="col-6" align="left">
-          <q-btn flat size="md" no-caps>
-            <span class="text-weight-bold text-utilities-alternate">Suporte</span>
-          </q-btn>
+          <Button
+            flat
+            color="primary-filled"
+            :disabled="true"
+            class="text-weight-bold"
+            size="md"
+            no-caps
+            icon="mail"
+            label="Suporte"
+          />
         </div>
         <div class="col-6" align="right">
-          <q-btn flat size="md" no-caps>
-            <span class="text-weight-bold text-utilities-alternate">Esqueci minha senha</span>
-          </q-btn>
+          <Button
+            flat
+            color="primary-filled"
+            :disabled="true"
+            class="text-weight-bold"
+            size="md"
+            no-caps
+            label="Esqueci minha senha"
+          />
         </div>
       </div>
     </div>

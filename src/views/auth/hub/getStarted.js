@@ -1,12 +1,12 @@
 import Title from '../../../common/components/title'
 import Logo from '../../../common/components/logo'
-import MainButton from '../../../common/components/mainButton'
+import Button from '../../../common/components/Button'
 import AuthContainer from '../../../common/components/AuthContainer'
 export default {
   components: {
     Title,
     Logo,
-    MainButton,
+    Button,
     AuthContainer
   },
   methods: {

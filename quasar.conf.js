@@ -25,7 +25,7 @@ module.exports = configure(function (ctx) {
 
     // https://v2.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
     css: [
-      '~src/assets/styles/css/app.css',
+      '~src/assets/styles/css/app.scss',
       '~src/assets/styles/css/themes/colors.css',
       '~src/assets/styles/css/themes/font.css',
       '~src/assets/styles/css/themes/spacing.css'
