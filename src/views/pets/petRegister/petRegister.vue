@@ -1,8 +1,8 @@
 <template>
   <div style="background: #ffffff">
     <q-layout v-if="!loading" view="lHh Lpr lFf">
-      <q-toolbar class="text-primary">
-        <q-btn flat round dense icon="s_keyboard_backspace" @click="backStep()" />
+      <q-toolbar class="text-main-primary">
+        <q-btn flat round dense icon="keyboard_backspace" @click="backStep()" />
       </q-toolbar>
       <!-- Pet Name -->
       <AuthContainer v-if="step === 1">
