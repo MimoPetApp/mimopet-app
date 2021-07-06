@@ -80,7 +80,7 @@
        <treinodo-pet
           v-for="(item,index) in filterfiels" :key="index"
           typed="Adulto"
-          step="10 passos"
+          step="10 passoss"
           number="4.6"
           :id="item.id"
           :title="item.title"

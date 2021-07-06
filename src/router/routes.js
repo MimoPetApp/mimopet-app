@@ -20,7 +20,7 @@ const routes = [
   {
     path: '/detalhes/:id',
     name: 'detalhes',
-    component: () => (trainning)
+    component: () => trainning
   },
   {
     path: '/:catchAll(.*)*',
