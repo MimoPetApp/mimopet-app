@@ -52,6 +52,7 @@
                     type="submit"
                     :label="$t('petCreation.buttons.continue')"
                     :disable="form.petName.length < 2"
+                    class="pl-7 pr-7"
                     noCaps
                   />
                 </div>

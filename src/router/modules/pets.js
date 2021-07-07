@@ -11,7 +11,7 @@ export default [
   },
   {
     path: '/novo/pet',
-    name: 'petRegister',
-    component: () => import('../../views/pets/petRegister/petRegister.vue')
+    name: 'PetRegister',
+    component: () => import('../../views/pets/petRegister/PetRegister.vue')
   }
 ]
