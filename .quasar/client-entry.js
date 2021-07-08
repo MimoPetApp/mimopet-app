@@ -32,7 +32,7 @@ import 'quasar/dist/quasar.css'
 
 
 
-import 'src/assets/styles/css/app.css'
+import 'src/assets/styles/css/app.scss'
 
 import 'src/assets/styles/css/themes/colors.css'
 

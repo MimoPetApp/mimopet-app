@@ -1,0 +1,94 @@
+/* Global Variables (Deprecated, DON`T USE THIS FILE)*/
+@import url('themes/quasar-wrapper.css');
+
+html {
+  font-size: 14px;
+}
+
+$text-main-button-size: 1.16rem;
+
+.main-button {
+  width: clamp(200px, 55vw, 300px);
+  padding: $text-main-button-size / 1.5;
+  border-radius: $text-main-button-size / 2;
+
+  &__text {
+    font-size: $text-main-button-size;
+    font-family: 'customfont600';
+    text-transform: capitalize;
+  }
+}
+
+.mimo-text {
+  font-family: 'customfont';
+  font-size: 1.225rem;
+  color: var(--colorPrimary);
+  font-style: normal;
+  padding: 0;
+  margin: 0;
+
+  &__h1 {
+    font-size: 2.6rem;
+    font-family: 'customfont700';
+    letter-spacing: -0.5px;
+    line-height: 2.9rem;
+  }
+
+  &__h2 {
+    font-family: 'customfont400';
+    font-size: 1.45rem;
+    line-height: 2rem;
+    margin: 1rem 0 0 0;
+  }
+
+  &__h3 {
+    font-family: 'customfont700';
+    font-size: 1.5rem;
+    margin: 0 0 1.25rem 0;
+  }
+
+  &__subtitle {
+    font-family: 'customfont400';
+    font-size: 1.45rem;
+    line-height: 2rem;
+    margin: 1rem 0 0 0;
+  }
+}
+
+.mimo-modal {
+}
+
+.mimo-modal__dialog {
+  width: clamp(300px, 90vw, 400px);
+  border-radius: 20px !important;
+  text-align: center;
+}
+
+.border-pattern {
+  border-radius: 18px;
+}
+
+.single-line-input-pattern {
+  font-family: 'customfont700';
+  color: #3e254e;
+  font-size: 1.45rem;
+  text-align: center;
+  height: 9vh;
+}
+
+.group-input-content-pattern {
+  font-family: 'customfont600';
+  font-weight: 500;
+  color: #3e254e;
+  font-size: 1.33rem;
+  margin-top: -1.8vh;
+}
+
+.length-button-pattern {
+  width: 168px;
+}
+
+.imgwhite {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}

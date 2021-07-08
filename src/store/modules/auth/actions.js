@@ -6,7 +6,7 @@ import store from '../../../store/index'
 import { setLocalToken, deleteLocalToken } from '../../../services/storage'
 
 export const ActionCreateAccount = async ({ commit, dispatch }, payload) => {
-  await Http.post('user', payload)
+  await Http.post('auth/local/register', payload)
     .then(response => {
       dispatch('ActionModalResponseUser', {
         modal: true,
@@ -61,7 +61,7 @@ export const ActionLogin = async ({ commit, dispatch }, payload) => {
 
 export const ActionGetUser = ({ commit, dispatch }) => {
   return new Promise((resolve, reject) => {
-    Http.get('user')
+    Http.get('users/me')
       .then(response => {
         commit(types.SET_USER, response.data)
         resolve(response.data)

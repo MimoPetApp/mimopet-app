@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: 'Container',
+  name: 'AuthContainer',
   props: {
     hasBackground: {
       type: Boolean,

@@ -2,7 +2,7 @@
 import { mapActions } from 'vuex'
 import Title from '../../../common/components/title'
 import MainButton from '../../../common/components/mainButton'
-import Container from '../../../common/components/container'
+import AuthContainer from '../../../common/components/AuthContainer'
 import SingleLineForm from '../../../common/components/singleLineForm'
 import LoadingCircle from '../../../common/components/loadingCircle'
 
@@ -10,12 +10,12 @@ export default {
   name: 'CreateAccount',
   components: {
     Title,
-    Container,
+    AuthContainer,
     MainButton,
     LoadingCircle,
     SingleLineForm
   },
-  data () {
+  data() {
     return {
       showError: {
         email: false,
@@ -39,52 +39,52 @@ export default {
     }
   },
   computed: {
-    emailIsValid () {
+    emailIsValid() {
       return this.validateField(this.form.email, this.pattern.email)
     },
-    passwordIsValid () {
+    passwordIsValid() {
       return this.validateField(this.form.password, this.pattern.password)
     },
-    nameIsValid () {
+    nameIsValid() {
       return this.validateField(this.form.nickname, this.pattern.name)
     },
-    extraIsValid () {
+    extraIsValid() {
       return this.form.identificationTutor !== '' && this.form.birthdate.length === 10
     }
   },
-  beforeMount () { },
-  mounted () { },
+  beforeMount() {},
+  mounted() {},
   methods: {
     ...mapActions('auth', ['ActionCreateAccount']),
-    nextStep () {
+    nextStep() {
       if (this.step < this.maxStep) this.step += 1
     },
-    previousStep () {
+    previousStep() {
       if (this.step > 1) this.step -= 1
     },
-    validateField (field, rule) {
+    validateField(field, rule) {
       if (field && rule) return rule.test(field)
       else return false
     },
-    onSubmitEmail () {
+    onSubmitEmail() {
       if (!this.emailIsValid) return
       this.nextStep()
     },
-    onSubmitPassword () {
+    onSubmitPassword() {
       if (this.$refs.password.validate()) {
         this.nextStep()
       }
     },
-    onSubmitName () {
+    onSubmitName() {
       if (!this.nameIsValid) return
       this.nextStep()
     },
-    async onSubmitExtra () {
+    async onSubmitExtra() {
       if (!this.extraIsValid) return
       this.nextStep()
       await this.submitNewUser()
     },
-    async submitNewUser () {
+    async submitNewUser() {
       this.loading = true
       await this.ActionCreateAccount(this.form)
       this.loading = false
