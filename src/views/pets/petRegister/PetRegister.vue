@@ -11,8 +11,32 @@
           text-color="utilities-alternate"
         />
       </q-toolbar>
+      <div class="ask-wrapper">
+        <div class="ask-wrapper__header">
+          <div class="row">
+            <div class="col-12 col-md-12 col-xs-12">
+              <h2 class="text-main-alternate">Como seu pet se chama?</h2>
+              <p class="text-main-alternate-light">Vamos construir o perfil do seu animal 🐶</p>
+            </div>
+          </div>
+        </div>
+        <div class="ask-wrapper__content">
+          <div class="row">
+            <div class="col-12 col-md-12 col-xs-12">
+              <slot> </slot>
+            </div>
+          </div>
+        </div>
+        <div class="ask-wrapper__footer">
+          <div class="row">
+            <div class="col-12 col-md-12 col-xs-12">
+              <Button></Button>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- Pet Name -->
-      <Container v-if="step === 1">
+      <!-- <Container v-if="step === 1">
         <form @submit.prevent.stop="nextStep()">
           <div class="login-form-content">
             <div class="row">
@@ -60,11 +84,11 @@
             </div>
           </div>
         </form>
-      </Container>
+      </Container> -->
       <!-- End Pet Name -->
 
       <!-- Pet Profile -->
-      <Container v-if="false">
+      <!-- <Container v-if="false">
         <form @submit.prevent.stop="nextStep()">
           <div class="login-form-content">
             <div class="row">
@@ -90,7 +114,6 @@
                     :name="$t('petCreation.profileOptions.dog')"
                     class="column no-wrap flex-center"
                   >
-                    <!-- Dog Slide -->
                     <div class="q-mt-md text-center relative-position">
                       <q-img
                         src="~assets/images/dog.png"
@@ -116,7 +139,6 @@
                     :name="$t('petCreation.profileOptions.cat')"
                     class="column no-wrap flex-center"
                   >
-                    <!-- Cat Slide -->
                     <div class="q-mt-md text-center relative-position">
                       <q-img
                         src="~assets/images/cat.png"
@@ -150,11 +172,11 @@
             </div>
           </div>
         </form>
-      </Container>
+      </Container> -->
       <!-- End Pet Profile -->
 
       <!-- Pet Breed -->
-      <Container v-if="step === 3">
+      <!-- <Container v-if="step === 3">
         <form @submit.prevent.stop="nextStep()">
           <div class="login-form-content">
             <div class="row">
@@ -240,11 +262,11 @@
             </div>
           </div>
         </form>
-      </Container>
+      </Container> -->
       <!-- End Pet Breed -->
 
       <!-- Pet Gender -->
-      <div v-if="step === 4">
+      <!-- <div v-if="step === 4">
         <div class="row">
           <div class="q-px-xl q-pb-xl q-pt-md" style="">
             <div class="col-12 col-md-12 col-xs-12">
@@ -272,11 +294,11 @@
             {{ $t('petCreation.gender.male') }}
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- End Pet Gender -->
 
       <!-- Pet Details -->
-      <Container v-if="step === 5">
+      <!-- <Container v-if="step === 5">
         <form @submit.prevent.stop="nextStep()">
           <div class="login-form-content">
             <div class="row">
@@ -337,11 +359,11 @@
             </div>
           </div>
         </form>
-      </Container>
+      </Container> -->
       <!-- End Pet Details -->
 
       <!-- Pet Birthday -->
-      <Container v-if="step === 6">
+      <!-- <Container v-if="step === 6">
         <form @submit.prevent.stop="nextStep()">
           <div class="login-form-content">
             <div class="row">
@@ -449,11 +471,11 @@
             </div>
           </div>
         </form>
-      </Container>
+      </Container> -->
       <!-- End Pet Birthday -->
 
       <!-- How Long Have Pet -->
-      <Container v-if="step === 7">
+      <!-- <Container v-if="step === 7">
         <form @submit.prevent.stop="onSubmit()">
           <div class="login-form-content">
             <div class="row">
@@ -519,11 +541,11 @@
             </div>
           </div>
         </form>
-      </Container>
+      </Container> -->
       <!-- End How Long Have Pet -->
 
       <!-- Pet Added -->
-      <Container v-if="step === 8">
+      <!-- <Container v-if="step === 8">
         <div class="login-form-content">
           <div class="row" style="height: 35px"></div>
           <div class="row" style="z-index: 1">
@@ -554,7 +576,7 @@
             no-default-spinner
           ></q-img>
         </div>
-      </Container>
+      </Container> -->
       <!-- End Pet Added -->
     </q-layout>
     <div v-else class="flex flex-center q-mt-xl">
