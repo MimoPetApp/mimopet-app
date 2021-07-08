@@ -4,7 +4,14 @@
 
 <script>
 import { QBtn } from 'quasar'
-
+export const ButtonColors = [
+  'primary-filled',
+  'primary-flat',
+  'secondary-outline',
+  'secondary-bordless',
+  'alternate-outline',
+  'alternate-filled'
+]
 export default {
   name: 'Button',
   components: { QBtn },
@@ -12,28 +19,23 @@ export default {
     color: {
       type: String,
       default: 'primary-filled',
-      validate: val => {
-        const colors = [
-          'primary-filled',
-          'primary-flat',
-          'secondary-outline',
-          'secondary-bordless',
-          'alternate-outline',
-          'alternate-filled'
-        ]
-        return colors.indexOf(val) !== -1
-      }
+      validate: val => ButtonColors.indexOf(val) !== -1
     },
-    rounded: {
-      type: Boolean
+    outline: {
+      type: Boolean,
+      default: false
+    },
+    flat: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
     isOutline: function () {
-      return this?.color?.includes('-outline')
+      return this.outline || this?.color?.includes('-outline')
     },
     isFlat: function () {
-      return this?.color?.includes('-bordless')
+      return this.flat || this?.color?.includes('-bordless')
     }
   }
 }
