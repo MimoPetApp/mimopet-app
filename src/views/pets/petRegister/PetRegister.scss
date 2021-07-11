@@ -146,24 +146,3 @@
   }
 }
 
-.ask-wrapper {
-  &__header {
-    h2 {
-      font-size: var(--font-size-7);
-      line-height: 29.05px;
-      letter-spacing: -0.224px;
-      padding-right: var(--font-size-10);
-      padding-left: var(--font-size-8);
-      margin-bottom: var(--font-size-2);
-    }
-    p {
-      font-family: 'customfont';
-      font-weight: 500;
-      font-size: var(--font-size-4);
-      line-height: 19.36px;
-      letter-spacing: -0.224px;
-      padding-right: var(--font-size-10);
-      padding-left: var(--font-size-8);
-    }
-  }
-}

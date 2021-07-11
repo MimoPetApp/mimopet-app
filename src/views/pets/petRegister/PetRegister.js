@@ -4,6 +4,7 @@ import Title from '../../../common/components/title'
 import Button from '../../../common/components/Button.vue'
 import Container from '../../../common/components/container'
 import LoadingCircle from '../../../common/components/loadingCircle'
+import Ask from '../../../common/components/Ask.vue'
 
 export default {
   name: 'PetRegister',
@@ -11,7 +12,8 @@ export default {
     Title,
     Button,
     Container,
-    LoadingCircle
+    LoadingCircle,
+    Ask
   },
   data () {
     return {

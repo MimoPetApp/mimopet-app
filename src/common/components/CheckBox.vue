@@ -10,15 +10,17 @@
     >
       <QIcon v-if="selected" name="check" size="15px" />
     </div>
+    <QCheckbox></QCheckbox>
   </div>
 </template>
 
 <script>
-import { QIcon } from 'quasar'
+import { QIcon, QCheckbox } from 'quasar'
 export default {
   name: 'CheckBox',
   components: {
-    QIcon
+    QIcon,
+    QCheckbox
   },
   inheritAttrs: true,
   props: {

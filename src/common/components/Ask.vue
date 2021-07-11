@@ -1,25 +1,35 @@
 <template>
-  <div class="checkBox" v-bind="$attrs">
-    <div
-      class="checkBox__wrapper flex items-center justify-center"
-      :class="[
-        type === 'rounded' ? 'checkBox__wrapper--rounded' : 'checkBox__wrapper--squared',
-        selected ? 'checkBox__wrapper--selected' : '',
-        color ? `checkBox__wrapper--${color}` : ''
-      ]"
-    >
-      <QIcon v-if="selected" name="check" size="15px" />
+  <div class="ask-wrapper">
+    <div class="ask-wrapper__header">
+      <div class="row">
+        <div class="col-12 col-md-12 col-xs-12">
+          <h2 class="text-main-alternate">{{ title }}</h2>
+          <p class="text-main-alternate-light">{{ subtitle }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="ask-wrapper__content" :class="selectAlignContent">
+      <div class="row">
+        <div class="col-12 col-md-12 col-xs-12">
+          <slot> </slot>
+        </div>
+      </div>
+    </div>
+    <div class="ask-wrapper__footer">
+      <div class="row">
+        <div class="col-12 col-md-12 col-xs-12 flex items-center justify-center">
+          <Button :label="btnLabel" noCaps color="primary-flat" v-bind="$attrs"></Button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { QIcon } from 'quasar'
+import Button from './Button.vue'
 export default {
   name: 'Ask',
-  components: {
-    QIcon
-  },
+  components: { Button },
   inheritAttrs: true,
   props: {
     color: {
@@ -36,6 +46,35 @@ export default {
       type: Boolean,
       default: false,
       validate: val => [true, false].indexOf(val) !== -1
+    },
+    title: {
+      type: String,
+      default: 'Insert your title'
+    },
+    subtitle: {
+      type: String,
+      default: 'Insert your subTitle'
+    },
+    btnLabel: {
+      type: String,
+      default: 'Insert your button label'
+    },
+    alignContent: {
+      type: String,
+      default: 'center',
+      validate: val => ['start', 'center', 'end'].indexOf(val) !== -1
+    }
+  },
+  computed: {
+    selectAlignContent() {
+      switch (this.alignContent) {
+        case 'start':
+          return 'ask-wrapper__content--align-start'
+        case 'end':
+          return 'ask-wrapper__content--align-end'
+        default:
+          return 'ask-wrapper__content--align-center'
+      }
     }
   }
 }
@@ -67,6 +106,46 @@ export default {
   }
   &:hover {
     cursor: pointer;
+  }
+}
+.ask-wrapper {
+  min-height: calc(100vh - 115px);
+  justify-content: space-between;
+  align-content: space-between;
+  flex-direction: column;
+  display: flex;
+  &__header {
+    h2 {
+      font-size: var(--font-size-7);
+      line-height: 29.05px;
+      letter-spacing: -0.224px;
+      padding-right: var(--font-size-10);
+      padding-left: var(--font-size-8);
+      margin-bottom: var(--font-size-2);
+    }
+    p {
+      font-family: 'customfont';
+      font-weight: 500;
+      font-size: var(--font-size-4);
+      line-height: 19.36px;
+      letter-spacing: -0.224px;
+      padding-right: var(--font-size-10);
+      padding-left: var(--font-size-8);
+    }
+  }
+  &__content {
+    min-height: calc(100vh - 275px);
+    display: flex;
+    justify-content: center;
+    &--align-start {
+      align-items: flex-start;
+    }
+    &--align-center {
+      align-items: center;
+    }
+    &--align-end {
+      align-items: flex-end;
+    }
   }
 }
 </style>

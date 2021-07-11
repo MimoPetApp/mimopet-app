@@ -11,30 +11,16 @@
           text-color="utilities-alternate"
         />
       </q-toolbar>
-      <div class="ask-wrapper">
-        <div class="ask-wrapper__header">
-          <div class="row">
-            <div class="col-12 col-md-12 col-xs-12">
-              <h2 class="text-main-alternate">Como seu pet se chama?</h2>
-              <p class="text-main-alternate-light">Vamos construir o perfil do seu animal 🐶</p>
-            </div>
-          </div>
-        </div>
-        <div class="ask-wrapper__content">
-          <div class="row">
-            <div class="col-12 col-md-12 col-xs-12">
-              <slot> </slot>
-            </div>
-          </div>
-        </div>
-        <div class="ask-wrapper__footer">
-          <div class="row">
-            <div class="col-12 col-md-12 col-xs-12">
-              <Button></Button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Ask
+        title="Como seu pet se chama?"
+        align-content="center"
+        subtitle="Vamos construir o perfil do seu animal 🐶"
+        btnLabel="Continuar"
+        disabled
+        full-width
+      >
+        <q-input></q-input>
+      </Ask>
       <!-- Pet Name -->
       <!-- <Container v-if="step === 1">
         <form @submit.prevent.stop="nextStep()">
