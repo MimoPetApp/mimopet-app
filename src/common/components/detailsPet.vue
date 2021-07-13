@@ -1,6 +1,7 @@
 
 <template>
   <div class="q-pa-tdp" style="max-width: 300px background: white">
+     <router-link :to="{name: pageName, params: {id: id}}">
     <q-card class="my-card">
       <q-list bordered padding class="rounded-borders text-primary">
         <q-item v-ripple>
@@ -15,10 +16,12 @@
             <q-item-label style="font-size: 1.3vh" color="primary">
               {{ timep }}
             </q-item-label>
+            <img :src=imageTraining />
           </q-item-section>
         </q-item>
       </q-list>
     </q-card>
+    </router-link>
   </div>
 </template>
 
@@ -26,15 +29,25 @@
 
 export default {
   props: {
+    id: {
+      type: Number
+    },
+
     title: {
-      type: String,
-      default: ''
+      type: String
     },
 
     timep: {
       type: String,
       default: ''
+    },
+    imageTraining: {
+      type: String
+    },
+    pageName: {
+      type: String
     }
+
   },
 
   data() {
