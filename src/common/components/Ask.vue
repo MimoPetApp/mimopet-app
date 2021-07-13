@@ -18,7 +18,13 @@
     <div class="ask-wrapper__footer">
       <div class="row">
         <div class="col-12 col-md-12 col-xs-12 flex items-center justify-center">
-          <Button :label="btnLabel" noCaps color="primary-flat" v-bind="$attrs"></Button>
+          <Button
+            :label="btnLabel"
+            noCaps
+            color="primary-flat"
+            v-bind="$attrs"
+            class="pl-7 pr-7"
+          ></Button>
         </div>
       </div>
     </div>

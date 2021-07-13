@@ -13,8 +13,8 @@
       </q-toolbar>
       <Ask
         title="Como seu pet se chama?"
-        align-content="center"
         subtitle="Vamos construir o perfil do seu animal 🐶"
+        align-content="center"
         btnLabel="Continuar"
         disabled
         full-width
