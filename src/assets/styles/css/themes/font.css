@@ -1,24 +1,23 @@
-<<<<<<< HEAD
-/* @font-face {
+ @font-face {
     font-family: customfont;
     src: url(../../fonts/static/interFont.ttf);
-} */
+} 
 
-/* @font-face {
+ @font-face {
     font-family: customfont700;
     src: url(../../fonts/static/Inter-Bold.ttf);
-} */
+} 
 
-/* @font-face {
+  @font-face {
     font-family: customfont600;
     src: url(../../fonts/static/Inter-Regular.ttf);
-} */
+} 
 
 /* @font-face {
     font-family: customfont400;
     src: url(../../fonts/static/Inter-Light.ttf);
-} */
-=======
+} 
+
 @font-face {
   font-family: customfont;
   src: url(../../../fonts/interFont.ttf);
@@ -38,7 +37,6 @@
   font-family: customfont400;
   src: url(../../../fonts/static/Inter-Light.ttf);
 }
->>>>>>> a315cd1fdfc8e6c6446473ba31d5091c3e04bd2d
 
 :root {
   --font-size-1: 10px;

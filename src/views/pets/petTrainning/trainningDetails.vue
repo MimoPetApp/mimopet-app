@@ -2,7 +2,7 @@
   <div style="width: 300px">
     <q-card>
       <q-card-section>
-        <q-img src="src/assets/images/dog.png"/>
+        <q-img src="../../../assets/images/dog.png"/>
       </q-card-section>
 
       <q-separator dark />
@@ -16,7 +16,7 @@
                  <b> {{ treino.title }}</b>
               </q-item-label>
               <q-item-label caption lines="4" style="font-size: 2.3vh">
-                {{treino.title}}
+                {{treino.body}}
               </q-item-label>
             </q-item-section>
           </q-item>
@@ -24,38 +24,25 @@
       </q-card-section>
     </q-card>
 
-    <q-card class="my-card" style="max-width: 300">
-      <trainning-details-pet
-        title="1. Sentar ao ser pedido"
-        timep="4 min . vídeo"
-      />
-      <trainning-details-pet
-        title="2. Esperar o dono (1 metro)"
-        timep="4 min . vídeo"
-      />
-      <trainning-details-pet
-        title="3. Patas e areia quente."
-        timep="4 min . vídeo"
-      />
-      <q-card align="center">
-        <q-btn
-          color="deep-orange"
-          align="center"
-          glossy
+    <q-card align="center">
+        <MainButton
+          type="submit"
           label="Inscrever-se"
-          @click="$router.push({ name: 'inscricao' })"
+          @click="$router.push({ name: 'confirmSubscription', params: {id: id} })"
+          loading="false"
         />
-      </q-card>
     </q-card>
   </div>
 </template>
 
 <script>
-import TrainningDetailsPet from '../../../common/components/detailsPet.vue'
+import MainButton from '../../../common/components/mainButton.vue'
 import training from '../../../Apis/Training'
 
 export default {
-  components: { TrainningDetailsPet },
+  components: {
+    MainButton
+  },
 
   data() {
     return {

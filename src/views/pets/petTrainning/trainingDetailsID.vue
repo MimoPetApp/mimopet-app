@@ -7,54 +7,43 @@
             <q-item-section side top>
               <q-badge color="purple" label="Adultos" />
               <q-item-label style="font-size: 3.8vh"
-                >{{ treino.title }}</q-item-label
+                >Comandos Básicos</q-item-label
               >
             </q-item-section>
-          </q-item>
+            <q-list  padding class="rounded-borders text-primary">
+            </q-list>
         </q-list>
 <q-list bordered dense>
-          O que você vai aprender ?
           <Details
-           timep=""
-           title="Postura treinador"
-           imageTraining='../assets/images/1.png'
-           pageName= 'trainingDetailsId'
-           id='3'
+           timep="10min"
+           title="Não perseguir outros animais"
+           imageTraining=''
+           pageName= 'trainingConditions'
+           id='1'
            />
            <Details
-           timep=""
-           title="Comandos básicos"
-           imageTraining='../assets/images/2.png'
-           pageName="trainingDetailsId"
-           id="4"
+           timep="15 min"
+           title="Sentar ao ser pedido"
+           imageTraining=''
+           pageName="trainingConditions"
+           id='2'
            />
 </q-list>
       </q-card-section>
 
       <q-separator dark />
 
-      <q-card-section>
-      </q-card-section>
-    </q-card>
+        </q-card>
 
-    <q-card align="center">
-          <MainButton
-              type="submit"
-              label="Cancelar inscrição"
-              loading="false"
-            />
-     </q-card>
   </div>
 </template>
 
 <script>
 import training from '../../../Apis/Training'
-import MainButton from '../../../common/components/mainButton.vue'
 import Details from '../../../common/components/detailsPet.vue'
 
 export default {
   components: {
-    MainButton,
     Details
   },
 

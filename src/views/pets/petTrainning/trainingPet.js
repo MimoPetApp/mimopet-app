@@ -1,5 +1,5 @@
 // import { mapActions } from 'vuex'
-import treinodoPet from '../../../common/components/trainingPet.vue'
+import treinodoPet from '../../../common/components/training.vue'
 import training from '../../../Apis/Training'
 
 export default {
@@ -11,7 +11,7 @@ export default {
       text: '',
       dense: false,
       model: 'one',
-      showTraining: false,
+      showTraining: true,
       info: []
     }
   },

@@ -1,6 +1,6 @@
 <template>
   <div id="box" style="width: 300px">
-    Treinamentos
+      Explore comportamentos
     <q-card class="my-card bg-orange text-white">
       <q-card-section>
         <div class="text-h6">Busque por programas de treino para seu pet.</div>
@@ -50,31 +50,6 @@
       </q-card-actions>
     </q-card>
 
-    <div v-if="showTraining===false">
-      <q-card id="Adestra">
-       <q-card-section> Fale com adestradores
-         <div id="Agenda">
-         Agende atendimento, personalizado com um profissional
-         </div>
-       </q-card-section>
-      </q-card>
-
-      <div id="Treino">
-       <h6>Meus treinamentos</h6>
-           <treinodo-pet
-           typed="Adulto"
-           step="10 passos"
-           number="4.6"
-           title="Parar com latidos noturno"
-         />
-         <treinodo-pet
-           typed="Adulto"
-           step="10 passos"
-           number="4.6"
-           title="Passear no parque"
-         />
-      </div>
-    </div>
     <div style="width: 300px" v-if="showTraining">
       <p>
        <treinodo-pet
