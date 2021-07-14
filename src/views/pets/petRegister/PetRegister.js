@@ -1,8 +1,9 @@
 import { mapActions } from 'vuex'
 import Title from '../../../common/components/title'
 // import MainButton from '../../../common/components/mainButton'
-import Button from '../../../common/components/Button.vue'
-import Container from '../../../common/components/container'
+import Button from '../../../common/components/Button/Button.vue'
+import MainButton from '../../../common/components/mainButton'
+import AuthContainer from '../../../common/components/AuthContainer'
 import LoadingCircle from '../../../common/components/loadingCircle'
 import Ask from '../../../common/components/Ask.vue'
 
@@ -11,9 +12,10 @@ export default {
   components: {
     Title,
     Button,
-    Container,
-    LoadingCircle,
-    Ask
+    Ask,
+    MainButton,
+    AuthContainer,
+    LoadingCircle
   },
   data () {
     return {

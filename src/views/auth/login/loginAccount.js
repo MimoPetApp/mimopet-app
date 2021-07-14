@@ -1,17 +1,19 @@
 import { mapActions } from 'vuex'
 import Logo from '../../../common/components/logo'
 import Title from '../../../common/components/title'
-import MainButton from '../../../common/components/mainButton'
-import Container from '../../../common/components/container'
+import Button from '../../../common/components/Button'
+import TextField from '../../../common/components/TextField'
+import AuthContainer from '../../../common/components/AuthContainer'
 import LoadingCircle from '../../../common/components/loadingCircle'
 
 export default {
   name: 'LoginAccount',
   components: {
     Title,
-    MainButton,
-    Container,
+    AuthContainer,
     LoadingCircle,
+    TextField,
+    Button,
     Logo
   },
   data() {
@@ -36,6 +38,7 @@ export default {
     ...mapActions('auth', ['ActionLogin']),
     nextStep() {},
     async onSubmitEmail() {
+      if (!this.formIsValid) return
       this.loading = true
       await this.ActionLogin(this.form)
       this.loading = false

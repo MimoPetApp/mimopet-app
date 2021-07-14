@@ -1,18 +1,12 @@
 <template>
   <div>
-    <Container v-if="!loading">
+    <AuthContainer v-if="!loading">
       <div v-if="step == 1" class="auth-form-content">
         <div>
-          <Title
-            :text="$t('create.terms.title')"
-            :subtitle="$t('create.terms.subtitle')"
-          />
+          <Title :text="$t('create.terms.title')" :subtitle="$t('create.terms.subtitle')" />
         </div>
         <div class="termos-container">
-          <div
-            v-for="(term, indexI) in $t('create.terms.data')"
-            :key="`term_${indexI}`"
-          >
+          <div v-for="(term, indexI) in $t('create.terms.data')" :key="`term_${indexI}`">
             <h3 class="mimo-text__h3">{{ term.head }}</h3>
             <p
               v-for="(item, indexJ) in term.body"
@@ -86,22 +80,14 @@
             !showError.password
               ? []
               : [
-                  (val) => !!val || $t('create.password.error.required'),
-                  (val) =>
-                    /^(?=.*[a-z])/.test(val) ||
-                    $t('create.password.error.lowercase'),
-                  (val) =>
-                    /^(?=.*[A-Z])/.test(val) ||
-                    $t('create.password.error.uppercase'),
-                  (val) =>
-                    /^(?=.*[0-9])/.test(val) ||
-                    $t('create.password.error.number'),
-                  (val) =>
+                  val => !!val || $t('create.password.error.required'),
+                  val => /^(?=.*[a-z])/.test(val) || $t('create.password.error.lowercase'),
+                  val => /^(?=.*[A-Z])/.test(val) || $t('create.password.error.uppercase'),
+                  val => /^(?=.*[0-9])/.test(val) || $t('create.password.error.number'),
+                  val =>
                     /^(?=.*[!@#\$%\^&\*])/.test(val) ||
                     $t('create.password.error.specialCharacter'),
-                  (val) =>
-                    /^(?=.{8,})/.test(val) ||
-                    $t('create.password.error.length'),
+                  val => /^(?=.{8,})/.test(val) || $t('create.password.error.length')
                 ]
           "
           @focus="showError.password = true"
@@ -146,12 +132,12 @@
                     :options="[
                       {
                         label: $t('create.identification.label.mother'),
-                        value: 'mother',
+                        value: 'mother'
                       },
                       {
                         label: $t('create.identification.label.father'),
-                        value: 'father',
-                      },
+                        value: 'father'
+                      }
                     ]"
                   />
                 </form>
@@ -172,9 +158,7 @@
                     class="single-input"
                     mask="##-##-####"
                     no-error-icon
-                    :rules="[
-                      (val) => val.length == 10 || $t('create.birthDate.error'),
-                    ]"
+                    :rules="[val => val.length == 10 || $t('create.birthDate.error')]"
                   >
                     <template v-slot:append>
                       <q-icon name="event" class="cursor-pointer">
@@ -185,12 +169,7 @@
                         >
                           <q-date v-model="form.birthdate" mask="DD-MM-YYYY">
                             <div class="row items-center justify-end">
-                              <q-btn
-                                v-close-popup
-                                label="Close"
-                                color="primary"
-                                flat
-                              />
+                              <q-btn v-close-popup label="Close" color="primary" flat />
                             </div>
                           </q-date>
                         </q-popup-proxy>
@@ -216,7 +195,7 @@
           </div>
         </div>
       </div>
-    </Container>
+    </AuthContainer>
     <div v-else class="flex flex-center q-mt-xl">
       <LoadingCircle />
     </div>

@@ -8,7 +8,7 @@
     :disable="disable"
     @click="click"
   >
-    <span class="mimo-text main-button-text mimo-text--white">{{ label }}</span>
+    <span class="mimo-text main-button__text mimo-text--white">{{ label }}</span>
   </q-btn>
 </template>
 
@@ -47,17 +47,4 @@ export default {
 }
 </script>
 
-<style lang="scss">
-$text-main-button-size: 1.16rem;
-
-.main-button {
-  width: clamp(200px, 55vw, 300px);
-  padding: $text-main-button-size / 2;
-  border-radius: $text-main-button-size / 1.5;
-}
-.main-button-text {
-  font-size: $text-main-button-size;
-  font-family: 'customfont600';
-  text-transform: capitalize;
-}
-</style>
+<style lang="scss"></style>

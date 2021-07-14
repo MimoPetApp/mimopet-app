@@ -1,58 +1,50 @@
 <template>
-  <q-input
-    v-model="content"
-    :type="type"
-    :label="showLabel ? label : ''"
+  <QInput
+    v-bind="$attrs"
+    :type="!showPassword ? 'password' : $attrs['type']"
     class="text-field"
     input-class="text-field__content"
     filled
     no-error-icon
-    color="utilities-alternate"
+    color="color"
     bg-color="utilities-border"
     standout="bg-utilities-border text-main-alternate"
-    :loading="loading"
-    :disable="disable"
-    @focus="showLabel = false"
-    @blur="showLabel = content.length == 0"
   >
-    <template v-if="icon" v-slot:append>
-      <q-icon :name="icon" class="cursor-pointer" />
+    <template v-if="isPassword" v-slot:append>
+      <q-icon
+        :name="!showPassword ? 'visibility_off' : 'visibility'"
+        class="cursor-pointer"
+        @click="showPassword = !showPassword"
+      />
     </template>
-  </q-input>
+  </QInput>
 </template>
 
 <script>
+import { QInput } from 'quasar'
 export default {
   name: 'TextField',
+  components: { QInput },
   props: {
-    label: {
+    color: {
       type: String,
-      default: ''
-    },
-    dark: {
-      type: Boolean,
-      default: false
+      default: 'utilities-alternate',
+      validate: val => {
+        const colors = ['utilities-alternate']
+        return colors.indexOf(val) !== -1
+      }
     },
     icon: {
       type: String
     },
-    type: {
-      type: String,
-      default: 'text'
-    },
-    loading: {
-      type: Boolean,
-      default: false
-    },
-    disable: {
+    isPassword: {
       type: Boolean,
       default: false
     }
   },
   data() {
     return {
-      showLabel: true,
-      content: ''
+      showPassword: false
     }
   }
 }
@@ -76,7 +68,7 @@ export default {
   font-size: var(--font-size-3);
 
   &__marginal {
-    color: #d2d6dc; // TODO: Mapear essa cor
+    color: var(--utilities-icon);
   }
 
   &__inner {

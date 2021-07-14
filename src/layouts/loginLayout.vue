@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-toolbar v-if="false" class="text-primary">
-      <q-btn flat round dense icon="s_keyboard_backspace" @click="$router.push('/login')" />
+      <q-btn flat round dense icon="keyboard_backspace" @click="$router.push('/login')" />
     </q-toolbar>
     <q-page-container>
       <ModalResponseUser />

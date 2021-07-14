@@ -1,40 +1,32 @@
 <template>
   <div class="q-animate--scale">
     <div class="row justify-center">
-      <q-avatar size="100px" class="q-mt-md">
-        <img src="https://cdn.quasar.dev/img/avatar.png" />
+      <q-avatar size="100px" class="mt-2">
+        <img :src="parseProfileThumbnail(data.image[0])" />
       </q-avatar>
     </div>
     <div class="col-12">
-      <h2 class="pet-profile-text">{{ data.name }}</h2>
+      <h2 class="pet-profile__text">{{ data.name }}</h2>
     </div>
     <div class="col-12">
-      <p class="pet-profile-text">
-        {{ parseBreed(data.breed) }}, {{ getAge(data.birthdate) }}
-        {{ $t('petProfile.extra.years') }}
-      </p>
+      <p class="pet-profile__text mt-1">{{ parseBreed(data.breed) }}, {{ getAge(data.age) }}</p>
     </div>
-    <div class="row justify-center q-my-lg">
-      <span class="pet-profile-text pet-profile-badge">
-        {{ parseProfilePet(data.profilePet) }}
-      </span>
-      <span class="pet-profile-text pet-profile-badge">
+    <div class="row justify-center mt-1 mb-3">
+      <span class="pet-profile__text pet-profile__badge">
         {{ parseGender(data.gender) }}
       </span>
-      <span class="pet-profile-text pet-profile-badge">
-        {{ parseDetails(data.details) }}
-      </span>
     </div>
-    <q-card class="pet-profile-card q-pt-xl">
-      <q-card-section class="row justify-center">
-        <h3 class="pet-profile-card-title">
+    <q-card class="pet-profile__card pt-4">
+      <q-card-section class="column justify-center mb-3">
+        <h3 class="pet-profile__card-title">
           {{ $t('petProfile.extra.journey') }}
         </h3>
-        <h4 class="pet-profile-card-subtitle">
+        <h4 class="pet-profile__card-subtitle">
           {{ $t('petProfile.extra.since') }} {{ 2009 }} &#128525;
         </h4>
       </q-card-section>
-      <q-card-section class="row justify-center items-center pet-profile-card-header q-py-lg">
+      <!--
+      <q-card-section class="row justify-center items-center pet-profile__card-header q-py-lg">
         <div class="column justify-center items-center">
           <span>{{ 2 }}</span>
           <span>{{ $t('petProfile.header.vaccines') }}</span>
@@ -48,53 +40,53 @@
           <span>{{ $t('petProfile.header.tours') }}</span>
         </div>
       </q-card-section>
+      -->
       <q-card-section>
-        <q-timeline color="grey" layout="dense" class="pet-profile-timeline">
-          <q-timeline-entry subtitle="Cadastrado em 09 de Fevereiro de 2020" color="grey">
+        <q-timeline color="utilities-border" layout="dense" class="pet-profile__timeline">
+          <q-timeline-entry subtitle="Teste de comportamento" color="utilities-border">
           </q-timeline-entry>
-          <q-timeline-entry>
-            <div class="pet-profile-timeline-entry bg-color-pink">
-              <span>Aplicou Vacina</span>
-              <span>12 FEV 2020</span>
-              <p>Aplicou Vacina V7</p>
+          <q-timeline-entry color="utilities-border">
+            <div class="pet-profile__timeline-entry bg-color-pink">
+              <p>Recebendo parentes e amigos em casa</p>
+              <p>15 Fev 2020</p>
             </div>
           </q-timeline-entry>
-          <q-timeline-entry>
-            <div class="pet-profile-timeline-entry bg-color-yellow">
-              <span>Aplicou Vacina</span>
-              <span>12 FEV 2020</span>
-              <p>Aplicou Vacina V7</p>
+          <q-timeline-entry color="utilities-border">
+            <div class="pet-profile__timeline-entry bg-color-yellow">
+              <p>Recebendo parentes e amigos em casa</p>
+              <p>14 Fev 2020</p>
             </div>
           </q-timeline-entry>
-          <q-timeline-entry subtitle="Cadastrado em 09 de Fevereiro de 2020" color="grey">
+          <q-timeline-entry subtitle="Teste de comportamento" color="utilities-border">
           </q-timeline-entry>
-          <q-timeline-entry>
-            <div class="pet-profile-timeline-entry bg-color-ice">
-              <span>Aplicou Vacina</span>
-              <span>12 FEV 2020</span>
-              <p>Aplicou Vacina V7</p>
+          <q-timeline-entry color="utilities-border">
+            <div class="pet-profile__timeline-entry bg-color-ice">
+              <p>Recebendo parentes e amigos em casa</p>
+              <p>13 Fev 2020</p>
             </div>
           </q-timeline-entry>
-          <q-timeline-entry>
-            <div class="pet-profile-timeline-entry bg-color-orange">
-              <span>Aplicou Vacina</span>
-              <span>12 FEV 2020</span>
-              <p>Aplicou Vacina V7</p>
+          <q-timeline-entry color="utilities-border">
+            <div class="pet-profile__timeline-entry bg-color-orange">
+              <p>Recebendo parentes e amigos em casa</p>
+              <p>12 Fev 2020</p>
             </div>
           </q-timeline-entry>
-          <q-timeline-entry subtitle="Cadastrado em 09 de Fevereiro de 2020" color="grey">
-          </q-timeline-entry>
-          <q-timeline-entry subtitle="Nasceu em 1 de Dezembro de 2001" color="secondary">
+          <q-timeline-entry subtitle="Teste de comportamento" color="utilities-border">
           </q-timeline-entry>
         </q-timeline>
       </q-card-section>
       <q-separator />
       <q-card-section>
-        <div class="col-12 q-my-lg column justify-center items-center">
-          <TextButton
-            :label="$t('petProfile.button.delete')"
+        <div class="col-12 mt-3 mb-3 column justify-center items-center">
+          <Button
+            flat
+            color="red-7"
+            class="text-weight-bold"
+            size="md"
             icon="delete_outline"
-            :click="deletePet"
+            no-caps
+            :label="$t('petProfile.button.delete')"
+            @click="deletePet"
           />
           <ConfirmDeletePet />
         </div>
@@ -104,14 +96,15 @@
 </template>
 
 <script>
-import TextButton from './textButton'
 import ConfirmDeletePet from './confirmDeletePet'
+import parser from './../helpers/petProfileParser'
+import Button from './Button'
 import { mapActions } from 'vuex'
 
 export default {
   name: 'PetProfile',
   components: {
-    TextButton,
+    Button,
     ConfirmDeletePet
   },
   props: {
@@ -124,6 +117,7 @@ export default {
     return {}
   },
   methods: {
+    ...parser,
     ...mapActions('pets', ['ActionmodalDeletePet']),
     deletePet() {
       this.ActionmodalDeletePet({
@@ -133,138 +127,100 @@ export default {
           name: this.data.name
         }
       })
-    },
-    parseBreed(breed) {
-      return breed === 'unknown' ? this.$t('petProfile.extra.unknownBreed') : breed
-    },
-    parseProfilePet(profile) {
-      switch (profile) {
-        case 'feline':
-          return this.$t('petProfile.profile.feline')
-        case 'canine':
-          return this.$t('petProfile.profile.canine')
-        default:
-          return ''
-      }
-    },
-    parseDetails(details) {
-      switch (details) {
-        case 'adopted':
-          return this.$t('petProfile.details.adopted')
-        case 'castrated':
-          return this.$t('petProfile.details.castrated')
-        case 'withSomeDisability':
-          return this.$t('petProfile.details.withSomeDisability')
-        default:
-          return ''
-      }
-    },
-    parseGender(gender) {
-      switch (gender) {
-        case 'male':
-          return this.$t('petProfile.gender.male')
-        case 'female':
-          return this.$t('petProfile.gender.female')
-        default:
-          return ''
-      }
-    },
-    getAge(rawBirthday) {
-      const birthday = new Date(rawBirthday)
-      const ageDifMs = Date.now() - birthday.getTime()
-      const ageDate = new Date(ageDifMs)
-      return Math.abs(ageDate.getUTCFullYear() - 1970)
     }
   }
 }
 </script>
 
-<style>
-.pet-profile-text {
-  font-family: 'customfont';
-  font-weight: 500;
-  font-size: calc(20px + (32 - 20) * (100vw - 500px) / (800-500));
-  color: var(--colorWhite);
-  text-align: center;
-  margin: 0;
+<style lang="scss">
+.pet-profile {
+  &__text {
+    font-family: 'customfont';
+    font-weight: 500;
+    font-size: var(--font-size-3);
+    line-height: calc(var(--font-size-3) + 3);
+    color: var(--main-background);
+    text-align: center;
+    margin: 0;
+  }
+
+  &__badge {
+    background: rgba(255, 255, 255, 0.25);
+    padding: 5px 15px;
+    border-radius: 25px;
+    margin: 0 5px 10px 5px;
+  }
+
+  &__card {
+    position: absolute;
+    border-radius: var(--font-size-8);
+    width: 100%;
+    left: 0;
+  }
+
+  &__card-title {
+    font-family: 'customfont700';
+    font-weight: 500;
+    color: var(--utilities-alternate);
+    margin: 0 auto;
+    font-size: var(--font-size-6);
+    line-height: var(--font-size-6) + 5;
+    letter-spacing: 0.00735em;
+  }
+
+  &__card-subtitle {
+    font-family: 'customfont600';
+    font-weight: 500;
+    color: var(--utilities-alternate);
+    margin: 0 auto;
+    font-size: var(--font-size-3);
+    line-height: var(--font-size-3) + 5;
+    letter-spacing: 0.00735em;
+  }
+
+  &__card-header {
+    background: var(--utilities-clean);
+    width: 85%;
+    margin: 0 auto;
+    border-radius: 15px !important;
+  }
 }
 
-h2.pet-profile-text {
+h2.pet-profile__text {
   font-family: 'customfont700';
   font-weight: 600;
-  font-size: calc(34px + (36 - 34) * (100vw - 500px) / (800-500));
+  font-size: var(--font-size-7);
+  line-height: calc(var(--font-size-7) + 3px);
   letter-spacing: 2px;
 }
 
-.pet-profile-badge {
-  background: #948bf4;
-  padding: 5px 15px;
-  border-radius: 25px;
-  margin: 0 5px 10px 5px;
-}
-
-.pet-profile-card {
-  position: absolute;
-  border-radius: 35px;
-  width: 100%;
-  left: 0;
-}
-
-.pet-profile-card-title {
-  font-family: 'customfont700';
-  font-weight: 500;
-  color: var(--colorLight);
-  margin: 0 auto;
-  font-size: clamp(1.3rem, 2.6vh, 1.45rem);
-  line-height: 1rem;
-  letter-spacing: 0.00735em;
-}
-
-.pet-profile-card-subtitle {
-  font-family: 'customfont600';
-  font-weight: 500;
-  color: var(--colorLight);
-  margin: 0 auto;
-  font-size: clamp(1rem, 1.7vh, 1.15rem);
-  line-height: 2.5rem;
-  letter-spacing: 0.00735em;
-}
-
-.pet-profile-card-header {
-  background: #f9f9f9;
-  width: 85%;
-  margin: 0 auto;
-  border-radius: 15px !important;
-}
-
-.pet-profile-card-header div span:first-child {
-  font-family: 'customfont700';
-  font-weight: 500;
-  color: var(--colorPrimary);
-  margin: 0 auto 0.7rem auto;
-  font-size: clamp(1.25rem, 2.7vh, 1.55rem);
-  line-height: 1.2rem;
-  letter-spacing: 0.00735em;
-}
-
-.pet-profile-card-header div span:last-child {
-  font-family: 'customfont600';
-  font-weight: 500;
-  color: var(--colorPrimary);
-  margin: 0 auto 0 auto;
-  font-size: clamp(0.8rem, 1.8vh, 1rem);
-  line-height: 1.2rem;
-  letter-spacing: 0.00735em;
-}
-
-.pet-profile-timeline {
+.pet-profile__timeline {
   width: 85%;
   margin: 0 auto;
 }
 
-.pet-profile-timeline-entry {
+.pet-profile__timeline-entry {
   padding: 1.2rem 1rem;
-  border-radius: 0 20px 20px 20px !important;
+  border-radius: 0 var(--font-size-3) var(--font-size-3) var(--font-size-3) !important;
+  display: flex;
+  justify-content: space-between;
+}
+
+.pet-profile__timeline-entry p {
+  padding: 0;
+  margin: 0;
+}
+
+.pet-profile__timeline-entry p:first-child {
+  font-size: var(--font-size-2);
+  line-height: calc(var(--font-size-2) + 3px);
+  max-width: 60%;
+  font-weight: 800;
+}
+
+.pet-profile__timeline-entry p:last-child {
+  max-width: 40%;
+  font-size: var(--font-size-1);
 }
 
 .bg-color-pink {
@@ -280,21 +236,27 @@ h2.pet-profile-text {
 }
 
 .bg-color-orange {
-  background: #f3a978;
+  background: var(--main-secondary);
 }
 
-.q-timeline__subtitle {
-  opacity: 1;
-}
+.q-timeline {
+  &__subtitle {
+    opacity: 1;
+  }
 
-.q-timeline__subtitle span {
-  font-family: 'customfont600';
-  font-weight: 500;
-  color: var(--colorPrimary) !important;
-  margin: 0 auto 0 auto;
-  font-size: clamp(0.8rem, 1.8vh, 1rem);
-  line-height: 1.2rem;
-  letter-spacing: 0.00735em;
-  text-transform: initial;
+  &__subtitle span {
+    font-family: 'customfont600';
+    font-weight: 600;
+    color: var(--main-alternate) !important;
+    margin: 0 auto 0 auto;
+    font-size: var(--font-size-2);
+    line-height: var(--font-size-2) + 5;
+    letter-spacing: 0.00735em;
+    text-transform: initial;
+  }
+
+  &__content {
+    padding-bottom: var(--spacing-2);
+  }
 }
 </style>

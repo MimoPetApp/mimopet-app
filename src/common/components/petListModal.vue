@@ -5,19 +5,19 @@
         <q-list>
           <div v-for="(pet, index) in petsList" :key="index">
             <q-item v-ripple clickable :to="`/pet/${pet.id}`">
-              <q-item-section>{{ pet.name }}</q-item-section>
+              <q-item-section class="text-main-primary">{{ pet.name }}</q-item-section>
               <q-item-section avatar>
-                <q-avatar text-color="secondary" icon="s_keyboard_arrow_right" />
+                <q-avatar text-color="main-primary" icon="keyboard_arrow_right" />
               </q-item-section>
             </q-item>
             <q-separator />
           </div>
-          <q-item v-ripple clickable to="novo/pet">
-            <q-item-section class="text-secondary text-weight-medium">
+          <q-item v-ripple clickable to="/novo/pet">
+            <q-item-section class="text-main-secondary text-weight-medium">
               Criar Novo Pet
             </q-item-section>
             <q-item-section avatar>
-              <q-avatar text-color="secondary" icon="s_add" />
+              <q-avatar text-color="main-secondary" icon="add" />
             </q-item-section>
           </q-item>
         </q-list>
