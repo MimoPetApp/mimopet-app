@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import Button from './Button.vue'
+import Button from './Button/Button.vue'
 export default {
   name: 'Ask',
   components: { Button },

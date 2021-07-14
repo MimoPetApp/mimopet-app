@@ -6,7 +6,7 @@ import '@quasar/extras/animate/fadeInRight.css'
 import '@quasar/extras/animate/fadeOutRight.css'
 
 import 'quasar/dist/quasar.css'
-import '@/assets/styles/css/app.css'
+//import '@/assets/styles/css/app.scss'
 import '@/assets/styles/css/themes/colors.css'
 import '@/assets/styles/css/themes/font.css'
 import '@/assets/styles/css/themes/spacing.css'
