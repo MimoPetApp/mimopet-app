@@ -1,8 +1,8 @@
 import { mapActions } from 'vuex'
 import Logo from '../../../common/components/logo'
 import Title from '../../../common/components/title'
-import Button from '../../../common/components/Button'
-import TextField from '../../../common/components/TextField'
+import Button from '../../../common/components/Button/Button'
+import TextField from '../../../common/components/TextField/TextField'
 import AuthContainer from '../../../common/components/AuthContainer'
 import LoadingCircle from '../../../common/components/loadingCircle'
 

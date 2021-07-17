@@ -74,8 +74,8 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import Loading from './loading'
-import Button from './Button'
-import TextField from './TextField'
+import Button from './Button/Button'
+import TextField from './TextField/TextField'
 
 export default {
   name: 'ConfirmDeletePet',
