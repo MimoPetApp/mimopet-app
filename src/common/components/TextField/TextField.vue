@@ -2,12 +2,10 @@
   <QInput
     v-bind="$attrs"
     :type="!showPassword ? 'password' : $attrs['type']"
-    class="text-field"
-    input-class="text-field__content"
+    :class="textFieldClass"
+    :input-class="textFieldInputClass"
     filled
     no-error-icon
-    color="color"
-    bg-color="utilities-border"
     standout="bg-utilities-border text-main-alternate"
   >
     <template v-if="isPassword" v-slot:append>
@@ -26,20 +24,31 @@ export default {
   name: 'TextField',
   components: { QInput },
   props: {
-    color: {
-      type: String,
-      default: 'utilities-alternate',
-      validate: val => {
-        const colors = ['utilities-alternate']
-        return colors.indexOf(val) !== -1
-      }
-    },
     icon: {
       type: String
+    },
+    align: {
+      type: String,
+      default: 'left'
+    },
+    light: {
+      type: Boolean,
+      default: false
     },
     isPassword: {
       type: Boolean,
       default: false
+    }
+  },
+  computed: {
+    textFieldClass: function () {
+      const classes = ['text-field', `text-field--${this.align}`]
+      if (this.light) classes.push('text-field--light')
+      else classes.push('text-field--dark')
+      return classes
+    },
+    textFieldInputClass: function () {
+      return ['text-field__content', `text-field__content--${this.align}`]
     }
   },
   data() {
@@ -61,6 +70,15 @@ export default {
     color: var(--main-alternate);
     font-size: var(--font-size-4);
     margin-top: clamp(-15px, -10%, -1px);
+  }
+
+  &__content--center {
+    text-align: center !important;
+    padding-left: 0 !important;
+  }
+
+  &--center > .q-field__inner {
+    text-align: center !important;
   }
 }
 
@@ -87,7 +105,6 @@ export default {
 
   &--filled &__control {
     border-radius: 15px;
-    background: var(--utilities-border);
     padding: 0 var(--spacing-4);
   }
 
@@ -102,5 +119,13 @@ export default {
 
 .text-negative {
   color: var(--status-danger) !important;
+}
+
+.text-field--light.q-field--filled .q-field__control {
+  background: var(--main-background);
+}
+
+.text-field--dark.q-field--filled .q-field__control {
+  background: var(--utilities-border);
 }
 </style>
