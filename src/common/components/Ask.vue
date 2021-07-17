@@ -52,10 +52,6 @@ export default {
       type: String,
       default: 'Insert your subTitle'
     },
-    btnLabel: {
-      type: String,
-      default: 'Insert your button label'
-    },
     alignContent: {
       type: String,
       default: 'center',

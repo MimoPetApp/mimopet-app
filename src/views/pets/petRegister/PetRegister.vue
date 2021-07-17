@@ -15,20 +15,12 @@
         title="Como seu pet se chama?"
         subtitle="Vamos construir o perfil do seu animal 🐶"
         align-content="center"
-        btnLabel="Continuar"
-        color="red"
-        disabled
-        full-width
       >
-        <template v-slot:content></template>
+        <template v-slot:content>
+          <q-input></q-input>
+        </template>
         <template v-slot:action>
-          <Button
-            :label="btnLabel"
-            noCaps
-            color="primary-flat"
-            v-bind="$attrs"
-            class="pl-7 pr-7"
-          ></Button>
+          <Button label="Continuar" noCaps color="primary-flat" class="pl-7 pr-7" disabled></Button>
         </template>
       </Ask>
       <!-- Pet Name -->
