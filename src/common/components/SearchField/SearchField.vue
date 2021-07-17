@@ -16,16 +16,26 @@
       <q-icon name="search" color="main-alternate" />
     </template>
     <template v-slot:append>
-      <!-- -->
+      <Button
+        v-for="(item, index) in filters"
+        :key="`filter-${index}`"
+        class="tag-button no-shadow"
+        color="alternate-filled"
+        :label="item"
+        outline
+        no-caps
+        flat
+      />
     </template>
   </QInput>
 </template>
 
 <script>
 import { QInput } from 'quasar'
+import Button from '../../../common/components/Button/Button'
 export default {
-  name: 'TextField',
-  components: { QInput },
+  name: 'SearchField',
+  components: { QInput, Button },
   props: {
     label: {
       type: String
@@ -33,11 +43,14 @@ export default {
     light: {
       type: Boolean,
       default: true
+    },
+    filters: {
+      type: Array
     }
   },
   computed: {
     textFieldClass: function () {
-      const classes = ['text-field']
+      const classes = ['text-field', 'search-field']
       if (this.light) classes.push('text-field--light')
       else classes.push('text-field--dark')
       return classes
@@ -63,4 +76,8 @@ export default {
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.search-field.q-field--filled .q-field__control {
+  padding: 0 var(--spacing-1) 0 var(--spacing-4);
+}
+</style>

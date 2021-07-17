@@ -35,7 +35,8 @@ export default {
     },
     align: {
       type: String,
-      default: 'left'
+      default: 'left',
+      validate: val => ['left', 'right', 'center', 'bottom'].indexOf(val) !== -1
     },
     light: {
       type: Boolean,
