@@ -9,6 +9,11 @@
 }
 
 @font-face {
+  font-family: customfont650;
+  src: url(../../../fonts/static/Inter-SemiBold.ttf);
+}
+
+@font-face {
   font-family: customfont600;
   src: url(../../../fonts/static/Inter-Regular.ttf);
 }

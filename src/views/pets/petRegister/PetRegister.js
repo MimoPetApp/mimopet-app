@@ -2,6 +2,7 @@ import { mapActions } from 'vuex'
 import Title from '../../../common/components/title'
 // import MainButton from '../../../common/components/mainButton'
 import Button from '../../../common/components/Button/Button.vue'
+import ButtonCheckboxGroup from '../../../common/components/ButtonCheckboxGroup'
 import MainButton from '../../../common/components/mainButton'
 import AuthContainer from '../../../common/components/AuthContainer'
 import LoadingCircle from '../../../common/components/loadingCircle'
@@ -15,10 +16,38 @@ export default {
     Ask,
     MainButton,
     AuthContainer,
-    LoadingCircle
+    LoadingCircle,
+    ButtonCheckboxGroup
   },
   data () {
     return {
+      options: [
+        {
+          label: 'Adotado',
+          selected: false
+        },
+        {
+          label: 'Castrado',
+          selected: false
+        },
+        {
+          label: 'AB',
+          selected: false
+        },
+        {
+          label: 'AB',
+          selected: false
+        },
+        {
+          label: 'AB',
+          selected: false
+        },
+        {
+          label: 'AB',
+          selected: false
+        }
+      ],
+      answer: 'AB',
       form: {
         petName: '',
         petProfile: this.$t('petCreation.profileOptions.dog'),
