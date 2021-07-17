@@ -20,9 +20,19 @@
         disabled
         full-width
       >
-        <q-input></q-input>
+        <template v-slot:content></template>
+        <template v-slot:action>
+          <Button
+            :label="btnLabel"
+            noCaps
+            color="primary-flat"
+            v-bind="$attrs"
+            class="pl-7 pr-7"
+          ></Button>
+        </template>
       </Ask>
       <!-- Pet Name -->
+      <!--
       <AuthContainer v-if="step === 1">
         <form @submit.prevent.stop="nextStep()">
           <div class="login-form-content">
@@ -72,6 +82,7 @@
           </div>
         </form>
       </AuthContainer>
+      -->
       <!-- End Pet Name -->
 
       <!-- Pet Profile -->

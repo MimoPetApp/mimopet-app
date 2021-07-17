@@ -11,20 +11,14 @@
     <div class="ask-wrapper__content" :class="selectAlignContent">
       <div class="row">
         <div class="col-12 col-md-12 col-xs-12">
-          <slot> </slot>
+          <slot name="content"></slot>
         </div>
       </div>
     </div>
     <div class="ask-wrapper__footer">
       <div class="row">
         <div class="col-12 col-md-12 col-xs-12 flex items-center justify-center">
-          <Button
-            :label="btnLabel"
-            noCaps
-            color="primary-flat"
-            v-bind="$attrs"
-            class="pl-7 pr-7"
-          ></Button>
+          <slot name="action"></slot>
         </div>
       </div>
     </div>
@@ -32,11 +26,8 @@
 </template>
 
 <script>
-import Button from './Button/Button.vue'
 export default {
   name: 'Ask',
-  components: { Button },
-  inheritAttrs: true,
   props: {
     color: {
       type: String,
@@ -87,33 +78,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.checkBox {
-  &__wrapper {
-    width: 20px;
-    height: 20px;
-    background: transparent;
-    border-width: 2px;
-    border-style: solid;
-    &--squared {
-      border-radius: 5px;
-    }
-    &--selected {
-      background: var(--main-primary);
-      i {
-        color: var(--main-background);
-      }
-    }
-    &--rounded {
-      border-radius: 10px;
-    }
-    &--main-primary {
-      border-color: var(--main-primary);
-    }
-  }
-  &:hover {
-    cursor: pointer;
-  }
-}
 .ask-wrapper {
   min-height: calc(100vh - 115px);
   justify-content: space-between;
