@@ -7,6 +7,9 @@
     filled
     no-error-icon
     standout="bg-utilities-border text-main-alternate"
+    :label="showLabel ? label : ''"
+    @focus="onFocus"
+    @blur="onBlur"
   >
     <template v-if="isPassword" v-slot:append>
       <q-icon
@@ -25,6 +28,9 @@ export default {
   components: { QInput },
   props: {
     icon: {
+      type: String
+    },
+    label: {
       type: String
     },
     align: {
@@ -51,9 +57,19 @@ export default {
       return ['text-field__content', `text-field__content--${this.align}`]
     }
   },
+  methods: {
+    onBlur() {
+      const value = this.$attrs.modelValue || ''
+      this.showLabel = value.length === 0
+    },
+    onFocus() {
+      this.showLabel = false
+    }
+  },
   data() {
     return {
-      showPassword: false
+      showPassword: false,
+      showLabel: true
     }
   }
 }

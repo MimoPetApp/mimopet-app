@@ -23,8 +23,6 @@ export default {
         password: ''
       },
       showPassword: false,
-      showEmailLabel: true,
-      showPasswordLabel: true,
       loading: false
     }
   },
