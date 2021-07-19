@@ -17,7 +17,7 @@
         align-content="center"
       >
         <template v-slot:content>
-          <button-checkbox-group :options="options"></button-checkbox-group>
+          <button-checkbox-group :options="options" answer="Adotado"></button-checkbox-group>
         </template>
         <template v-slot:action>
           <Button label="Continuar" noCaps color="primary-flat" class="pl-7 pr-7" disabled></Button>

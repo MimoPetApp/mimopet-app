@@ -5,40 +5,43 @@
       :key="index"
       class="button-checkbox-wrapper"
       :class="{ 'button-checkbox-wrapper--selected': option.selected }"
-      @click="clicked"
+      @click="clicked(option, index)"
     >
-      <div class="row">
-        <div class="col-12 col-md-12 col-xs-12">
+      <div class="row" style="height: inherit">
+        <div class="col-12 col-md-12 col-xs-12 flex justify-center items-center relative-position">
           <h6
             class="button-checkbox-wrapper__option-label"
             :class="{ 'button-checkbox-wrapper__option-label--selected': option.selected }"
           >
             {{ option.label }}
           </h6>
-          <!--<checkbox></checkbox>-->
+          <checkbox
+            v-model="option.selected"
+            type="rounded"
+            color="status-success"
+            class="checkbox-style"
+          ></checkbox>
         </div>
+        <div v-if="option.selected" class="flex justify-start items-center"></div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-// import Checkbox from './CheckBox.vue'
+import Checkbox from './CheckBox.vue'
+export const ButtonCheckboxGroupColors = ['main-primary']
+
 export default {
   name: 'ButtonCheckboxGroup',
   components: {
-    // Checkbox
+    Checkbox
   },
   props: {
     color: {
       type: String,
       default: 'main-primary',
-      validate: val => ['main-primary'].indexOf(val) !== -1
-    },
-    selected: {
-      type: Boolean,
-      default: false,
-      validate: val => [true, false].indexOf(val) !== -1
+      validate: val => ButtonCheckboxGroupColors.indexOf(val) !== -1
     },
     options: {
       type: Array,
@@ -47,16 +50,12 @@ export default {
     answer: {
       type: String,
       default: ''
-    },
-    label: {
-      type: String,
-      default: 'Insert your label'
     }
   },
   computed: {},
   methods: {
-    clicked() {
-      return 'button-checkbox-wrapper--selected'
+    clicked(option, index) {
+      return (option.selected = !option.selected)
     }
   }
 }
@@ -68,21 +67,18 @@ export default {
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  height: 220px;
+  height: 230px;
   padding: 0 16px;
   overflow: scroll;
 }
 .button-checkbox-wrapper {
-  //min-height: calc(100vh - 115px);
   width: 228px;
   height: 48px;
+  min-height: 48px;
   border-width: 1px;
   border-color: var(--utilities-disabled);
   border-style: solid;
   border-radius: 6px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin-bottom: var(--font-size-6);
   &__option-label {
     font-size: var(--font-size-4);
@@ -91,6 +87,7 @@ export default {
     font-family: 'customFont650';
     text-align: center;
     color: var(--utilities-alternate);
+    margin: 0;
     &--selected {
       color: var(--main-background);
     }
@@ -99,5 +96,9 @@ export default {
     background-color: var(--status-sucess);
     border-color: var(--status-sucess);
   }
+}
+.checkbox-style {
+  position: absolute;
+  right: 25px;
 }
 </style>

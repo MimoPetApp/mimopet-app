@@ -45,7 +45,7 @@
 .text-status-danger {
   color: #ff6161;
 }
-.text-status-sucess {
+.text-status-success {
   color: #0fe386;
 }
 
@@ -55,7 +55,7 @@
 .bg-status-danger {
   background: #ff6161;
 }
-.bg-status-sucess {
+.bg-status-success {
   background: #0fe386;
 }
 
