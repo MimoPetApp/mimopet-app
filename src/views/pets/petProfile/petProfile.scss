@@ -1,6 +1,8 @@
+$timeLineHeight: 800px;
+
 .pet-profile-container {
-  height: calc(100vh + 900px);
-  background: #7166f1;
+  height: 400px + $timeLineHeight;
+  background: var(--main-highlight);
 }
 
 .pet-profile-row {

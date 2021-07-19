@@ -1,11 +1,11 @@
 <template>
-  <div class="title-container">
-    <h1 class="mimo-text mimo-text__h1">
+  <div class="section-title">
+    <h3 class="text-weight-bolder">
       {{ text }}
-    </h1>
-    <h2 v-if="subtitle" class="mimo-text text-weight-bold mimo-text__subtitle">
+    </h3>
+    <h5 v-if="subtitle" class="mt-2">
       {{ subtitle }}
-    </h2>
+    </h5>
   </div>
 </template>
 
@@ -28,12 +28,9 @@ export default {
 }
 </script>
 
-<style>
-.title-container {
-  max-width: 73vw;
-}
-
-.section-subtitle {
-  max-width: 70vw;
+<style lang="scss">
+.section-title {
+  max-width: 100%;
+  color: var(--main-background);
 }
 </style>

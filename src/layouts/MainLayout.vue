@@ -12,15 +12,11 @@
             <q-btn class="home__badge" outline color="white q-mr-md">
               <q-icon name="notifications" class="cursor-pointer"></q-icon>
             </q-btn>
-            <q-btn
-              class="home__badge"
-              outline
-              color="white"
-              label="Pets"
-              no-caps
-              @click="showPetList"
-            >
-              <q-badge color="white" text-color="primary" floating>{{ petsList.length }}</q-badge>
+            <q-btn class="home__badge" outline color="white" no-caps @click="showPetList">
+              <q-badge color="main-highlight" text-color="main-background" rounded>
+                {{ petsList.length }}
+              </q-badge>
+              <span class="ml-1"> Pets </span>
             </q-btn>
           </div>
         </q-toolbar>
@@ -32,10 +28,9 @@
       <ModalAuth />
       <PetListModal />
       <q-footer v-if="hasFooter" class="bg-white flex flex-center">
-        <q-tabs v-model="tab" class="text-blue-grey-2" active-color="primary">
-          <q-route-tab default name="login" icon="s_home" :to="'/'" />
-          <q-route-tab name="forgot" icon="s_search" :to="'/teste'" class="q-mx-lg" />
-          <q-route-tab name="register" icon="s_settings" :to="'/profile'" />
+        <q-tabs v-model="tab" class="text-blue-grey-2" active-color="main-alternate">
+          <q-route-tab default name="home" icon="dashboard" :to="'/'" />
+          <q-route-tab name="profile" icon="drag_handle" />
         </q-tabs>
       </q-footer>
     </div>
@@ -76,7 +71,7 @@ export default {
 
 <style>
 .home__container {
-  background: #2a1e46;
+  background: var(--main-alternate);
   min-height: 100vh;
 }
 

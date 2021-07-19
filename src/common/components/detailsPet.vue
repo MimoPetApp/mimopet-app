@@ -1,6 +1,6 @@
 
 <template>
-  <div class="q-pa-tdp" style="max-width: 300px background: white">
+  <div class="q-pa-tdp" style="background: white">
      <router-link :to="{name: pageName, params: {id: id}}">
     <q-card class="my-card">
       <q-list bordered padding class="rounded-borders text-primary">

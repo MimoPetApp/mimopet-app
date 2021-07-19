@@ -1,18 +1,24 @@
 <template>
-  <q-card
-    class="home-card__item q-pa-lg q-mb-lg q-mt-md"
-    :style="`background: ${color}`"
-    @click="click"
-  >
-    <div class="row justify-between items-center">
-      <h4 class="text-weight-bold mimo-text">{{ label }}</h4>
-      <q-badge v-if="notification > 0" class="home-card__item__badge">
-        <span class="q-mr-xs">
-          {{ `${notification} ${notificationLabel}` }}
-        </span>
-        <q-icon name="error" class="home-card__item__badge--icon q-ml-xs" />
-      </q-badge>
+  <q-card class="home-card__item p-2 pt-4 mt-1 mb-2" :style="`background: ${color}`">
+    <div class="row justify-center items-center">
+      <h4 class="text-weight-bolder m-0 p-0">{{ label }}</h4>
     </div>
+    <div class="row justify-center items-center">
+      <p class="text-weight-medium m-0 p-0">{{ description }}</p>
+    </div>
+    <div class="row justify-center items-center mt-2">
+      <q-btn
+        @click="click"
+        rounded
+        flat
+        no-caps
+        text-color="main-background"
+        class="home-card__item--button"
+      >
+        Ver mais
+      </q-btn>
+    </div>
+    <div class="home-card__item__footer" :style="`background: ${colorAlt}`"></div>
     <svg class="home-card__item__circle" height="50" width="120">
       <ellipse cx="60" cy="60" rx="50" ry="35" fill="#fff" />
     </svg>
@@ -27,6 +33,9 @@ export default {
       type: String,
       default: ''
     },
+    description: {
+      type: String
+    },
     notificationLabel: {
       type: String,
       default: 'Agendados'
@@ -36,6 +45,10 @@ export default {
       default: 0
     },
     color: {
+      type: String,
+      default: '#fe7624'
+    },
+    colorAlt: {
       type: String,
       default: '#fe7624'
     },
@@ -52,14 +65,28 @@ export default {
 
 <style lang="scss">
 .home-card__item {
-  height: 220px;
+  min-height: 250px;
   border-radius: 25px !important;
-}
 
-.home-card__item__circle {
-  position: absolute;
-  bottom: 0;
-  left: calc(50% - 60px);
+  &--button {
+    background: rgba(255, 255, 255, 0.2);
+    z-index: 999;
+  }
+
+  &__footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 30%;
+    width: 100%;
+    border-radius: 0 0 25px 25px !important;
+  }
+
+  &__circle {
+    position: absolute;
+    bottom: 0;
+    left: calc(50% - 60px);
+  }
 }
 
 .home-card__item__badge {

@@ -1,5 +1,5 @@
 <template>
-  <div id="box" style="width: 300px">
+  <div id="box">
     <q-card class="my-card text-black" align="center">
       <q-card-section>
         <div class="text-h6">Sentar ao ser pedido</div>
@@ -12,7 +12,7 @@
     </q-card>
 
     <q-btn-group>
-      <q-btn icon='visibility' label="Dia 1" stack no-caps />
+      <q-btn icon='visibility' label="Dia 1" stack no-caps @click="$router.push({ name: 'trainingVideoFull', params: {id: id}})" />
       <q-btn icon="visibility" label="Dia 2" stack no-caps/>
       <q-btn icon="visibility" label="Dia 3" stack no-caps/>
       <q-btn icon="visibility" label="Dia 4" stack no-caps/>

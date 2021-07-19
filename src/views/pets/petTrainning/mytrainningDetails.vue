@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 300px">
+  <div>
     <q-card>
       <q-card-section>
        <q-list bordered padding class="rounded-borders text-primary">
@@ -42,6 +42,7 @@
               type="submit"
               label="Cancelar inscrição"
               loading="false"
+              @click="$router.push({ name: 'trainingCancel'})"
             />
      </q-card>
   </div>

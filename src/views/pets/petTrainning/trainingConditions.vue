@@ -1,63 +1,24 @@
 <template>
-<div id='confirm' style="width 300px">
+<div id='confirm'>
    <q-card>
       <q-card-section>
         <q-list bordered padding class="rounded-borders text-primary">
           <q-item v-ripple>
-            <q-item-section side top>
-                 <q-item-label style="font-size: 3.3vh">
-                 <b> Selecione as condições de treino desta sessão</b>
-                 </q-item-label>
-            </q-item-section>
+        <Ask
+        title="Selecione as condições de treino desta sessão"
+        subtitle=""
+        align-content="center"
+      >
+        <template v-slot:content>
+          <button-checkbox-group :options="options"></button-checkbox-group>
+        </template>
+        <template v-slot:action>
+          <Button label="Enviar" noCaps color="primary-flat" class="pl-7 pr-7" disabled></Button>
+        </template>
+      </Ask>
+
           </q-item>
         </q-list>
-       <q-btn-toggle
-        v-model="model1"
-        glossy
-        toggle-color="green"
-        :options="[
-          {label: 'Pet sossegado', value: 'one'},
-          ]"
-       /><p/>
-       <q-btn-toggle
-        v-model="model2"
-        push
-        glossy
-        toggle-color="green"
-        :options="[
-          {label: 'Postura treinador', value: 'one'},
-          ]"
-       />
-       <p/>
-       <q-btn-toggle
-        v-model="model3"
-        push
-        glossy
-        toggle-color="green"
-        :options="[
-          {label: 'Ausência de barulho', value: 'one'},
-          ]"
-       />
-       <p/>
-       <q-btn-toggle
-        v-model="model4"
-        push
-        glossy
-        toggle-color="green"
-        :options="[
-          {label: 'Recompensa', value: 'one'},
-          ]"
-       />
-              <p/>
-       <q-btn-toggle
-        v-model="model5"
-        push
-        glossy
-        toggle-color="green"
-        :options="[
-          {label: 'Outros pets no local', value: 'one'},
-          ]"
-       />
        <p/>
        <p/>
            <MainButton
@@ -74,20 +35,45 @@
 
 <script>
 import MainButton from '../../../common/components/mainButton.vue'
-import { ref } from 'vue'
+import Ask from '../../../common/components/Ask.vue'
+import Button from '../../../common/components/Button/Button.vue'
+import ButtonCheckboxGroup from '../../../common/components/ButtonCheckboxGroup'
+
+// import { ref } from 'vue'
 
 export default {
   components: {
-    MainButton
+    MainButton,
+    Ask,
+    Button,
+    ButtonCheckboxGroup
+
   },
 
   data() {
     return {
-      model1: ref('six'),
-      model2: ref('two'),
-      model3: ref('three'),
-      model4: ref('four'),
-      model5: ref('five'),
+      options: [
+        {
+          label: 'Pet Sossegado',
+          selected: false
+        },
+        {
+          label: 'Postura treinador',
+          selected: false
+        },
+        {
+          label: 'Ausência de barulho',
+          selected: false
+        },
+        {
+          label: 'Recompensa',
+          selected: true
+        },
+        {
+          label: 'Outros pest no local',
+          selected: false
+        }
+      ],
       id: this.$route.params.id,
       treino: {}
 

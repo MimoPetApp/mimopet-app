@@ -6,7 +6,7 @@ import store from '../../index'
 
 export const ActionGetPets = ({ commit, dispatch }) => {
   return new Promise((resolve, reject) => {
-    Http.get('pet')
+    Http.get('pets')
       .then(response => {
         dispatch('ActionCommitPet', response.data)
         dispatch('ActionSetLoadingPet', false)
@@ -21,7 +21,7 @@ export const ActionGetPets = ({ commit, dispatch }) => {
 
 export const ActionGetPetById = ({ commit, dispatch }, payload) => {
   return new Promise((resolve, reject) => {
-    Http.get(`pet/${payload}`)
+    Http.get(`pets/${payload}`)
       .then(response => {
         commit(types.SET_PROFILEPET, response.data)
         dispatch('ActionSetLoadingPet', false)
@@ -48,7 +48,7 @@ export const ActionmodalDeletePet = ({ commit }, payload) => {
 
 export const ActionDeletePet = ({ commit, dispatch }, payload) => {
   dispatch('ActionSetLoadingPet', true)
-  Http.delete(`pet/${payload}`)
+  Http.delete(`pets/${payload}`)
     .then(response => {
       dispatch('ActionmodalDeletePet', { modal: false, data: {} })
       store.$router.push({ name: 'home' })

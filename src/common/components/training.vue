@@ -1,6 +1,6 @@
 
 <template>
-  <div class="q-pa-md" style="max-width: 300px background: white">
+  <div class="q-pa-md" style="background: white">
     <!--router-link to="/detalhes"-->
     <router-link :to="{name: 'detalhes', params: {id: id}}">
       <q-list bordered padding class="rounded-borders text-primary">

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="284"
+   height="310"
+   viewBox="0 0 284 310"
+   fill="none"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="vector.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+  <path
+     d="m 195.96562,42.065028 c -12.02189,2.310391 -25.06962,6.873053 -37.53283,14.122753 -8.72871,5.081243 -19.50932,5.060348 -28.21871,-0.05271 C 117.79799,48.838958 104.74743,44.247246 92.734047,41.872238 53.081789,34.074488 15.299491,55.411538 15.225084,95.304231 l -0.138806,74.433729 -0.03458,18.54479 c -0.08271,44.36232 35.884062,80.40173 80.322921,80.48468 0,0 11.761226,0.23738 25.919446,0.42067 4.33961,0.20419 12.92045,0.25926 22.66129,0.23845 9.73922,0.0572 18.30102,0.034 22.66069,-0.15397 14.15906,-0.14988 25.9218,-0.32404 25.9218,-0.32404 44.43817,0.0828 80.53988,-35.82186 80.6222,-80.18428 l 0.0345,-18.5445 0.13844,-74.433932 c 0.0358,-39.892884 -37.6865,-61.370617 -77.36737,-53.7208 z"
+     fill-opacity="0"
+     fill="none"
+     stroke="#fe7624"
+     stroke-width="4"
+     id="path2" />
+</svg>

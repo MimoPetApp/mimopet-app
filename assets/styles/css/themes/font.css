@@ -1,0 +1,43 @@
+@font-face {
+    font-family: customfont;
+    src: url(../../fonts/interFont.ttf);
+}
+
+@font-face {
+    font-family: customfont700;
+    src: url(../../fonts/static/Inter-Bold.ttf);
+}
+
+@font-face {
+    font-family: customfont600;
+    src: url(../../fonts/static/Inter-Regular.ttf);
+}
+
+@font-face {
+    font-family: customfont400;
+    src: url(../../fonts/static/Inter-Light.ttf);
+}
+
+:root {
+    --font-size-1: 10px;
+    --font-size-2: 12px;
+    --font-size-3: 14px;
+    --font-size-4: 16px;
+    --font-size-5: 18px;
+    --font-size-6: 20px;
+    --font-size-7: 24px;
+    --font-size-8: 36px;
+    --font-size-9: 42px;
+    --font-size-10: 56px;
+    --font-size-11: 72px;
+}
+
+html { font-size: var(--font-size-3); }
+body { font-family: 'customfont'; font-size: var(--font-size-3); }
+
+h1 { font-family: 'customfont700'; font-size: var(--font-size-9); }
+h2 { font-family: 'customfont700'; font-size: var(--font-size-8); }
+h3 { font-family: 'customfont600'; font-size: var(--font-size-7); }
+h4 { font-family: 'customfont600'; font-size: var(--font-size-6); }
+h5 { font-family: 'customfont400'; font-size: var(--font-size-5); }
+h6 { font-family: 'customfont400'; font-size: var(--font-size-4); }

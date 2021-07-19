@@ -1,12 +1,17 @@
 import Title from '../../../common/components/title'
 import Logo from '../../../common/components/logo'
-import MainButton from '../../../common/components/mainButton'
-import Container from '../../../common/components/container'
+import Button from '../../../common/components/Button'
+import AuthContainer from '../../../common/components/AuthContainer'
 export default {
   components: {
     Title,
     Logo,
-    MainButton,
-    Container
+    Button,
+    AuthContainer
+  },
+  methods: {
+    loginHandler() {
+      this.$router.push({ name: 'acesso' })
+    }
   }
 }

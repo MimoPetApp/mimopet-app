@@ -1,19 +1,18 @@
 <template>
-  <div style="width: 300px">
+  <div>
     <q-card>
       <q-card-section>
        <q-list bordered padding class="rounded-borders text-primary">
           <q-item v-ripple>
             <q-item-section side top>
               <q-badge color="purple" label="Adultos" />
-              <q-item-label style="font-size: 3.8vh"
-                >Comandos Básicos</q-item-label
-              >
+              <q-item-label style="font-size: 3.8vh">
+                    Comandos Básicos
+              </q-item-label>
             </q-item-section>
-            <q-list  padding class="rounded-borders text-primary">
-            </q-list>
+          </q-item>
         </q-list>
-<q-list bordered dense>
+        <q-list bordered dense>
           <Details
            timep="10min"
            title="Não perseguir outros animais"
@@ -28,7 +27,7 @@
            pageName="trainingConditions"
            id='2'
            />
-</q-list>
+        </q-list>
       </q-card-section>
 
       <q-separator dark />

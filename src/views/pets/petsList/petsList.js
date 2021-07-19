@@ -12,10 +12,10 @@ export default {
   computed: {
     ...mapState('pets', ['petsList', 'loadingPets'])
   },
-  mounted () {
+  mounted() {
     this.ActionGetPets()
   },
-  beforeRouteLeave (to, from, next) {
+  beforeRouteLeave(to, from, next) {
     this.ActionSetLoadingPet(true)
     next()
   },

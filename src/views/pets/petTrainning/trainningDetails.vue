@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 300px">
+  <div>
     <q-card>
       <q-card-section>
         <q-img src="../../../assets/images/dog.png"/>
@@ -16,7 +16,7 @@
                  <b> {{ treino.title }}</b>
               </q-item-label>
               <q-item-label caption lines="4" style="font-size: 2.3vh">
-                {{treino.body}}
+                  {{treino.body}}
               </q-item-label>
             </q-item-section>
           </q-item>

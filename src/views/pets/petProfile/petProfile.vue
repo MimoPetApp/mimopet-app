@@ -3,10 +3,13 @@
     <!-- Top nav menu -->
     <q-toolbar class="text-primary">
       <div class="pet-profile-row q-pt-md">
-        <q-btn flat round color="white" size="lg" icon="arrow_back" to="/" />
+        <q-btn flat round color="utilities-alternate" size="md" icon="arrow_back" to="/" />
         <div class="flex">
+          <!--
           <q-btn flat round color="white" size="lg" icon="health_and_safety" to="/" />
           <q-btn flat round color="white" size="lg" icon="settings" to="/" />
+          -->
+          <q-btn flat round color="utilities-alternate" size="md" icon="edit" />
         </div>
       </div>
     </q-toolbar>

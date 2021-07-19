@@ -1,5 +1,5 @@
 <template>
-  <div id="box" style="width: 300px">
+  <div id="box" class="my-video">
     <q-card class="my-card">
       <q-video src="https://www.youtube.com/embed/k3_tw44QsZQ?rel=0" />
     </q-card>
@@ -14,9 +14,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.my-video
+.my-card
   width: 100%
-  max-width: 300px
 
   #box
     font-family: "customfont600"

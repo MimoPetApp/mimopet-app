@@ -1,5 +1,5 @@
 <template>
-  <div id="box" style="width: 300px">
+  <div id="box">
       Explore comportamentos
     <q-card class="my-card bg-orange text-white">
       <q-card-section>
