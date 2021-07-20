@@ -13,7 +13,7 @@ export const CheckboxColors = ['main-primary', 'status-success']
 export const CheckboxTypes = ['rounded', 'squared']
 
 export default {
-  name: 'CheckBox',
+  name: 'Checkbox',
   components: {
     QCheckbox
   },

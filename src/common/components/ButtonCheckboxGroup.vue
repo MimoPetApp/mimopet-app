@@ -4,45 +4,50 @@
       v-for="(option, index) in options"
       :key="index"
       class="button-checkbox-wrapper"
-      :class="{ 'button-checkbox-wrapper--selected': option.selected }"
+      :class="{
+        'button-checkbox-wrapper--selected': option.selected,
+        'button-checkbox-wrapper--error': option.error
+      }"
       @click="clicked(option, index)"
     >
       <div class="row" style="height: inherit">
         <div class="col-12 col-md-12 col-xs-12 flex justify-center items-center relative-position">
           <h6
             class="button-checkbox-wrapper__option-label"
-            :class="{ 'button-checkbox-wrapper__option-label--selected': option.selected }"
+            :class="{
+              'button-checkbox-wrapper__option-label--selected': option.selected
+            }"
           >
             {{ option.label }}
           </h6>
           <checkbox
+            v-if="!option.error && option.selected"
             v-model="option.selected"
             type="rounded"
             color="status-success"
             class="checkbox-style"
           ></checkbox>
         </div>
-        <div v-if="option.selected" class="flex justify-start items-center"></div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Checkbox from './CheckBox.vue'
-export const ButtonCheckboxGroupColors = ['main-primary']
+import Checkbox from './Checkbox.vue'
+export const ButtonCheckboxColors = ['main-primary', 'status-danger', 'status-success']
 
 export default {
   name: 'ButtonCheckboxGroup',
+  data() {
+    return {
+      chosenAnswer: false
+    }
+  },
   components: {
     Checkbox
   },
   props: {
-    color: {
-      type: String,
-      default: 'main-primary',
-      validate: val => ButtonCheckboxGroupColors.indexOf(val) !== -1
-    },
     options: {
       type: Array,
       default: null
@@ -55,7 +60,30 @@ export default {
   computed: {},
   methods: {
     clicked(option, index) {
-      return (option.selected = !option.selected)
+      if (!this.answer) {
+        // feedback screen
+        option.selected = !option.selected
+      } else {
+        // quiz screen
+        if (!this.chosenAnswer) {
+          option.selected = !option.selected
+          if (!this.isCorrect(option, index)) {
+            option.error = !this.isCorrect(option, index)
+            this.showCorrectAnswer()
+          }
+          this.chosenAnswer = true
+        }
+      }
+    },
+    isCorrect(option, index = 0) {
+      return option.label.toLowerCase() === this.answer.toLowerCase()
+    },
+    showCorrectAnswer() {
+      this.options.forEach(option => {
+        if (this.isCorrect(option)) {
+          option.selected = true
+        }
+      })
     }
   }
 }
@@ -95,6 +123,10 @@ export default {
   &--selected {
     background-color: var(--status-sucess);
     border-color: var(--status-sucess);
+  }
+  &--error {
+    background-color: var(--status-danger);
+    border-color: var(--status-danger);
   }
 }
 .checkbox-style {
