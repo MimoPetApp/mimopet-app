@@ -19,6 +19,16 @@ $text-main-button-size: 1.16rem;
   }
 }
 
+.tag-button {
+  width: 100px;
+  height: 38px;
+  background: #2a1d46;
+  border-radius: var(--spacing-1);
+  font-size: var(--font-size-2);
+  color: #fff;
+  font-family: 'customfont600';
+}
+
 .mimo-text {
   font-family: 'customfont';
   font-size: 1.225rem;

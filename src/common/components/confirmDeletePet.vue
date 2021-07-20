@@ -45,10 +45,8 @@
           <TextField
             ref="confirmPetName"
             v-model="confirmPetName"
-            :label="showConfirmPetNameLabel ? 'Insira o nome do animal' : ''"
+            :label="'Insira o nome do animal'"
             :rules="[val => !!val || 'Confirme o nome antes de excluir']"
-            @focus="showConfirmPetNameLabel = false"
-            @blur="showConfirmPetNameLabel = confirmPetName.length == 0"
           />
         </q-card-section>
       </div>
@@ -74,8 +72,8 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import Loading from './loading'
-import Button from './Button'
-import TextField from './TextField'
+import Button from './Button/Button'
+import TextField from './TextField/TextField'
 
 export default {
   name: 'ConfirmDeletePet',
@@ -87,8 +85,7 @@ export default {
   data() {
     return {
       step: 1,
-      confirmPetName: '',
-      showConfirmPetNameLabel: true
+      confirmPetName: ''
     }
   },
   computed: {
