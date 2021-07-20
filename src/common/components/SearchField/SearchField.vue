@@ -4,7 +4,8 @@
     :class="textFieldClass"
     :input-class="textFieldInputClass"
     type="search"
-    filled
+    :filled="!outline"
+    :outlined="outline"
     clearable
     no-error-icon
     standout="bg-utilities-border text-main-alternate"
@@ -44,6 +45,10 @@ export default {
       type: Boolean,
       default: true
     },
+    outline: {
+      type: Boolean,
+      default: false
+    },
     filters: {
       type: Array
     }
@@ -77,7 +82,8 @@ export default {
 </script>
 
 <style lang="scss">
-.search-field.q-field--filled .q-field__control {
-  padding: 0 var(--spacing-1) 0 var(--spacing-4);
+.search-field.q-field--filled .q-field__control,
+.search-field.q-field--outlined .q-field__control {
+  padding: 0 var(--spacing-2) 0 var(--spacing-4);
 }
 </style>

@@ -121,7 +121,21 @@ export default {
   }
 
   &--filled &__control {
-    border-radius: 15px;
+    border-radius: var(--spacing-2);
+    padding: 0 var(--spacing-4);
+  }
+
+  &--filled &__control:after {
+    height: 0px !important;
+  }
+
+  &--filled &__control:before {
+    border-bottom: 0px !important;
+  }
+
+  &--outlined &__control {
+    border-radius: var(--spacing-1);
+    border: 2px solid var(--utilities-disabled);
     padding: 0 var(--spacing-4);
   }
 
