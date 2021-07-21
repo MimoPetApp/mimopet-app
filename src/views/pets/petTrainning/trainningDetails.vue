@@ -2,7 +2,7 @@
   <div>
     <q-card>
       <q-card-section>
-        <q-img src="../../../assets/images/dog.png"/>
+        <q-img src="~assets/images/dog.png"/>
       </q-card-section>
 
       <q-separator dark />

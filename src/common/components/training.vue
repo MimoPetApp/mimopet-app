@@ -2,7 +2,7 @@
 <template>
   <div class="q-pa-md" style="background: white">
     <!--router-link to="/detalhes"-->
-    <router-link :to="{name: 'detalhes', params: {id: id}}">
+    <router-link :to="{name: 'trainingDetails', params: {id: id}}">
       <q-list bordered padding class="rounded-borders text-primary">
         <q-item v-ripple>
           <!-- @click.native="testclick" -->
@@ -18,7 +18,7 @@
 
           <q-item-section>
             <q-item-label></q-item-label>
-            <q-item-label caption lines="2" style="font-size: 2.1vh">{{
+            <q-item-label caption lines="2" style="font-size: 4.1vh">{{
               title
             }}</q-item-label>
           </q-item-section>

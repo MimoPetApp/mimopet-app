@@ -1,31 +1,29 @@
-// import { mapActions } from 'vuex'
 import treinodoPet from '../../../common/components/training.vue'
-import training from '../../../Apis/Training'
+import { mapState, mapActions } from 'vuex'
 
 export default {
-  name: 'App',
-  components: { treinodoPet },
+  name: 'trainingPet',
+  components: {
+    treinodoPet
+  },
 
   data() {
     return {
       text: '',
       dense: false,
       model: 'one',
-      showTraining: true,
-      info: []
+      step: 1,
+      showTraining: true
     }
   },
 
-  /*  mounted() {
-    training.all()
-      .then(Response => (this.info = Response.data))
-  },
- */
   computed: {
+    ...mapState('trainings', ['trainingList', 'loadingTraining']),
+
     filterfiels() {
       let items = []
 
-      items = this.info.filter((item) => {
+      items = this.trainingList.filter((item) => {
         return (
           item.title.toLowerCase().indexOf(this.text.toLowerCase()) > -1
         )
@@ -34,15 +32,30 @@ export default {
     }
   },
 
+  mounted() {
+    this.ActionGetTraining()
+  },
+
+  beforeRouteLeave(to, from, next) {
+    this.ActionSetLoadingTraining(true)
+    next()
+  },
+
   methods: {
-    testclick() {
-      this.showTraining = false
+    ...mapActions('trainings', ['ActionGetTraining', 'ActionCommitTraining', 'ActionSetLoadingTraining']),
+
+    backStep() {
+      if (this.step > 1) {
+        this.step--
+      } else {
+        // this.step = 1;
+        this.$router.push({ name: 'home' })
+      }
     },
 
     clickIcon() {
       this.showTraining = true
-      training.all()
-        .then(Response => (this.info = Response.data))
+      this.ActionGetTraining()
     }
   }
 }

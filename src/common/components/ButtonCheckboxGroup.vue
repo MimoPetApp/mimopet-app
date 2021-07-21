@@ -4,18 +4,29 @@
       v-for="(option, index) in options"
       :key="index"
       class="button-checkbox-wrapper"
-      :class="{ 'button-checkbox-wrapper--selected': option.selected }"
-      @click="clicked"
+      :class="{
+        'button-checkbox-wrapper--selected': option.selected,
+        'button-checkbox-wrapper--error': option.error
+      }"
+      @click="clicked(option, index)"
     >
-      <div class="row">
-        <div class="col-12 col-md-12 col-xs-12">
+      <div class="row" style="height: inherit">
+        <div class="col-12 col-md-12 col-xs-12 flex justify-center items-center relative-position">
           <h6
             class="button-checkbox-wrapper__option-label"
-            :class="{ 'button-checkbox-wrapper__option-label--selected': option.selected }"
+            :class="{
+              'button-checkbox-wrapper__option-label--selected': option.selected
+            }"
           >
             {{ option.label }}
           </h6>
-          <!--<checkbox></checkbox>-->
+          <checkbox
+            v-if="!option.error && option.selected"
+            v-model="option.selected"
+            type="rounded"
+            color="status-success"
+            class="checkbox-style"
+          ></checkbox>
         </div>
       </div>
     </div>
@@ -23,23 +34,20 @@
 </template>
 
 <script>
-// import Checkbox from './CheckBox.vue'
+import Checkbox from './Checkbox.vue'
+export const ButtonCheckboxColors = ['main-primary', 'status-danger', 'status-success']
+
 export default {
   name: 'ButtonCheckboxGroup',
+  data() {
+    return {
+      chosenAnswer: false
+    }
+  },
   components: {
-    // Checkbox
+    Checkbox
   },
   props: {
-    color: {
-      type: String,
-      default: 'main-primary',
-      validate: val => ['main-primary'].indexOf(val) !== -1
-    },
-    selected: {
-      type: Boolean,
-      default: false,
-      validate: val => [true, false].indexOf(val) !== -1
-    },
     options: {
       type: Array,
       default: null
@@ -47,16 +55,35 @@ export default {
     answer: {
       type: String,
       default: ''
-    },
-    label: {
-      type: String,
-      default: 'Insert your label'
     }
   },
   computed: {},
   methods: {
-    clicked() {
-      return 'button-checkbox-wrapper--selected'
+    clicked(option, index) {
+      if (!this.answer) {
+        // feedback screen
+        option.selected = !option.selected
+      } else {
+        // quiz screen
+        if (!this.chosenAnswer) {
+          option.selected = !option.selected
+          if (!this.isCorrect(option, index)) {
+            option.error = !this.isCorrect(option, index)
+            this.showCorrectAnswer()
+          }
+          this.chosenAnswer = true
+        }
+      }
+    },
+    isCorrect(option, index = 0) {
+      return option.label.toLowerCase() === this.answer.toLowerCase()
+    },
+    showCorrectAnswer() {
+      this.options.forEach(option => {
+        if (this.isCorrect(option)) {
+          option.selected = true
+        }
+      })
     }
   }
 }
@@ -68,21 +95,18 @@ export default {
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  height: 220px;
+  height: 230px;
   padding: 0 16px;
   overflow: scroll;
 }
 .button-checkbox-wrapper {
-  //min-height: calc(100vh - 115px);
   width: 228px;
   height: 48px;
+  min-height: 48px;
   border-width: 1px;
   border-color: var(--utilities-disabled);
   border-style: solid;
   border-radius: 6px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin-bottom: var(--font-size-6);
   &__option-label {
     font-size: var(--font-size-4);
@@ -91,6 +115,7 @@ export default {
     font-family: 'customFont650';
     text-align: center;
     color: var(--utilities-alternate);
+    margin: 0;
     &--selected {
       color: var(--main-background);
     }
@@ -99,5 +124,13 @@ export default {
     background-color: var(--status-sucess);
     border-color: var(--status-sucess);
   }
+  &--error {
+    background-color: var(--status-danger);
+    border-color: var(--status-danger);
+  }
+}
+.checkbox-style {
+  position: absolute;
+  right: 25px;
 }
 </style>

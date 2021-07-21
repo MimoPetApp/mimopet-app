@@ -1,5 +1,16 @@
 <template>
   <div id="box">
+     <q-layout view="lHh Lpr lFf">
+    <q-toolbar class="text-primary text-main-primary">
+        <q-btn
+          flat
+          round
+          dense
+          icon="arrow_back"
+          @click="backStep()"
+          text-color="utilities-alternate"
+        />
+    </q-toolbar>
       Explore comportamentos
     <q-card class="my-card bg-orange text-white">
       <q-card-section>
@@ -37,7 +48,7 @@
             { label: 'Com gatos', value: 'one', slot: 'one' },
             { label: 'Com Cães', value: 'two', slot: 'two' },
           ]"
-          @click=clickIcon()
+          @click="clickIcon()"
         >
           <template v-slot:one>
             <q-tooltip>gatos</q-tooltip>
@@ -53,15 +64,16 @@
     <div style="width: 300px" v-if="showTraining">
       <p>
        <treinodo-pet
-          v-for="(item,index) in filterfiels" :key="index"
+        v-for="(item,index) in filterfiels" :key="index"
           typed="Adulto"
-          step="10 passoss"
+          :step="item.id"
           number="4.6"
           :id="item.id"
           :title="item.title"
         />
      </p>
     </div>
+     </q-layout>
   </div>
 </template>
 

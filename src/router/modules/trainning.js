@@ -1,5 +1,10 @@
 export default [
   {
+    path: '/',
+    name: 'home',
+    component: () => import('../../views/pets/petsList/petsList.vue')
+  },
+  {
     path: '/detalhes/:id',
     name: 'detalhes',
     props: true,

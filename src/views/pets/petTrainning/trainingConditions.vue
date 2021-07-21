@@ -1,35 +1,31 @@
 <template>
 <div id='confirm'>
-   <q-card>
-      <q-card-section>
-        <q-list bordered padding class="rounded-borders text-primary">
-          <q-item v-ripple>
-        <Ask
+   <q-layout view="lHh Lpr lFf">
+      <Ask
         title="Selecione as condições de treino desta sessão"
-        subtitle=""
+        subtitle="🐶"
         align-content="center"
       >
-        <template v-slot:content>
-          <button-checkbox-group :options="options"></button-checkbox-group>
+<template v-slot:content>
+          <ButtonCheckboxGroup
+           :options ='options'
+           >
+           </ButtonCheckboxGroup>
         </template>
         <template v-slot:action>
-          <Button label="Enviar" noCaps color="primary-flat" class="pl-7 pr-7" disabled></Button>
-        </template>
-      </Ask>
-
-          </q-item>
-        </q-list>
-       <p/>
-       <p/>
-           <MainButton
+          <Button label="Enviar"
+           noCaps
+           color="primary-flat"
+           class="pl-7 pr-7">
+           </Button>
+        </template></Ask>
+         <MainButton
               type="submit"
               label="Continuar"
               @click="$router.push({ name: 'trainingVideo', params: {id: id}})"
               loading="false"
             />
-        <br>
-       </q-card-section>
-    </q-card>
+       </q-layout>
     </div>
 </template>
 
@@ -37,7 +33,7 @@
 import MainButton from '../../../common/components/mainButton.vue'
 import Ask from '../../../common/components/Ask.vue'
 import Button from '../../../common/components/Button/Button.vue'
-import ButtonCheckboxGroup from '../../../common/components/ButtonCheckboxGroup'
+import ButtonCheckboxGroup from '../../../common/components/ButtonCheckboxGroup.vue'
 
 // import { ref } from 'vue'
 
@@ -70,7 +66,7 @@ export default {
           selected: true
         },
         {
-          label: 'Outros pest no local',
+          label: 'Outros pets no local',
           selected: false
         }
       ],
