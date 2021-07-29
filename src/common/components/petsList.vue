@@ -27,14 +27,14 @@
             <p class="text-weight-medium m-0 p-0">Meus programas de adestramento</p>
           </div>
           <q-btn
-            rounded
-            flat
-            no-caps
-            text-color="main-background"
-            @click="$router.push({ name: 'training', params: {petid: 1} })"
-            style="background: rgba(255, 255, 255, 0.2)"
-            >Detalhar</q-btn
-          >
+              rounded
+              flat
+              no-caps
+              text-color="main-background"
+              @click="$router.push({ name: 'training', params: {petid: 1} })"
+              style="background: rgba(255, 255, 255, 0.2)"
+            > Detalhar
+          </q-btn>
         </div>
       </q-card>
     </q-card>

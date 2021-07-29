@@ -1,7 +1,7 @@
 <template>
-  <div id="box">
+  <div id="box" class="q-pa-md">
      <q-layout view="lHh Lpr lFf">
-    <q-toolbar class="text-primary text-main-primary">
+    <q-toolbar class="text-main-primary">
         <q-btn
           flat
           round
@@ -12,64 +12,60 @@
         />
     </q-toolbar>
       Explore comportamentos
-    <q-card class="my-card bg-orange text-white">
+    <q-card class="q-pa-cd">
       <q-card-section>
-        <div class="text-h6">Busque por programas de treino para seu pet.</div>
+        <div class="text-h6"><B>Busque por programas de treino para seu pet.</B></div>
       </q-card-section>
 
-      <q-card-section>
-        <q-input
+      <q-card-section >
+          <div class="q-pa-nd" style="backgroud: white">
+          <q-input
+          outlined
+          color="black"
           v-model="text"
           bottom-slots
-          label="O que aprender ?"
-          :dense="dense"
-        >
-          <template v-slot:append>
-            <q-icon
-              v-if="text !== ''"
-              class="cursor-pointer"
-              name="close"
-              @click="clickIcon()"
-            />
-            <q-icon name="search" />
+          placeholder="O que aprender ?"
+          :dense="dense">
+
+         <q-btn class="q-pa-bt"
+         label="Com cães"
+         stack no-caps
+          @click="clickIcon()"
+         >
+
+          <template  v-slot:append>
+                <q-icon v-if="text !== ''"
+                  class="cursor-p"
+                   name="close"
+                   @click="clickIcon()"
+                />
+            <q-icon class="cursor-s" name="search" />
           </template>
-        </q-input>
+
+        <q-menu>
+          <q-list style="min-width: 100px">
+            <q-item clickable v-close-popup>
+              <q-item-section>Com gatos</q-item-section>
+            </q-item>
+          </q-list>
+        </q-menu>
+      </q-btn>
+      </q-input>
+      </div>
       </q-card-section>
 
       <q-separator dark />
-
-      <q-card-actions>
-        <q-btn-toggle
-          v-model="model"
-          push
-          glossy
-          toggle-color="purple"
-          :options="[
-            { label: 'Com gatos', value: 'one', slot: 'one' },
-            { label: 'Com Cães', value: 'two', slot: 'two' },
-          ]"
-          @click="clickIcon()"
-        >
-          <template v-slot:one>
-            <q-tooltip>gatos</q-tooltip>
-          </template>
-
-          <template v-slot:two>
-            <q-tooltip>caes</q-tooltip>
-          </template>
-        </q-btn-toggle>
-      </q-card-actions>
     </q-card>
 
-    <div style="width: 300px" v-if="showTraining">
+    <div v-if="showTraining">
       <p>
-       <treinodo-pet
+       <treinodo-pet class="q-pd-tda"
         v-for="(item,index) in filterfiels" :key="index"
-          typed="Adulto"
-          :step="item.id"
-          number="4.6"
+          :typedp="item.category"
+          :step="item.steps[index]._component"
+          :number="item.rating"
           :id="item.id"
-          :title="item.title"
+          :title="item.modules[0].name"
         />
      </p>
     </div>

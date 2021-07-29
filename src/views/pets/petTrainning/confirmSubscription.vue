@@ -5,7 +5,7 @@
         <q-list bordered padding class="rounded-borders text-primary">
           <q-item v-ripple>
             <q-item-section side top>
-                <img src= '../../../assets/images/alvo.png' />
+                <img src= '~assets/images/alvo.png' />
                 <q-item-label style="font-size: 4.3vh">
                  <b> Inscrição confirmada</b>
               </q-item-label>
@@ -17,7 +17,7 @@
            <MainButton
               type="submit"
               label="Ir para o treino"
-              @click="$router.push({ name: 'trainingDetails', params: {id: id}})"
+              @click="$router.push({ name: 'trainingDetailsAll', params: {id: id}})"
               loading="false"
             />
         <br>

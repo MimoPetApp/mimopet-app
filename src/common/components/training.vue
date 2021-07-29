@@ -1,34 +1,28 @@
 
 <template>
-  <div class="q-pa-md" style="background: white">
-    <!--router-link to="/detalhes"-->
-    <router-link :to="{name: 'trainingDetails', params: {id: id}}">
-      <q-list bordered padding class="rounded-borders text-primary">
-        <q-item v-ripple>
-          <!-- @click.native="testclick" -->
-          <q-item-section side top>
-            <q-badge color="purple" label="adultos" />
-            <q-item-label style="font-size: 1.8vh">{{ step }}</q-item-label>
-          </q-item-section>
+  <div>
+      <router-link :to="{name: 'trainingDetails', params: {id: id}}">
+      <q-list bordered padding>
+          <q-item>
+             <q-item-section>
+                 <q-item-section side top>
+                 <q-item-label>{{number}}</q-item-label>
+             </q-item-section>
+             <q-item-label>{{step}}</q-item-label>
+             <q-item-label style="font-size: 3.1vh">{{ title}}</q-item-label>
+             </q-item-section>
 
-          <q-item-section side top>
-            <q-item-label caption>{{ number }}</q-item-label>
-            <q-icon name="stars" color="yellow" />
-          </q-item-section>
-
-          <q-item-section>
-            <q-item-label></q-item-label>
-            <q-item-label caption lines="2" style="font-size: 4.1vh">{{
-              title
-            }}</q-item-label>
-          </q-item-section>
-        </q-item>
+             <q-item-section side top>
+                 <q-badge color="purple" :label= typedp />
+             </q-item-section>
+          </q-item>
       </q-list>
-    </router-link>
+      </router-link>
   </div>
 </template>
 
 <script>
+
 export default {
   props: {
 
@@ -52,7 +46,7 @@ export default {
       default: ''
     },
 
-    type: {
+    typedp: {
       type: String,
       default: ''
     }
@@ -65,18 +59,15 @@ export default {
 
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only
-/* <style scoped>
-#q-pa-md {
-  /*  background: white;
-  color: black;
-  font-family: "customfont600";
-  font-weight: 600;
-  font-size: 2.1vh;
-  font-color: white;
-  text-align: justify;
-  margin: 0 0 2vh 0; */
-  padding: 20%;
-  box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.2);
-}
-</style> */ -->
+<style lang="scss">
+$text-main-button-size: 1.16rem;
+/* .q-pa-md {
+border-radius: 25px 25px 0 0 !important;
+width: 100%;
+color: 'white';
+font-family: 'customfont700';
+font-size: var(--font-size-6);
+line-height: 29px;
+font-weight: 500;
+} */
+</style>

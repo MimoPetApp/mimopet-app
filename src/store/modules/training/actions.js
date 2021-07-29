@@ -19,6 +19,23 @@ export const ActionGetTraining = ({ commit, dispatch }) => {
   })
 }
 
+export const ActionGetTrainingById = ({ commit, dispatch }, payload) => {
+  return new Promise((resolve, reject) => {
+    Http.get(`trainings/${payload}`)
+      .then(response => {
+        const trainingData = response.data
+        commit(types.SET_TRAININGLIST, trainingData)
+        dispatch('ActionSetLoadingTraining', false)
+        resolve(trainingData)
+        console.log(trainingData)
+      })
+      .catch(error => {
+        console.log(error)
+        reject(error.response.data)
+      })
+  })
+}
+
 export const ActionSetLoadingTraining = ({ commit, dispatch }, payload) => {
   commit(types.SET_LOADINGTRAINING, payload)
 }

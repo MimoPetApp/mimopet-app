@@ -55,6 +55,7 @@ export default {
 
     clickIcon() {
       this.showTraining = true
+      this.text = ''
       this.ActionGetTraining()
     }
   }

@@ -4,27 +4,29 @@
       <Ask
         title="Selecione as condições de treino desta sessão"
         subtitle="🐶"
-        align-content="center"
-      >
-<template v-slot:content>
+        align-content="center">
+
+       <template v-slot:content>
           <ButtonCheckboxGroup
            :options ='options'
            >
            </ButtonCheckboxGroup>
         </template>
+
         <template v-slot:action>
           <Button label="Enviar"
            noCaps
            color="primary-flat"
            class="pl-7 pr-7">
            </Button>
-        </template></Ask>
-         <MainButton
+        </template>
+      </Ask>
+      <MainButton
               type="submit"
               label="Continuar"
               @click="$router.push({ name: 'trainingVideo', params: {id: id}})"
               loading="false"
-            />
+      />
        </q-layout>
     </div>
 </template>

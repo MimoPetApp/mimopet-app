@@ -1,9 +1,9 @@
 
 <template>
   <div class="q-pa-tdp" style="background: white">
-       <router-link :to="{name: pageName, params: {id: id}, params: {item: videoId}}">
-    <q-card class="my-card text-white"  :style="{background: aleatoryColor() ,borderRadius: '25px !important' }">
-      <q-list bordered padding class="rounded-borders text-white">
+   <router-link :to="{name: pageName, params: {id: id}, params: {item: videoId}}">
+    <q-card class="my-card text-black">
+      <q-list bordered padding class="rounded-borders text-black">
         <q-item v-ripple>
           <q-item-section side top>
             <q-icon name="stars" color="yellow" />
@@ -36,14 +36,10 @@ export default {
     id: {
       type: Number
     },
-    videoId: {
-      type: Number
-    },
-
-    title: {
+    video: {
       type: String
     },
-    curriculum: {
+    title: {
       type: String
     },
     timep: {
@@ -55,19 +51,15 @@ export default {
     },
     pageName: {
       type: String
+    },
+    videoid: {
+      type: Number
     }
 
   },
 
   data() {
     return {}
-  },
-  methods: {
-    aleatoryColor() {
-      let cor = ''
-      cor = '#' + Math.floor(Math.random() * 0x1000000).toString(16).padStart(6, '0')
-      return cor
-    }
   }
 }
 

@@ -2,78 +2,90 @@
   <div>
     <q-card>
       <q-card-section>
-       <q-list bordered padding class="rounded-borders text-primary">
+        <q-list bordered padding class="rounded-borders text-primary">
           <q-item v-ripple>
             <q-item-section side top>
-              <q-badge color="purple" label="Adultos" />
-              <q-item-label style="font-size: 3.8vh"
-                >{{ treino.title }}</q-item-label
-              >
-            </q-item-section>
+              <q-badge color="purple" :label="trainingList.category" />
+              <Title :text="$t('trainingList.title')" />
+              <q-item-label style="font-size: 4.8vh">{{ trainingList.title }}</q-item-label>
+              </q-item-section>
           </q-item>
         </q-list>
-<q-list bordered dense>
-          O que você vai aprender ?
+        <q-list bordered dense>
+          O que você vai aprender?
+          <br />
+          <br />
+
           <Details
-           timep=""
-           title="Postura treinador"
-           imageTraining='../assets/images/1.png'
-           pageName= 'trainingDetailsId'
-           id='3'
-           />
-           <Details
-           timep=""
-           title="Comandos básicos"
-           imageTraining='../assets/images/2.png'
-           pageName="trainingDetailsId"
-           id="4"
-           />
-</q-list>
+            v-for="(item, index) in trainingList.steps"
+            :key="index"
+            :title="item.title"
+            :timep="item.description"
+            :imageTraining="item.rating"
+            :id="this.id"
+            :videoId="index"
+            :pageName="item.__component"
+          />
+          <p />
+          <p />
+        </q-list>
       </q-card-section>
 
       <q-separator dark />
 
-      <q-card-section>
-      </q-card-section>
+      <q-card-section> </q-card-section>
     </q-card>
 
     <q-card align="center">
-          <MainButton
-              type="submit"
-              label="Cancelar inscrição"
-              loading="false"
-              @click="$router.push({ name: 'trainingCancel'})"
-            />
-     </q-card>
+      <MainButton
+        type="submit"
+        label="Cancelar inscrição"
+        loading="false"
+        @click="$router.push({ name: 'trainingCancel' })"
+      />
+    </q-card>
   </div>
 </template>
 
 <script>
-import training from '../../../Apis/Training'
 import MainButton from '../../../common/components/mainButton.vue'
 import Details from '../../../common/components/detailsPet.vue'
+import Title from '../../../common/components/title'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   components: {
     MainButton,
-    Details
+    Details,
+    Title
   },
 
   data() {
     return {
-      id: this.$route.params.id,
-      treino: {}
+      id: this.$route.params.id
     }
   },
 
-  created() {
-    training.show(this.id)
-      .then(Response => (this.treino = Response.data))
+  computed: {
+    ...mapState('trainings', ['trainingList', 'loadingTraining'])
+  },
+  watch: {
+    // eslint-disable-next-line no-unused-vars
+    '$route.params.id': function (id) {
+      this.ActionGetTrainingById(this.$route.params.id)
+    }
+  },
+  mounted() {
+    this.ActionGetTrainingById(this.$route.params.id)
+  },
+  methods: {
+    ...mapActions('trainings', [
+      'ActionGetTrainingById',
+      'ActionCommitTraining',
+      'ActionSetLoadingTraining'
+    ])
   }
-
 }
-
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

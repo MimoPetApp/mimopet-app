@@ -5,17 +5,19 @@
        <q-list bordered padding class="rounded-borders text-primary">
           <q-item v-ripple>
             <q-item-section side top>
-               <Title :text="$t('trainingList.title')" />
+               <q-item-label style="font-size: 4.8vh">{{ trainingList.steps[item].title }}</q-item-label>
               </q-item-section>
           </q-item>
         </q-list>
 <q-list bordered dense>
-          <Details
-            v-for="(item,index) in trainingList.steps[2].video" :key="index"
-              :title="item.name"
-              :id="item.id"
-              pageName="trainingDetailsId"
-              />
+        <DetailsVideo
+            v-for="(itens,index) in trainingList.steps[2].video" :key="index"
+              :title="itens.name"
+              :id="itens.id"
+              :videoid="itens"
+              :video="itens.url"
+              pageName="trainingVideo"
+        />
               <p/><p/>
 </q-list>
       </q-card-section>
@@ -40,20 +42,20 @@
 <script>
 
 import MainButton from '../../../common/components/mainButton.vue'
-import Details from '../../../common/components/detailsPet.vue'
-import Title from '../../../common/components/title'
+import DetailsVideo from '../../../common/components/detailsVideo.vue'
+
 import { mapState, mapActions } from 'vuex'
 
 export default {
   components: {
     MainButton,
-    Details,
-    Title
+    DetailsVideo
   },
 
   data() {
     return {
-      id: this.$route.params.id
+      id: this.$route.params.id,
+      item: this.$route.params.item
     }
   },
 
@@ -66,7 +68,7 @@ export default {
       this.ActionGetTrainingById(this.$route.params.id)
     }
   },
-  mounted() {
+  created() {
     this.ActionGetTrainingById(this.$route.params.id)
   },
   methods: {

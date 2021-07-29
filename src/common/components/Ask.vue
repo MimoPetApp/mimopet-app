@@ -8,7 +8,7 @@
         </div>
       </div>
     </div>
-    <div class="ask-wrapper__content" :class="selectAlignContent">
+    <div class="ask-wrapper__content" :class='selectAlignContent'>
       <div class="row">
         <div class="col-12 col-md-12 col-xs-12">
           <slot name="content"></slot>

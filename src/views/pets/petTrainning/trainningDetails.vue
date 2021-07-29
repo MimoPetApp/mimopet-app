@@ -1,34 +1,54 @@
 <template>
   <div>
     <q-card>
-      <q-card-section>
-        <q-img src="~assets/images/dog.png"/>
-      </q-card-section>
+        <q-toolbar class="text-main-primary">
+        <q-btn
+          flat
+          round
+          dense
+          icon="arrow_back"
+          @click="backStep()"
+          text-color="utilities-alternate"
+        />
+    </q-toolbar>
+<!--       <div class="row justify-center">
+      <q-avatar size="100px" class="mt-2">
+        <img :src="parseProfileThumbnail(data.image[0])" />
+      </q-avatar>
+    </div> -->
 
-      <q-separator dark />
+          <q-separator dark />
 
       <q-card-section>
         <q-list bordered padding class="rounded-borders text-primary">
           <q-item v-ripple>
             <q-item-section side top>
-              <q-badge color="purple" label="Adultos" />
-              <q-item-label style="font-size: 1.8vh">
-                 <b> {{ treino.title }}</b>
+              <q-badge color="purple" :label= trainingList.category />
+              <q-item-label style="font-size: 4.0vh">
+                 <b> {{ trainingList.title }}</b>
               </q-item-label>
-              <q-item-label caption lines="4" style="font-size: 2.3vh">
-                  {{treino.body}}
+              <q-item-label caption lines="4" style="font-size: 3.5vh">
+                  {{trainingList.description}}
+              </q-item-label>
+              <br>
+              <br>
+               <q-separator dark inset />
+              <q-item-label style="font-size: 2.0vh">
+                  Por {{trainingList.author}}
+              </q-item-label>
+              <q-item-label style="font-size: 2.0vh">
+                  Atualizado em {{trainingList.create_at}}
               </q-item-label>
             </q-item-section>
           </q-item>
         </q-list>
       </q-card-section>
     </q-card>
-
     <q-card align="center">
         <MainButton
           type="submit"
           label="Inscrever-se"
-          @click="$router.push({ name: 'confirmSubscription', params: {id: id} })"
+          @click="$router.push({ name: 'trainingConfirm', params: {id: id} })"
           loading="false"
         />
     </q-card>
@@ -37,7 +57,7 @@
 
 <script>
 import MainButton from '../../../common/components/mainButton.vue'
-import training from '../../../Apis/Training'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   components: {
@@ -46,20 +66,38 @@ export default {
 
   data() {
     return {
-      id: this.$route.params.id,
-      treino: {}
+      id: this.$route.params.id
     }
   },
 
-  created() {
-    training.show(this.id)
-      .then(Response => (this.treino = Response.data))
+  computed: {
+    ...mapState('trainings', ['trainingList', 'loadingTraining'])
+  },
+  watch: {
+    // eslint-disable-next-line no-unused-vars
+    '$route.params.id': function (id) {
+      this.ActionGetTrainingById(this.$route.params.id)
+    }
+  },
+  mounted() {
+    this.ActionGetTrainingById(this.$route.params.id)
+  },
+  methods: {
+    ...mapActions('trainings', [
+      'ActionGetTrainingById',
+      'ActionCommitTraining',
+      'ActionSetLoadingTraining'
+    ]),
+
+    backStep() {
+      if (this.step > 1) {
+        this.step--
+      } else {
+        // this.step = 1;
+        this.$router.push({ name: 'home' })
+      }
+    }
   }
-/*   mounted() {
-    this.ActionAllTrainning()
-    this.ActionGetTrainningID(this.id)
-  }
- */
 }
 
 </script>
