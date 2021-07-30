@@ -12,5 +12,11 @@ export default {
   },
   [types.SET_TRAININGLIST] (state, payload) {
     state.trainingList = payload
+  },
+  [types.SET_LOADINGMODULE] (state, payload) {
+    state.loadingModule = payload
+  },
+  [types.SET_MODULELIST] (state, payload) {
+    state.moduleList = payload
   }
 }

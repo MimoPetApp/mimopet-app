@@ -2,5 +2,7 @@ export default {
   hasHeader: true,
   hasFooter: true,
   loadingTraining: true,
-  trainingList: []
+  loadingModule: true,
+  trainingList: [],
+  moduleList: []
 }
