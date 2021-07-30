@@ -1,3 +1,4 @@
+
 export default {
   hasHeader: true,
   hasFooter: true,

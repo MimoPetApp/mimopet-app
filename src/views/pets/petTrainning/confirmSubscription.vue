@@ -1,6 +1,6 @@
 <template>
-<div id='confirm' style="width 300px">
-   <q-card>
+<div class='confirm' style="width 300px">
+   <q-card class='q-ca-md'>
       <q-card-section>
         <q-list bordered padding class="rounded-borders text-primary">
           <q-item v-ripple>
@@ -17,6 +17,7 @@
            <MainButton
               type="submit"
               label="Ir para o treino"
+              no-caps
               @click="$router.push({ name: 'trainingDetailsAll', params: {id: id}})"
               loading="false"
             />
@@ -24,7 +25,7 @@
         <q-btn flat style="color: orange"
                label="Voltar para busca"
                no-caps
-               @click="$router.push({ name: 'login' })"
+               @click="$router.push({ name: 'training', params: { petid: 1 } })"
                />
         </q-list>
       </q-card-section>
@@ -55,7 +56,7 @@ export default {
 
 <style scoped>
 
-#confirm {
+.confirm {
   font-family: "customfont600";
   font-size: 1.45rem !important;
   font-weight: 600;
@@ -63,5 +64,12 @@ export default {
   margin-left: 4vh;
   border-radius: 10%;
   align-self: center;
+  margin: 2 1 2vh 0;
+
+}
+.q-ca-md {
+  text-align: center;
+  margin: 2 1 2vh 0;
+
 }
 </style>

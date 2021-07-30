@@ -13,5 +13,26 @@ export default [
     path: '/novo/pet',
     name: 'petRegister',
     component: () => import('../../views/pets/petRegister/petRegister.vue')
+  },
+  {
+    path: '/detalhes/:petid',
+    name: 'training',
+    component: () => import('../../views/pets/petTrainning/trainingPet.vue')
+  },
+  {
+    path: '/trainingdetails/:id',
+    name: 'trainingDetails',
+    component: () => import('../../views/pets/petTrainning/trainningDetails.vue')
+  },
+  {
+    path: '/trainingConfirm/:id',
+    name: 'trainingConfirm',
+    component: () => import('../../views/pets/petTrainning/confirmSubscription.vue')
+  },
+  {
+    path: '/trainingDetailsAll/:id',
+    name: 'trainingDetailsAll',
+    component: () => import('../../views/pets/petTrainning/mytrainningDetails.vue')
   }
+
 ]

@@ -1,7 +1,10 @@
 <template>
   <div id="box" class="q-pa-md">
      <q-layout view="lHh Lpr lFf">
-    <q-toolbar class="text-main-primary">
+       <q-toolbar class="text-main-primary">
+           <q-btn flat round dense icon="keyboard_backspace" @click="backStep()" />
+      </q-toolbar>
+<!--     <q-toolbar class="text-main-primary">
         <q-btn
           flat
           round
@@ -11,7 +14,7 @@
           text-color="utilities-alternate"
         />
     </q-toolbar>
-      Explore comportamentos
+ -->      Explore comportamentos
     <q-card class="q-pa-cd">
       <q-card-section>
         <div class="text-h6"><B>Busque por programas de treino para seu pet.</B></div>

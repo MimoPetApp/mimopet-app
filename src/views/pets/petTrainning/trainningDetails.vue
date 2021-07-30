@@ -1,18 +1,13 @@
 <template>
   <div class="q-pa-td">
     <q-card>
-        <q-toolbar class="text-main-primary">
-            <q-btn
-              flat
-              round
-              dense
-              icon="arrow_back"
-              @click="backStep()"
-              text-color="utilities-alternate"
-            />
-        </q-toolbar>
-        <img class="q-pa-im"/>
-
+       <q-toolbar class="text-main-primary">
+           <q-btn flat round dense icon="keyboard_backspace" @click="backStep()" />
+      </q-toolbar>
+      <div v-for="(item, index) in trainingList" :key="index">
+          {{index.thumbnail}}
+           <img :src="parseProfileThumbnail(index.thumbnail)" />
+        </div>
         <q-card-section>
         <q-list bordered padding class="rounded-borders text-primary">
             <q-item v-ripple>
@@ -94,8 +89,8 @@ export default {
       if (this.step > 1) {
         this.step--
       } else {
-        this.step = 1
-        // this.$router.push({ name: 'training', params: { petid: 1 } })
+        // this.step = 1
+        this.$router.push({ name: 'training', params: { petid: 1 } })
       }
     }
   }

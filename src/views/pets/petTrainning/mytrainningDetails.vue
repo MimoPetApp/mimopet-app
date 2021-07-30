@@ -1,6 +1,10 @@
 <template>
   <div>
     <q-card>
+       <q-toolbar class="text-main-primary">
+           <q-btn flat round dense icon="keyboard_backspace" @click="backStep()" />
+      </q-toolbar>
+
       <q-card-section>
         <q-list bordered padding class="rounded-borders text-primary">
           <q-item v-ripple>
@@ -83,7 +87,17 @@ export default {
       'ActionGetTrainingById',
       'ActionCommitTraining',
       'ActionSetLoadingTraining'
-    ])
+    ]),
+
+    backStep() {
+      if (this.step > 1) {
+        this.step--
+      } else {
+        // this.step = 1
+        this.$router.push({ name: 'training', params: { petid: 1 } })
+      }
+    }
+
   }
 }
 </script>

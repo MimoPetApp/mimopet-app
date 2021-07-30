@@ -30,6 +30,7 @@
             rounded
             flat
             no-caps
+            @click="$router.push({ name: 'training', params: {petid: 1}})"
             text-color="main-background"
             style="background: rgba(255, 255, 255, 0.2)"
             >Detalhar</q-btn
