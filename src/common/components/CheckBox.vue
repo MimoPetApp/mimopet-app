@@ -1,62 +1,68 @@
 <template>
-  <QCheckbox
-    v-bind="$attrs"
-    class="checkbox-wrapper"
-    :class="[type === 'rounded' ? 'checkbox-wrapper--rounded' : 'checkbox-wrapper--squared']"
-    :color="color"
-  ></QCheckbox>
+  <div class="checkBox" v-bind="$attrs">
+    <div
+      class="checkBox__wrapper flex items-center justify-center"
+      :class="[
+        type === 'rounded' ? 'checkBox__wrapper--rounded' : 'checkBox__wrapper--squared',
+        selected ? 'checkBox__wrapper--selected' : '',
+        color ? `checkBox__wrapper--${color}` : ''
+      ]"
+    >
+      <QIcon v-if="selected" name="check" size="15px" />
+    </div>
+  </div>
 </template>
 
 <script>
-import { QCheckbox } from 'quasar'
-export const CheckboxColors = ['main-primary', 'status-success']
-export const CheckboxTypes = ['rounded', 'squared']
-
+import { QIcon } from 'quasar'
 export default {
-  name: 'Checkbox',
+  name: 'CheckBox',
   components: {
-    QCheckbox
+    QIcon
   },
   inheritAttrs: true,
   props: {
     color: {
       type: String,
       default: 'main-primary',
-      validate: val => CheckboxColors.indexOf(val) !== -1
+      validate: val => ['main-primary'].indexOf(val) !== -1
     },
     type: {
       type: String,
       default: 'squared',
-      validate: val => CheckboxTypes.indexOf(val) !== -1
+      validate: val => ['rounded', 'squared'].indexOf(val) !== -1
+    },
+    selected: {
+      type: Boolean,
+      default: false,
+      validate: val => [true, false].indexOf(val) !== -1
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.checkbox-wrapper {
-  width: 20px;
-  height: 20px;
-  ::v-deep .q-checkbox__bg {
+.checkBox {
+  &__wrapper {
     width: 20px;
     height: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  ::v-deep .q-checkbox__svg {
-    width: 15px !important;
-    height: 10px !important;
-    position: relative;
-  }
-  &--squared {
-    ::v-deep .q-checkbox__bg {
-      border-radius: 4px;
+    background: transparent;
+    border-width: 2px;
+    border-style: solid;
+    &--squared {
+      border-radius: 5px;
     }
-  }
-  &--rounded {
-    ::v-deep .q-checkbox__bg {
+    &--selected {
+      background: var(--main-primary);
+      i {
+        color: var(--main-background);
+      }
+    }
+    &--rounded {
       border-radius: 10px;
+    }
+    &--main-primary {
+      border-color: var(--main-primary);
     }
   }
   &:hover {
