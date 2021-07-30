@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
   font-family: customfont;
   src: url(../../../fonts/interFont.ttf);
 }
@@ -16,7 +16,7 @@
 @font-face {
   font-family: customfont400;
   src: url(../../../fonts/static/Inter-Light.ttf);
-}
+} */
 
 :root {
   --font-size-1: 10px;
