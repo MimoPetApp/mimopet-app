@@ -1,6 +1,6 @@
 import Title from '../../../common/components/title'
 import Logo from '../../../common/components/logo'
-import Button from '../../../common/components/Button'
+import Button from '../../../common/components/Button/Button'
 import AuthContainer from '../../../common/components/AuthContainer'
 export default {
   components: {

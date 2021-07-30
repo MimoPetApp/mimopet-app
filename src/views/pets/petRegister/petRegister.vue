@@ -1,41 +1,16 @@
 <template>
   <div style="background: #ffffff">
     <q-layout v-if="!loading" view="lHh Lpr lFf">
-      <q-toolbar class="text-primary text-main-primary">
-        <q-btn
-          flat
-          round
-          dense
-          icon="arrow_back"
-          @click="backStep()"
-          text-color="utilities-alternate"
-        />
+      <q-toolbar class="text-main-primary">
+        <q-btn flat round dense icon="keyboard_backspace" @click="backStep()" />
       </q-toolbar>
-      <Ask
-        title="Como seu pet se chama?"
-        subtitle="Vamos construir o perfil do seu animal 🐶"
-        align-content="center"
-      >
-        <template v-slot:content>
-          <button-checkbox-group :options="options"></button-checkbox-group>
-        </template>
-        <template v-slot:action>
-          <Button label="Continuar" noCaps color="primary-flat" class="pl-7 pr-7" disabled></Button>
-        </template>
-      </Ask>
       <!-- Pet Name -->
-      <!--
       <AuthContainer v-if="step === 1">
         <form @submit.prevent.stop="nextStep()">
           <div class="login-form-content">
             <div class="row">
               <div class="col-12 col-md-12 col-xs-12">
-                <Title
-                  :text="$t('petCreation.title.nameYourPet')"
-                  subtitle="Vamos construir o perfil do seu animal 🐶"
-                  color-title="main-alternate"
-                  color-subtitle="main-subtitle"
-                />
+                <Title :text="$t('petCreation.title.nameYourPet')" />
               </div>
             </div>
             <div class="row">
@@ -61,12 +36,10 @@
             <div class="row">
               <div class="col-12">
                 <div class="flex flex-center">
-                  <Button
+                  <MainButton
                     type="submit"
                     :label="$t('petCreation.buttons.continue')"
                     :disable="form.petName.length < 2"
-                    class="pl-7 pr-7"
-                    noCaps
                   />
                 </div>
               </div>
@@ -74,7 +47,6 @@
           </div>
         </form>
       </AuthContainer>
-      -->
       <!-- End Pet Name -->
 
       <!-- Pet Profile -->
@@ -104,6 +76,7 @@
                     :name="$t('petCreation.profileOptions.dog')"
                     class="column no-wrap flex-center"
                   >
+                    <!-- Dog Slide -->
                     <div class="q-mt-md text-center relative-position">
                       <q-img
                         src="~assets/images/dog.png"
@@ -129,6 +102,7 @@
                     :name="$t('petCreation.profileOptions.cat')"
                     class="column no-wrap flex-center"
                   >
+                    <!-- Cat Slide -->
                     <div class="q-mt-md text-center relative-position">
                       <q-img
                         src="~assets/images/cat.png"
@@ -256,7 +230,7 @@
       <!-- End Pet Breed -->
 
       <!-- Pet Gender -->
-      <!-- <div v-if="step === 4">
+      <div v-if="step === 4">
         <div class="row">
           <div class="q-px-xl q-pb-xl q-pt-md" style="">
             <div class="col-12 col-md-12 col-xs-12">
@@ -284,7 +258,7 @@
             {{ $t('petCreation.gender.male') }}
           </div>
         </div>
-      </div> -->
+      </div>
       <!-- End Pet Gender -->
 
       <!-- Pet Details -->
@@ -575,5 +549,5 @@
   </div>
 </template>
 
-<script src="./PetRegister.js"></script>
-<style src="./PetRegister.scss" lang="scss"></style>
+<script src="./petRegister.js"></script>
+<style src="./petRegister.scss" lang="scss"></style>
