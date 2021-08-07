@@ -16,22 +16,18 @@
                   v-model="form.identifier"
                   class="mb-1"
                   type="email"
-                  :label="showEmailLabel ? $t('login.email.label') : ''"
+                  :label="$t('login.email.label')"
                   :rules="[val => !!val || $t('login.email.error')]"
-                  @focus="showEmailLabel = false"
-                  @blur="showEmailLabel = form.identifier.length == 0"
                 />
                 <TextField
                   v-model="form.password"
                   class="mb-2"
-                  :label="showPasswordLabel ? $t('login.password.label') : ''"
+                  :label="$t('login.password.label')"
                   :isPassword="true"
                   :rules="[
                     val => !!val || $t('login.password.error.required'),
                     val => /^(?=.{8,})/.test(val) || $t('login.password.error.min')
                   ]"
-                  @focus="showPasswordLabel = false"
-                  @blur="showPasswordLabel = form.password.length == 0"
                 />
               </form>
             </div>

@@ -98,7 +98,7 @@
 <script>
 import ConfirmDeletePet from './confirmDeletePet'
 import parser from './../helpers/petProfileParser'
-import Button from './Button'
+import Button from './Button/Button'
 import { mapActions } from 'vuex'
 
 export default {
