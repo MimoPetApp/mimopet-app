@@ -252,7 +252,11 @@ export default {
       this.test = event
     },
     answeredHandler (event) {
-      this.btnDisabled = false
+      if (event) {
+        this.btnDisabled = false
+      } else {
+        this.btnDisabled = true
+      }
     }
   }
 }

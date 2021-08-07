@@ -19,8 +19,8 @@
         <template v-slot:content>
           <button-checkbox-group
             :options="options"
+            @answered="answeredHandler($event)"
             answer="Castrado"
-            @answered="answeredHandler()"
           ></button-checkbox-group>
         </template>
         <template v-slot:action>

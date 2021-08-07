@@ -70,6 +70,7 @@ export default {
           this.selectedOptions.push(option)
         }
         option.selected = !option.selected
+        this.$emit('answered', this.selectedOptions.length > 0)
       } else {
         // quiz screen
         if (!this.chosenAnswer) {
@@ -80,9 +81,9 @@ export default {
             this.showCorrectAnswer()
           }
           this.chosenAnswer = true
+          this.$emit('answered', true)
         }
       }
-      this.$emit('answered', true)
     },
     // mapea-se 2 grandezas do mesmo tipo a serem comparadas se sao iguais
     isCorrect (option1, option2, index = 0) {
