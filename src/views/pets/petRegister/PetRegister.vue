@@ -11,17 +11,14 @@
           text-color="utilities-alternate"
         />
       </q-toolbar>
+      <!-- Pet Name -->
       <Ask
         title="Como seu pet se chama?"
         subtitle="Vamos construir o perfil do seu animal 🐶"
         align-content="center"
       >
         <template v-slot:content>
-          <button-checkbox-group
-            :options="options"
-            @answered="answeredHandler($event)"
-            answer="Castrado"
-          ></button-checkbox-group>
+          <text-field v-model="form.petName" label="Insira o nome do pet"></text-field>
         </template>
         <template v-slot:action>
           <Button
@@ -29,7 +26,7 @@
             noCaps
             color="primary-flat"
             class="pl-7 pr-7"
-            :disabled="btnDisabled"
+            :disabled="form.petName.length === 0"
           ></Button>
         </template>
       </Ask>

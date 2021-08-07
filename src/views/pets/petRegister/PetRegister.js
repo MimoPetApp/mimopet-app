@@ -7,6 +7,7 @@ import MainButton from '../../../common/components/mainButton'
 import AuthContainer from '../../../common/components/AuthContainer'
 import LoadingCircle from '../../../common/components/loadingCircle'
 import Ask from '../../../common/components/Ask.vue'
+import TextField from '../../../common/components/TextField.vue'
 
 export default {
   name: 'PetRegister',
@@ -17,7 +18,8 @@ export default {
     MainButton,
     AuthContainer,
     LoadingCircle,
-    ButtonCheckboxGroup
+    ButtonCheckboxGroup,
+    TextField
   },
   data () {
     return {
