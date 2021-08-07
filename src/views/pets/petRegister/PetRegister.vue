@@ -17,10 +17,20 @@
         align-content="center"
       >
         <template v-slot:content>
-          <button-checkbox-group :options="options"></button-checkbox-group>
+          <button-checkbox-group
+            :options="options"
+            answer="Castrado"
+            @answered="answeredHandler()"
+          ></button-checkbox-group>
         </template>
         <template v-slot:action>
-          <Button label="Continuar" noCaps color="primary-flat" class="pl-7 pr-7" disabled></Button>
+          <Button
+            label="Continuar"
+            noCaps
+            color="primary-flat"
+            class="pl-7 pr-7"
+            :disabled="btnDisabled"
+          ></Button>
         </template>
       </Ask>
       <!-- Pet Name -->
@@ -301,9 +311,11 @@
                 <div class="col-12 col-md-12 col-xs-12">
                   <div class="flex flex-center">
                     <div
-                      :class="`selectBtn-wrapper${
-                        form.petDetails === 'adopted' ? ' selectBtn-active' : ''
-                      }`"
+                      :class="
+                        `selectBtn-wrapper${
+                          form.petDetails === 'adopted' ? ' selectBtn-active' : ''
+                        }`
+                      "
                       @click="form.petDetails = 'adopted'"
                     >
                       {{ $t('petCreation.buttons.adopted') }}
@@ -313,9 +325,11 @@
                 <div class="col-12 col-md-12 col-xs-12 q-mt-lg q-mb-lg">
                   <div class="flex flex-center">
                     <div
-                      :class="`selectBtn-wrapper${
-                        form.petDetails === 'castrated' ? ' selectBtn-active' : ''
-                      }`"
+                      :class="
+                        `selectBtn-wrapper${
+                          form.petDetails === 'castrated' ? ' selectBtn-active' : ''
+                        }`
+                      "
                       @click="form.petDetails = 'castrated'"
                     >
                       {{ $t('petCreation.buttons.castrated') }}
@@ -325,9 +339,11 @@
                 <div class="col-12 col-md-12 col-xs-12">
                   <div class="flex flex-center">
                     <div
-                      :class="`selectBtn-wrapper${
-                        form.petDetails === 'withSomeDisability' ? ' selectBtn-active' : ''
-                      }`"
+                      :class="
+                        `selectBtn-wrapper${
+                          form.petDetails === 'withSomeDisability' ? ' selectBtn-active' : ''
+                        }`
+                      "
                       @click="form.petDetails = 'withSomeDisability'"
                     >
                       {{ $t('petCreation.buttons.withSomeDisability') }}

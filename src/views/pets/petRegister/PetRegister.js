@@ -21,6 +21,7 @@ export default {
   },
   data () {
     return {
+      test: null,
       options: [
         {
           label: 'Adotado',
@@ -95,7 +96,8 @@ export default {
       showPassword: false,
       step: 1,
       loading: false,
-      formHasError: [false, false]
+      formHasError: [false, false],
+      btnDisabled: true
     }
   },
   computed: {
@@ -245,6 +247,12 @@ export default {
         name: 'petdetails',
         params: { id: `${this.createdPet.id}` }
       })
+    },
+    selectedOptionsHandler (event) {
+      this.test = event
+    },
+    answeredHandler (event) {
+      this.btnDisabled = false
     }
   }
 }

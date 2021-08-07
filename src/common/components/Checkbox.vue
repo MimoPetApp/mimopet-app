@@ -37,25 +37,25 @@ export default {
 .checkbox-wrapper {
   width: 20px;
   height: 20px;
-  ::v-deep .q-checkbox__bg {
+  ::v-deep(.q-checkbox__bg) {
     width: 20px;
     height: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  ::v-deep .q-checkbox__svg {
+  ::v-deep(.q-checkbox__svg) {
     width: 15px !important;
     height: 10px !important;
     position: relative;
   }
   &--squared {
-    ::v-deep .q-checkbox__bg {
+    ::v-deep(.q-checkbox__bg) {
       border-radius: 4px;
     }
   }
   &--rounded {
-    ::v-deep .q-checkbox__bg {
+    ::v-deep(.q-checkbox__bg) {
       border-radius: 10px;
     }
   }

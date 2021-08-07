@@ -26,6 +26,7 @@
             type="rounded"
             color="status-success"
             class="checkbox-style"
+            disable
           ></checkbox>
         </div>
       </div>
@@ -39,9 +40,10 @@ export const ButtonCheckboxColors = ['main-primary', 'status-danger', 'status-su
 
 export default {
   name: 'ButtonCheckboxGroup',
-  data() {
+  data () {
     return {
-      chosenAnswer: false
+      chosenAnswer: false,
+      selectedOptions: []
     }
   },
   components: {
@@ -59,31 +61,57 @@ export default {
   },
   computed: {},
   methods: {
-    clicked(option, index) {
+    clicked (option, index) {
       if (!this.answer) {
         // feedback screen
+        if (this.hasAlreadySelected(option)) {
+          this.removeSelectedOption(option)
+        } else {
+          this.selectedOptions.push(option)
+        }
         option.selected = !option.selected
       } else {
         // quiz screen
         if (!this.chosenAnswer) {
-          option.selected = !option.selected
-          if (!this.isCorrect(option, index)) {
-            option.error = !this.isCorrect(option, index)
+          option.selected = true
+          this.selectedOptions.push(option)
+          if (!this.isCorrect(option.label, this.answer, index)) {
+            option.error = !this.isCorrect(option.label, this.answer, index)
             this.showCorrectAnswer()
           }
           this.chosenAnswer = true
         }
       }
+      this.$emit('answered', true)
     },
-    isCorrect(option, index = 0) {
-      return option.label.toLowerCase() === this.answer.toLowerCase()
+    // mapea-se 2 grandezas do mesmo tipo a serem comparadas se sao iguais
+    isCorrect (option1, option2, index = 0) {
+      return option1.toLowerCase() === option2.toLowerCase()
     },
-    showCorrectAnswer() {
+    showCorrectAnswer () {
       this.options.forEach(option => {
-        if (this.isCorrect(option)) {
+        if (this.isCorrect(option.label, this.answer)) {
           option.selected = true
         }
       })
+    },
+    hasAlreadySelected (option) {
+      let has = false
+      if (this.selectedOptions.length > 0) {
+        this.selectedOptions.forEach(selectedOption => {
+          if (this.isCorrect(selectedOption.label, option.label)) {
+            has = true
+          }
+        })
+      }
+      return has
+    },
+    removeSelectedOption (option) {
+      for (let index = 0; index < this.selectedOptions.length; index++) {
+        if (this.isCorrect(this.selectedOptions[index].label, option.label)) {
+          this.selectedOptions.splice(index, 1)
+        }
+      }
     }
   }
 }
