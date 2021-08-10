@@ -29,26 +29,18 @@
     </q-card>
 
     <q-card align="center">
-          <MainButton
-              type="submit"
-              label="Cancelar inscrição"
-              loading="false"
-              @click="$router.push({ name: 'trainingCancel'})"
-            />
-     </q-card>
+    </q-card>
   </div>
 </template>
 
 <script>
 
-import MainButton from '../../../common/components/mainButton.vue'
 import DetailsVideo from '../../../common/components/detailsVideo.vue'
 
 import { mapState, mapActions } from 'vuex'
 
 export default {
   components: {
-    MainButton,
     DetailsVideo
   },
 

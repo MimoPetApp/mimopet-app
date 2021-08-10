@@ -4,17 +4,17 @@
        <q-toolbar class="text-main-primary">
            <q-btn flat round dense icon="keyboard_backspace" @click="backStep()" />
       </q-toolbar>
-      <div v-for="(item, index) in trainingList" :key="index">
+<!--       <div v-for="(item, index) in trainingList" :key="index">
           {{index.thumbnail}}
            <img :src="parseProfileThumbnail(index.thumbnail)" />
         </div>
-        <q-card-section>
+ -->        <q-card-section>
         <q-list bordered padding class="rounded-borders text-primary">
             <q-item v-ripple>
                 <q-item-section side top>
                 <q-badge color="purple" :label= trainingList.category />
                 <q-item-label style="font-size: 4.0vh">
-                   <b> {{ moduleList.name }}</b>
+                   <b> {{  moduleList.name }}</b>
                 </q-item-label>
                 <q-item-label caption lines="4" style="font-size: 3.5vh">
                     {{trainingList.description}}

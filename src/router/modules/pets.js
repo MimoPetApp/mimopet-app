@@ -33,6 +33,30 @@ export default [
     path: '/trainingDetailsAll/:id',
     name: 'trainingDetailsAll',
     component: () => import('../../views/pets/petTrainning/mytrainningDetails.vue')
+  },
+  {
+    path: '/curriculum.article/:id/:item',
+    name: 'curriculum.article',
+    component: () => import('../../views/pets/petTrainning/curriculum.article.vue')
+  },
+  {
+    path: '/curriculum.lecture/:id/:item',
+    name: 'curriculum.lecture',
+    component: () => import('../../views/pets/petTrainning/curriculum.lecture.vue')
+  },
+  {
+    path: '/curriculum.quizz/:id/:item',
+    name: 'curriculum.quizz',
+    component: () => import('../../views/pets/petTrainning/curriculum.quizz.vue')
+  },
+  {
+    path: '/curriculum.repetitions/:id/:item',
+    name: 'curriculum.repetitions',
+    component: () => import('../../views/pets/petTrainning/curriculum.repetitions.vue')
+  },
+  {
+    path: '/trainingVideo/:id/:item',
+    name: 'trainingVideo',
+    component: () => import('../../views/pets/petTrainning/trainingvideoFullScreen.vue')
   }
-
 ]

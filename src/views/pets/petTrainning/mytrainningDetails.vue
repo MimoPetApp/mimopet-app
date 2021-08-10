@@ -10,9 +10,8 @@
           <q-item v-ripple>
             <q-item-section side top>
               <q-badge color="purple" :label="trainingList.category" />
-              <Title :text="$t('trainingList.title')" />
-              <q-item-label style="font-size: 4.8vh">{{ trainingList.title }}</q-item-label>
-              </q-item-section>
+              <q-item-label style="font-size: 4.8vh">{{ moduleList.name }}</q-item-label>
+            </q-item-section>
           </q-item>
         </q-list>
         <q-list bordered dense>
@@ -54,14 +53,12 @@
 <script>
 import MainButton from '../../../common/components/mainButton.vue'
 import Details from '../../../common/components/detailsPet.vue'
-import Title from '../../../common/components/title'
 import { mapState, mapActions } from 'vuex'
 
 export default {
   components: {
     MainButton,
-    Details,
-    Title
+    Details
   },
 
   data() {
@@ -71,7 +68,8 @@ export default {
   },
 
   computed: {
-    ...mapState('trainings', ['trainingList', 'loadingTraining'])
+    ...mapState('trainings', ['trainingList', 'loadingTraining']),
+    ...mapState('trainings', ['moduleList', 'loadingTraining'])
   },
   watch: {
     // eslint-disable-next-line no-unused-vars
@@ -81,11 +79,13 @@ export default {
   },
   mounted() {
     this.ActionGetTrainingById(this.$route.params.id)
+    this.ActionGetModuleById(this.$route.params.id)
   },
   methods: {
     ...mapActions('trainings', [
       'ActionGetTrainingById',
       'ActionCommitTraining',
+      'ActionGetModuleById',
       'ActionSetLoadingTraining'
     ]),
 
