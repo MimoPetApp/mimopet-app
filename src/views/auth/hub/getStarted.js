@@ -12,6 +12,9 @@ export default {
   methods: {
     loginHandler() {
       this.$router.push({ name: 'acesso' })
+    },
+    registerHandler() {
+      this.$router.push({ name: 'criar' })
     }
   }
 }
