@@ -1,5 +1,5 @@
 <template>
-  <div class="auth-container">
+  <div :class="containerClass">
     <slot></slot>
     <q-img
       v-if="hasBackground"
@@ -22,10 +22,22 @@ export default {
     hasBackground: {
       type: Boolean,
       default: false
+    },
+    light: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {}
+  },
+  computed: {
+    containerClass: function () {
+      const classes = ['auth-container']
+      if (this.light) classes.push('auth-container--light')
+      else classes.push('auth-container--dark')
+      return classes
+    }
   }
 }
 </script>
@@ -36,7 +48,14 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: var(--main-alternate);
+
+  &--light {
+    background: var(--main-background);
+  }
+
+  &--dark {
+    background: var(--main-alternate);
+  }
 
   &__bg-img {
     position: absolute;
