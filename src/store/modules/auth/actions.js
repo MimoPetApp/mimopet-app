@@ -74,6 +74,20 @@ export const ActionGetUser = ({ commit, dispatch }) => {
   })
 }
 
+export const ActionGetTermsOfUse = async ({ commit, dispatch }, payload) => {
+  await Http.get('terms-of-use', payload)
+    .then(response => {
+      console.log('os termos de uso', response)
+    })
+    .catch(error => {
+      dispatch('ActionModalResponseUser', {
+        modal: true,
+        data: { msg: 'Falha ao carregar termos de uso' }
+      })
+      console.log(error)
+    })
+}
+
 export const ActionModalNotLogged = ({ commit }, payload) => {
   commit(types.SET_MODALNOTLOGGED, payload)
 }
