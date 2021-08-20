@@ -58,5 +58,10 @@ export default [
     path: '/trainingVideo/:id/:item',
     name: 'trainingVideo',
     component: () => import('../../views/pets/petTrainning/trainingvideoFullScreen.vue')
+  },
+  {
+    path: '/trainingFinish/:id',
+    name: 'trainingFinish',
+    component: () => import('../../views/pets/petTrainning/trainingFinish.vue')
   }
 ]

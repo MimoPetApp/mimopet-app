@@ -9,7 +9,11 @@
           <button-checkbox-group :options="options"></button-checkbox-group>
         </template>
         <template v-slot:action>
-          <Button label="Escolher" noCaps color="primary-flat" class="pl-7 pr-7" ></Button>
+          <Button label="Escolher"
+          noCaps color="primary-flat"
+          class="pl-7 pr-7"
+          :to="`/trainingFinish/${id}`"
+          ></Button>
         </template>
       </Ask>
 
