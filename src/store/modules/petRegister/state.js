@@ -9,5 +9,11 @@ export default {
   modalPetList: {
     modal: false,
     data: {}
+  },
+  breeds: {
+    loading: false,
+    data: [],
+    error: false,
+    success: false
   }
 }

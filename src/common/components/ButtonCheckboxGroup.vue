@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import Checkbox from './Checkbox.vue'
+import Checkbox from './Checkbox/Checkbox.vue'
 export const ButtonCheckboxColors = ['main-primary', 'status-danger', 'status-success']
 
 export default {
@@ -43,7 +43,8 @@ export default {
   data () {
     return {
       chosenAnswer: false,
-      selectedOptions: []
+      selectedOptions: [],
+      selected: false
     }
   },
   components: {
@@ -57,12 +58,26 @@ export default {
     answer: {
       type: String,
       default: ''
+    },
+    singleSelection: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {},
   methods: {
     clicked (option, index) {
-      if (!this.answer) {
+      if (this.singleSelection) {
+        // single selection with no answer
+        if (!this.selected) {
+          this.selectedOptions.push(option)
+          option.selected = !option.selected
+          this.selected = true
+        } else {
+          this.toggleSelection(option)
+        }
+        this.$emit('selected', this.selectedOptions)
+      } else if (!this.answer) {
         // feedback screen
         if (this.hasAlreadySelected(option)) {
           this.removeSelectedOption(option)
@@ -70,7 +85,7 @@ export default {
           this.selectedOptions.push(option)
         }
         option.selected = !option.selected
-        this.$emit('answered', this.selectedOptions.length > 0)
+        this.$emit('selected', this.selectedOptions)
       } else {
         // quiz screen
         if (!this.chosenAnswer) {
@@ -81,8 +96,18 @@ export default {
             this.showCorrectAnswer()
           }
           this.chosenAnswer = true
-          this.$emit('answered', true)
+          this.$emit('answered', this.selectedOptions)
         }
+      }
+    },
+    toggleSelection (option) {
+      if (this.selectedOptions.length > 0) {
+        // remove selection
+        this.selectedOptions[0].selected = false
+        this.selectedOptions.shift()
+        // add selection
+        this.selectedOptions.push(option)
+        option.selected = true
       }
     },
     // mapea-se 2 grandezas do mesmo tipo a serem comparadas se sao iguais

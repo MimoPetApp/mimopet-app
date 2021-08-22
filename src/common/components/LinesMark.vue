@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import CheckBox from './Checkbox.vue'
+import CheckBox from './Checkbox/Checkbox.vue'
 import RadioButton from './RadioButton.vue'
 
 export default {

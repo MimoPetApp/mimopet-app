@@ -61,3 +61,19 @@ export const ActionDeletePet = ({ commit, dispatch }, payload) => {
 export const ActionPetModalList = ({ commit }, payload) => {
   commit(types.SET_MODALDELETEPETLIST, payload)
 }
+
+export const ActionGetBreeds = ({ commit, dispatch }) => {
+  return new Promise((resolve, reject) => {
+    commit('LOADING_BREEDS')
+    Http.get('breeds')
+      .then(response => {
+        commit('SUCCESS_BREEDS', response.data)
+        commit('RESET_BREEDS')
+        resolve(true)
+      })
+      .catch(error => {
+        commit('ERROR_BREEDS', error.response)
+        reject(new Error(false))
+      })
+  })
+}

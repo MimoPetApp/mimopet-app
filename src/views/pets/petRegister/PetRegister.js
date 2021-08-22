@@ -6,8 +6,10 @@ import ButtonCheckboxGroup from '../../../common/components/ButtonCheckboxGroup'
 import MainButton from '../../../common/components/mainButton'
 import AuthContainer from '../../../common/components/AuthContainer'
 import LoadingCircle from '../../../common/components/loadingCircle'
-import Ask from '../../../common/components/Ask.vue'
-import TextField from '../../../common/components/TextField.vue'
+import Ask from '../../../common/components/Ask/Ask.vue'
+import TextField from '../../../common/components/TextField/TextField.vue'
+import SearchField from '../../../common/components/SearchField/SearchField.vue'
+import SearchField from '../../../common/components/SearchField/SearchField.vue'
 
 export default {
   name: 'PetRegister',
@@ -19,7 +21,8 @@ export default {
     AuthContainer,
     LoadingCircle,
     ButtonCheckboxGroup,
-    TextField
+    TextField,
+    SearchField
   },
   data () {
     return {
@@ -34,25 +37,35 @@ export default {
           selected: false
         },
         {
-          label: 'AB',
+          label: 'Com deficiência',
           selected: false
         },
         {
-          label: 'AB',
-          selected: false
-        },
-        {
-          label: 'AB',
-          selected: false
-        },
-        {
-          label: 'AB',
+          label: 'De serviço',
           selected: false
         }
       ],
-      answer: 'AB',
+      detailOptions: [
+        {
+          label: 'Adotado',
+          selected: false
+        },
+        {
+          label: 'Castrado',
+          selected: false
+        },
+        {
+          label: 'Com deficiência',
+          selected: false
+        },
+        {
+          label: 'De serviço',
+          selected: false
+        }
+      ],
       form: {
         petName: '',
+        petAge: null,
         petProfile: this.$t('petCreation.profileOptions.dog'),
         petBreed: {
           isUnknown: false,
@@ -96,7 +109,7 @@ export default {
       listOptionsFiltered: [],
       confirmPassword: null,
       showPassword: false,
-      step: 1,
+      step: 3,
       loading: false,
       formHasError: [false, false],
       btnDisabled: true
@@ -117,6 +130,20 @@ export default {
       } else {
         return true
       }
+    },
+    petAgeFilled () {
+      if (this.form.petAge) {
+        return true
+      } else {
+        return false
+      }
+    },
+    petDetailsFilled () {
+      if (this.form.petDetails) {
+        return true
+      } else {
+        return false
+      }
     }
   },
   beforeMount () {},
@@ -130,6 +157,8 @@ export default {
   },
   methods: {
     ...mapActions('pets', ['ActionSetHomeMenuVisibility', 'ActionCreatePet']),
+    ...mapActions('petRegister', ['ActionGetBreeds']),
+
     searchBreed () {
       const aux = []
       if (this.form.petBreed.name) {
@@ -202,7 +231,11 @@ export default {
       }
     },
     nextStep () {
-      this.step++
+      if (this.step !== 5) {
+        this.step++
+      } else {
+        // register pet endpoint
+      }
     },
     selectPetGender (gender) {
       this.form.petGender = gender === 'Macho' ? 'male' : 'female'
@@ -250,15 +283,24 @@ export default {
         params: { id: `${this.createdPet.id}` }
       })
     },
-    selectedOptionsHandler (event) {
-      this.test = event
-    },
     answeredHandler (event) {
       if (event) {
         this.btnDisabled = false
       } else {
         this.btnDisabled = true
       }
+    },
+    selectedHandler (field, eventData) {
+      console.log('a', eventData)
+      if (eventData.length > 0) {
+        this.form[field] = []
+        this.form[field] = eventData
+      } else {
+        this.form[field] = null
+      }
     }
+  },
+  async created () {
+    // await this.ActionGetBreeds()
   }
 }
