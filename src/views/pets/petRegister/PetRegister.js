@@ -9,7 +9,8 @@ import LoadingCircle from '../../../common/components/loadingCircle'
 import Ask from '../../../common/components/Ask/Ask.vue'
 import TextField from '../../../common/components/TextField/TextField.vue'
 import SearchField from '../../../common/components/SearchField/SearchField.vue'
-import SearchField from '../../../common/components/SearchField/SearchField.vue'
+import Checkbox from '../../../common/components/Checkbox/Checkbox.vue'
+import Feedback from '../../../common/components/Feedback/Feedback.vue'
 
 export default {
   name: 'PetRegister',
@@ -22,7 +23,9 @@ export default {
     LoadingCircle,
     ButtonCheckboxGroup,
     TextField,
-    SearchField
+    SearchField,
+    Checkbox,
+    Feedback
   },
   data () {
     return {
@@ -66,7 +69,6 @@ export default {
       form: {
         petName: '',
         petAge: null,
-        petProfile: this.$t('petCreation.profileOptions.dog'),
         petBreed: {
           isUnknown: false,
           name: ''
@@ -109,7 +111,7 @@ export default {
       listOptionsFiltered: [],
       confirmPassword: null,
       showPassword: false,
-      step: 3,
+      step: 5,
       loading: false,
       formHasError: [false, false],
       btnDisabled: true
@@ -133,6 +135,13 @@ export default {
     },
     petAgeFilled () {
       if (this.form.petAge) {
+        return true
+      } else {
+        return false
+      }
+    },
+    petBreedFilled () {
+      if (this.form.petBreed.name || this.form.petBreed.isUnknown) {
         return true
       } else {
         return false
@@ -291,16 +300,19 @@ export default {
       }
     },
     selectedHandler (field, eventData) {
-      console.log('a', eventData)
       if (eventData.length > 0) {
         this.form[field] = []
-        this.form[field] = eventData
+        if (field === 'petAge') {
+          this.form[field] = eventData[0]
+        } else {
+          this.form[field] = eventData
+        }
       } else {
         this.form[field] = null
       }
     }
   },
   async created () {
-    // await this.ActionGetBreeds()
+    await this.ActionGetBreeds()
   }
 }

@@ -1,14 +1,14 @@
 // import { Http } from "../http/http";
 import pets from './modules/pets'
 import auth from './modules/auth'
-// import { autentication } from '../middlewares/navigationGuards'
+import { autentication } from '../middlewares/navigationGuards'
 
 const routes = [
   {
     path: '/',
-    component: () => import('src/views/pets/petRegister/PetRegister.vue'),
-    children: [...pets]
-    // beforeEnter: autentication
+    component: () => import('src/layouts/MainLayout.vue'),
+    children: [...pets],
+    beforeEnter: autentication
   },
   {
     path: '/login',

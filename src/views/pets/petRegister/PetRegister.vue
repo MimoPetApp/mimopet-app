@@ -1,7 +1,7 @@
 <template>
   <div style="background: #ffffff">
     <q-layout v-if="!loading" view="lHh Lpr lFf">
-      <q-toolbar class="text-primary text-main-primary">
+      <q-toolbar v-if="step !== 5" class="text-primary text-main-primary">
         <q-btn
           flat
           round
@@ -76,7 +76,10 @@
         v-if="step === 3"
       >
         <template v-slot:content>
-          <SearchField></SearchField>
+          <div class="q-gutter-xs pr-4 pl-4">
+            <SearchField v-model="form.petBreed.name" label="Busque por nome" outline></SearchField>
+            <Checkbox v-model="form.petBreed.isUnknown" label="Sem raça"></Checkbox>
+          </div>
         </template>
         <template v-slot:action>
           <Button
@@ -84,7 +87,7 @@
             noCaps
             color="primary-flat"
             class="pl-7 pr-7"
-            :disabled="!petAgeFilled"
+            :disabled="!petBreedFilled"
             @click="nextStep()"
           ></Button>
         </template>
@@ -120,41 +123,13 @@
       <!-- End Pet Details -->
 
       <!-- Pet Added -->
-      <AuthContainer v-if="step === 5">
-        <div class="login-form-content">
-          <div class="row" style="height: 35px"></div>
-          <div class="row" style="z-index: 1">
-            <div class="col-12 col-md-12 col-xs-12 flex justify-center items-center">
-              <q-img
-                src="~/assets/images/feedback/check.png"
-                style="width: 100px; height: auto"
-              ></q-img>
-            </div>
-            <div
-              style="margin-top: 25px"
-              class="col-12 col-md-12 col-xs-12 flex justify-center items-center text-center"
-            >
-              <Title
-                :text="$t('petCreation.title.petRegistered')"
-                :subtitle="$t('petCreation.subtitle.manageYourPet')"
-                class="content-wrapper"
-              />
-            </div>
-          </div>
-          <div class="row" style="z-index: 1">
-            <div class="col-12 col-md-12 col-xs-12">
-              <div class="flex flex-center">
-                <MainButton :label="$t('petCreation.buttons.continue')" :click="finishRegister" />
-              </div>
-            </div>
-          </div>
-          <q-img
-            src="~/assets/images/modal.png"
-            style="width: 100%; height: auto; position: absolute; bottom: 0%; left: 0%"
-            no-default-spinner
-          ></q-img>
-        </div>
-      </AuthContainer>
+      <Feedback
+        :active="step === 5"
+        :icon="'pet.png'"
+        title="Pet Adicionado"
+        subtitle="Você pode adicionar inúmeros pets a sua conta cadastrada"
+        buttonText="Acessar o app"
+      ></Feedback>
       <!-- End Pet Added -->
     </q-layout>
     <div v-else class="flex flex-center q-mt-xl">

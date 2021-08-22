@@ -35,8 +35,6 @@ export default {
 
 <style lang="scss" scoped>
 .checkbox-wrapper {
-  width: 20px;
-  height: 20px;
   ::v-deep(.q-checkbox__bg) {
     width: 20px;
     height: 20px;
