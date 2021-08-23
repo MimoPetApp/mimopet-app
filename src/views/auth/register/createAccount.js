@@ -1,19 +1,22 @@
 /* eslint-disable no-useless-escape */
-import { mapActions } from 'vuex'
-import Title from '../../../common/components/title'
-import MainButton from '../../../common/components/mainButton'
+import { mapActions, mapState } from 'vuex'
 import AuthContainer from '../../../common/components/AuthContainer'
-import SingleLineForm from '../../../common/components/singleLineForm'
+import Ask from '../../../common/components/Ask'
 import LoadingCircle from '../../../common/components/loadingCircle'
+import Button from '../../../common/components/Button/Button'
+import TextField from '../../../common/components/TextField/TextField'
+import ButtonCheckboxGroup from '../../../common/components/ButtonCheckboxGroup'
+import utils from '../../../common/helpers/utils'
 
 export default {
   name: 'CreateAccount',
   components: {
-    Title,
     AuthContainer,
-    MainButton,
     LoadingCircle,
-    SingleLineForm
+    Ask,
+    Button,
+    TextField,
+    ButtonCheckboxGroup
   },
   data() {
     return {
@@ -22,23 +25,41 @@ export default {
         password: false
       },
       form: {
+        username: '',
         email: '',
         password: '',
-        nickname: '',
-        identificationTutor: 'mother',
-        birthdate: ''
+        gender: '',
+        birthday: ''
       },
       pattern: {
         email: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
         password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
         name: /^(?=.{3,})/
       },
+      genderOptions: [
+        {
+          label: 'Mãe de pet',
+          value: 'FEMALE',
+          selected: false
+        },
+        {
+          label: 'Pai de pet',
+          value: 'MALE',
+          selected: false
+        },
+        {
+          label: 'Não binário',
+          value: 'NONBINARY',
+          selected: false
+        }
+      ],
       step: 1,
-      maxStep: 5,
+      maxStep: 6,
       loading: false
     }
   },
   computed: {
+    ...mapState('auth', ['terms']),
     emailIsValid() {
       return this.validateField(this.form.email, this.pattern.email)
     },
@@ -46,21 +67,43 @@ export default {
       return this.validateField(this.form.password, this.pattern.password)
     },
     nameIsValid() {
-      return this.validateField(this.form.nickname, this.pattern.name)
+      return this.validateField(this.form.username, this.pattern.name)
     },
-    extraIsValid() {
-      return this.form.identificationTutor !== '' && this.form.birthdate.length === 10
+    genderIsValid() {
+      return this.form.gender !== ''
+    },
+    birthdayIsValid() {
+      return this.form.birthday.length === 10 && this.userAge >= 18
+    },
+    userAge() {
+      if (this.form.birthday.length === 10) {
+        const [day, month, year] = this.form.birthday.split('-')
+        return this._calculateAge(new Date(year, month, day))
+      }
+      return 0
     }
   },
   beforeMount() {},
-  mounted() {},
+  async mounted() {
+    await this.ActionGetTermsOfUse()
+  },
   methods: {
-    ...mapActions('auth', ['ActionCreateAccount']),
+    ...utils,
+    ...mapActions('auth', ['ActionGetTermsOfUse', 'ActionCreateAccount']),
     nextStep() {
       if (this.step < this.maxStep) this.step += 1
     },
     previousStep() {
       if (this.step > 1) this.step -= 1
+      else this.hubHandler()
+    },
+    hubHandler() {
+      this.$router.push({ name: 'hub' })
+    },
+    genderOptionsHandler(field, eventData) {
+      if (field === 'gender') {
+        this.form.gender = eventData[0].value
+      }
     },
     validateField(field, rule) {
       if (field && rule) return rule.test(field)
@@ -71,7 +114,7 @@ export default {
       this.nextStep()
     },
     onSubmitPassword() {
-      if (this.$refs.password.validate()) {
+      if (this.passwordIsValid) {
         this.nextStep()
       }
     },
@@ -79,13 +122,18 @@ export default {
       if (!this.nameIsValid) return
       this.nextStep()
     },
-    async onSubmitExtra() {
-      if (!this.extraIsValid) return
+    onSubmitBirthDate() {
+      if (!this.birthdayIsValid) return
       this.nextStep()
-      await this.submitNewUser()
+    },
+    onSubmitGender() {
+      if (!this.genderIsValid) return
+      this.nextStep()
+      this.submitNewUser()
     },
     async submitNewUser() {
       this.loading = true
+      this.form.birthday = this._noMask(this.form.birthday)
       await this.ActionCreateAccount(this.form)
       this.loading = false
     }

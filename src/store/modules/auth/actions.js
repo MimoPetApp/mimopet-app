@@ -14,7 +14,10 @@ export const ActionCreateAccount = async ({ commit, dispatch }, payload) => {
           msg: 'Usuário criado'
         }
       })
-      store.$router.push({ name: 'acesso' })
+      dispatch('ActionLogin', {
+        identifier: payload.email,
+        password: payload.password
+      })
     })
     .catch(error => {
       console.log(error)
@@ -77,7 +80,7 @@ export const ActionGetUser = ({ commit, dispatch }) => {
 export const ActionGetTermsOfUse = async ({ commit, dispatch }, payload) => {
   await Http.get('terms-of-use', payload)
     .then(response => {
-      console.log('os termos de uso', response)
+      commit(types.SET_TERMS, response.data)
     })
     .catch(error => {
       dispatch('ActionModalResponseUser', {
