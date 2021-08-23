@@ -3,37 +3,20 @@ export default {
     terms: {
       title: 'Termos de uso',
       subtitle: 'Subtitulo 1',
-      mainbutton: 'Aceitar e Continuar',
-      data: [
-        {
-          head: '1.1 Item',
-          body: [
-            'Assim mesmo, o fenômeno da Internet deve passar por modificações independentemente de todos os recursos funcionais envolvidos.',
-            'Não obstante, o consenso sobre a necessidade de qualificação estimula a padronização do retorno esperado a longo prazo.'
-          ]
-        },
-        {
-          head: '1.2 Item',
-          body: [
-            'Não obstante, o consenso sobre a necessidade de qualificação estimula a padronização do retorno esperado a longo prazo.',
-            'Assim mesmo, o fenômeno da Internet deve passar por modificações independentemente de todos os recursos funcionais envolvidos.',
-            'Não obstante, o consenso sobre a necessidade de qualificação estimula a padronização do retorno esperado a longo prazo.'
-          ]
-        }
-      ]
+      mainbutton: 'Aceitar e Continuar'
     },
     email: {
-      title: 'Bem vindo, Tutor de pet',
-      subtitle: 'Precisamos de algumas informações sobre você',
+      title: 'Bem vindo tutor',
+      subtitle: 'Precisamos de algumas informações sobre você 😉',
       mainbutton: 'Continuar',
-      label: 'Insira o seu e-mail',
+      label: 'Insira seu email',
       error: 'E-mail inválido'
     },
     password: {
-      title: 'Construa uma senha secreta',
-      subtitle: 'Para entrar na sua conta sempre que quiser',
+      title: 'Construa a senha secreta',
+      subtitle: 'Você e seu pet vão entrar em uma jornada de aprendizagem juntos.',
       mainbutton: 'Continuar',
-      label: 'Sua Senha',
+      label: 'Insira sua senha',
       error: {
         required: 'Senha é obrigatória',
         lowercase: 'A senha deve conter ao menos um caractere minúsculo',
@@ -45,21 +28,26 @@ export default {
     },
     name: {
       title: 'Como gostaria de ser chamado?',
-      subtitle: 'Precisamos de mais algumas informações sobre você',
+      subtitle: 'Precisamos de mais algumas informações sobre você 😉',
       mainbutton: 'Continuar',
       label: 'Insira o seu nome'
     },
+    birthDate: {
+      title: 'Informe o seu ano de nascimento?',
+      subtitle: 'Só maiores de 18 anos podem usar o app',
+      mainbutton: 'Continuar',
+      label: 'Insira o ano',
+      error: 'Data de nascimento é obrigatória'
+    },
     identification: {
       title: 'Como você se identifica?',
+      subtitle: 'Estamos acabando de construir o seu perfil de tutor treinador',
+      mainbutton: 'Escolher',
       label: {
         mother: 'Mãe de pet',
-        father: 'Pai de pet'
+        father: 'Pai de pet',
+        nonBinary: 'Não binário'
       }
-    },
-    birthDate: {
-      title: 'Qual sua data de nascimento?',
-      mainbutton: 'Continuar',
-      error: 'Data de nascimento é obrigatória'
     }
   }
 }

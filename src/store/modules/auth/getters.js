@@ -5,3 +5,7 @@ export const verifyToken = ({ token }) => {
 export const getToken = ({ token }) => {
   return token
 }
+
+export const getTerms = ({ terms }) => {
+  return terms
+}

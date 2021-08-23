@@ -1,199 +1,218 @@
 <template>
   <div>
-    <AuthContainer v-if="!loading">
-      <div v-if="step == 1" class="auth-form-content">
-        <div>
-          <Title :text="$t('create.terms.title')" :subtitle="$t('create.terms.subtitle')" />
-        </div>
-        <div class="termos-container">
-          <div v-for="(term, indexI) in $t('create.terms.data')" :key="`term_${indexI}`">
-            <h3 class="mimo-text__h3">{{ term.head }}</h3>
-            <p
-              v-for="(item, indexJ) in term.body"
-              :key="`term_item_${indexJ}`"
-              class="text-weight-bold mimo-text"
+    <AuthContainer v-if="!loading" light>
+      <div>
+        <q-toolbar class="text-primary">
+          <div class="pt-2">
+            <q-btn
+              flat
+              round
+              color="utilities-alternate"
+              size="md"
+              icon="arrow_back"
+              @click="previousStep"
+            />
+          </div>
+        </q-toolbar>
+        <Ask v-if="step == 1" :title="$t('create.terms.title')" align-content="center">
+          <template v-slot:content>
+            <div class="pr-5 pl-5">
+              <p v-html="terms.terms" class="text-weight-bold"></p>
+            </div>
+          </template>
+          <template v-slot:action>
+            <Button
+              type="submit"
+              :label="$t('create.terms.mainbutton')"
+              :loading="false"
+              @click="nextStep"
+              noCaps
+              color="primary-filled"
+              class="main-button no-shadow"
+            ></Button>
+          </template>
+        </Ask>
+        <Ask
+          v-else-if="step == 2"
+          :title="$t('create.email.title')"
+          :subtitle="$t('create.email.subtitle')"
+          align-content="center"
+        >
+          <template v-slot:content>
+            <TextField
+              v-model="form.email"
+              ref="email"
+              borderless
+              light
+              type="email"
+              align="center"
+              :label="$t('create.email.label')"
+              :rules="[val => !!val || $t('login.email.error')]"
+              hint=""
+              no-error-icon
+              lazy-rules
+              :error="showError.email && !emailIsValid"
+              :error-message="$t('create.email.error')"
+              @focus="showError.email = true"
+            />
+          </template>
+          <template v-slot:action>
+            <Button
+              @click="onSubmitEmail"
+              :label="$t('create.email.mainbutton')"
+              noCaps
+              type="submit"
+              color="primary-filled"
+              class="main-button no-shadow"
+              :loading="false"
+              :disabled="!emailIsValid"
+            ></Button>
+          </template>
+        </Ask>
+        <Ask
+          v-else-if="step == 3"
+          :title="$t('create.password.title')"
+          :subtitle="$t('create.password.subtitle')"
+        >
+          <template v-slot:content>
+            <TextField
+              v-model="form.password"
+              ref="password"
+              borderless
+              light
+              type="text"
+              align="center"
+              :label="$t('create.password.label')"
+              :rules="
+                !showError.password
+                  ? []
+                  : [
+                      val => !!val || $t('create.password.error.required'),
+                      val => /^(?=.*[a-z])/.test(val) || $t('create.password.error.lowercase'),
+                      val => /^(?=.*[A-Z])/.test(val) || $t('create.password.error.uppercase'),
+                      val => /^(?=.*[0-9])/.test(val) || $t('create.password.error.number'),
+                      val =>
+                        /^(?=.*[!@#\$%\^&\*])/.test(val) ||
+                        $t('create.password.error.specialCharacter'),
+                      val => /^(?=.{8,})/.test(val) || $t('create.password.error.length')
+                    ]
+              "
+              hint=""
+              no-error-icon
+              :error="showError.password && !passwordIsValid"
+              @focus="showError.password = true"
+            />
+          </template>
+          <template v-slot:action>
+            <Button
+              @click="onSubmitPassword"
+              :label="$t('create.password.mainbutton')"
+              noCaps
+              type="submit"
+              color="primary-filled"
+              class="main-button no-shadow"
+              :loading="false"
+              :disabled="!passwordIsValid"
+            ></Button>
+          </template>
+        </Ask>
+        <Ask
+          v-else-if="step == 4"
+          :title="$t('create.name.title')"
+          :subtitle="$t('create.name.subtitle')"
+        >
+          <template v-slot:content>
+            <TextField
+              v-model="form.username"
+              ref="user_name"
+              borderless
+              light
+              type="text"
+              align="center"
+              :label="$t('create.name.label')"
+              hint=""
+              no-error-icon
+            />
+          </template>
+          <template v-slot:action>
+            <Button
+              @click="onSubmitName"
+              :label="$t('create.name.mainbutton')"
+              noCaps
+              type="submit"
+              color="primary-filled"
+              class="main-button no-shadow"
+              :loading="false"
+              :disabled="!nameIsValid"
+            ></Button>
+          </template>
+        </Ask>
+        <Ask
+          v-else-if="step == 5"
+          :title="$t('create.birthDate.title')"
+          :subtitle="$t('create.birthDate.subtitle')"
+        >
+          <template v-slot:content>
+            <q-input
+              v-model="form.birthday"
+              borderless
+              input-class="single-line-input-pattern"
+              class="single-input"
+              mask="##-##-####"
+              no-error-icon
+              :rules="[
+                val => val.length == 10 || $t('create.birthDate.error'),
+                () => userAge >= 18 || 'Tem que ser maior de idade'
+              ]"
             >
-              {{ item }}
-            </p>
-          </div>
-
-          <div class="row q-mt-xl">
-            <div class="col-12">
-              <div class="flex flex-center">
-                <MainButton
-                  type="submit"
-                  :label="$t('create.terms.mainbutton')"
-                  :click="nextStep"
-                  :loading="false"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <SingleLineForm
-        v-else-if="step == 2"
-        :title="$t('create.email.title')"
-        :subtitle="$t('create.email.subtitle')"
-        :btn-label="$t('create.email.mainbutton')"
-        :loading="false"
-        :on-submit="onSubmitEmail"
-        :valid="emailIsValid"
-      >
-        <q-input
-          ref="email"
-          v-model="form.email"
-          borderless
-          type="email"
-          :label="$t('create.email.label')"
-          hint=""
-          input-class="single-line-input-pattern"
-          class="single-input"
-          no-error-icon
-          lazy-rules
-          :error="showError.email && !emailIsValid"
-          :error-message="$t('create.email.error')"
-          @focus="showError.email = true"
-        />
-      </SingleLineForm>
-      <SingleLineForm
-        v-else-if="step == 3"
-        :title="$t('create.password.title')"
-        :subtitle="$t('create.password.subtitle')"
-        :btn-label="$t('create.password.mainbutton')"
-        :loading="false"
-        :on-submit="onSubmitPassword"
-        :valid="passwordIsValid"
-      >
-        <q-input
-          ref="password"
-          v-model="form.password"
-          borderless
-          type="text"
-          :label="$t('create.password.label')"
-          hint=""
-          input-class="single-line-input-pattern"
-          class="single-input"
-          no-error-icon
-          :error="showError.password && !passwordIsValid"
-          :rules="
-            !showError.password
-              ? []
-              : [
-                  val => !!val || $t('create.password.error.required'),
-                  val => /^(?=.*[a-z])/.test(val) || $t('create.password.error.lowercase'),
-                  val => /^(?=.*[A-Z])/.test(val) || $t('create.password.error.uppercase'),
-                  val => /^(?=.*[0-9])/.test(val) || $t('create.password.error.number'),
-                  val =>
-                    /^(?=.*[!@#\$%\^&\*])/.test(val) ||
-                    $t('create.password.error.specialCharacter'),
-                  val => /^(?=.{8,})/.test(val) || $t('create.password.error.length')
-                ]
-          "
-          @focus="showError.password = true"
-        />
-      </SingleLineForm>
-      <SingleLineForm
-        v-else-if="step == 4"
-        :title="$t('create.name.title')"
-        :subtitle="$t('create.name.subtitle')"
-        :btn-label="$t('create.name.mainbutton')"
-        :loading="false"
-        :on-submit="onSubmitName"
-        :valid="nameIsValid"
-      >
-        <q-input
-          ref="user_name"
-          v-model="form.nickname"
-          borderless
-          type="text"
-          :label="$t('create.name.label')"
-          hint=""
-          input-class="single-line-input-pattern"
-          class="single-input"
-          no-error-icon
-        />
-      </SingleLineForm>
-      <div v-else-if="step == 5" class="auth-form-content">
-        <div>
-          <Title :text="$t('create.identification.title')" />
-          <div class="row">
-            <div class="col-12">
-              <div class="flex flex-center q-py-xl">
-                <form @submit.prevent.stop="onSubmitExtra">
-                  <q-btn-toggle
-                    v-model="form.identificationTutor"
-                    text-color="grey-4"
-                    toggle-text-color="secondary"
-                    class="genre-toggle"
-                    outline
-                    unelevated
-                    no-caps
-                    :options="[
-                      {
-                        label: $t('create.identification.label.mother'),
-                        value: 'mother'
-                      },
-                      {
-                        label: $t('create.identification.label.father'),
-                        value: 'father'
-                      }
-                    ]"
-                  />
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <Title :text="$t('create.birthDate.title')" />
-          <div class="row">
-            <div class="col-12">
-              <div class="flex flex-center q-py-xl">
-                <form @submit.prevent.stop="onSubmitExtra">
-                  <q-input
-                    v-model="form.birthdate"
-                    borderless
-                    input-class="single-line-input-pattern"
-                    class="single-input"
-                    mask="##-##-####"
-                    no-error-icon
-                    :rules="[val => val.length == 10 || $t('create.birthDate.error')]"
-                  >
-                    <template v-slot:append>
-                      <q-icon name="event" class="cursor-pointer">
-                        <q-popup-proxy
-                          ref="qDateProxy"
-                          transition-show="scale"
-                          transition-hide="scale"
-                        >
-                          <q-date v-model="form.birthdate" mask="DD-MM-YYYY">
-                            <div class="row items-center justify-end">
-                              <q-btn v-close-popup label="Close" color="primary" flat />
-                            </div>
-                          </q-date>
-                        </q-popup-proxy>
-                      </q-icon>
-                    </template>
-                  </q-input>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <div class="flex flex-center">
-              <MainButton
-                type="submit"
-                :label="$t('create.birthDate.mainbutton')"
-                :click="onSubmitExtra"
-                :loading="false"
-                :disable="!extraIsValid"
-              />
-            </div>
-          </div>
-        </div>
+              <template v-slot:append>
+                <q-icon name="event" class="cursor-pointer">
+                  <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
+                    <q-date v-model="form.birthday" mask="DD-MM-YYYY">
+                      <div class="row items-center justify-end">
+                        <q-btn v-close-popup label="Close" color="primary" flat />
+                      </div>
+                    </q-date>
+                  </q-popup-proxy>
+                </q-icon>
+              </template>
+            </q-input>
+          </template>
+          <template v-slot:action>
+            <Button
+              @click="onSubmitBirthDate"
+              :label="$t('create.birthDate.mainbutton')"
+              noCaps
+              type="submit"
+              color="primary-filled"
+              class="main-button no-shadow"
+              :disabled="!birthdayIsValid"
+            ></Button>
+          </template>
+        </Ask>
+        <Ask
+          v-else-if="step == 6"
+          :title="$t('create.identification.title')"
+          :subtitle="$t('create.identification.subtitle')"
+        >
+          <template v-slot:content>
+            <Button-Checkbox-Group
+              :options="genderOptions"
+              single-selection
+              @selected="genderOptionsHandler('gender', $event)"
+            ></Button-Checkbox-Group>
+          </template>
+          <template v-slot:action>
+            <Button
+              @click="onSubmitGender"
+              :label="$t('create.identification.mainbutton')"
+              noCaps
+              type="submit"
+              color="primary-filled"
+              class="main-button no-shadow"
+            ></Button>
+          </template>
+        </Ask>
       </div>
     </AuthContainer>
     <div v-else class="flex flex-center q-mt-xl">

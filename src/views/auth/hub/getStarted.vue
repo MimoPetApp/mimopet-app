@@ -13,7 +13,6 @@
             @click="loginHandler"
             color="primary-filled"
             class="main-button no-shadow"
-            :loading="loading"
             type="submit"
             :label="$t('getStarted.mainbutton')"
             no-caps
@@ -21,6 +20,7 @@
         </div>
         <div class="col-12 mt-3" align="center">
           <Button
+            @click="registerHandler"
             flat
             color="secondary-bordless"
             class="text-weight-bold"
