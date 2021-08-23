@@ -59,7 +59,7 @@ export default {
     }
   },
   computed: {
-    selectAlignContent() {
+    selectAlignContent () {
       switch (this.alignContent) {
         case 'start':
           return 'ask-wrapper__content--align-start'
@@ -100,7 +100,7 @@ export default {
     }
   }
   &__content {
-    min-height: calc(100vh - 275px);
+    min-height: calc(100vh - 295px);
     display: flex;
     justify-content: center;
     &--align-start {

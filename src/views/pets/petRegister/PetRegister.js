@@ -30,21 +30,21 @@ export default {
   data () {
     return {
       test: null,
-      options: [
+      ageOptions: [
         {
-          label: 'Adotado',
+          label: 'Filhote até 6 meses',
           selected: false
         },
         {
-          label: 'Castrado',
+          label: 'Filhote até 1,5 anos',
           selected: false
         },
         {
-          label: 'Com deficiência',
+          label: 'Adulto',
           selected: false
         },
         {
-          label: 'De serviço',
+          label: 'Sênior',
           selected: false
         }
       ],
@@ -111,7 +111,7 @@ export default {
       listOptionsFiltered: [],
       confirmPassword: null,
       showPassword: false,
-      step: 5,
+      step: 1,
       loading: false,
       formHasError: [false, false],
       btnDisabled: true

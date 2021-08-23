@@ -185,6 +185,6 @@ export default {
 }
 .checkbox-style {
   position: absolute;
-  right: 25px;
+  right: 5px;
 }
 </style>
