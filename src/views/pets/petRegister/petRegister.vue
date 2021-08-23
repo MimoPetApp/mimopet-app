@@ -514,7 +514,10 @@
           <div class="row" style="height: 35px"></div>
           <div class="row" style="z-index: 1">
             <div class="col-12 col-md-12 col-xs-12 flex justify-center items-center">
-              <q-img src="~/assets/images/check.png" style="width: 100px; height: auto"></q-img>
+              <q-img
+                src="~/assets/images/feedback/check.png"
+                style="width: 100px; height: auto"
+              ></q-img>
             </div>
             <div
               style="margin-top: 25px"
