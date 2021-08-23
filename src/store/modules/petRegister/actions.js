@@ -63,15 +63,6 @@ export const ActionPetModalList = ({ commit }, payload) => {
 }
 
 export const ActionGetBreeds = async ({ commit, dispatch }) => {
-  /*
-  await Http.get('breeds')
-    .then(response => {
-      console.log('a', response.data)
-    })
-    .catch(error => {
-      console.log(error)
-    })
-  */
   commit(types.LOADING_BREEDS)
   Http.get('breeds')
     .then(response => {
@@ -81,6 +72,20 @@ export const ActionGetBreeds = async ({ commit, dispatch }) => {
     })
     .catch(error => {
       commit(types.ERROR_BREEDS, error.response)
+      return false
+    })
+}
+
+export const ActionRegisterPet = async ({ commit, dispatch }, payload) => {
+  commit(types.LOADING_REGISTERPET)
+  Http.post('breeds', payload)
+    .then(response => {
+      commit(types.SUCCESS_REGISTERPET, response.data)
+      commit(types.RESET_REGISTERPET)
+      return true
+    })
+    .catch(error => {
+      commit(types.ERROR_REGISTERPET, error.response)
       return false
     })
 }

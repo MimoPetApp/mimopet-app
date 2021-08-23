@@ -36,5 +36,23 @@ export default {
   },
   [types.RESET_BREEDS] (state, payload) {
     state.breeds.success = false
+  },
+  [types.LOADING_REGISTERPET] (state) {
+    state.breeds.loading = true
+  },
+  [types.SUCCESS_REGISTERPET] (state, payload) {
+    state.breeds.loading = false
+    state.breeds.success = true
+    state.breeds.data = payload
+    state.breeds.error = false
+  },
+  [types.ERROR_REGISTERPET] (state, payload) {
+    state.breeds.loading = false
+    state.breeds.success = false
+    state.breeds.data = {}
+    state.breeds.error = payload
+  },
+  [types.RESET_REGISTERPET] (state, payload) {
+    state.breeds.success = false
   }
 }

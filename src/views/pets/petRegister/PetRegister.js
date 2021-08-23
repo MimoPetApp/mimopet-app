@@ -166,7 +166,7 @@ export default {
   },
   methods: {
     ...mapActions('pets', ['ActionSetHomeMenuVisibility', 'ActionCreatePet']),
-    ...mapActions('petRegister', ['ActionGetBreeds']),
+    ...mapActions('petRegister', ['ActionGetBreeds', 'ActionRegisterPet']),
 
     searchBreed () {
       const aux = []
@@ -239,11 +239,15 @@ export default {
         return false
       }
     },
-    nextStep () {
-      if (this.step !== 5) {
-        this.step++
+    async nextStep () {
+      this.step++
+    },
+    async registerPet () {
+      const res = await this.ActionRegisterPet(this.form)
+      if (!res) {
+        // notify
       } else {
-        // register pet endpoint
+        this.nextStep()
       }
     },
     selectPetGender (gender) {

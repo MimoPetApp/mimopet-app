@@ -15,5 +15,11 @@ export default {
     data: [],
     error: false,
     success: false
+  },
+  registerPet: {
+    loading: false,
+    data: {},
+    error: false,
+    success: false
   }
 }

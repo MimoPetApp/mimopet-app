@@ -115,7 +115,7 @@
             color="primary-flat"
             class="pl-7 pr-7"
             :disabled="!petDetailsFilled"
-            @click="nextStep()"
+            @click="registerPet()"
           ></Button>
         </template>
       </Ask>
