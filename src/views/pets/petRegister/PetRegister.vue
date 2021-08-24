@@ -72,13 +72,48 @@
       <Ask
         title="Qual a raça do pet?"
         subtitle="Estamos acabando de construir o seu perfil de tutor treinador"
-        align-content="center"
+        align-content="start"
         v-if="step === 3"
       >
         <template v-slot:content>
           <div class="q-gutter-xs pr-4 pl-4">
-            <SearchField v-model="form.petBreed.name" label="Busque por nome" outline></SearchField>
-            <Checkbox v-model="form.petBreed.isUnknown" label="Sem raça"></Checkbox>
+            <SearchField
+              v-model="form.petBreed.searchName"
+              label="Busque por nome"
+              class="mb-1"
+              align="right"
+              outline
+              @update:model-value="searchBreed()"
+              :disable="form.petBreed.isUnknown"
+            ></SearchField>
+            <Checkbox
+              v-model="form.petBreed.isUnknown"
+              label="Sem raça"
+              @click="noBreedHandler()"
+            ></Checkbox>
+          </div>
+          <div class="row mt-3" style="margin-bottom: 18px">
+            <div class="col-12 col-md-12 col-xs-12 list-breeds-wrapper">
+              <Button-Checkbox-Group
+                :options="breedsList"
+                single-selection
+                @selected="selectedHandler('petBreed', $event)"
+              ></Button-Checkbox-Group>
+              <!--
+              <q-list>
+                <div v-if="breedsList.length > 0">
+                  <div v-for="(breed, index) in breedsList" :key="index">
+                    <q-item v-ripple clickable @click="selectBreed(index)">
+                      <q-item-section>
+                        <q-item-label>{{ breed }}</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                    <q-separator spaced inset />
+                  </div>
+                </div>
+              </q-list>
+              -->
+            </div>
           </div>
         </template>
         <template v-slot:action>

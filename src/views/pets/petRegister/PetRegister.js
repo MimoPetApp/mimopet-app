@@ -1,4 +1,4 @@
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import Title from '../../../common/components/title'
 // import MainButton from '../../../common/components/mainButton'
 import Button from '../../../common/components/Button/Button.vue'
@@ -71,15 +71,10 @@ export default {
         petAge: null,
         petBreed: {
           isUnknown: false,
-          name: ''
+          name: '',
+          searchName: ''
         },
-        petGender: '',
-        petDetails: null,
-        passwordUser: '',
-        day: '',
-        month: '',
-        year: '',
-        howLong: ''
+        petDetails: null
       },
       createdPet: null,
       listOptions: [
@@ -108,31 +103,15 @@ export default {
           name: 'Dálmata'
         }
       ],
-      listOptionsFiltered: [],
-      confirmPassword: null,
-      showPassword: false,
       step: 1,
       loading: false,
       formHasError: [false, false],
-      btnDisabled: true
+      btnDisabled: true,
+      breedsList: []
     }
   },
   computed: {
-    disableDateBtn () {
-      if (
-        this.form.day.length === 2 &&
-        this.form.month.length === 2 &&
-        this.form.year.length === 4
-      ) {
-        if (this.dayIsValid() && this.monthIsValid() && this.yearIsValid()) {
-          return false
-        } else {
-          return true
-        }
-      } else {
-        return true
-      }
-    },
+    ...mapState('petRegister', { breedsData: 'breeds' }),
     petAgeFilled () {
       if (this.form.petAge) {
         return true
@@ -167,92 +146,79 @@ export default {
   methods: {
     ...mapActions('pets', ['ActionSetHomeMenuVisibility', 'ActionCreatePet']),
     ...mapActions('petRegister', ['ActionGetBreeds', 'ActionRegisterPet']),
-
     searchBreed () {
-      const aux = []
-      if (this.form.petBreed.name) {
-        this.listOptions.forEach(option => {
-          if (option.name.toUpperCase().includes(this.form.petBreed.name.toUpperCase())) {
-            aux.push(option)
+      let aux = []
+      const vue = this
+      if (this.form.petBreed.searchName) {
+        aux = this.breedsData.data.filter(function (option) {
+          return option.breed.toUpperCase().includes(vue.form.petBreed.searchName.toUpperCase())
+        })
+        this.formatBreedList(aux)
+      } else {
+        this.breedsList = []
+        this.formatBreedList(this.breedsData.data)
+      }
+    },
+    formatBreedList (breedList) {
+      let aux = []
+      if (breedList.length > 0) {
+        aux = breedList.map(function (breed) {
+          return {
+            label: breed.breed,
+            selected: false
           }
         })
-        this.listOptionsFiltered = aux
-      } else {
-        this.listOptionsFiltered = []
       }
+      this.breedsList = aux
     },
-    selectBreed (index) {
-      this.form.petBreed.name = this.listOptionsFiltered[index].name
-    },
-    minusOperation () {
-      if (this.form.howLong) {
-        if (parseInt(this.form.howLong) !== 0) {
-          this.form.howLong = parseInt(this.form.howLong) - 1
-        }
-      }
-    },
-    plusOperation () {
-      if (!this.form.howLong) {
-        this.form.howLong = 1
+    noBreedHandler () {
+      if (this.form.petBreed.isUnknown) {
+        this.form.petBreed.searchName = ''
+        this.form.petBreed.name = 'Sem raça'
+        this.breedsList = []
       } else {
-        if (parseInt(this.form.howLong) >= 0 && parseInt(this.form.howLong) < 99) {
-          this.form.howLong = parseInt(this.form.howLong) + 1
-        }
-      }
-    },
-    dayIsValid () {
-      if (
-        this.form.day &&
-        this.form.day.length === 2 &&
-        this.form.day !== '00' &&
-        parseInt(this.form.day) > 0 &&
-        parseInt(this.form.day) <= 31
-      ) {
-        return true
-      } else {
-        return false
-      }
-    },
-    monthIsValid () {
-      if (
-        this.form.month &&
-        this.form.month.length === 2 &&
-        this.form.month !== '00' &&
-        parseInt(this.form.month) > 0 &&
-        parseInt(this.form.month) <= 12
-      ) {
-        return true
-      } else {
-        return false
-      }
-    },
-    yearIsValid () {
-      if (
-        this.form.year &&
-        this.form.year.length === 4 &&
-        this.form.year !== '0000' &&
-        parseInt(this.form.year) > 0 &&
-        parseInt(this.form.year) <= new Date().getFullYear()
-      ) {
-        return true
-      } else {
-        return false
+        this.form.petBreed.name = ''
+        this.formatBreedList(this.breedsData.data)
       }
     },
     async nextStep () {
       this.step++
     },
     async registerPet () {
-      const res = await this.ActionRegisterPet(this.form)
+      const form = this.formatForm()
+      const res = await this.ActionRegisterPet(form)
       if (!res) {
         // notify
       } else {
         this.nextStep()
       }
     },
-    selectPetGender (gender) {
-      this.form.petGender = gender === 'Macho' ? 'male' : 'female'
-      this.nextStep()
+    formatForm () {
+      let form = JSON.parse(JSON.stringify(this.form))
+      form = {
+        name: form.petName,
+        breed: form.petBreed.name,
+        age: this.mapAge(form.petAge.label),
+        gender: 'male',
+        type: 'canine',
+        is_adopted: form.petDetails.includes('Adotado'),
+        is_neutered: form.petDetails.includes('Castrado'),
+        is_deficiency: form.petDetails.includes('Com deficiência'),
+        is_service: form.petDetails.includes('De serviço')
+      }
+      return form
+    },
+    mapAge (age) {
+      switch (age) {
+        case 'Filhote até 6 meses':
+          return 'SIX_MONTS'
+        case 'Filhote até 1,5 anos':
+          return 'EIGHTEEN_MONTS'
+        case 'Adulto':
+          return 'ADULT'
+        default:
+          return 'SENIOR'
+      }
     },
     backStep () {
       if (this.step > 1) {
@@ -260,16 +226,6 @@ export default {
       } else {
         // this.step = 1;
         this.$router.push({ name: 'home' })
-      }
-    },
-    parseProfilePet (profile) {
-      switch (profile.toUpperCase()) {
-        case 'FELINO':
-          return 'feline'
-        case 'CANINO':
-          return 'canine'
-        default:
-          return ''
       }
     },
     async onSubmit () {
@@ -296,18 +252,15 @@ export default {
         params: { id: `${this.createdPet.id}` }
       })
     },
-    answeredHandler (event) {
-      if (event) {
-        this.btnDisabled = false
-      } else {
-        this.btnDisabled = true
-      }
-    },
     selectedHandler (field, eventData) {
       if (eventData.length > 0) {
-        this.form[field] = []
+        if (field !== 'petBreed') {
+          this.form[field] = []
+        }
         if (field === 'petAge') {
           this.form[field] = eventData[0]
+        } else if (field === 'petBreed') {
+          this.form[field].name = eventData[0].label
         } else {
           this.form[field] = eventData
         }
@@ -318,5 +271,6 @@ export default {
   },
   async created () {
     await this.ActionGetBreeds()
+    this.formatBreedList(this.breedsData.data)
   }
 }

@@ -4,14 +4,21 @@
   flex-direction: column;
   justify-content: space-between;
 }
-.list-wrapper {
-  height: 220px;
-  overflow-y: scroll;
+.list-breeds-wrapper {
+  .button-checkbox-group-wrapper {
+    height: 300px !important;
+    padding-left: 40px;
+    padding-right: 40px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+  }
 }
+/*
 .q-field__label,
 .q-field__messages {
   text-align: center;
 }
+*/
 
 .q-field__label {
   font-size: 1.45rem;
@@ -145,4 +152,3 @@
     color: var(--colorPositive) !important;
   }
 }
-

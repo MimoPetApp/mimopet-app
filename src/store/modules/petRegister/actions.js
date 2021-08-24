@@ -1,8 +1,16 @@
 /* eslint-disable no-unused-vars */
 import * as types from './mutation-types'
+import axios from 'axios'
 import { Http } from '../../../services/http'
 import { Notify } from 'quasar'
-import store from '../../index'
+import store from '../../../store/index'
+
+const axiosInstance = axios.create({
+  baseURL: process.env.API,
+  headers: {
+    Accept: 'application/json'
+  }
+})
 
 export const ActionGetPets = ({ commit, dispatch }) => {
   return new Promise((resolve, reject) => {
@@ -64,7 +72,8 @@ export const ActionPetModalList = ({ commit }, payload) => {
 
 export const ActionGetBreeds = async ({ commit, dispatch }) => {
   commit(types.LOADING_BREEDS)
-  Http.get('breeds')
+  await axiosInstance
+    .get('breeds')
     .then(response => {
       commit(types.SUCCESS_BREEDS, response.data)
       commit(types.RESET_BREEDS)
@@ -78,7 +87,7 @@ export const ActionGetBreeds = async ({ commit, dispatch }) => {
 
 export const ActionRegisterPet = async ({ commit, dispatch }, payload) => {
   commit(types.LOADING_REGISTERPET)
-  Http.post('breeds', payload)
+  await Http.post('pets', payload)
     .then(response => {
       commit(types.SUCCESS_REGISTERPET, response.data)
       commit(types.RESET_REGISTERPET)
