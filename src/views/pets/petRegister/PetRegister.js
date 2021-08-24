@@ -111,7 +111,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('petRegister', { breedsData: 'breeds' }),
+    ...mapState('petRegister', { breedsData: 'breeds', registerPetData: 'registerPet' }),
     petAgeFilled () {
       if (this.form.petAge) {
         return true
@@ -181,13 +181,16 @@ export default {
         this.formatBreedList(this.breedsData.data)
       }
     },
+    goToHome () {
+      this.$router.push({ name: 'home' })
+    },
     async nextStep () {
       this.step++
     },
     async registerPet () {
       const form = this.formatForm()
-      const res = await this.ActionRegisterPet(form)
-      if (!res) {
+      await this.ActionRegisterPet(form)
+      if (this.registerPetData.error) {
         // notify
       } else {
         this.nextStep()
