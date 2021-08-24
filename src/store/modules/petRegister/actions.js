@@ -76,7 +76,6 @@ export const ActionGetBreeds = async ({ commit, dispatch }) => {
     .get('breeds')
     .then(response => {
       commit(types.SUCCESS_BREEDS, response.data)
-      commit(types.RESET_BREEDS)
       return true
     })
     .catch(error => {
@@ -90,11 +89,8 @@ export const ActionRegisterPet = async ({ commit, dispatch }, payload) => {
   await Http.post('pets', payload)
     .then(response => {
       commit(types.SUCCESS_REGISTERPET, response.data)
-      commit(types.RESET_REGISTERPET)
-      return true
     })
     .catch(error => {
       commit(types.ERROR_REGISTERPET, error.response)
-      return false
     })
 }

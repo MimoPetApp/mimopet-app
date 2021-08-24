@@ -16,7 +16,7 @@
         title="Como seu pet se chama?"
         subtitle="Vamos construir o perfil do seu animal 🐶"
         align-content="center"
-        v-if="step === 1"
+        v-show="step === 1"
       >
         <template v-slot:content>
           <TextField
@@ -46,7 +46,7 @@
         title="Qual a idade do seu pet?"
         subtitle="Estamos acabando de construir o seu perfil de tutor treinador"
         align-content="center"
-        v-if="step === 2"
+        v-show="step === 2"
       >
         <template v-slot:content>
           <Button-Checkbox-Group
@@ -73,7 +73,7 @@
         title="Qual a raça do pet?"
         subtitle="Estamos acabando de construir o seu perfil de tutor treinador"
         align-content="start"
-        v-if="step === 3"
+        v-show="step === 3"
       >
         <template v-slot:content>
           <div class="q-gutter-xs pr-4 pl-4">
@@ -135,7 +135,7 @@
         title="Informe detalhes do pet"
         subtitle="Queremos entender mais do seu animal"
         align-content="center"
-        v-if="step === 4"
+        v-show="step === 4"
       >
         <template v-slot:content>
           <Button-Checkbox-Group
@@ -164,6 +164,7 @@
         title="Pet Adicionado"
         subtitle="Você pode adicionar inúmeros pets a sua conta cadastrada"
         buttonText="Acessar o app"
+        :action="goToHome"
       ></Feedback>
       <!-- End Pet Added -->
     </q-layout>
