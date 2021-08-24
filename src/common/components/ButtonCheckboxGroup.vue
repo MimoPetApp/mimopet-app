@@ -40,7 +40,7 @@ export const ButtonCheckboxColors = ['main-primary', 'status-danger', 'status-su
 
 export default {
   name: 'ButtonCheckboxGroup',
-  data() {
+  data () {
     return {
       chosenAnswer: false,
       selectedOptions: [],
@@ -66,7 +66,7 @@ export default {
   },
   computed: {},
   methods: {
-    clicked(option, index) {
+    clicked (option, index) {
       if (this.singleSelection) {
         // single selection with no answer
         if (!this.selected) {
@@ -100,7 +100,7 @@ export default {
         }
       }
     },
-    toggleSelection(option) {
+    toggleSelection (option) {
       if (this.selectedOptions.length > 0) {
         // remove selection
         this.selectedOptions[0].selected = false
@@ -111,17 +111,17 @@ export default {
       }
     },
     // mapea-se 2 grandezas do mesmo tipo a serem comparadas se sao iguais
-    isCorrect(option1, option2, index = 0) {
+    isCorrect (option1, option2, index = 0) {
       return option1.toLowerCase() === option2.toLowerCase()
     },
-    showCorrectAnswer() {
+    showCorrectAnswer () {
       this.options.forEach(option => {
         if (this.isCorrect(option.label, this.answer)) {
           option.selected = true
         }
       })
     },
-    hasAlreadySelected(option) {
+    hasAlreadySelected (option) {
       let has = false
       if (this.selectedOptions.length > 0) {
         this.selectedOptions.forEach(selectedOption => {
@@ -132,7 +132,7 @@ export default {
       }
       return has
     },
-    removeSelectedOption(option) {
+    removeSelectedOption (option) {
       for (let index = 0; index < this.selectedOptions.length; index++) {
         if (this.isCorrect(this.selectedOptions[index].label, option.label)) {
           this.selectedOptions.splice(index, 1)

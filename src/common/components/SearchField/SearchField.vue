@@ -41,6 +41,11 @@ export default {
     label: {
       type: String
     },
+    align: {
+      type: String,
+      default: 'left',
+      validate: val => ['left', 'right', 'center', 'bottom'].indexOf(val) !== -1
+    },
     light: {
       type: Boolean,
       default: true
@@ -55,13 +60,13 @@ export default {
   },
   computed: {
     textFieldClass: function () {
-      const classes = ['text-field', 'search-field']
+      const classes = ['text-field', `text-field--${this.align}`, 'search-field']
       if (this.light) classes.push('text-field--light')
       else classes.push('text-field--dark')
       return classes
     },
     textFieldInputClass: function () {
-      return ['text-field__content']
+      return ['text-field__content', `text-field__content--${this.align}`]
     }
   },
   methods: {

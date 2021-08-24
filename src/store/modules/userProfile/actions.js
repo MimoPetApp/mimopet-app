@@ -1,16 +1,8 @@
 /* eslint-disable no-unused-vars */
 import * as types from './mutation-types'
-import axios from 'axios'
 import { Http } from '../../../services/http'
 import { Notify } from 'quasar'
-import store from '../../../store/index'
-
-const axiosInstance = axios.create({
-  baseURL: process.env.API,
-  headers: {
-    Accept: 'application/json'
-  }
-})
+import store from '../../index'
 
 export const ActionGetPets = ({ commit, dispatch }) => {
   return new Promise((resolve, reject) => {
@@ -68,33 +60,4 @@ export const ActionDeletePet = ({ commit, dispatch }, payload) => {
 
 export const ActionPetModalList = ({ commit }, payload) => {
   commit(types.SET_MODALDELETEPETLIST, payload)
-}
-
-export const ActionGetBreeds = async ({ commit, dispatch }) => {
-  commit(types.LOADING_BREEDS)
-  await axiosInstance
-    .get('breeds')
-    .then(response => {
-      commit(types.SUCCESS_BREEDS, response.data)
-      commit(types.RESET_BREEDS)
-      return true
-    })
-    .catch(error => {
-      commit(types.ERROR_BREEDS, error.response)
-      return false
-    })
-}
-
-export const ActionRegisterPet = async ({ commit, dispatch }, payload) => {
-  commit(types.LOADING_REGISTERPET)
-  await Http.post('pets', payload)
-    .then(response => {
-      commit(types.SUCCESS_REGISTERPET, response.data)
-      commit(types.RESET_REGISTERPET)
-      return true
-    })
-    .catch(error => {
-      commit(types.ERROR_REGISTERPET, error.response)
-      return false
-    })
 }

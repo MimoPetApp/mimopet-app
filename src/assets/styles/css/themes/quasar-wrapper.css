@@ -10,6 +10,9 @@
 .text-main-alternate {
   color: #2a1d46;
 }
+.text-main-alternate-light {
+  color: #3e244e;
+}
 .text-main-highlight {
   color: #7066f2;
 }
@@ -26,6 +29,9 @@
 .bg-main-alternate {
   background: #2a1d46;
 }
+.bg-main-alternate-light {
+  background: #3e244e;
+}
 .bg-main-highlight {
   background: #7066f2;
 }
@@ -39,7 +45,7 @@
 .text-status-danger {
   color: #ff6161;
 }
-.text-status-sucess {
+.text-status-success {
   color: #0fe386;
 }
 
@@ -49,7 +55,7 @@
 .bg-status-danger {
   background: #ff6161;
 }
-.bg-status-sucess {
+.bg-status-success {
   background: #0fe386;
 }
 

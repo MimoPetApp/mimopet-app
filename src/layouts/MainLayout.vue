@@ -30,7 +30,7 @@
       <q-footer v-if="hasFooter" class="bg-white flex flex-center">
         <q-tabs v-model="tab" class="text-blue-grey-2" active-color="main-alternate">
           <q-route-tab default name="home" icon="dashboard" :to="'/'" />
-          <q-route-tab name="profile" icon="drag_handle" />
+          <q-route-tab name="userProfile" icon="drag_handle" :to="'/userProfile'" />
         </q-tabs>
       </q-footer>
     </div>
@@ -48,7 +48,7 @@ export default {
     ModalAuth,
     PetListModal
   },
-  data() {
+  data () {
     return {
       tab: 'mails'
     }
@@ -56,13 +56,13 @@ export default {
   computed: {
     ...mapState('pets', ['petsList', 'hasHeader', 'hasFooter'])
   },
-  async mounted() {
+  async mounted () {
     await this.ActionGetUser()
   },
   methods: {
     ...mapActions('auth', ['ActionGetUser']),
     ...mapActions('pets', ['ActionPetModalList']),
-    showPetList() {
+    showPetList () {
       this.ActionPetModalList({ modal: true, data: {} })
     }
   }
