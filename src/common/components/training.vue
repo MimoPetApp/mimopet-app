@@ -1,8 +1,8 @@
 
 <template>
-  <div>
+   <div id="box" class="q-pa-md">
       <router-link :to="{name: 'trainingDetails', params: {id: id}}">
-      <q-list bordered padding>
+      <q-list bordered padding class="q-pa-sd">
           <q-item>
              <q-item-section>
                  <q-item-section side top>
@@ -61,6 +61,21 @@ export default {
 
 <style lang="scss">
 $text-main-button-size: 1.16rem;
+
+.q-pa-md {
+  font-family: 'customfont600';
+  font-size: 1rem;
+  background-color: rgb(209, 203, 203);
+  color: black;
+
+}
+.q-pa-sd {
+  font-family: 'customfont600';
+  font-size: 1rem;
+  background-color: white;
+  color: black;
+  border-radius: 4%;
+}
 /* .q-pa-md {
 border-radius: 25px 25px 0 0 !important;
 width: 100%;
