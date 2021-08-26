@@ -20,7 +20,7 @@
           placeholder="O que aprender ?"
           :dense="dense">
 
-         <q-btn class="q-pa-bt"
+         <!-- <q-btn class="q-pa-bt"
          label="Com cães"
          stack no-caps
           @click="clickIcon()"
@@ -35,14 +35,14 @@
             <q-icon class="cursor-s" name="search" />
           </template>
 
-        <q-menu>
+         <q-menu>
           <q-list style="min-width: 100px">
             <q-item clickable v-close-popup>
               <q-item-section>Com gatos</q-item-section>
             </q-item>
           </q-list>
         </q-menu>
-      </q-btn>
+      </q-btn> -->
       </q-input>
       </div>
       </q-card-section>
