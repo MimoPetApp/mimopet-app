@@ -1,15 +1,20 @@
 
 <template>
-   <div id="box" class="q-pa-md">
+   <div>
       <router-link :to="{name: 'trainingDetails', params: {id: id}}">
       <q-list bordered padding class="q-pa-sd">
           <q-item>
+
              <q-item-section>
                  <q-item-section side top>
                  <q-item-label>{{number}}</q-item-label>
              </q-item-section>
-             <q-item-label>{{step}}</q-item-label>
-             <q-item-label style="font-size: 3.1vh">{{ title}}</q-item-label>
+             <br>
+             <q-item-label style="font-size: 1.9vh">{{step}} 10 passos </q-item-label>
+             <q-item-label style="font-size: 3vh"> <B>
+            {{ title}}
+            </B>
+             </q-item-label>
              </q-item-section>
 
              <q-item-section side top>
@@ -74,7 +79,8 @@ $text-main-button-size: 1.16rem;
   font-size: 1rem;
   background-color: white;
   color: black;
-  border-radius: 4%;
+  margin-top: 3vh;
+  border-radius: 5%;
 }
 /* .q-pa-md {
 border-radius: 25px 25px 0 0 !important;

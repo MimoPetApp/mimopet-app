@@ -4,11 +4,18 @@
        <q-toolbar class="text-main-primary">
            <q-btn flat round dense icon="keyboard_backspace" @click="backStep()" />
       </q-toolbar>
+                    <img class="q-pa-im" src= '~assets/images/petshop.png' />
       <q-card-section>
         <q-list bordered padding class="rounded-borders text-primary">
             <q-item v-ripple>
                 <q-item-section side top>
+                <br>
+                <br>
+
                 <q-badge color="purple" :label= trainingList.category />
+                <br>
+                <br>
+
                 <q-item-label style="font-size: 4.0vh">
                    <b> {{  moduleList.name }}</b>
                 </q-item-label>
@@ -105,9 +112,9 @@ export default {
   margin: 2 1 2vh 0;
 }
 .q-pa-im {
-  align-self: center;
-  width: 90%;
-  margin-left: 2vh;
-  margin: 2 1 2vh 0;
+  margin-left: 0vh;
+  margin-top: -10vh;
+  width: 116%;
 }
+
 </style>
