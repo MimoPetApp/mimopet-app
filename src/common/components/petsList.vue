@@ -42,7 +42,7 @@
 
 <script>
 import HomeItem from './homeItem'
-import parser from './../helpers/petProfileParser'
+import parser from './../helpers/PetProfileParser'
 export default {
   name: 'PetsList',
   components: {

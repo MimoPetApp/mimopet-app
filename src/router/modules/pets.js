@@ -6,8 +6,8 @@ export default [
   },
   {
     path: '/pet/:id',
-    name: 'petdetails',
-    component: () => import('../../views/pets/petProfile/petProfile.vue')
+    name: 'PetProfile',
+    component: () => import('../../views/pets/petProfile/PetProfile.vue')
   },
   {
     path: '/novo/pet',

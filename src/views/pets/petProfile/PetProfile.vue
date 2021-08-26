@@ -17,7 +17,7 @@
     <div v-if="!loadingPets" class="row">
       <div class="col-12 flex flex-center">
         <div class="row">
-          <PetProfile :data="petProfile" />
+          <profile-details :data="petProfile" />
         </div>
       </div>
       <ConfirmDeletePet />
@@ -29,5 +29,5 @@
   </div>
 </template>
 
-<script src="./petProfile.js"></script>
-<style src="./petProfile.scss" lang="scss"></style>
+<script src="./PetProfile.js"></script>
+<style src="./PetProfile.scss" lang="scss"></style>

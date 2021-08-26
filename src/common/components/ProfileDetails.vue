@@ -97,12 +97,12 @@
 
 <script>
 import ConfirmDeletePet from './confirmDeletePet'
-import parser from './../helpers/petProfileParser'
+import parser from '../helpers/PetProfileParser'
 import Button from './Button/Button'
 import { mapActions } from 'vuex'
 
 export default {
-  name: 'PetProfile',
+  name: 'ProfileDetails',
   components: {
     Button,
     ConfirmDeletePet
@@ -113,13 +113,13 @@ export default {
       default: () => {}
     }
   },
-  data() {
+  data () {
     return {}
   },
   methods: {
     ...parser,
     ...mapActions('pets', ['ActionmodalDeletePet']),
-    deletePet() {
+    deletePet () {
       this.ActionmodalDeletePet({
         modal: true,
         data: {
