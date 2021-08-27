@@ -1,5 +1,5 @@
 <template>
-  <QBtn v-bind="$attrs" :color="color" :outline="isOutline" :flat="isFlat" />
+  <QBtn v-bind="$attrs" :color="color" :outline="isOutline" :flat="isFlat" class="button-wrapper" />
 </template>
 
 <script>
@@ -55,15 +55,15 @@ export default {
 }
 
 .bg-primary-flat {
-  color: var(--main-primary) !important;
-  background: var(--main-background) !important;
+  color: var(--main-background) !important;
+  background: var(--main-primary) !important;
+
   &:disabled {
     color: var(--utilities-alternate) !important;
     background: var(--utilities-disabled) !important;
   }
   &:active {
-    color: var(--main-background) !important;
-    background: var(--main-primary) !important;
+    background: var(--main-secondary) !important;
   }
 }
 
@@ -113,5 +113,16 @@ export default {
   &:active {
     color: var(--main-highlight) !important;
   }
+}
+.button-wrapper {
+  height: 48px;
+  width: 223px;
+  font-size: var(--font-size-4);
+  line-height: var(--font-size-6);
+  letter-spacing: -0.014em;
+  font-family: 'customFont650';
+  font-weight: 600;
+  text-align: center;
+  border-radius: 6px;
 }
 </style>

@@ -26,6 +26,7 @@
             type="rounded"
             color="status-success"
             class="checkbox-style"
+            disable
           ></checkbox>
         </div>
       </div>
@@ -34,14 +35,16 @@
 </template>
 
 <script>
-import Checkbox from './Checkbox.vue'
+import Checkbox from './Checkbox/Checkbox.vue'
 export const ButtonCheckboxColors = ['main-primary', 'status-danger', 'status-success']
 
 export default {
   name: 'ButtonCheckboxGroup',
-  data() {
+  data () {
     return {
-      chosenAnswer: false
+      chosenAnswer: false,
+      selectedOptions: [],
+      selected: false
     }
   },
   components: {
@@ -55,35 +58,86 @@ export default {
     answer: {
       type: String,
       default: ''
+    },
+    singleSelection: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {},
   methods: {
-    clicked(option, index) {
-      if (!this.answer) {
+    clicked (option, index) {
+      if (this.singleSelection) {
+        // single selection with no answer
+        if (!this.selected) {
+          this.selectedOptions.push(option)
+          option.selected = !option.selected
+          this.selected = true
+        } else {
+          this.toggleSelection(option)
+        }
+        this.$emit('selected', this.selectedOptions)
+      } else if (!this.answer) {
         // feedback screen
+        if (this.hasAlreadySelected(option)) {
+          this.removeSelectedOption(option)
+        } else {
+          this.selectedOptions.push(option)
+        }
         option.selected = !option.selected
+        this.$emit('selected', this.selectedOptions)
       } else {
         // quiz screen
         if (!this.chosenAnswer) {
-          option.selected = !option.selected
-          if (!this.isCorrect(option, index)) {
-            option.error = !this.isCorrect(option, index)
+          option.selected = true
+          this.selectedOptions.push(option)
+          if (!this.isCorrect(option.label, this.answer, index)) {
+            option.error = !this.isCorrect(option.label, this.answer, index)
             this.showCorrectAnswer()
           }
           this.chosenAnswer = true
+          this.$emit('answered', this.selectedOptions)
         }
       }
     },
-    isCorrect(option, index = 0) {
-      return option.label.toLowerCase() === this.answer.toLowerCase()
+    toggleSelection (option) {
+      if (this.selectedOptions.length > 0) {
+        // remove selection
+        this.selectedOptions[0].selected = false
+        this.selectedOptions.shift()
+        // add selection
+        this.selectedOptions.push(option)
+        option.selected = true
+      }
     },
-    showCorrectAnswer() {
+    // mapea-se 2 grandezas do mesmo tipo a serem comparadas se sao iguais
+    isCorrect (option1, option2, index = 0) {
+      return option1.toLowerCase() === option2.toLowerCase()
+    },
+    showCorrectAnswer () {
       this.options.forEach(option => {
-        if (this.isCorrect(option)) {
+        if (this.isCorrect(option.label, this.answer)) {
           option.selected = true
         }
       })
+    },
+    hasAlreadySelected (option) {
+      let has = false
+      if (this.selectedOptions.length > 0) {
+        this.selectedOptions.forEach(selectedOption => {
+          if (this.isCorrect(selectedOption.label, option.label)) {
+            has = true
+          }
+        })
+      }
+      return has
+    },
+    removeSelectedOption (option) {
+      for (let index = 0; index < this.selectedOptions.length; index++) {
+        if (this.isCorrect(this.selectedOptions[index].label, option.label)) {
+          this.selectedOptions.splice(index, 1)
+        }
+      }
     }
   }
 }
@@ -131,6 +185,6 @@ export default {
 }
 .checkbox-style {
   position: absolute;
-  right: 25px;
+  right: 5px;
 }
 </style>
