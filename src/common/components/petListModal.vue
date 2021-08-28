@@ -4,7 +4,7 @@
       <q-card-section>
         <q-list>
           <div v-for="(pet, index) in petsList" :key="index">
-            <q-item v-ripple clickable :to="`/pet/${pet.id}`">
+            <q-item v-ripple clickable @click="onSelect(index)">
               <q-item-section class="text-main-primary">{{ pet.name }}</q-item-section>
               <q-item-section avatar>
                 <q-avatar text-color="main-primary" icon="keyboard_arrow_right" />
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapMutations } from 'vuex'
 export default {
   name: 'PetListModal',
   data() {
@@ -40,6 +40,11 @@ export default {
   },
   methods: {
     ...mapActions('pets', ['ActionPetModalList', 'ActionSetLoadingPet']),
+    ...mapMutations('pets', ['SET_CURRPET']),
+    onSelect(id) {
+      this.SET_CURRPET(id)
+      this.ActionPetModalList({ modal: false, data: {} })
+    },
     hide() {
       this.ActionSetLoadingPet(true)
       this.ActionPetModalList({ modal: false, data: {} })

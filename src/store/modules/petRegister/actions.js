@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable */
 import * as types from './mutation-types'
 import axios from 'axios'
 import { Http } from '../../../services/http'
@@ -21,7 +21,7 @@ export const ActionGetPets = ({ commit, dispatch }) => {
         resolve(response.data)
       })
       .catch(error => {
-        console.log(error)
+        // console.log(error)
         reject(error.response.data)
       })
   })
@@ -36,7 +36,7 @@ export const ActionGetPetById = ({ commit, dispatch }, payload) => {
         resolve(response.data)
       })
       .catch(error => {
-        console.log(error)
+        // console.log(error)
         reject(error.response.data)
       })
   })
@@ -62,7 +62,7 @@ export const ActionDeletePet = ({ commit, dispatch }, payload) => {
       store.$router.push({ name: 'home' })
     })
     .catch(error => {
-      console.log(error)
+      // console.log(error)
     })
 }
 

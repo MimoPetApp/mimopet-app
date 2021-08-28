@@ -2,7 +2,7 @@
   <div>
     <div v-if="!loadingPets">
       <div v-if="petsList.length >= 1">
-        <PetsList :pet="petsList[0]" />
+        <PetsList :pet="petsList[currPet]" />
       </div>
       <div v-else class="row">
         <q-card
