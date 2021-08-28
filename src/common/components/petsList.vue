@@ -10,11 +10,12 @@
       </q-btn>
     </q-card-section>
     <q-card class="home-card q-animate--scale q-pa-lg" style="background: #ffffff">
-      <HomeItem
+      <HomeCard
         label="Explore comportamentos"
         description="Vantages de ter um pet treinado"
         color="#FF8E4A"
         colorAlt="#f66917"
+        to="/behavior"
       />
 
       <q-card
@@ -32,8 +33,10 @@
             no-caps
             text-color="main-background"
             style="background: rgba(255, 255, 255, 0.2)"
-            >Detalhar</q-btn
+            to="/training"
           >
+            Detalhar
+          </q-btn>
         </div>
       </q-card>
     </q-card>
@@ -41,12 +44,12 @@
 </template>
 
 <script>
-import HomeItem from './homeItem'
+import HomeCard from './HomeCard/HomeCard'
 import parser from './../helpers/petProfileParser'
 export default {
   name: 'PetsList',
   components: {
-    HomeItem
+    HomeCard
   },
   props: {
     pet: {

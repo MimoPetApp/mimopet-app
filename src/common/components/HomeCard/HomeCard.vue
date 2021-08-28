@@ -8,14 +8,14 @@
     </div>
     <div class="row justify-center items-center mt-2">
       <q-btn
-        @click="click"
+        :to="to"
         rounded
         flat
         no-caps
         text-color="main-background"
         class="home-card__item--button"
       >
-        Ver mais
+        {{ buttonLabel }}
       </q-btn>
     </div>
     <div class="home-card__item__footer" :style="`background: ${colorAlt}`"></div>
@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  name: 'HomeItem',
+  name: 'HomeCard',
   props: {
     label: {
       type: String,
@@ -52,9 +52,13 @@ export default {
       type: String,
       default: '#fe7624'
     },
-    click: {
-      type: Function,
-      default: () => {}
+    to: {
+      type: String,
+      default: '/behavior'
+    },
+    buttonLabel: {
+      type: String,
+      default: 'Ver mais'
     }
   },
   data() {
