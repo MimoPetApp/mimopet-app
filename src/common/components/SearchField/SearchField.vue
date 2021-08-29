@@ -90,7 +90,7 @@ export default {
 .search-field {
   font-family: 'customfont600';
   color: var(--utilities-alternate);
-  border-radius: 15px;
+  border-radius: var(--spacing-1);
 
   &__content {
     font-family: 'customfont700';
@@ -108,11 +108,6 @@ export default {
   &--center > .q-field__inner {
     text-align: center !important;
   }
-}
-
-.search-field.q-field--filled .q-field__control,
-.search-field.q-field--outlined .q-field__control {
-  padding: 0 var(--spacing-2) 0 var(--spacing-4);
 }
 
 .q-field {
@@ -138,7 +133,7 @@ export default {
 
   &--filled &__control {
     border-radius: var(--spacing-2);
-    padding: 0 var(--spacing-4);
+    padding: 0 var(--spacing-2);
   }
 
   &--filled &__control:after {
@@ -152,7 +147,7 @@ export default {
   &--outlined &__control {
     border-radius: var(--spacing-1);
     border: 2px solid var(--utilities-disabled);
-    padding: 0 var(--spacing-4);
+    padding: 0 var(--spacing-2);
   }
 
   &--error &__bottom {
