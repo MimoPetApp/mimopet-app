@@ -9,7 +9,13 @@ const routes = [
   {
     path: '/',
     component: () => import('src/layouts/MainLayout.vue'),
-    children: [...pets, ...training, ...userProfile],
+    children: [...pets, ...userProfile],
+    beforeEnter: autentication
+  },
+  {
+    path: '/training',
+    component: () => import('layouts/TrainingLayout.vue'),
+    children: [...training],
     beforeEnter: autentication
   },
   {
