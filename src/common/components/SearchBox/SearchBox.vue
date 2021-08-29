@@ -3,7 +3,12 @@
     <div>
       <h3 class="search-box__label">{{ label }}</h3>
       <div class="mt-2 mb-2">
-        <SearchField v-model="query" label="O que aprender?" class="bg-main-background" />
+        <SearchField
+          v-model="query"
+          label="O que aprender?"
+          class="bg-main-background"
+          @update:model-value="onSearch(query)"
+        />
       </div>
       <div class="mt-2">
         <q-btn
@@ -52,6 +57,10 @@ export default {
     buttonLabel: {
       type: String,
       default: 'Ver mais'
+    },
+    onSearch: {
+      type: Function,
+      default: () => {}
     }
   },
   data() {
@@ -64,7 +73,7 @@ export default {
 
 <style lang="scss">
 .search-box {
-  min-height: 300px;
+  min-height: 30vh;
   border-radius: var(--spacing-3) !important;
   background: var(--main-primary);
 
