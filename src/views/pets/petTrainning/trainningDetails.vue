@@ -5,6 +5,7 @@
            <q-btn flat round dense icon="keyboard_backspace" @click="backStep()" />
       </q-toolbar>
                     <img class="q-pa-im" src= '~assets/images/petshop.png' />
+                    <!-- <img :src="parseProfileThumbnail(trainingList.thumbnail)" /> -->
       <q-card-section>
         <q-list bordered padding class="rounded-borders text-primary">
             <q-item v-ripple>

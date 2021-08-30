@@ -54,11 +54,11 @@
       <p>
        <treinodo-pet class="q-pd-tda"
         v-for="(item,index) in filterfiels" :key="index"
+          :title="item.title"
           :typedp="item.category"
-          :step="item.steps[index]._component"
+          step="10 passos"
           :number="item.rating"
           :id="item.id"
-          :title="item.modules[0].name"
         />
      </p>
     </div>

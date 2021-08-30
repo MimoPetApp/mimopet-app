@@ -32,7 +32,7 @@
             no-caps
             text-color="main-background"
             style="background: rgba(255, 255, 255, 0.2)"
-            :to="`/detalhes/${pet.id}`"
+            :to="`/detalhes`"
             >Detalhar</q-btn
           >
         </div>

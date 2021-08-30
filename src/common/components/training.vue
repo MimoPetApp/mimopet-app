@@ -1,4 +1,3 @@
-
 <template>
    <div>
       <router-link :to="{name: 'trainingDetails', params: {id: id}}">
@@ -6,11 +5,11 @@
           <q-item>
 
              <q-item-section>
-                 <q-item-section side top>
-                 <q-item-label>{{number}}</q-item-label>
+                 <q-item-section side>
+                 <img src= '~assets/images/star.png' /> {{number}}
              </q-item-section>
              <br>
-             <q-item-label style="font-size: 1.9vh">{{step}} 10 passos </q-item-label>
+             <q-item-label style="font-size: 1.9vh">{{step}} </q-item-label>
              <q-item-label style="font-size: 3vh"> <B>
             {{ title}}
             </B>
@@ -18,7 +17,7 @@
              </q-item-section>
 
              <q-item-section side top>
-                 <q-badge color="purple" :label= typedp />
+                 <q-badge color="primary" :label= typedp />
              </q-item-section>
           </q-item>
       </q-list>
@@ -76,11 +75,10 @@ $text-main-button-size: 1.16rem;
 }
 .q-pa-sd {
   font-family: 'customfont600';
-  font-size: 1rem;
   background-color: white;
   color: black;
   margin-top: 3vh;
-  border-radius: 5%;
+  border-radius: 3%;
 }
 /* .q-pa-md {
 border-radius: 25px 25px 0 0 !important;

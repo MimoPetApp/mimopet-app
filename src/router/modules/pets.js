@@ -15,7 +15,7 @@ export default [
     component: () => import('../../views/pets/petRegister/petRegister.vue')
   },
   {
-    path: '/detalhes/:petid',
+    path: '/detalhes',
     name: 'training',
     component: () => import('../../views/pets/petTrainning/trainingPet.vue')
   },
