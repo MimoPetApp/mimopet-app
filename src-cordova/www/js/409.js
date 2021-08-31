@@ -1,0 +1,1 @@
+(self["webpackChunkmimopetapp"]=self["webpackChunkmimopetapp"]||[]).push([[409],{1409:(n,t,e)=>{"use strict";e.r(t),e.d(t,{default:()=>c});var s=e(3673);const p=(0,s.Wm)("h1",null,"trainingList",-1);function o(n,t,e,o,u,c){return(0,s.wg)(),(0,s.j4)("div",null,[p])}const u={components:{},methods:{}};u.render=o;const c=u}}]);
