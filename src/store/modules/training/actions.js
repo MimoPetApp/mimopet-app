@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable */
 import * as types from './mutation-types'
 import { Http } from '../../../services/http'
 import store from '../../../store/index'
