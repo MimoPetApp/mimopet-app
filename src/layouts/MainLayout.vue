@@ -26,7 +26,7 @@
         <router-view />
       </q-page-container>
       <ModalAuth />
-      <PetListModal />
+      <SelectPetModal />
       <q-footer v-if="hasFooter" class="bg-white flex flex-center">
         <q-tabs v-model="tab" class="text-blue-grey-2" active-color="main-alternate">
           <q-route-tab default name="home" icon="dashboard" :to="'/'" />
@@ -40,15 +40,15 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import ModalAuth from '../common/components/modalNotLogged'
-import PetListModal from '../common/components/petListModal'
+import SelectPetModal from '../common/components/SelectPetModal/SelectPetModal'
 
 export default {
   name: 'MainLayout',
   components: {
     ModalAuth,
-    PetListModal
+    SelectPetModal
   },
-  data () {
+  data() {
     return {
       tab: 'mails'
     }
@@ -56,13 +56,13 @@ export default {
   computed: {
     ...mapState('pets', ['petsList', 'hasHeader', 'hasFooter'])
   },
-  async mounted () {
+  async mounted() {
     await this.ActionGetUser()
   },
   methods: {
     ...mapActions('auth', ['ActionGetUser']),
     ...mapActions('pets', ['ActionPetModalList']),
-    showPetList () {
+    showPetList() {
       this.ActionPetModalList({ modal: true, data: {} })
     }
   }
