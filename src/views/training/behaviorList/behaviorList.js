@@ -37,9 +37,6 @@ export default {
   mounted() {
     //
   },
-  beforeRouteLeave(to, from, next) {
-    //
-  },
   created() {
     this.search()
   }
