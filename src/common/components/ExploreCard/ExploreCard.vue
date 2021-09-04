@@ -16,17 +16,10 @@
       </q-item-section>
 
       <q-item-section side>
-        <q-btn
-          :class="
-            'explore-card__category explore-card__category--' +
-            parseTrainingCategoryColor(train.category)
-          "
-          dense
-          flat
-          no-caps
-        >
-          {{ parseTrainingCategory(train.category) }}
-        </q-btn>
+        <Tag
+          :label="parseTrainingCategory(train.category)"
+          :color="parseTrainingCategoryColor(train.category)"
+        />
       </q-item-section>
     </q-item>
     <q-item>
@@ -42,8 +35,11 @@
 
 <script>
 import parser from './../../helpers/trainingParser'
+import Tag from '../../../common/components/Tag/Tag'
+
 export default {
   name: 'ExploreCard',
+  components: { Tag },
   props: {
     train: {
       type: Object,
@@ -77,27 +73,6 @@ export default {
     color: var(--utilities-alternate);
     font-weight: 500;
     font-size: var(--font-size-3);
-  }
-
-  &__category {
-    width: 100px;
-    font-weight: 500;
-    font-size: var(--font-size-3);
-  }
-
-  &__category--primary {
-    background: rgba(237, 117, 69, 0.1);
-    color: var(--main-primary);
-  }
-
-  &__category--secondary {
-    background: rgba(242, 161, 106, 0.1);
-    color: var(--main-secondary);
-  }
-
-  &__category--highlight {
-    background: rgba(112, 102, 242, 0.1);
-    color: var(--main-highlight);
   }
 
   &__steps {
