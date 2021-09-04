@@ -1,6 +1,8 @@
 export default {
   trainings: [],
+  behavior: {},
   loadingTrainings: false,
+  hasHeader: true,
   modalResponse: {
     modal: false,
     data: {}
