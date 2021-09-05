@@ -36,8 +36,7 @@
         <Button
           @click="onSubscribe"
           color="primary-filled"
-          to="/"
-          :loading="loading"
+          :loading="loadingSubscribe"
           type="submit"
           label="Inscrever-se"
           no-caps
@@ -46,6 +45,18 @@
     </div>
     <div v-else class="flex flex-center q-mt-xl">
       <LoadingCircle />
+    </div>
+    <div>
+      <FeedbackModal
+        :active="hasFeedback"
+        :icon="feedbackIcon"
+        title="Inscrição confirmada"
+        subtitle="Acompanhe os exercícios na sua lista de treinamento"
+        buttonText="Ir para treino"
+        subButtonText="Voltar para busca"
+        :subAction="homeBehaviorList"
+        :action="homeHandler"
+      ></FeedbackModal>
     </div>
   </div>
 </template>
