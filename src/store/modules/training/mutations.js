@@ -4,6 +4,9 @@ export default {
   [types.SET_TRAININGS](state, payload) {
     state.trainings = payload
   },
+  [types.SET_MY_TRAININGS](state, payload) {
+    state.myTrainings = payload
+  },
   [types.SET_BEHAVIOR_DETAILS](state, payload) {
     state.behavior = payload
   },

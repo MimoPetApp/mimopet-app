@@ -31,7 +31,7 @@ export default {
     },
     async onSubscribe() {
       this.loadingSubscribe = true
-      await this.timeout(3000)
+      await this.timeout(1500)
       this.hasFeedback = true
       this.loadingSubscribe = false
     },

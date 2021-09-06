@@ -1,6 +1,7 @@
 export default {
   trainings: [],
   behavior: {},
+  myTrainings: [],
   loadingTrainings: false,
   hasHeader: true,
   modalResponse: {
