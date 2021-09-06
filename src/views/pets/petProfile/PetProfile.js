@@ -1,14 +1,18 @@
 import LoadingCircle from '../../../common/components/loadingCircle'
 import { mapState, mapActions } from 'vuex'
 import ConfirmDeletePet from '../../../common/components/confirmDeletePet'
-import ProfileDetails from '../../../common/components/ProfileDetails'
+import PetProfileComponent from '../../../common/components/PetProfile'
+import parser from './../../../common/helpers/PetProfileParser'
 
 export default {
   name: 'PetProfile',
   components: {
     LoadingCircle,
     ConfirmDeletePet,
-    ProfileDetails
+    PetProfileComponent
+  },
+  data () {
+    return {}
   },
   computed: {
     ...mapState('pets', ['petProfile', 'loadingPets']),
@@ -20,11 +24,10 @@ export default {
       this.ActionGetPetById(this.$route.params.id)
     }
   },
-  mounted () {
-    this.ActionGetPetById(this.$route.params.id)
-    this.ActionSetHomeMenuVisibility(false)
+  async created () {
+    await this.ActionGetPetById(this.$route.params.id)
+    await this.ActionSetHomeMenuVisibility(false)
   },
-  created () {},
   beforeRouteLeave (to, from, next) {
     this.ActionSetLoadingPet(true)
     this.ActionSetHomeMenuVisibility(true)
@@ -38,6 +41,7 @@ export default {
       'ActionmodalDeletePet',
       'ActionSetHomeMenuVisibility'
     ]),
+    ...parser,
     deletePet () {
       this.ActionmodalDeletePet({
         modal: true,

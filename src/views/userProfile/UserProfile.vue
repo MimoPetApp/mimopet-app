@@ -29,7 +29,7 @@
     </div>
     <!-- Loading content -->
     <div v-if="false" class="flex flex-center q-mt-xl">
-      <LoadingCircle />
+      <LoadingCircle color="status-waiting" size="6em" :thickness="5" />
     </div>
   </div>
 </template>

@@ -49,6 +49,10 @@
   color: #0fe386;
 }
 
+.text-status-waiting {
+  color: #ffe400;
+}
+
 .bg-status-warning {
   background: #fbd061;
 }
@@ -57,6 +61,10 @@
 }
 .bg-status-success {
   background: #0fe386;
+}
+
+.bg-status-waiting {
+  color: #ffe400;
 }
 
 .text-utilities-alternate {

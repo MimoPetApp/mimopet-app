@@ -1,7 +1,7 @@
 import LoadingCircle from '../../common/components/loadingCircle'
 import { mapState, mapActions } from 'vuex'
 import ConfirmDeletePet from '../../common/components/confirmDeletePet'
-import ProfileDetails from '../../common/components/ProfileDetails'
+import PetProfileComponent from '../../common/components/PetProfile'
 
 export default {
   name: 'UserProfile',
@@ -11,7 +11,7 @@ export default {
   components: {
     LoadingCircle,
     ConfirmDeletePet,
-    ProfileDetails
+    PetProfileComponent
   },
   computed: {
     ...mapState('pets', ['petProfile', 'loadingPets']),

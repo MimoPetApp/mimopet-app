@@ -14,17 +14,17 @@
       </div>
     </q-toolbar>
     <!-- Main content -->
-    <div v-if="!loadingPets" class="row">
+    <div v-if="!petProfile.loading" class="row">
       <div class="col-12 flex flex-center">
         <div class="row">
-          <profile-details :data="petProfile" />
+          <pet-profile-component :data="petProfile.data" />
         </div>
       </div>
       <ConfirmDeletePet />
     </div>
     <!-- Loading content -->
     <div v-else class="flex flex-center q-mt-xl">
-      <LoadingCircle />
+      <LoadingCircle color="status-waiting" size="6em" :thickness="5" />
     </div>
   </div>
 </template>

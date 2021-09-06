@@ -3,7 +3,12 @@ export default {
   hasFooter: true,
   loadingPets: true,
   petsList: [],
-  petProfile: {},
+  petProfile: {
+    loading: false,
+    data: {},
+    error: false,
+    success: false
+  },
   modalDeletePet: {
     modal: false,
     data: {}
@@ -11,5 +16,6 @@ export default {
   modalPetList: {
     modal: false,
     data: {}
-  }
+  },
+  loadingScreen: false
 }

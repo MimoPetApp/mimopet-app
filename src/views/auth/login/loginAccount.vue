@@ -72,7 +72,7 @@
       </div>
     </AuthContainer>
     <div v-else class="flex flex-center q-mt-xl">
-      <LoadingCircle />
+      <LoadingCircle color="status-waiting" size="6em" :thickness="5" />
     </div>
   </div>
 </template>
