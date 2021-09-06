@@ -1,5 +1,5 @@
 <template>
-  <q-btn :class="'tag tag--' + color" dense flat no-caps>
+  <q-btn :class="'tag' + ` tag--${color}`" dense flat no-caps>
     {{ label }}
   </q-btn>
 </template>
