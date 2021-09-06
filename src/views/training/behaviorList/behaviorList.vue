@@ -4,7 +4,7 @@
       <!-- Componente de busca -->
       <div class="behavior-list__container__search">
         <h3 class="ml-2 text-weight-bolder">Explore comportamentos</h3>
-        <div class="mt-2">
+        <div class="mt-2 mb-2">
           <SearchBox
             label="Busque por programas de treino para seu pet"
             buttonLabel="Faça o teste"
