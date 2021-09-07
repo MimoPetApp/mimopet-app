@@ -1,19 +1,24 @@
 <template>
-  <div class="profile-details-wrapper">
+  <div v-if="info" class="profile-details-wrapper">
     <div class="profile-details-wrapper__header">
       <div class="row">
         <div class="col-12 col-md-12 col-xs-12">
-          <h2 class="text-main-alternate">Informações do pet</h2>
+          <h2 class="text-main-alternate">{{ title }}</h2>
         </div>
         <div
           class="col-12 col-md-12 col-xs-12 flex flex-center"
-          :class="{ 'profile-details-wrapper__header__avatar': avatar }"
+          :class="{ 'profile-details-wrapper__header__avatar': hasAvatar }"
         >
           <div>
             <div class="flex flex-center">
               <q-avatar size="84px">
-                <img src="https://cdn.quasar.dev/img/avatar.png" />
-                <!--<img :src="parseProfileThumbnail(pet.image[0])" />-->
+                <img v-if="petAvatar" :src="parseProfileThumbnail(petAvatar[0])" />
+                <div
+                  v-if="!petAvatar"
+                  class="profile-details-wrapper__header__avatar-default avatar-default-style flex flex-center"
+                >
+                  🐶
+                </div>
               </q-avatar>
             </div>
             <div class="mt-2">
@@ -32,81 +37,26 @@
       <div class="row">
         <div class="col-12 col-md-12 col-xs-12 profile-details-wrapper__content__subtitle">
           <h3 class="text-utilities-alternate">
-            Perfil do animal
+            {{ subtitle }}
           </h3>
           <!--<slot name="content"></slot>-->
         </div>
         <div
+          v-for="(item, index) in info"
+          :key="index"
           class="col-12 col-md-12 col-xs-12 mt-3 profile-details-wrapper__content__info profile-details-wrapper__content__info__divider"
         >
           <div class="row">
             <div class="col-10 col-md-10 col-xs-10">
               <p class="text-main-alternate">
-                Sebastian
+                {{ item.value }}
               </p>
               <h4 class="text-utilities-alternate">
-                Nome do pet
+                {{ item.label }}
               </h4>
             </div>
             <div class="col-2 col-md-2 col-xs-2 profile-details-wrapper__content__btn">
-              <p class="text-utilities-alternate">
-                Editar
-              </p>
-            </div>
-          </div>
-        </div>
-        <div
-          class="col-12 col-md-12 col-xs-12 mt-3 profile-details-wrapper__content__info profile-details-wrapper__content__info__divider"
-        >
-          <div class="row">
-            <div class="col-10 col-md-10 col-xs-10">
-              <p class="text-main-alternate">
-                Castrado
-              </p>
-              <h4 class="text-utilities-alternate">
-                Detalhes
-              </h4>
-            </div>
-            <div class="col-2 col-md-2 col-xs-2 profile-details-wrapper__content__btn">
-              <p class="text-utilities-alternate">
-                Editar
-              </p>
-            </div>
-          </div>
-        </div>
-        <div
-          class="col-12 col-md-12 col-xs-12 mt-3 profile-details-wrapper__content__info profile-details-wrapper__content__info__divider"
-        >
-          <div class="row">
-            <div class="col-10 col-md-10 col-xs-10">
-              <p class="text-main-alternate">
-                Adulto
-              </p>
-              <h4 class="text-utilities-alternate">
-                Idade
-              </h4>
-            </div>
-            <div class="col-2 col-md-2 col-xs-2 profile-details-wrapper__content__btn">
-              <p class="text-utilities-alternate">
-                Editar
-              </p>
-            </div>
-          </div>
-        </div>
-        <div
-          class="col-12 col-md-12 col-xs-12 mt-3 profile-details-wrapper__content__info profile-details-wrapper__content__info__divider"
-        >
-          <div class="row">
-            <div class="col-10 col-md-10 col-xs-10">
-              <p class="text-main-alternate">
-                Yorkshire
-              </p>
-              <h4 class="text-utilities-alternate">
-                Raça
-              </h4>
-            </div>
-            <div class="col-2 col-md-2 col-xs-2 profile-details-wrapper__content__btn">
-              <p class="text-utilities-alternate">
+              <p class="text-utilities-alternate" @click="clickHandler">
                 Editar
               </p>
             </div>
@@ -132,30 +82,18 @@ export default {
   components: {
     Button
   },
-  data () {
-    return {
-      avatar: true,
-      data: [
-        {
-          label: 'Nome do pet',
-          value: 'Sebastian'
-        },
-        { label: 'Detalhes', value: 'Castrado' },
-        { label: 'Idade', value: 'Adulto' },
-        { label: 'Raça', value: 'Yorkshire' }
-      ]
-    }
-  },
   props: {
-    color: {
-      type: String,
-      default: 'main-primary',
-      validate: val => ['main-primary'].indexOf(val) !== -1
+    petAvatar: {
+      type: Array,
+      default: null
     },
-    type: {
-      type: String,
-      default: 'squared',
-      validate: val => ['rounded', 'squared'].indexOf(val) !== -1
+    hasAvatar: {
+      type: Boolean,
+      default: false
+    },
+    info: {
+      type: Array,
+      default: () => {}
     },
     title: {
       type: String,
@@ -167,7 +105,13 @@ export default {
     }
   },
   computed: {},
-  methods: { ...parser }
+  created () {},
+  methods: {
+    ...parser,
+    clickHandler (e) {
+      console.log('e', e)
+    }
+  }
 }
 </script>
 
@@ -184,6 +128,27 @@ export default {
 
     &__avatar {
       margin-top: var(--font-size-7);
+    }
+    &__avatar-default {
+      background-color: var(--utilities-disabled);
+      width: 84px;
+      height: 84px;
+      border-style: solid;
+      border-width: 1px;
+      border-color: var(--utilities-border);
+      border-radius: 100px;
+      .avatar-default-style {
+        font-family: 'customfont650';
+        font-style: normal;
+        font-weight: 600;
+        font-size: var(--font-size-8);
+        line-height: 44px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        letter-spacing: -0.014em;
+        margin: 0;
+      }
     }
     &__btn {
       width: 168px;

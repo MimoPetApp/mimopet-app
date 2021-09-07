@@ -14,10 +14,16 @@
       </div>
     </q-toolbar>
     <!-- Main content -->
-    <div v-if="true" class="row">
+    <div v-if="!loading">
       <div class="col-12">
         <div class="row">
-          <profile-details></profile-details>
+          <profile-details
+            hasAvatar
+            :petAvatar="petProfile.data.image"
+            :info="petData"
+            title="Informações do pet"
+            subtitle="Perfil do animal"
+          ></profile-details>
         </div>
       </div>
     </div>

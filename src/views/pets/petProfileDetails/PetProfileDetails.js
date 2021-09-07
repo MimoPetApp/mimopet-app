@@ -15,7 +15,9 @@ export default {
   },
   data () {
     return {
-      petID: this.$route.params.id
+      petID: this.$route.params.id,
+      petData: [],
+      loading: false
     }
   },
   computed: {
@@ -29,8 +31,11 @@ export default {
     }
   },
   async created () {
+    this.loading = true
     await this.ActionGetPetById(this.$route.params.id)
     await this.ActionSetHomeMenuVisibility(false)
+    await this.structPetData()
+    this.loading = false
   },
   beforeRouteLeave (to, from, next) {
     this.ActionSetLoadingPet(true)
@@ -53,6 +58,53 @@ export default {
           id: this.$route.params.id
         }
       })
+    },
+    formatUpperCaseFirstLetter (string) {
+      let aux = string.toLowerCase()
+      aux = aux.charAt(0).toUpperCase() + aux.slice(1)
+      return aux
+    },
+    mapPetDetails () {
+      const aux = []
+      if (this.petProfile.data) {
+        if (this.petProfile.data.is_adopted) {
+          aux.push('Adotado')
+        }
+        if (this.petProfile.data.is_deficiency) {
+          aux.push('Com deficiência')
+        }
+        if (this.petProfile.data.is_neutered) {
+          aux.push('Castrado')
+        }
+        if (this.petProfile.data.is_service) {
+          aux.push('De serviço')
+        }
+      }
+      return aux
+    },
+    async structPetData () {
+      const aux = []
+      if (this.petProfile.data) {
+        aux.push(
+          {
+            label: 'Nome do pet',
+            value: this.formatUpperCaseFirstLetter(this.petProfile.data.name)
+          },
+          {
+            label: 'Detalhes',
+            value: this.mapPetDetails().join(', ')
+          },
+          {
+            label: 'Idade',
+            value: this.formatUpperCaseFirstLetter(this.petProfile.data.age)
+          },
+          {
+            label: 'Raça',
+            value: this.formatUpperCaseFirstLetter(this.petProfile.data.breed)
+          }
+        )
+      }
+      this.petData = aux
     }
   }
 }
