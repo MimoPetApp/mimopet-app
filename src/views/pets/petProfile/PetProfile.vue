@@ -9,7 +9,14 @@
           <q-btn flat round color="white" size="lg" icon="health_and_safety" to="/" />
           <q-btn flat round color="white" size="lg" icon="settings" to="/" />
           -->
-          <q-btn flat round color="utilities-alternate" size="md" icon="edit" />
+          <q-btn
+            flat
+            round
+            color="utilities-alternate"
+            size="md"
+            icon="edit"
+            :to="`/pet/${petID}/detalhes`"
+          />
         </div>
       </div>
     </q-toolbar>
@@ -30,4 +37,4 @@
 </template>
 
 <script src="./PetProfile.js"></script>
-<style src="./PetProfile.scss" lang="scss"></style>
+<style src="./PetProfile.scss" lang="scss" scoped></style>

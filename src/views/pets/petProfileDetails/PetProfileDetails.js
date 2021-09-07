@@ -1,15 +1,17 @@
 import LoadingCircle from '../../../common/components/loadingCircle'
 import { mapState, mapActions } from 'vuex'
+import ProfileDetails from '../../../common/components/ProfileDetails/ProfileDetails.vue'
 import ConfirmDeletePet from '../../../common/components/confirmDeletePet'
 import PetProfileComponent from '../../../common/components/PetProfile'
 import parser from './../../../common/helpers/PetProfileParser'
 
 export default {
-  name: 'PetProfile',
+  name: 'PetProfileDetails',
   components: {
     LoadingCircle,
     ConfirmDeletePet,
-    PetProfileComponent
+    PetProfileComponent,
+    ProfileDetails
   },
   data () {
     return {

@@ -60,7 +60,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $text-main-button-size: 1.16rem;
 
 .home-card {
