@@ -56,7 +56,7 @@
               </h4>
             </div>
             <div class="col-2 col-md-2 col-xs-2 profile-details-wrapper__content__btn">
-              <p class="text-utilities-alternate" @click="clickHandler">
+              <p class="text-utilities-alternate" @click="clickHandler(item)">
                 Editar
               </p>
             </div>
@@ -108,8 +108,8 @@ export default {
   created () {},
   methods: {
     ...parser,
-    clickHandler (e) {
-      console.log('e', e)
+    clickHandler (item) {
+      this.$emit('selectedEdition', item)
     }
   }
 }

@@ -105,6 +105,9 @@ export default {
         )
       }
       this.petData = aux
+    },
+    editHandler (event) {
+      console.log('a', event)
     }
   }
 }
