@@ -23,7 +23,7 @@
             </div>
             <div class="mt-2">
               <Button
-                label="Remover imagem"
+                label="Alterar imagem"
                 noCaps
                 color="utilities-disabled"
                 class="pl-2 pr-2 profile-details-wrapper__header__btn"
@@ -56,7 +56,7 @@
               </h4>
             </div>
             <div class="col-2 col-md-2 col-xs-2 profile-details-wrapper__content__btn">
-              <p class="text-utilities-alternate" @click="clickHandler(item)">
+              <p class="text-utilities-alternate" @click="clickHandler(index)">
                 Editar
               </p>
             </div>
@@ -108,8 +108,8 @@ export default {
   created () {},
   methods: {
     ...parser,
-    clickHandler (item) {
-      this.$emit('selectedEdition', item)
+    clickHandler (index) {
+      this.$emit('selectedEdition', index)
     }
   }
 }
