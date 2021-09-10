@@ -9,25 +9,32 @@
           <q-btn flat round color="white" size="lg" icon="health_and_safety" to="/" />
           <q-btn flat round color="white" size="lg" icon="settings" to="/" />
           -->
-          <q-btn flat round color="utilities-alternate" size="md" icon="edit" />
+          <q-btn
+            flat
+            round
+            color="utilities-alternate"
+            size="md"
+            icon="edit"
+            :to="`/pet/${petID}/detalhes`"
+          />
         </div>
       </div>
     </q-toolbar>
     <!-- Main content -->
-    <div v-if="!loadingPets" class="row">
+    <div v-if="!petProfile.loading" class="row">
       <div class="col-12 flex flex-center">
         <div class="row">
-          <PetProfile :data="petProfile" />
+          <pet-profile-component :data="petProfile.data" />
         </div>
       </div>
       <ConfirmDeletePet />
     </div>
     <!-- Loading content -->
     <div v-else class="flex flex-center q-mt-xl">
-      <LoadingCircle />
+      <LoadingCircle color="status-waiting" size="6em" :thickness="5" />
     </div>
   </div>
 </template>
 
-<script src="./petProfile.js"></script>
-<style src="./petProfile.scss" lang="scss"></style>
+<script src="./PetProfile.js"></script>
+<style src="./PetProfile.scss" lang="scss" scoped></style>

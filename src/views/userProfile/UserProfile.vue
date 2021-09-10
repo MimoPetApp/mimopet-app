@@ -29,10 +29,10 @@
     </div>
     <!-- Loading content -->
     <div v-if="false" class="flex flex-center q-mt-xl">
-      <LoadingCircle />
+      <LoadingCircle color="status-waiting" size="6em" :thickness="5" />
     </div>
   </div>
 </template>
 
-<script src="./userProfile.js"></script>
-<style src="./userProfile.scss" lang="scss"></style>
+<script src="./UserProfile.js"></script>
+<style src="./UserProfile.scss" lang="scss"></style>

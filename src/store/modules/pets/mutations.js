@@ -24,5 +24,20 @@ export default {
   },
   [types.SET_MODALDELETEPETLIST](state, payload) {
     state.modalPetList = payload
+  },
+  [types.LOADING_GETPETBYID] (state) {
+    state.petProfile.loading = true
+  },
+  [types.SUCCESS_GETPETBYID] (state, payload) {
+    state.petProfile.loading = false
+    state.petProfile.success = true
+    state.petProfile.data = payload
+    state.petProfile.error = false
+  },
+  [types.ERROR_GETPETBYID] (state, payload) {
+    state.petProfile.loading = false
+    state.petProfile.success = false
+    state.petProfile.data = {}
+    state.petProfile.error = payload
   }
 }

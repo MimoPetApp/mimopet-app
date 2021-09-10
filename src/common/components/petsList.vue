@@ -44,8 +44,8 @@
 </template>
 
 <script>
+import parser from './../helpers/PetProfileParser'
 import HomeCard from './HomeCard/HomeCard'
-import parser from './../helpers/petProfileParser'
 export default {
   name: 'PetsList',
   components: {
@@ -63,7 +63,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $text-main-button-size: 1.16rem;
 
 .home-card {

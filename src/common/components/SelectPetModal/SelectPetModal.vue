@@ -46,10 +46,10 @@
 
 <script>
 import { mapState, mapActions, mapMutations } from 'vuex'
-import parser from './../../helpers/petProfileParser'
+import parser from './../../helpers/PetProfileParser'
 export default {
   name: 'SelectPetModal',
-  data() {
+  data () {
     return {
       dialog: true
     }
@@ -61,11 +61,11 @@ export default {
     ...parser,
     ...mapActions('pets', ['ActionPetModalList', 'ActionSetLoadingPet']),
     ...mapMutations('pets', ['SET_CURRPET']),
-    onSelect(id) {
+    onSelect (id) {
       this.SET_CURRPET(id)
       this.ActionPetModalList({ modal: false, data: {} })
     },
-    hide() {
+    hide () {
       this.ActionSetLoadingPet(true)
       this.ActionPetModalList({ modal: false, data: {} })
     }
