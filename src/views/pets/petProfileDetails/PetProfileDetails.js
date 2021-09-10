@@ -13,7 +13,7 @@ export default {
     PetProfileComponent,
     ProfileDetails
   },
-  data () {
+  data() {
     return {
       petID: this.$route.params.id,
       petData: [],
@@ -30,14 +30,14 @@ export default {
       this.ActionGetPetById(this.$route.params.id)
     }
   },
-  async created () {
+  async created() {
     this.loading = true
     await this.ActionGetPetById(this.$route.params.id)
     await this.ActionSetHomeMenuVisibility(false)
     await this.structPetData()
     this.loading = false
   },
-  beforeRouteLeave (to, from, next) {
+  beforeRouteLeave(to, from, next) {
     this.ActionSetLoadingPet(true)
     this.ActionSetHomeMenuVisibility(true)
     next()
@@ -51,7 +51,7 @@ export default {
       'ActionSetHomeMenuVisibility'
     ]),
     ...parser,
-    deletePet () {
+    deletePet() {
       this.ActionmodalDeletePet({
         modal: true,
         data: {
@@ -59,12 +59,12 @@ export default {
         }
       })
     },
-    formatUpperCaseFirstLetter (string) {
+    formatUpperCaseFirstLetter(string) {
       let aux = string.toLowerCase()
       aux = aux.charAt(0).toUpperCase() + aux.slice(1)
       return aux
     },
-    mapPetDetails () {
+    mapPetDetails() {
       const aux = []
       if (this.petProfile.data) {
         if (this.petProfile.data.is_adopted) {
@@ -82,7 +82,7 @@ export default {
       }
       return aux
     },
-    async structPetData () {
+    async structPetData() {
       const aux = []
       if (this.petProfile.data) {
         aux.push(
@@ -105,9 +105,6 @@ export default {
         )
       }
       this.petData = aux
-    },
-    editHandler (event) {
-      console.log('a', event)
     }
   }
 }
