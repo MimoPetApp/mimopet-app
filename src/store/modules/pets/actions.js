@@ -30,20 +30,17 @@ export const ActionCreatePet = async ({ commit, dispatch }, payload) => {
   return res.data
 }
 
-export const ActionGetPetById = ({ commit, dispatch }, payload) => {
-  return new Promise((resolve, reject) => {
-    Http.get(`pets/${payload}`)
-      .then(response => {
-        const petData = response.data
-        commit(types.SET_PROFILEPET, petData)
-        dispatch('ActionSetLoadingPet', false)
-        resolve(petData)
-      })
-      .catch(error => {
-        console.log(error)
-        reject(error.response.data)
-      })
-  })
+export const ActionGetPetById = async ({ commit, dispatch }, payload) => {
+  commit(types.LOADING_GETPETBYID)
+  await Http.get(`pets/${payload}`)
+    .then(response => {
+      commit(types.SUCCESS_GETPETBYID, response.data)
+      return true
+    })
+    .catch(error => {
+      commit(types.ERROR_GETPETBYID, error.response)
+      return false
+    })
 }
 
 export const ActionSetLoadingPet = ({ commit, dispatch }, payload) => {

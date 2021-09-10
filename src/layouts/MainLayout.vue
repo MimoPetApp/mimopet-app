@@ -69,7 +69,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .home__container {
   background: var(--main-alternate);
   min-height: 100vh;

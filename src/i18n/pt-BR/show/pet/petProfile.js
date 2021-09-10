@@ -16,8 +16,9 @@ export default {
     },
     details: {
       adopted: 'Adotado',
-      castrated: 'Castrado',
-      withSomeDisability: 'Com alguma deficiência'
+      neutered: 'Castrado',
+      deficiency: 'Com deficiência',
+      service: 'De serviço'
     },
     gender: {
       male: 'Macho',

@@ -1,8 +1,8 @@
 export default {
-  parseBreed(breed) {
+  parseBreed (breed) {
     return breed === 'unknown' ? this.$t('petProfile.extra.unknownBreed') : breed
   },
-  parseProfilePet(profile) {
+  parseProfilePet (profile) {
     switch (profile) {
       case 'feline':
         return this.$t('petProfile.profile.feline')
@@ -12,19 +12,19 @@ export default {
         return ''
     }
   },
-  parseDetails(details) {
+  parseDetails (details) {
     switch (details) {
       case 'adopted':
         return this.$t('petProfile.details.adopted')
-      case 'castrated':
-        return this.$t('petProfile.details.castrated')
-      case 'withSomeDisability':
-        return this.$t('petProfile.details.withSomeDisability')
+      case 'neutered':
+        return this.$t('petProfile.details.neutered')
+      case 'deficiency':
+        return this.$t('petProfile.details.deficiency')
       default:
-        return ''
+        return this.$t('petProfile.details.service')
     }
   },
-  parseGender(gender) {
+  parseGender (gender) {
     switch (gender) {
       case 'male':
         return this.$t('petProfile.gender.male')
@@ -34,13 +34,13 @@ export default {
         return ''
     }
   },
-  parseProfileThumbnail(image) {
+  parseProfileThumbnail (image) {
     if (image) {
       return `${process.env.API.slice(0, -1)}${image.formats.thumbnail.url}`
     }
     return 'https://i.pinimg.com/originals/24/cb/7f/24cb7f9b961a5bad99662e149d8bb978.png'
   },
-  getAge(age) {
+  getAge (age) {
     switch (age) {
       case 'SENIOR':
         return 'Adulto'

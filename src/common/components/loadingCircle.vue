@@ -1,16 +1,19 @@
 <template>
   <div class="loading-content">
-    <q-img src="~assets/images/loading.gif" class="loading-img" />
+    <QSpinner v-bind="$attrs" />
+    <!--<q-img src="~assets/images/wait.gif" class="loading-img" />-->
   </div>
 </template>
 
 <script>
+import { QSpinner } from 'quasar'
 export default {
-  name: 'LoadingCircle'
+  name: 'LoadingCircle',
+  components: { QSpinner }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $img-size: 14vh;
 
 .loading-content {
@@ -24,5 +27,17 @@ $img-size: 14vh;
   width: $img-size;
   margin-right: 5vw;
   margin-top: 2vh;
+}
+
+.bg-primary-filled {
+  color: var(--main-background) !important;
+  background: var(--main-primary) !important;
+  &:disabled {
+    color: var(--utilities-alternate) !important;
+    background: var(--utilities-border) !important;
+  }
+  &:active {
+    background: var(--main-secondary) !important;
+  }
 }
 </style>

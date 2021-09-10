@@ -1,0 +1,10 @@
+.pet-profile-container {
+  background: var(--main-background);
+}
+
+.pet-profile-row {
+  width: calc(100vw);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

@@ -2,6 +2,6 @@ export default [
   {
     path: '/userProfile',
     name: 'userProfile',
-    component: () => import('../../views/userProfile/userProfile.vue')
+    component: () => import('../../views/userProfile/UserProfile.vue')
   }
 ]

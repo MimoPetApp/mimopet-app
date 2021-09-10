@@ -1,5 +1,5 @@
 <template>
-  <div class="q-animate--scale">
+  <div class="pet-profile">
     <div class="row justify-center">
       <q-avatar size="100px" class="mt-2">
         <img :src="parseProfileThumbnail(data.image[0])" />
@@ -12,8 +12,12 @@
       <p class="pet-profile__text mt-1">{{ parseBreed(data.breed) }}, {{ getAge(data.age) }}</p>
     </div>
     <div class="row justify-center mt-1 mb-3">
-      <span class="pet-profile__text pet-profile__badge">
-        {{ parseGender(data.gender) }}
+      <span
+        v-for="(detail, index) in petDetails"
+        :key="index"
+        class="pet-profile__text pet-profile__badge"
+      >
+        {{ detail }}
       </span>
     </div>
     <q-card class="pet-profile__card pt-4">
@@ -97,12 +101,12 @@
 
 <script>
 import ConfirmDeletePet from './confirmDeletePet'
-import parser from './../helpers/petProfileParser'
+import parser from '../helpers/PetProfileParser'
 import Button from './Button/Button'
 import { mapActions } from 'vuex'
 
 export default {
-  name: 'PetProfile',
+  name: 'PetProfileComponent',
   components: {
     Button,
     ConfirmDeletePet
@@ -113,13 +117,18 @@ export default {
       default: () => {}
     }
   },
-  data() {
-    return {}
+  data () {
+    return {
+      petDetails: []
+    }
+  },
+  created () {
+    this.getPetDetails()
   },
   methods: {
     ...parser,
     ...mapActions('pets', ['ActionmodalDeletePet']),
-    deletePet() {
+    deletePet () {
       this.ActionmodalDeletePet({
         modal: true,
         data: {
@@ -127,12 +136,30 @@ export default {
           name: this.data.name
         }
       })
+    },
+    getPetDetails () {
+      const aux = []
+      if (this.data) {
+        if (this.data.is_adopted) {
+          aux.push(this.parseDetails('adopted'))
+        }
+        if (this.data.is_deficiency) {
+          aux.push(this.parseDetails('deficiency'))
+        }
+        if (this.data.is_neutered) {
+          aux.push(this.parseDetails('neutered'))
+        }
+        if (this.data.is_service) {
+          aux.push(this.parseDetails('service'))
+        }
+        this.petDetails = aux
+      }
     }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .pet-profile {
   &__text {
     font-family: 'customfont';
