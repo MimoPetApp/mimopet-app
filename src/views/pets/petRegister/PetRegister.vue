@@ -158,14 +158,14 @@
       <!-- End Pet Details -->
 
       <!-- Pet Added -->
-      <Feedback
+      <FeedbackModal
         :active="step === 5"
-        :icon="'pet.png'"
+        :icon="feedbackIcon"
         title="Pet Adicionado"
         subtitle="Você pode adicionar inúmeros pets a sua conta cadastrada"
         buttonText="Acessar o app"
         :action="goToHome"
-      ></Feedback>
+      ></FeedbackModal>
       <!-- End Pet Added -->
     </q-layout>
     <div v-else class="flex flex-center q-mt-xl">

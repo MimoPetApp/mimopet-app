@@ -1,0 +1,11 @@
+.behavior-list {
+  &__container__search {
+    background: var(--main-background);
+    padding: var(--spacing-2);
+  }
+
+  &__container__result {
+    background: var(--utilities-disabled);
+    padding: var(--spacing-4);
+  }
+}

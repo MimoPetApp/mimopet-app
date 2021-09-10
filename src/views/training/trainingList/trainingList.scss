@@ -1,0 +1,8 @@
+.training-list {
+  &__title {
+    color: var(--main-alternate);
+    font-size: var(--font-size-8);
+    line-height: calc(var(--font-size-8) + 0.5rem);
+    font-weight: 200;
+  }
+}

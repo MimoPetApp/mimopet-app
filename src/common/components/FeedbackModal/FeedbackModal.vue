@@ -1,12 +1,20 @@
 <template>
   <QDialog v-bind="$attrs" :model-value="active" position="bottom" persistent full-width>
     <q-card class="feedback-dialog__card text-center">
-      <q-card-section class="mt-5">
-        <q-img :src="`/assets/images/${icon}`" width="80px" />
-        <h1 class="feedback-dialog__text feedback-dialog__title mb-1 mt-1">{{ title }}</h1>
-        <h2 class="feedback-dialog__text feedback-dialog__subtitle">{{ subtitle }}</h2>
+      <q-card-section class="">
+        <q-avatar v-if="icon" size="80px">
+          <img :src="icon" />
+        </q-avatar>
+        <h2 class="feedback-dialog__text feedback-dialog__title text-main-alternate mb-2 mt-2">
+          {{ title }}
+        </h2>
+        <h3
+          class="feedback-dialog__text feedback-dialog__subtitle text-utilities-alternate m-0 p-0"
+        >
+          {{ subtitle }}
+        </h3>
       </q-card-section>
-      <q-card-section class="mb-3">
+      <q-card-section class="">
         <Button
           v-if="subButtonText"
           class="main-button no-shadow text-weight-bold mb-2"
@@ -33,7 +41,7 @@
 import { QDialog } from 'quasar'
 import Button from '../../../common/components/Button/Button'
 export default {
-  name: 'Feedback',
+  name: 'FeedbackModal',
   components: { QDialog, Button },
   props: {
     active: {
@@ -59,8 +67,7 @@ export default {
       type: Function
     },
     icon: {
-      type: String,
-      default: 'feedback/check.png'
+      type: String
     }
   }
 }
@@ -73,28 +80,26 @@ export default {
     background: var(--main-background);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     border-radius: var(--spacing-4);
   }
 
   &__text {
     max-width: 70%;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   &__title {
-    color: var(--main-alternative);
     font-size: var(--font-size-8);
-    line-height: var(--font-size-9);
+    line-height: calc(var(--font-size-8) + 0.25rem);
     letter-spacing: -0.014em;
     font-weight: 400;
   }
 
   &__subtitle {
-    color: var(--utilities-alternate);
     font-size: var(--font-size-5);
-    line-height: var(--font-size-7);
-    letter-spacing: -0.014em;
+    line-height: calc(var(--font-size-5) + 0.25rem);
     font-weight: 100;
   }
 
