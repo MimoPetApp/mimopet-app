@@ -1,21 +1,22 @@
 import Loading from '../../../common/components/loading'
-import PetsList from '../../../common/components/petsList'
+import ModuleCard from '../../../common/components/ModuleCard/ModuleCard'
+
 import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'PageIndex',
   components: {
-    PetsList,
-    Loading
+    Loading,
+    ModuleCard
     // CardHealth
   },
   computed: {
     ...mapState('pets', ['petsList', 'loadingPets', 'currPet'])
   },
-  mounted() {
+  mounted () {
     this.ActionGetPets()
   },
-  beforeRouteLeave(to, from, next) {
+  beforeRouteLeave (to, from, next) {
     this.ActionSetLoadingPet(true)
     next()
   },

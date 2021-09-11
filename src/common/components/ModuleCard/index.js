@@ -1,1 +1,1 @@
-export * from './Step.vue'
+export * from './ModuleCard.vue'

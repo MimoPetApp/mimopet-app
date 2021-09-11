@@ -1,111 +1,111 @@
 <template>
-  <q-card class="home-card__item p-2 pt-4 mt-1 mb-2" :style="`background: ${color}`">
-    <div class="row justify-center items-center">
-      <h4 class="text-weight-bolder m-0 p-0">{{ label }}</h4>
+  <q-card
+    class="module-card-wrapper p-2 pt-4 mt-1 mb-2"
+    :style="`background: ${backgroundColor}; border-color: ${backgroundColor}`"
+  >
+    <div class="module-card-wrapper__lock bg-main-background">
+      <img src="" />
     </div>
-    <div class="row justify-center items-center">
-      <p class="text-weight-medium m-0 p-0">{{ description }}</p>
+    <div class="row">
+      <div class="col-12 col-md-12 col-xs-12">
+        <div class="module-card-wrapper__header">
+          <img src="" />
+        </div>
+      </div>
+      <div class="col-12 col-md-12 col-xs-12">
+        <div class="module-card-wrapper__footer">
+          <h4 class="module-card-wrapper__footer__title p-0 m-0 text-main-background">
+            Equipamento de passeio
+          </h4>
+          <p class="module-card-wrapper__footer__description p-0 m-0 mb-2 text-main-background">
+            Aprender quais os tipos de guia e coleira são mais adequados ao seu pet
+          </p>
+          <span class="module-card-wrapper__footer__badge text-main-background">
+            3 sessões
+          </span>
+        </div>
+      </div>
     </div>
-    <div class="row justify-center items-center mt-2">
-      <q-btn
-        :to="to"
-        rounded
-        flat
-        no-caps
-        text-color="main-background"
-        class="home-card__item--button"
-      >
-        {{ buttonLabel }}
-      </q-btn>
-    </div>
-    <div class="home-card__item__footer" :style="`background: ${colorAlt}`"></div>
-    <svg class="home-card__item__circle" height="50" width="120">
-      <ellipse cx="60" cy="60" rx="50" ry="35" fill="#fff" />
-    </svg>
   </q-card>
 </template>
 
 <script>
 export default {
-  name: 'HomeCard',
+  name: 'ModuleCard',
   props: {
-    label: {
+    title: {
       type: String,
       default: ''
     },
     description: {
       type: String
     },
-    notificationLabel: {
+    sessions: {
       type: String,
-      default: 'Agendados'
+      default: ''
     },
-    notification: {
-      type: Number,
-      default: 0
-    },
-    color: {
+    blocked: { type: Boolean, default: false },
+    backgroundColor: {
       type: String,
-      default: '#fe7624'
-    },
-    colorAlt: {
-      type: String,
-      default: '#fe7624'
-    },
-    to: {
-      type: String,
-      default: '/behavior'
-    },
-    buttonLabel: {
-      type: String,
-      default: 'Ver mais'
+      default: '#67D0E8'
     }
   },
-  data() {
+  data () {
     return {}
-  }
+  },
+  computed: {}
 }
 </script>
 
-<style lang="scss">
-.home-card__item {
-  min-height: 250px;
-  border-radius: 25px !important;
-
-  &--button {
-    background: rgba(255, 255, 255, 0.2);
-    z-index: 999;
+<style lang="scss" scoped>
+.module-card-wrapper {
+  border-radius: 22px;
+  border-style: solid;
+  border-width: 1px;
+  min-width: 318px;
+  min-height: 324px;
+  position: relative;
+  &__lock {
+    border-radius: 12px !important;
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    right: 7.28%;
+    top: 7.92%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-
   &__footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 30%;
-    width: 100%;
-    border-radius: 0 0 25px 25px !important;
+    &__title {
+      font-family: 'customfont700';
+      font-style: normal;
+      font-weight: bold;
+      font-size: var(--font-size-5);
+      line-height: 22px;
+      letter-spacing: -0.014em;
+    }
+    &__description {
+      font-family: 'customfont620';
+      font-style: normal;
+      font-weight: 500;
+      font-size: var(--font-size-3);
+      line-height: 17px;
+      letter-spacing: -0.018em;
+    }
+    &__badge {
+      font-family: 'customfont620';
+      background: rgba(42, 29, 70, 0.75);
+      width: 130px;
+      height: 24px;
+      border-radius: 100px;
+      padding: 5px 15px;
+      font-style: normal;
+      font-weight: 500;
+      font-size: var(--font-size-2);
+      line-height: 15px;
+      text-align: center;
+    }
   }
-
-  &__circle {
-    position: absolute;
-    bottom: 0;
-    left: calc(50% - 60px);
-  }
-}
-
-.home-card__item__badge {
-  color: var(--colorWhite);
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  padding: 0 0 0 15px;
-}
-
-.home-card__item__badge--icon {
-  font-size: 2.3em;
-  color: #ff6160;
-  background: var(--colorWhite);
-  padding: 0;
-  margin: 0;
-  border-radius: 50%;
 }
 </style>

@@ -1,0 +1,22 @@
+.training-details-wrapper {
+  padding-right: var(--font-size-7);
+  padding-left: var(--font-size-7);
+  &__header {
+    &__title {
+      font-family: 'customfont700';
+      font-style: normal;
+      font-weight: bold;
+      font-size: var(--font-size-8);
+      line-height: 44px;
+      letter-spacing: -0.014em;
+    }
+    &__subtitle {
+      font-family: 'customfont650';
+      font-style: normal;
+      font-weight: 600;
+      font-size: var(--font-size-6);
+      line-height: 24px;
+      letter-spacing: -0.014em;
+    }
+  }
+}

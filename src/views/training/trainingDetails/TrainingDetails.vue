@@ -1,24 +1,19 @@
 <template>
-  <div>
-    <div v-if="!loadingPets">
-      <div v-if="petsList.length >= 1">
-        <PetsList :pet="petsList[currPet]" />
-      </div>
-      <div v-else class="row">
-        <q-card
-          class="home-card q-animate--scale q-mt-xl"
-          style="background: #7166f1; height: calc(100vh - 145px)"
-        >
-          <q-card-section class="text-center q-pa-xl">
-            <h3 class="mimo-text mimo-text__h3 mimo-text--white" style="line-height: 2rem">
-              Nenhum pet encontrado,
-            </h3>
-            <q-btn class="home-card__button no-shadow q-ml-md" to="novo/pet" no-caps flat>
-              <span class="mimo-text mimo-text--white">Cadastrar Pet?</span>
-            </q-btn>
-          </q-card-section>
-        </q-card>
-      </div>
+  <div class="training-details-wrapper">
+    <div v-if="true" class="training-details-wrapper__header">
+      <h2 class="training-details-wrapper__header__title text-main-alternate">
+        Preparação para primeiro passeio
+      </h2>
+      <span class="training-details-wrapper__header__subtitle text-utilities-alternate"
+        >O que você vai aprender?</span
+      >
+      <module-card
+        label="Explore comportamentos"
+        description="Vantages de ter um pet treinado"
+        color="#FF8E4A"
+        colorAlt="#f66917"
+        to="/behavior"
+      ></module-card>
     </div>
     <div v-else class="flex flex-center q-mt-xl">
       <Loading />
@@ -28,4 +23,4 @@
 </template>
 
 <script src="./TrainingDetails.js"></script>
-<style src="./TrainingDetails.scss" lang="scss"></style>
+<style src="./TrainingDetails.scss" lang="scss" scoped></style>
