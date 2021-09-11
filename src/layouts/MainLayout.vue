@@ -25,7 +25,6 @@
       <q-page-container>
         <router-view />
       </q-page-container>
-      <ModalAuth />
       <SelectPetModal />
       <q-footer v-if="hasFooter" class="bg-white flex flex-center">
         <q-tabs v-model="tab" class="text-blue-grey-2" active-color="main-alternate">
@@ -39,13 +38,11 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import ModalAuth from '../common/components/modalNotLogged'
 import SelectPetModal from '../common/components/SelectPetModal/SelectPetModal'
 
 export default {
   name: 'MainLayout',
   components: {
-    ModalAuth,
     SelectPetModal
   },
   data() {

@@ -14,10 +14,10 @@ export default {
   },
   modalResponseUser: {
     modal: false,
-    data: {}
-  },
-  modalErrorServer: {
-    modal: false,
-    data: {}
+    data: {
+      title: '',
+      message: '',
+      btnLabel: ''
+    }
   }
 }
