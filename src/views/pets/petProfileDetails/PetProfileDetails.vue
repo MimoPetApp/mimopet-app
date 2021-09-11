@@ -23,7 +23,6 @@
             :info="petData"
             title="Informações do pet"
             subtitle="Perfil do animal"
-            @selectedEdition="editHandler($event)"
           ></profile-details>
         </div>
       </div>
