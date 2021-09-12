@@ -10,8 +10,20 @@ export default [
     component: () => import('../../views/training/behaviorDetails/behaviorDetails.vue')
   },
   {
-    path: '/training',
-    name: 'trainingList',
+    path: '/treinamentos',
+    name: 'TrainingList',
+    children: [
+      {
+        path: ':id/detalhes',
+        name: 'TrainingDetails',
+        component: () => import('../../views/training/trainingDetails/TrainingDetails.vue')
+      }
+    ],
     component: () => import('../../views/training/trainingList/trainingList.vue')
+  },
+  {
+    path: '/treinamentos/:id/detalhes',
+    name: 'TrainingDetails',
+    component: () => import('../../views/training/trainingDetails/TrainingDetails.vue')
   }
 ]
