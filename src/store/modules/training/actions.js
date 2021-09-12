@@ -141,7 +141,7 @@ const sampleTrain = {
 /* Call GET /trainings */
 export const ActionGetTrainings = async ({ commit, dispatch }, payload) => {
   dispatch('ActionSetLoadingTrainings', true)
-  await Http.get('trainings', payload)
+  await Http.get('modules', payload)
     .then(response => {
       commit(types.SET_TRAININGS, response.data)
     })
