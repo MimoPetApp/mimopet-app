@@ -38,7 +38,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import SelectPetModal from '../common/components/SelectPetModal/SelectPetModal'
+import SelectPetModal from '../common/components/Modal/SelectPetModal/SelectPetModal'
 
 export default {
   name: 'MainLayout',
