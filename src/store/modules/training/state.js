@@ -9,8 +9,11 @@ export default {
     data: {}
   },
   modalEvaluateTraining: {
-    modal: false,
-    data: {}
+    model: false,
+    data: {
+      title: 'Avalie o treinamento',
+      btnLabel: 'Enviar'
+    }
   },
   modalTrainingLimitExceeded: {
     modal: false,

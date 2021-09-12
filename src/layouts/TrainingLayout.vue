@@ -6,6 +6,7 @@
       </q-toolbar>
     </q-header>
     <q-page-container>
+      <EvaluateTraining :content="modalEvaluateTraining" />
       <router-view />
     </q-page-container>
   </q-layout>
@@ -13,10 +14,14 @@
 
 <script>
 import { mapState } from 'vuex'
+import EvaluateTraining from '../common/components/Modal/EvaluateTraining/EvaluateTraining'
 export default {
   name: 'TrainingLayout',
+  components: {
+    EvaluateTraining
+  },
   computed: {
-    ...mapState('training', ['hasHeader'])
+    ...mapState('training', ['hasHeader', 'modalEvaluateTraining'])
   }
 }
 </script>
