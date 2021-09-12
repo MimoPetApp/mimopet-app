@@ -157,7 +157,19 @@ export const ActionGetTrainings = async ({ commit, dispatch }, payload) => {
 
 /* Call GET /trainings */
 export const ActionGetMyTrainings = async ({ commit, dispatch }, payload) => {
-  commit(types.SET_MY_TRAININGS, [sampleTrain])
+  dispatch('ActionSetLoadingTrainings', true)
+  await Http.get('modules', payload)
+    .then(response => {
+      commit(types.SET_MY_TRAININGS, response.data)
+    })
+    .catch(error => {
+      dispatch('ActionModalResponse', {
+        modal: true,
+        data: { msg: 'Erro ao buscar lista de treinamentos inscritos' }
+      })
+      console.error(error)
+    })
+  dispatch('ActionSetLoadingTrainings', false)
 }
 
 /* Call GET /trainings */

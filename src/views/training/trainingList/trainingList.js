@@ -5,12 +5,10 @@ import TrainingCard from '../../../common/components/TrainingCard/TrainingCard'
 export default {
   components: { LoadingCircle, TrainingCard },
   data() {
-    return {
-      loading: false
-    }
+    return {}
   },
   computed: {
-    ...mapState('training', ['myTrainings'])
+    ...mapState('training', ['myTrainings', 'loadingTrainings'])
   },
   methods: {
     ...mapActions('training', ['ActionGetMyTrainings']),
@@ -18,10 +16,7 @@ export default {
       return new Promise(resolve => setTimeout(resolve, ms))
     }
   },
-  async created() {
-    this.loading = true
-    await this.timeout(500)
-    await this.ActionGetMyTrainings()
-    this.loading = false
+  created() {
+    this.ActionGetMyTrainings()
   }
 }

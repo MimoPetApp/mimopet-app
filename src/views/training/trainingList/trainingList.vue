@@ -1,6 +1,6 @@
 <template>
   <div class="training-list">
-    <div v-if="!loading">
+    <div v-if="!loadingTrainings">
       <h1 class="training-list__title mr-4 ml-4">Treinamentos</h1>
       <div v-for="train in myTrainings" :key="train.id" class="mr-2 ml-2">
         <router-link
