@@ -13,6 +13,7 @@
         color="#FF8E4A"
         colorAlt="#f66917"
         to="/behavior"
+        class="mt-2"
       ></module-card>
     </div>
     <div v-else class="flex flex-center q-mt-xl">

@@ -1,12 +1,12 @@
 <template>
   <q-card
-    class="module-card-wrapper p-2 pt-4 mt-1 mb-2"
+    class="module-card-wrapper p-2 pt-2 mt-1 mb-2"
     :style="`background: ${backgroundColor}; border-color: ${backgroundColor}`"
   >
     <div v-if="locked" class="module-card-wrapper__lock bg-main-background">
       <img :src="getLockIcon" />
     </div>
-    <div class="row">
+    <div class="row module-card-wrapper__content">
       <div class="col-12 col-md-12 col-xs-12">
         <div class="module-card-wrapper__header flex flex-center">
           <img :src="getModuleIcon" />
@@ -82,6 +82,7 @@ export default {
   min-width: 318px;
   min-height: 324px;
   position: relative;
+  display: flex;
   &__lock {
     border-radius: 12px !important;
     width: 36px;
@@ -98,6 +99,10 @@ export default {
     left: 0%;
     bottom: -3%;
     width: 100%;
+  }
+  &__content {
+    align-content: space-between;
+    padding-bottom: 10px;
   }
   &__footer {
     &__title {
