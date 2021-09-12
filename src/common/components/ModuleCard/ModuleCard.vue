@@ -3,13 +3,13 @@
     class="module-card-wrapper p-2 pt-4 mt-1 mb-2"
     :style="`background: ${backgroundColor}; border-color: ${backgroundColor}`"
   >
-    <div class="module-card-wrapper__lock bg-main-background">
-      <img src="" />
+    <div v-if="locked" class="module-card-wrapper__lock bg-main-background">
+      <img :src="getLockIcon" />
     </div>
     <div class="row">
       <div class="col-12 col-md-12 col-xs-12">
-        <div class="module-card-wrapper__header">
-          <img src="" />
+        <div class="module-card-wrapper__header flex flex-center">
+          <img :src="getModuleIcon" />
         </div>
       </div>
       <div class="col-12 col-md-12 col-xs-12">
@@ -26,10 +26,17 @@
         </div>
       </div>
     </div>
+    <div class="module-card-wrapper__shadow">
+      <img :src="getModuleShadowIcon" style="width: 100%;" />
+    </div>
   </q-card>
 </template>
 
 <script>
+const lockIcon = require('../../../assets/images/lock.svg')
+const moduleShadowIcon = require('../../../assets/images/module-shadow.svg')
+const moduleIcon = require('../../../assets/images/happy.svg')
+
 export default {
   name: 'ModuleCard',
   props: {
@@ -44,7 +51,7 @@ export default {
       type: String,
       default: ''
     },
-    blocked: { type: Boolean, default: false },
+    locked: { type: Boolean, default: true },
     backgroundColor: {
       type: String,
       default: '#67D0E8'
@@ -53,7 +60,17 @@ export default {
   data () {
     return {}
   },
-  computed: {}
+  computed: {
+    getLockIcon () {
+      return lockIcon
+    },
+    getModuleShadowIcon () {
+      return moduleShadowIcon
+    },
+    getModuleIcon () {
+      return moduleIcon
+    }
+  }
 }
 </script>
 
@@ -75,6 +92,12 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  &__shadow {
+    position: absolute;
+    left: 0%;
+    bottom: -3%;
+    width: 100%;
   }
   &__footer {
     &__title {
