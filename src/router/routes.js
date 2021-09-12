@@ -13,7 +13,7 @@ const routes = [
     beforeEnter: autentication
   },
   {
-    path: '/training',
+    path: '/treinamentos',
     component: () => import('layouts/TrainingLayout.vue'),
     children: [...training],
     beforeEnter: autentication

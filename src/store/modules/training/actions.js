@@ -5,7 +5,7 @@ import store from '../../../store/index'
 
 const sampleTrain = {
   id: 1,
-  title: 'Levar o pet para o shopping',
+  title: 'Preparação para primeiro passeio',
   description:
     'Liberdade para você e seu pet caminharem em ambientes como galerias, lojas e shoppings.',
   author: 'lorem ipsum',

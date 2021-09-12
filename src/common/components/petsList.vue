@@ -33,7 +33,7 @@
             no-caps
             text-color="main-background"
             style="background: rgba(255, 255, 255, 0.2)"
-            to="/training"
+            to="/treinamentos"
           >
             Detalhar
           </q-btn>
