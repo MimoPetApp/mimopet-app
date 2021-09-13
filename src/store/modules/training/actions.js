@@ -138,7 +138,7 @@ const sampleTrain = {
   ]
 }
 
-/* Call GET /trainings */
+/* Call GET /modules */
 export const ActionGetTrainings = async ({ commit, dispatch }, payload) => {
   dispatch('ActionSetLoadingTrainings', true)
   await Http.get('modules', payload)
@@ -155,7 +155,7 @@ export const ActionGetTrainings = async ({ commit, dispatch }, payload) => {
   dispatch('ActionSetLoadingTrainings', false)
 }
 
-/* Call GET /trainings */
+/* Call GET /modules/my */
 export const ActionGetMyTrainings = async ({ commit, dispatch }, payload) => {
   dispatch('ActionSetLoadingTrainings', true)
   await Http.get('modules', payload)
@@ -173,11 +173,11 @@ export const ActionGetMyTrainings = async ({ commit, dispatch }, payload) => {
 }
 
 /* Call GET /trainings */
-export const ActionGetBehavior = async ({ commit, dispatch }, payload) => {
-  /*
-  await Http.get('trainings', payload)
+export const ActionGetTraining = async ({ commit, dispatch }, payload) => {
+  dispatch('ActionSetLoadingTrainings', true)
+  await Http.get(`modules/${payload}`)
     .then(response => {
-      commit(types.SET_TRAININGS, response.data)
+      commit(types.SET_BEHAVIOR_DETAILS, response.data)
     })
     .catch(error => {
       dispatch('ActionModalResponse', {
@@ -186,8 +186,7 @@ export const ActionGetBehavior = async ({ commit, dispatch }, payload) => {
       })
       console.error(error)
     })
-  */
-  commit(types.SET_BEHAVIOR_DETAILS, sampleTrain)
+  dispatch('ActionSetLoadingTrainings', false)
 }
 
 export const ActionSetLoadingTrainings = ({ commit }, payload) => {
