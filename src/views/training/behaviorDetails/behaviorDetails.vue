@@ -4,7 +4,7 @@
       <div class="behavior-details__header column justify-between p-4">
         <div align="left">
           <q-btn
-            to="/behavior"
+            to="/comportamentos"
             class="behavior-details__back-btn"
             color="main-alternate"
             unelevated

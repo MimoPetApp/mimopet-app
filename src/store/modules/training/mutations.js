@@ -4,6 +4,15 @@ export default {
   [types.SET_TRAININGS](state, payload) {
     state.trainings = payload
   },
+  [types.SET_TRAIN](state, payload) {
+    state.train = payload
+  },
+  [types.SET_SLIDE](state, payload) {
+    state.slide = payload
+  },
+  [types.SET_MODULES](state, payload) {
+    state.modules = payload
+  },
   [types.SET_MY_TRAININGS](state, payload) {
     state.myTrainings = payload
   },

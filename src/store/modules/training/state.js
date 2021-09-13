@@ -1,6 +1,9 @@
 export default {
   trainings: [],
+  modules: [],
   behavior: {},
+  train: {},
+  slide: {},
   myTrainings: [],
   loadingTrainings: false,
   hasHeader: true,

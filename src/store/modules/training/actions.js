@@ -172,7 +172,7 @@ export const ActionGetMyTrainings = async ({ commit, dispatch }, payload) => {
   dispatch('ActionSetLoadingTrainings', false)
 }
 
-/* Call GET /trainings */
+/* Call GET /modules/id */
 export const ActionGetTraining = async ({ commit, dispatch }, payload) => {
   dispatch('ActionSetLoadingTrainings', true)
   await Http.get(`modules/${payload}`)
@@ -183,6 +183,57 @@ export const ActionGetTraining = async ({ commit, dispatch }, payload) => {
       dispatch('ActionModalResponse', {
         modal: true,
         data: { msg: 'Erro ao buscar detalhe de treinamento' }
+      })
+      console.error(error)
+    })
+  dispatch('ActionSetLoadingTrainings', false)
+}
+
+/* Call GET /modules */
+export const ActionGetModule = async ({ commit, dispatch }, payload) => {
+  dispatch('ActionSetLoadingTrainings', true)
+  await Http.get(`trainings/${payload}`)
+    .then(response => {
+      commit(types.SET_TRAIN, response.data)
+    })
+    .catch(error => {
+      dispatch('ActionModalResponse', {
+        modal: true,
+        data: { msg: 'Erro ao buscar modulo' }
+      })
+      console.error(error)
+    })
+  dispatch('ActionSetLoadingTrainings', false)
+}
+
+/* Call GET /slides */
+export const ActionGetSlide = async ({ commit, dispatch }, payload) => {
+  dispatch('ActionSetLoadingTrainings', true)
+  await Http.get(`slides/${payload}`)
+    .then(response => {
+      commit(types.SET_SLIDE, response.data)
+    })
+    .catch(error => {
+      dispatch('ActionModalResponse', {
+        modal: true,
+        data: { msg: 'Erro ao buscar slide' }
+      })
+      console.error(error)
+    })
+  dispatch('ActionSetLoadingTrainings', false)
+}
+
+/* Call GET /modules */
+export const ActionGetModules = async ({ commit, dispatch }, payload) => {
+  dispatch('ActionSetLoadingTrainings', true)
+  await Http.get('trainings', payload)
+    .then(response => {
+      commit(types.SET_MODULES, response.data)
+    })
+    .catch(error => {
+      dispatch('ActionModalResponse', {
+        modal: true,
+        data: { msg: 'Erro ao buscar lista de modulos' }
       })
       console.error(error)
     })
