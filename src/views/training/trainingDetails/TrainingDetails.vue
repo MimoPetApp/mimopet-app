@@ -7,14 +7,13 @@
       <span class="training-details-wrapper__header__subtitle text-utilities-alternate"
         >O que você vai aprender?</span
       >
-      <module-card
-        label="Explore comportamentos"
-        description="Vantages de ter um pet treinado"
-        color="#FF8E4A"
-        colorAlt="#f66917"
-        to="/behavior"
-        class="mt-2"
-      ></module-card>
+      <module-card class="mt-2"></module-card>
+      <!--
+      <router-link
+        :to="{ name: 'TrainingDetails', params: { id: train.id } }"
+        class="router-link-style"
+      >
+      </router-link>-->
     </div>
     <div v-else class="flex flex-center q-mt-xl">
       <Loading />
