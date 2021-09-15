@@ -7,11 +7,13 @@
       <img :src="getLockIcon" />
     </div>
     <div class="row module-card-wrapper__content">
+      <!--
       <div class="col-12 col-md-12 col-xs-12">
         <div class="module-card-wrapper__header flex flex-center">
           <img :src="getModuleIcon" />
         </div>
       </div>
+      -->
       <div class="col-12 col-md-12 col-xs-12">
         <div class="module-card-wrapper__footer">
           <h4 class="module-card-wrapper__footer__title p-0 m-0 text-main-background">
@@ -20,22 +22,22 @@
           <p class="module-card-wrapper__footer__description p-0 m-0 mb-2 text-main-background">
             Aprender quais os tipos de guia e coleira são mais adequados ao seu pet
           </p>
-          <span class="module-card-wrapper__footer__badge text-main-background">
-            3 sessões
-          </span>
+          <span class="module-card-wrapper__footer__badge text-main-background"> 3 sessões </span>
         </div>
       </div>
     </div>
+    <!--
     <div class="module-card-wrapper__shadow">
-      <img :src="getModuleShadowIcon" style="width: 100%;" />
+      <img :src="getModuleShadowIcon" style="width: 100%" />
     </div>
+    -->
   </q-card>
 </template>
 
 <script>
 const lockIcon = require('../../../assets/images/lock.svg')
 const moduleShadowIcon = require('../../../assets/images/module-shadow.svg')
-const moduleIcon = require('../../../assets/images/happy.svg')
+const moduleIcon = require('../../../assets/images/test.svg')
 
 export default {
   name: 'ModuleCard',
@@ -57,17 +59,17 @@ export default {
       default: '#67D0E8'
     }
   },
-  data () {
+  data() {
     return {}
   },
   computed: {
-    getLockIcon () {
+    getLockIcon() {
       return lockIcon
     },
-    getModuleShadowIcon () {
+    getModuleShadowIcon() {
       return moduleShadowIcon
     },
-    getModuleIcon () {
+    getModuleIcon() {
       return moduleIcon
     }
   }
@@ -83,6 +85,10 @@ export default {
   min-height: 324px;
   position: relative;
   display: flex;
+  background-image: url(../../../assets/images/test.svg) !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-position: 0% 0% !important;
   &__lock {
     border-radius: 12px !important;
     width: 36px;
