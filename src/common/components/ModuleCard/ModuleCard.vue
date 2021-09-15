@@ -1,8 +1,5 @@
 <template>
-  <q-card
-    class="module-card-wrapper p-2 pt-2 mt-1 mb-2"
-    :style="`background: ${backgroundColor}; border-color: ${backgroundColor}`"
-  >
+  <q-card class="module-card-wrapper p-2 pt-2 mt-1 mb-2" :style="getCardStyle">
     <div v-if="locked" class="module-card-wrapper__lock bg-main-background">
       <img :src="getLockIcon" />
     </div>
@@ -37,7 +34,8 @@
 <script>
 const lockIcon = require('../../../assets/images/lock.svg')
 const moduleShadowIcon = require('../../../assets/images/module-shadow.svg')
-const moduleIcon = require('../../../assets/images/test.svg')
+const moduleIcon = require('../../../assets/images/happy.svg')
+const urlImage = require('../../../assets/images/test.svg')
 
 export default {
   name: 'ModuleCard',
@@ -71,6 +69,13 @@ export default {
     },
     getModuleIcon() {
       return moduleIcon
+    },
+    getCardStyle() {
+      return {
+        background: this.backgroundColor,
+        borderColor: this.backgroundColor,
+        backgroundImage: 'url(' + urlImage + ')'
+      }
     }
   }
 }
@@ -85,7 +90,7 @@ export default {
   min-height: 324px;
   position: relative;
   display: flex;
-  background-image: url(../../../assets/images/test.svg) !important;
+  // background-image: url(../../../assets/images/test.svg) !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
   background-position: 0% 0% !important;
@@ -107,8 +112,11 @@ export default {
     width: 100%;
   }
   &__content {
-    align-content: space-between;
+    // align-content: space-between;
     padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
   }
   &__footer {
     &__title {
