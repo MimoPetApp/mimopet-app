@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-12 col-md-12 col-xs-12">
           <h2 class="text-main-alternate">{{ title }}</h2>
-          <p class="text-main-alternate-light">{{ subtitle }}</p>
+          <p v-if="subtitle" class="text-main-alternate-light">{{ subtitle }}</p>
         </div>
       </div>
     </div>
@@ -49,8 +49,7 @@ export default {
       default: 'Insert your title'
     },
     subtitle: {
-      type: String,
-      default: 'Insert your subTitle'
+      type: String
     },
     alignContent: {
       type: String,

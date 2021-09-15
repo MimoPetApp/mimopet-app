@@ -1,4 +1,4 @@
-import Loading from '../../../common/components/loading'
+import LoadingCircle from '../../../common/components/loadingCircle'
 import ModuleCard from '../../../common/components/ModuleCard/ModuleCard'
 
 import { mapState, mapActions } from 'vuex'
@@ -6,21 +6,17 @@ import { mapState, mapActions } from 'vuex'
 export default {
   name: 'PageIndex',
   components: {
-    Loading,
+    LoadingCircle,
     ModuleCard
     // CardHealth
   },
   computed: {
-    ...mapState('pets', ['petsList', 'loadingPets', 'currPet'])
-  },
-  mounted () {
-    this.ActionGetPets()
-  },
-  beforeRouteLeave (to, from, next) {
-    this.ActionSetLoadingPet(true)
-    next()
+    ...mapState('training', ['modules', 'loadingTrainings'])
   },
   methods: {
-    ...mapActions('pets', ['ActionGetPets', 'ActionCommitPet', 'ActionSetLoadingPet'])
+    ...mapActions('training', ['ActionGetModules'])
+  },
+  async created() {
+    this.ActionGetModules()
   }
 }

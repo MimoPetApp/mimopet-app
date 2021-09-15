@@ -36,7 +36,6 @@
                 @click="onSubmitEmail"
                 color="primary-filled"
                 class="main-button no-shadow"
-                :loading="loading"
                 type="submit"
                 label="Entrar"
                 no-caps
