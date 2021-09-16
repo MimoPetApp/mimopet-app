@@ -2,7 +2,7 @@
   <q-card v-if="train" flat class="train-card-base">
     <q-item>
       <q-item-section>
-        <p class="train-card-base__steps">{{ train.steps.length }} {{ ` de 10 passos` }}</p>
+        <p class="train-card-base__steps">{{ train.trainings.length }} {{ ` de 10 passos` }}</p>
       </q-item-section>
 
       <q-item-section side>
@@ -17,7 +17,7 @@
         <h4 class="train-card-base__title">{{ train.title }}</h4>
         <q-linear-progress
           size="12px"
-          :value="train.steps.length / 10"
+          :value="train.trainings.length / 10"
           color="main-highlight"
           track-color="utilities-light"
           class="train-card-base__progress mt-1"

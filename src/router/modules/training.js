@@ -1,11 +1,11 @@
 export default [
   {
-    path: '/behavior',
+    path: '/comportamentos',
     name: 'behaviorList',
     component: () => import('../../views/training/behaviorList/behaviorList.vue')
   },
   {
-    path: '/behavior/:id',
+    path: '/comportamentos/:id',
     name: 'behaviorDetails',
     component: () => import('../../views/training/behaviorDetails/behaviorDetails.vue')
   },
@@ -25,5 +25,10 @@ export default [
     path: '/treinamentos/:id/detalhes',
     name: 'TrainingDetails',
     component: () => import('../../views/training/trainingDetails/TrainingDetails.vue')
+  },
+  {
+    path: '/treinamentos/:id/slide',
+    name: 'SlideStep',
+    component: () => import('../../views/training/slideStep/SlideStep.vue')
   }
 ]

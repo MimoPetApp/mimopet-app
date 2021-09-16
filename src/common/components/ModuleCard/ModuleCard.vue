@@ -15,19 +15,19 @@
       <div class="col-12 col-md-12 col-xs-12">
         <div class="module-card-wrapper__footer">
           <h4 class="module-card-wrapper__footer__title p-0 m-0 text-main-background">
-            Equipamento de passeio
+            {{ module.title }}
           </h4>
           <p class="module-card-wrapper__footer__description p-0 m-0 mb-2 text-main-background">
-            Aprender quais os tipos de guia e coleira são mais adequados ao seu pet
+            {{ module.description }}
           </p>
           <span class="module-card-wrapper__footer__badge text-main-background">
-            3 sessões
+            {{ module.modules.length }} sessões
           </span>
         </div>
       </div>
     </div>
     <div class="module-card-wrapper__shadow">
-      <img :src="getModuleShadowIcon" style="width: 100%;" />
+      <img :src="getModuleShadowIcon" style="width: 100%" />
     </div>
   </q-card>
 </template>
@@ -40,16 +40,8 @@ const moduleIcon = require('../../../assets/images/happy.svg')
 export default {
   name: 'ModuleCard',
   props: {
-    title: {
-      type: String,
-      default: ''
-    },
-    description: {
-      type: String
-    },
-    sessions: {
-      type: String,
-      default: ''
+    module: {
+      type: Object
     },
     locked: { type: Boolean, default: true },
     backgroundColor: {
@@ -57,17 +49,17 @@ export default {
       default: '#67D0E8'
     }
   },
-  data () {
+  data() {
     return {}
   },
   computed: {
-    getLockIcon () {
+    getLockIcon() {
       return lockIcon
     },
-    getModuleShadowIcon () {
+    getModuleShadowIcon() {
       return moduleShadowIcon
     },
-    getModuleIcon () {
+    getModuleIcon() {
       return moduleIcon
     }
   }

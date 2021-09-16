@@ -6,17 +6,53 @@
       </q-toolbar>
     </q-header>
     <q-page-container>
+      <EvaluateTraining :content="modalEvaluateTraining" :onHide="onHideModalEvaluateTraining" />
+      <ActionModal
+        :content="modalTrainingLimitExceeded"
+        :onHide="onHideModalTrainingLimitExceeded"
+      />
+      <ActionModal :content="modalCancelTraining" :onHide="onHideModalCancelTraining" />
       <router-view />
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
+import EvaluateTraining from '../common/components/Modal/EvaluateTraining/EvaluateTraining'
+import ActionModal from '../common/components/Modal/ActionModal/ActionModal'
 export default {
   name: 'TrainingLayout',
+  components: {
+    EvaluateTraining,
+    ActionModal
+  },
   computed: {
-    ...mapState('training', ['hasHeader'])
+    ...mapState('training', [
+      'hasHeader',
+      'modalEvaluateTraining',
+      'modalTrainingLimitExceeded',
+      'modalCancelTraining'
+    ])
+  },
+  methods: {
+    ...mapActions('training', [
+      'ActionModalEvaluateTraining',
+      'ActionModalTrainingLimitExceeded',
+      'ActionModalCancelTraining'
+    ]),
+    onHideModalEvaluateTraining() {
+      this.ActionModalEvaluateTraining({ modal: false, data: this.modalEvaluateTraining.data })
+    },
+    onHideModalTrainingLimitExceeded() {
+      this.ActionModalTrainingLimitExceeded({
+        modal: false,
+        data: this.modalTrainingLimitExceeded.data
+      })
+    },
+    onHideModalCancelTraining() {
+      this.ActionModalCancelTraining({ modal: false, data: this.modalCancelTraining.data })
+    }
   }
 }
 </script>

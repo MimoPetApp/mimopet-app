@@ -15,7 +15,7 @@
         description="Vantages de ter um pet treinado"
         color="#FF8E4A"
         colorAlt="#f66917"
-        to="/behavior"
+        to="/comportamentos"
       />
 
       <q-card

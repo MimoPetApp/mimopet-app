@@ -25,7 +25,7 @@
     <q-item>
       <q-item-section>
         <p class="explore-card__steps">
-          {{ train.steps.length }} {{ `passo${train.steps.length > 1 ? 's' : ''}` }}
+          {{ train.trainings.length }} {{ `passo${train.trainings.length > 1 ? 's' : ''}` }}
         </p>
         <h4 class="explore-card__title">{{ train.title }}</h4>
       </q-item-section>
