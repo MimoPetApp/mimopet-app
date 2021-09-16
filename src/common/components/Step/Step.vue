@@ -1,73 +1,68 @@
 <template>
-  <q-card class="home-card__item p-2 pt-4 mt-1 mb-2" :style="`background: ${color}`">
-    <div class="row justify-center items-center">
-      <h4 class="text-weight-bolder m-0 p-0">{{ label }}</h4>
-    </div>
-    <div class="row justify-center items-center">
-      <p class="text-weight-medium m-0 p-0">{{ description }}</p>
-    </div>
-    <div class="row justify-center items-center mt-2">
-      <q-btn
-        :to="to"
-        rounded
-        flat
-        no-caps
-        text-color="main-background"
-        class="home-card__item--button"
-      >
-        {{ buttonLabel }}
-      </q-btn>
-    </div>
-    <div class="home-card__item__footer" :style="`background: ${colorAlt}`"></div>
-    <svg class="home-card__item__circle" height="50" width="120">
-      <ellipse cx="60" cy="60" rx="50" ry="35" fill="#fff" />
-    </svg>
-  </q-card>
+  <div class="step-wrapper">
+    <q-list>
+      <q-item clickable v-ripple dense>
+        <q-item-section avatar>
+          <q-avatar
+            :color="selectColorByType"
+            text-color="white"
+            icon="play_arrow"
+            size="36.8px"
+            font-size="22px"
+          />
+        </q-item-section>
+        <q-item-section>
+          <q-item-label>Demonstração de passo</q-item-label>
+          <q-item-label caption>4 min - Slide</q-item-label>
+        </q-item-section>
+      </q-item>
+    </q-list>
+  </div>
 </template>
 
 <script>
+export const StepTypes = ['slide', 'quizz', 'feedback', 'repetitions', 'video']
+
 export default {
-  name: 'HomeCard',
+  name: 'Step',
   props: {
-    label: {
+    title: {
       type: String,
       default: ''
     },
-    description: {
+    subtitle: {
       type: String
     },
-    notificationLabel: {
+    type: {
       type: String,
-      default: 'Agendados'
-    },
-    notification: {
-      type: Number,
-      default: 0
-    },
-    color: {
-      type: String,
-      default: '#fe7624'
-    },
-    colorAlt: {
-      type: String,
-      default: '#fe7624'
-    },
-    to: {
-      type: String,
-      default: '/behavior'
-    },
-    buttonLabel: {
-      type: String,
-      default: 'Ver mais'
+      default: 'slide',
+      validate: val => StepTypes.indexOf(val) !== -1
     }
   },
-  data () {
+  data() {
     return {}
+  },
+  computed: {
+    selectColorByType() {
+      switch (this.type) {
+        case 'slide':
+          return 'main-alternate'
+        case 'quizz':
+          return 'status-success'
+        case 'feedback':
+          return 'utilities-alternate'
+        case 'repetitions':
+          return 'main-secondary'
+        default:
+          // video
+          return 'main-highlight'
+      }
+    }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .home-card__item {
   min-height: 250px;
   border-radius: 25px !important;
