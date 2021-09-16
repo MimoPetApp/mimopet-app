@@ -7,18 +7,14 @@
       <span class="training-details-wrapper__header__subtitle text-utilities-alternate"
         >O que você vai aprender?</span
       >
-      <router-link
-        :to="{ name: 'TrainingDetails', params: { id: train.id } }"
-        class="router-link-style"
-      >
-        <module-card
-          v-for="module in modules"
-          :key="module.id"
-          :module="module"
-          class="mt-2"
-        ></module-card>
-      </router-link>
-
+      <div class="training-details-wrapper__content" v-for="module in modules" :key="module.id">
+        <router-link
+          :to="{ name: 'ModuleDetails', params: { idModule: module.id } }"
+          class="router-link-style"
+        >
+          <module-card :module="module" class="mt-2"></module-card>
+        </router-link>
+      </div>
       <q-list v-if="modules.length > 0" class="mt-4 mb-4">
         <q-item clickable v-ripple dense :to="`/treinamentos/${modules[0].id}/slide`">
           <q-item-section avatar>

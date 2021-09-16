@@ -12,19 +12,17 @@ export default [
   {
     path: '/treinamentos',
     name: 'TrainingList',
-    children: [
-      {
-        path: ':id/detalhes',
-        name: 'TrainingDetails',
-        component: () => import('../../views/training/trainingDetails/TrainingDetails.vue')
-      }
-    ],
     component: () => import('../../views/training/trainingList/trainingList.vue')
   },
   {
     path: '/treinamentos/:id/detalhes',
     name: 'TrainingDetails',
     component: () => import('../../views/training/trainingDetails/TrainingDetails.vue')
+  },
+  {
+    path: '/treinamentos/:id/detalhes/:idModule/sessoes',
+    name: 'ModuleDetails',
+    component: () => import('../../views/training/moduleDetails/ModuleDetails.vue')
   },
   {
     path: '/treinamentos/:id/slide',

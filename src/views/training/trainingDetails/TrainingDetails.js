@@ -4,11 +4,10 @@ import ModuleCard from '../../../common/components/ModuleCard/ModuleCard'
 import { mapState, mapActions } from 'vuex'
 
 export default {
-  name: 'PageIndex',
+  name: 'TrainingDetails',
   components: {
     LoadingCircle,
     ModuleCard
-    // CardHealth
   },
   computed: {
     ...mapState('training', ['modules', 'loadingTrainings'])
@@ -16,7 +15,7 @@ export default {
   methods: {
     ...mapActions('training', ['ActionGetModules'])
   },
-  async created() {
+  async created () {
     this.ActionGetModules()
   }
 }
