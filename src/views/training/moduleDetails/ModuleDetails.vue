@@ -20,7 +20,7 @@
         <step type="feedback" :to="{ name: 'FeedbackStep', params: { idSessao: 2 } }"></step>
       </div>
       <div class="mb-2">
-        <step type="quiz"></step>
+        <step type="quiz" :to="{ name: 'QuizStep', params: { idSessao: 2 } }"></step>
       </div>
       <div class="mb-2">
         <step type="repetitions"></step>
