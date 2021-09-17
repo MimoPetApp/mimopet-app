@@ -14,10 +14,10 @@
     </div>
     <div class="module-details-wrapper__content pl-3 pr-3">
       <div class="mb-2">
-        <step type="slide" :to="{ name: 'QuizStep', params: { idSessao: 1 } }"></step>
+        <step type="slide" :to="{ name: 'SlideStep', params: { idSessao: 1 } }"></step>
       </div>
       <div class="mb-2">
-        <step type="quiz"></step>
+        <step type="quiz" :to="{ name: 'QuizStep', params: { idSessao: 2 } }"></step>
       </div>
       <div class="mb-2">
         <step type="feedback"></step>

@@ -24,7 +24,7 @@
 <script>
 import { QList, QItem, QItemSection, QAvatar, QItemLabel } from 'quasar'
 
-export const StepTypes = ['slide', 'quizz', 'feedback', 'repetitions', 'video']
+export const StepTypes = ['slide', 'quiz', 'feedback', 'repetitions', 'video']
 
 export default {
   name: 'Step',
