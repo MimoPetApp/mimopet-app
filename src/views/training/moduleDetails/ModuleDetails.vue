@@ -17,10 +17,10 @@
         <step type="slide" :to="{ name: 'SlideStep', params: { idSessao: 1 } }"></step>
       </div>
       <div class="mb-2">
-        <step type="quiz" :to="{ name: 'QuizStep', params: { idSessao: 2 } }"></step>
+        <step type="feedback" :to="{ name: 'FeedbackStep', params: { idSessao: 2 } }"></step>
       </div>
       <div class="mb-2">
-        <step type="feedback"></step>
+        <step type="quiz"></step>
       </div>
       <div class="mb-2">
         <step type="repetitions"></step>

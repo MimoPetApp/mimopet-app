@@ -33,5 +33,10 @@ export default [
     path: '/treinamentos/:id/detalhes/:idModulo/sessoes/:idSessao/quiz',
     name: 'QuizStep',
     component: () => import('../../views/training/quizStep/QuizStep.vue')
+  },
+  {
+    path: '/treinamentos/:id/detalhes/:idModulo/sessoes/:idSessao/feedback',
+    name: 'FeedbackStep',
+    component: () => import('../../views/training/feedbackStep/FeedbackStep.vue')
   }
 ]

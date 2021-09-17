@@ -1,25 +1,58 @@
-import Loading from '../../../common/components/loading'
-import PetsList from '../../../common/components/petsList'
+import LoadingCircle from '../../../common/components/loadingCircle'
+import ButtonCheckboxGroup from '../../../common/components/ButtonCheckboxGroup'
+import Ask from '../../../common/components/Ask/Ask.vue'
+import Button from '../../../common/components/Button/Button.vue'
+
 import { mapState, mapActions } from 'vuex'
 
 export default {
-  name: 'PageIndex',
+  name: 'FeedbackStep',
   components: {
-    PetsList,
-    Loading
-    // CardHealth
+    LoadingCircle,
+    ButtonCheckboxGroup,
+    Ask,
+    Button
+  },
+  data () {
+    return {
+      step: 1,
+      selectOptions: [
+        {
+          label: 'Ração seca',
+          selected: false
+        },
+        {
+          label: 'Ração úmida',
+          selected: false
+        },
+        {
+          label: 'Petiscos pet',
+          selected: false
+        },
+        {
+          label: 'Comida caseira especial',
+          selected: false
+        },
+        {
+          label: 'Frutas e verduras',
+          selected: false
+        },
+        {
+          label: 'Mistura de ração com proteína animal',
+          selected: false
+        }
+      ],
+      selected: false
+    }
   },
   computed: {
     ...mapState('pets', ['petsList', 'loadingPets', 'currPet'])
   },
-  mounted() {
-    this.ActionGetPets()
-  },
-  beforeRouteLeave(to, from, next) {
-    this.ActionSetLoadingPet(true)
-    next()
-  },
   methods: {
-    ...mapActions('pets', ['ActionGetPets', 'ActionCommitPet', 'ActionSetLoadingPet'])
+    ...mapActions('pets', ['ActionGetPets', 'ActionCommitPet', 'ActionSetLoadingPet']),
+    selectedHandler (event) {
+      this.selected = true
+    },
+    nextStep () {}
   }
 }
