@@ -1,6 +1,6 @@
 <template>
-  <div class="module-details-wrapper">
-    <div v-if="true" class="module-details-wrapper__header mb-4">
+  <div v-if="true" class="module-details-wrapper">
+    <div class="module-details-wrapper__header mb-4">
       <h2 class="module-details-wrapper__header__title text-main-alternate pl-3 pr-3">
         Equipamentos de passeio
       </h2>
@@ -12,28 +12,28 @@
         10-20 min cada
       </h4>
     </div>
-    <div v-if="true" class="module-details-wrapper__content pl-3 pr-3">
-      <div class="module-details-wrapper__content__card">
-        <step type="slide"></step>
+    <div class="module-details-wrapper__content pl-3 pr-3">
+      <div class="mb-2">
+        <step type="slide" :to="{ name: 'QuizStep', params: { idSessao: 1 } }"></step>
       </div>
-      <div class="module-details-wrapper__content__card">
-        <step type="quizz"></step>
+      <div class="mb-2">
+        <step type="quiz"></step>
       </div>
-      <div class="module-details-wrapper__content__card">
+      <div class="mb-2">
         <step type="feedback"></step>
       </div>
-      <div class="module-details-wrapper__content__card">
+      <div class="mb-2">
         <step type="repetitions"></step>
       </div>
-      <div class="module-details-wrapper__content__card">
+      <div class="mb-2">
         <step type="video"></step>
       </div>
     </div>
-    <div v-else class="flex flex-center q-mt-xl">
-      <LoadingCircle color="status-waiting" size="6em" :thickness="5" />
-    </div>
+  </div>
+  <div v-else class="flex flex-center q-mt-xl">
+    <LoadingCircle color="status-waiting" size="6em" :thickness="5" />
   </div>
 </template>
 
 <script src="./ModuleDetails.js"></script>
-<style src="./ModuleDetails.scss" lang="scss"></style>
+<style src="./ModuleDetails.scss" lang="scss" scoped></style>

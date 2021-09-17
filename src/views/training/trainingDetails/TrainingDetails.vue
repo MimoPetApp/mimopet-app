@@ -1,6 +1,6 @@
 <template>
-  <div class="training-details-wrapper">
-    <div v-if="!loadingTrainings" class="training-details-wrapper__header">
+  <div v-if="!loadingTrainings" class="training-details-wrapper">
+    <div class="training-details-wrapper__header">
       <h2 class="training-details-wrapper__header__title text-main-alternate">
         Preparação para primeiro passeio
       </h2>
@@ -10,12 +10,13 @@
     </div>
     <div class="training-details-wrapper__content" v-for="module in modules" :key="module.id">
       <router-link
-        :to="{ name: 'ModuleDetails', params: { idModule: module.id } }"
+        :to="{ name: 'ModuleDetails', params: { idModulo: module.id } }"
         class="router-link-style"
       >
         <module-card :module="module" class="mt-2"></module-card>
       </router-link>
     </div>
+    <!--
     <q-list v-if="modules.length > 0" class="mt-4 mb-4">
       <q-item clickable v-ripple dense :to="`/treinamentos/${modules[0].id}/slide`">
         <q-item-section avatar>
@@ -27,10 +28,10 @@
         </q-item-section>
       </q-item>
     </q-list>
-    <div v-else class="flex flex-center q-mt-xl">
-      <LoadingCircle color="status-waiting" size="6em" :thickness="5" />
-    </div>
-    <!-- <CardHealth/> -->
+    -->
+  </div>
+  <div v-else class="flex flex-center q-mt-xl">
+    <LoadingCircle color="status-waiting" size="6em" :thickness="5" />
   </div>
 </template>
 

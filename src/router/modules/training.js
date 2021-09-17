@@ -20,13 +20,18 @@ export default [
     component: () => import('../../views/training/trainingDetails/TrainingDetails.vue')
   },
   {
-    path: '/treinamentos/:id/detalhes/:idModule/sessoes',
+    path: '/treinamentos/:id/detalhes/:idModulo/sessoes',
     name: 'ModuleDetails',
     component: () => import('../../views/training/moduleDetails/ModuleDetails.vue')
   },
   {
-    path: '/treinamentos/:id/slide',
+    path: '/treinamentos/:id/detalhes/:idModulo/sessoes/:idSessao/slide',
     name: 'SlideStep',
     component: () => import('../../views/training/slideStep/SlideStep.vue')
+  },
+  {
+    path: '/treinamentos/:id/detalhes/:idModulo/sessoes/:idSessao/quiz',
+    name: 'QuizStep',
+    component: () => import('../../views/training/quizStep/QuizStep.vue')
   }
 ]

@@ -1,30 +1,34 @@
 <template>
   <div class="step-wrapper">
-    <q-list>
-      <q-item clickable v-ripple dense>
-        <q-item-section avatar>
-          <q-avatar
+    <QList v-bind="$attrs">
+      <QItem clickable v-ripple v-bind="$attrs">
+        <QItemSection avatar v-bind="$attrs">
+          <QAvatar
             :color="selectColorByType"
             text-color="white"
             icon="play_arrow"
             size="36.8px"
             font-size="22px"
+            v-bind="$attrs"
           />
-        </q-item-section>
-        <q-item-section>
-          <q-item-label>Demonstração de passo</q-item-label>
-          <q-item-label caption>4 min - Slide</q-item-label>
-        </q-item-section>
-      </q-item>
-    </q-list>
+        </QItemSection>
+        <QItemSection v-bind="$attrs">
+          <QItemLabel v-bind="$attrs">Demonstração de passo</QItemLabel>
+          <QItemLabel caption v-bind="$attrs">4 min - Slide</QItemLabel>
+        </QItemSection>
+      </QItem>
+    </QList>
   </div>
 </template>
 
 <script>
+import { QList, QItem, QItemSection, QAvatar, QItemLabel } from 'quasar'
+
 export const StepTypes = ['slide', 'quizz', 'feedback', 'repetitions', 'video']
 
 export default {
   name: 'Step',
+  components: { QList, QItem, QItemSection, QAvatar, QItemLabel },
   props: {
     title: {
       type: String,
@@ -47,7 +51,7 @@ export default {
       switch (this.type) {
         case 'slide':
           return 'main-alternate'
-        case 'quizz':
+        case 'quiz':
           return 'status-success'
         case 'feedback':
           return 'utilities-alternate'
@@ -63,44 +67,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.home-card__item {
-  min-height: 250px;
-  border-radius: 25px !important;
-
-  &--button {
-    background: rgba(255, 255, 255, 0.2);
-    z-index: 999;
-  }
-
-  &__footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 30%;
-    width: 100%;
-    border-radius: 0 0 25px 25px !important;
-  }
-
-  &__circle {
-    position: absolute;
-    bottom: 0;
-    left: calc(50% - 60px);
-  }
-}
-
-.home-card__item__badge {
-  color: var(--colorWhite);
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  padding: 0 0 0 15px;
-}
-
-.home-card__item__badge--icon {
-  font-size: 2.3em;
-  color: #ff6160;
-  background: var(--colorWhite);
-  padding: 0;
-  margin: 0;
-  border-radius: 50%;
+.step-wrapper {
+  width: 318px;
+  height: 92px;
+  padding: 18.4px;
+  background: #ffffff;
+  box-shadow: 0px 0px 10px 4px rgba(239, 242, 246, 0.25);
+  border-radius: 22px;
 }
 </style>

@@ -1,23 +1,13 @@
-import Loading from '../../../common/components/loading'
-import PetsList from '../../../common/components/petsList'
+import LoadingCircle from '../../../common/components/loadingCircle'
 import { mapState, mapActions } from 'vuex'
 
 export default {
-  name: 'PageIndex',
+  name: 'QuizStep',
   components: {
-    PetsList,
-    Loading
-    // CardHealth
+    LoadingCircle
   },
   computed: {
     ...mapState('pets', ['petsList', 'loadingPets', 'currPet'])
-  },
-  mounted() {
-    this.ActionGetPets()
-  },
-  beforeRouteLeave(to, from, next) {
-    this.ActionSetLoadingPet(true)
-    next()
   },
   methods: {
     ...mapActions('pets', ['ActionGetPets', 'ActionCommitPet', 'ActionSetLoadingPet'])
