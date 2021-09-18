@@ -10,7 +10,7 @@ const hitIcon = require('../../../assets/images/feedback/hit.svg')
 
 export default {
   components: { LoadingCircle, Button, Tag, FeedbackModal },
-  data() {
+  data () {
     return {
       currSlide: 0,
       loading: false,
@@ -19,7 +19,7 @@ export default {
   },
   computed: {
     ...mapState('training', ['train', 'slide', 'loadingTrainings']),
-    feedbackIcon() {
+    feedbackIcon () {
       return hitIcon
     }
   },
@@ -28,26 +28,26 @@ export default {
     ...parser,
     ...mapActions('training', ['ActionGetModule', 'ActionGetSlide']),
     ...mapMutations('training', ['SET_HAS_HEADER']),
-    timeout(ms) {
+    timeout (ms) {
       return new Promise(resolve => setTimeout(resolve, ms))
     },
-    async onFinish() {
+    async onFinish () {
       this.loading = true
       await this.timeout(500)
       this.hasFeedback = true
       this.loading = false
     },
-    trainingDetailsHandler() {
+    trainingDetailsHandler () {
       this.$router.push({ name: 'TrainingDetails', params: { id: this.train.id } })
     }
   },
-  beforeRouteLeave(to, from, next) {
+  beforeRouteLeave (to, from, next) {
     this.SET_HAS_HEADER(true)
     next()
   },
-  async mounted() {
+  async mounted () {
     this.SET_HAS_HEADER(false)
-    await this.ActionGetModule(this.$route.params.id)
+    await this.ActionGetModule(this.$route.params.idModulo)
     await this.ActionGetSlide(this.train.steps[0].slides[0].id)
   }
 }

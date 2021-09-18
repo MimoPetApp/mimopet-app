@@ -12,13 +12,6 @@ export default [
   {
     path: '/treinamentos',
     name: 'TrainingList',
-    children: [
-      {
-        path: ':id/detalhes',
-        name: 'TrainingDetails',
-        component: () => import('../../views/training/trainingDetails/TrainingDetails.vue')
-      }
-    ],
     component: () => import('../../views/training/trainingList/trainingList.vue')
   },
   {
@@ -27,8 +20,23 @@ export default [
     component: () => import('../../views/training/trainingDetails/TrainingDetails.vue')
   },
   {
-    path: '/treinamentos/:id/slide',
+    path: '/treinamentos/:id/detalhes/:idModulo/sessoes',
+    name: 'ModuleDetails',
+    component: () => import('../../views/training/moduleDetails/ModuleDetails.vue')
+  },
+  {
+    path: '/treinamentos/:id/detalhes/:idModulo/sessoes/:idSessao/slide',
     name: 'SlideStep',
     component: () => import('../../views/training/slideStep/SlideStep.vue')
+  },
+  {
+    path: '/treinamentos/:id/detalhes/:idModulo/sessoes/:idSessao/quiz',
+    name: 'QuizStep',
+    component: () => import('../../views/training/quizStep/QuizStep.vue')
+  },
+  {
+    path: '/treinamentos/:id/detalhes/:idModulo/sessoes/:idSessao/feedback',
+    name: 'FeedbackStep',
+    component: () => import('../../views/training/feedbackStep/FeedbackStep.vue')
   }
 ]

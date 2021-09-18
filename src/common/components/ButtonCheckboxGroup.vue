@@ -175,8 +175,8 @@ export default {
     }
   }
   &--selected {
-    background-color: var(--status-sucess);
-    border-color: var(--status-sucess);
+    background-color: var(--status-success);
+    border-color: var(--status-success);
   }
   &--error {
     background-color: var(--status-danger);

@@ -1,0 +1,32 @@
+.module-details-wrapper {
+  &__header {
+    &__title {
+      font-family: 'customfont700';
+      font-style: normal;
+      font-weight: bold;
+      font-size: var(--font-size-8);
+      line-height: 44px;
+      letter-spacing: -0.014em;
+      word-wrap: break-word;
+      word-break: break-all;
+    }
+    &__subtitle {
+      font-family: 'customfont650';
+      font-style: normal;
+      font-weight: 600;
+      font-size: var(--font-size-4);
+      line-height: 19px;
+      letter-spacing: -0.014em;
+      margin-bottom: 2px;
+    }
+    &__caption {
+      font-family: 'customfont620';
+      font-style: normal;
+      font-weight: 500;
+      font-size: var(--font-size-3);
+      line-height: 17px;
+      letter-spacing: -0.018em;
+      margin: 0;
+    }
+  }
+}
