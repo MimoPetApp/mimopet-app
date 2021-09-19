@@ -1,17 +1,16 @@
 <template>
-  <q-card
-    class="module-card-wrapper p-2 pt-2 mt-1 mb-2"
-    :style="`background: ${backgroundColor}; border-color: ${backgroundColor}`"
-  >
+  <q-card class="module-card-wrapper p-2 pt-2 mt-1 mb-2" :style="getCardStyle">
     <div v-if="locked" class="module-card-wrapper__lock bg-main-background">
       <img :src="getLockIcon" />
     </div>
     <div class="row module-card-wrapper__content">
+      <!--
       <div class="col-12 col-md-12 col-xs-12">
         <div class="module-card-wrapper__header flex flex-center">
           <img :src="getModuleIcon" />
         </div>
       </div>
+      -->
       <div class="col-12 col-md-12 col-xs-12">
         <div class="module-card-wrapper__footer">
           <h4 class="module-card-wrapper__footer__title p-0 m-0 text-main-background">
@@ -26,9 +25,11 @@
         </div>
       </div>
     </div>
+    <!--
     <div class="module-card-wrapper__shadow">
       <img :src="getModuleShadowIcon" style="width: 100%" />
     </div>
+    -->
   </q-card>
 </template>
 
@@ -36,6 +37,7 @@
 const lockIcon = require('../../../assets/images/lock.svg')
 const moduleShadowIcon = require('../../../assets/images/module-shadow.svg')
 const moduleIcon = require('../../../assets/images/happy.svg')
+const urlImage = require('../../../assets/images/test.svg')
 
 export default {
   name: 'ModuleCard',
@@ -61,6 +63,13 @@ export default {
     },
     getModuleIcon() {
       return moduleIcon
+    },
+    getCardStyle() {
+      return {
+        background: this.backgroundColor,
+        borderColor: this.backgroundColor,
+        backgroundImage: 'url(' + urlImage + ')'
+      }
     }
   }
 }
@@ -75,6 +84,10 @@ export default {
   min-height: 324px;
   position: relative;
   display: flex;
+  // background-image: url(../../../assets/images/test.svg) !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-position: 0% 0% !important;
   &__lock {
     border-radius: 12px !important;
     width: 36px;
@@ -93,8 +106,11 @@ export default {
     width: 100%;
   }
   &__content {
-    align-content: space-between;
+    // align-content: space-between;
     padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
   }
   &__footer {
     &__title {
