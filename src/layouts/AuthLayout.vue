@@ -4,21 +4,18 @@
       <q-btn flat round dense icon="keyboard_backspace" @click="$router.push('/login')" />
     </q-toolbar>
     <q-page-container>
-      <ModalResponseUser />
-      <ModalErrorServer />
+      <ResponseUser />
       <router-view />
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
-import ModalResponseUser from '../common/components/modalResponseUser'
-import ModalErrorServer from '../common/components/modalErrorServer'
+import ResponseUser from '../common/components/Modal/ResponseUser/ResponseUser'
 export default {
   name: 'LoginLayout',
   components: {
-    ModalResponseUser,
-    ModalErrorServer
+    ResponseUser
   },
   data() {
     return {

@@ -11,7 +11,9 @@ export const ActionCreateAccount = async ({ commit, dispatch }, payload) => {
       dispatch('ActionModalResponseUser', {
         modal: true,
         data: {
-          msg: 'Usuário criado'
+          title: 'Cadastro completo',
+          message: 'Usuário criado com sucesso!',
+          btnLabel: 'Entrar'
         }
       })
       dispatch('ActionLogin', {
@@ -24,7 +26,9 @@ export const ActionCreateAccount = async ({ commit, dispatch }, payload) => {
       dispatch('ActionModalResponseUser', {
         modal: true,
         data: {
-          msg: 'E-mail já cadastrado'
+          title: 'Atenção',
+          message: 'O e-mail informado já está em uso por outro usuário cadastrado',
+          btnLabel: 'Corrigir informações'
         }
       })
     })
@@ -40,7 +44,9 @@ export const ActionRefreshUser = async ({ commit, dispatch }) => {
   dispatch('ActionModalResponseUser', {
     modal: true,
     data: {
-      msg: 'Sessão expirada'
+      title: 'Sessão expirada',
+      message: 'Por favor, faça seu login novamente',
+      btnLabel: 'Ok'
     }
   })
   store.$router.push({ name: 'acesso' })
@@ -56,7 +62,11 @@ export const ActionLogin = async ({ commit, dispatch }, payload) => {
     .catch(error => {
       dispatch('ActionModalResponseUser', {
         modal: true,
-        data: { msg: 'E-mail ou senha incorretos' }
+        data: {
+          title: 'Credenciais inválidas!',
+          message: 'E-mail ou senha incorretos',
+          btnLabel: 'Ok'
+        }
       })
       console.log(error)
     })
@@ -85,7 +95,11 @@ export const ActionGetTermsOfUse = async ({ commit, dispatch }, payload) => {
     .catch(error => {
       dispatch('ActionModalResponseUser', {
         modal: true,
-        data: { msg: 'Falha ao carregar termos de uso' }
+        data: {
+          title: 'Falha ao carregar termos de uso da plataforma',
+          message: 'Tente novamente mais tarde',
+          btnLabel: 'Ok'
+        }
       })
       console.log(error)
     })
@@ -103,8 +117,4 @@ export const ActionSetTokenAfter = ({ getters }, payload) => {
 
 export const ActionModalResponseUser = ({ commit }, payload) => {
   commit(types.SET_MODALRESPONSEUSER, payload)
-}
-
-export const ActionModalErrorServer = ({ commit }, payload) => {
-  commit(types.SET_MODALERRORSERVER, payload)
 }

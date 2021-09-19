@@ -1,0 +1,19 @@
+.error-home {
+  height: calc(100vh - 98px);
+  position: relative;
+
+  &__card {
+    position: absolute;
+    bottom: 0;
+    height: 80%;
+    background: var(--main-highlight);
+    border-radius: 35px 35px 0 0 !important;
+    width: 100%;
+  }
+
+  &__button {
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 12px 12px 12px 0 !important;
+    padding: 5px 15px;
+  }
+}

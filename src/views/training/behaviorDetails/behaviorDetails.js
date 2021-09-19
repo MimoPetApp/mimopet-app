@@ -11,35 +11,34 @@ export default {
   components: { LoadingCircle, Button, Tag, FeedbackModal },
   data() {
     return {
-      loading: false,
       loadingSubscribe: false,
       hasFeedback: false
     }
   },
   computed: {
-    ...mapState('training', ['behavior']),
+    ...mapState('training', ['behavior', 'loadingTrainings']),
     feedbackIcon() {
       return hitIcon
     }
   },
   methods: {
     ...parser,
-    ...mapActions('training', ['ActionGetBehavior']),
+    ...mapActions('training', ['ActionGetTraining']),
     ...mapMutations('training', ['SET_HAS_HEADER']),
     timeout(ms) {
       return new Promise(resolve => setTimeout(resolve, ms))
     },
     async onSubscribe() {
       this.loadingSubscribe = true
-      await this.timeout(1500)
+      await this.timeout(500)
       this.hasFeedback = true
       this.loadingSubscribe = false
     },
     homeBehaviorList() {
       this.$router.push({ name: 'behaviorList' })
     },
-    homeHandler() {
-      this.$router.push({ name: 'home' })
+    trainingDetailsHandler() {
+      this.$router.push({ name: 'TrainingDetails', params: { id: this.behavior.id } })
     }
   },
   beforeRouteLeave(to, from, next) {
@@ -47,9 +46,7 @@ export default {
     next()
   },
   async created() {
-    this.loading = true
-    await this.ActionGetBehavior(this.$route.params.id)
+    await this.ActionGetTraining(this.$route.params.id)
     this.SET_HAS_HEADER(false)
-    this.loading = false
   }
 }

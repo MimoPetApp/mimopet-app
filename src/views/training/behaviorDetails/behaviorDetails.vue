@@ -1,10 +1,10 @@
 <template>
   <div class="behavior-details">
-    <div v-if="!loading" class="">
+    <div v-if="!loadingTrainings" class="">
       <div class="behavior-details__header column justify-between p-4">
         <div align="left">
           <q-btn
-            to="/behavior"
+            to="/comportamentos"
             class="behavior-details__back-btn"
             color="main-alternate"
             unelevated
@@ -44,7 +44,7 @@
       </div>
     </div>
     <div v-else class="flex flex-center q-mt-xl">
-      <LoadingCircle />
+      <LoadingCircle color="status-waiting" size="6em" :thickness="5" />
     </div>
     <div>
       <FeedbackModal
@@ -55,7 +55,7 @@
         buttonText="Ir para treino"
         subButtonText="Voltar para busca"
         :subAction="homeBehaviorList"
-        :action="homeHandler"
+        :action="trainingDetailsHandler"
       ></FeedbackModal>
     </div>
   </div>

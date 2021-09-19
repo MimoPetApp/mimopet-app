@@ -1,111 +1,78 @@
 <template>
-  <q-card class="home-card__item p-2 pt-4 mt-1 mb-2" :style="`background: ${color}`">
-    <div class="row justify-center items-center">
-      <h4 class="text-weight-bolder m-0 p-0">{{ label }}</h4>
-    </div>
-    <div class="row justify-center items-center">
-      <p class="text-weight-medium m-0 p-0">{{ description }}</p>
-    </div>
-    <div class="row justify-center items-center mt-2">
-      <q-btn
-        :to="to"
-        rounded
-        flat
-        no-caps
-        text-color="main-background"
-        class="home-card__item--button"
-      >
-        {{ buttonLabel }}
-      </q-btn>
-    </div>
-    <div class="home-card__item__footer" :style="`background: ${colorAlt}`"></div>
-    <svg class="home-card__item__circle" height="50" width="120">
-      <ellipse cx="60" cy="60" rx="50" ry="35" fill="#fff" />
-    </svg>
-  </q-card>
+  <div class="step-wrapper">
+    <QList v-bind="$attrs">
+      <QItem clickable v-ripple v-bind="$attrs">
+        <QItemSection avatar v-bind="$attrs">
+          <QAvatar
+            :color="selectColorByType"
+            text-color="white"
+            icon="play_arrow"
+            size="36.8px"
+            font-size="22px"
+            v-bind="$attrs"
+          />
+        </QItemSection>
+        <QItemSection v-bind="$attrs">
+          <QItemLabel v-bind="$attrs">Demonstração de passo</QItemLabel>
+          <QItemLabel caption v-bind="$attrs">4 min - Slide</QItemLabel>
+        </QItemSection>
+      </QItem>
+    </QList>
+  </div>
 </template>
 
 <script>
+import { QList, QItem, QItemSection, QAvatar, QItemLabel } from 'quasar'
+
+export const StepTypes = ['slide', 'quiz', 'feedback', 'repetitions', 'video']
+
 export default {
-  name: 'HomeCard',
+  name: 'Step',
+  components: { QList, QItem, QItemSection, QAvatar, QItemLabel },
   props: {
-    label: {
+    title: {
       type: String,
       default: ''
     },
-    description: {
+    subtitle: {
       type: String
     },
-    notificationLabel: {
+    type: {
       type: String,
-      default: 'Agendados'
-    },
-    notification: {
-      type: Number,
-      default: 0
-    },
-    color: {
-      type: String,
-      default: '#fe7624'
-    },
-    colorAlt: {
-      type: String,
-      default: '#fe7624'
-    },
-    to: {
-      type: String,
-      default: '/behavior'
-    },
-    buttonLabel: {
-      type: String,
-      default: 'Ver mais'
+      default: 'slide',
+      validate: val => StepTypes.indexOf(val) !== -1
     }
   },
-  data () {
+  data() {
     return {}
+  },
+  computed: {
+    selectColorByType() {
+      switch (this.type) {
+        case 'slide':
+          return 'main-alternate'
+        case 'quiz':
+          return 'status-success'
+        case 'feedback':
+          return 'utilities-alternate'
+        case 'repetitions':
+          return 'main-secondary'
+        default:
+          // video
+          return 'main-highlight'
+      }
+    }
   }
 }
 </script>
 
-<style lang="scss">
-.home-card__item {
-  min-height: 250px;
-  border-radius: 25px !important;
-
-  &--button {
-    background: rgba(255, 255, 255, 0.2);
-    z-index: 999;
-  }
-
-  &__footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 30%;
-    width: 100%;
-    border-radius: 0 0 25px 25px !important;
-  }
-
-  &__circle {
-    position: absolute;
-    bottom: 0;
-    left: calc(50% - 60px);
-  }
-}
-
-.home-card__item__badge {
-  color: var(--colorWhite);
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  padding: 0 0 0 15px;
-}
-
-.home-card__item__badge--icon {
-  font-size: 2.3em;
-  color: #ff6160;
-  background: var(--colorWhite);
-  padding: 0;
-  margin: 0;
-  border-radius: 50%;
+<style lang="scss" scoped>
+.step-wrapper {
+  width: 318px;
+  height: 92px;
+  padding: 18.4px;
+  background: #ffffff;
+  box-shadow: 0px 0px 10px 4px rgba(239, 242, 246, 0.25);
+  border-radius: 22px;
 }
 </style>

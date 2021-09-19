@@ -138,10 +138,10 @@ const sampleTrain = {
   ]
 }
 
-/* Call GET /trainings */
+/* Call GET /modules */
 export const ActionGetTrainings = async ({ commit, dispatch }, payload) => {
   dispatch('ActionSetLoadingTrainings', true)
-  await Http.get('trainings', payload)
+  await Http.get('modules', payload)
     .then(response => {
       commit(types.SET_TRAININGS, response.data)
     })
@@ -155,17 +155,29 @@ export const ActionGetTrainings = async ({ commit, dispatch }, payload) => {
   dispatch('ActionSetLoadingTrainings', false)
 }
 
-/* Call GET /trainings */
+/* Call GET /modules/my */
 export const ActionGetMyTrainings = async ({ commit, dispatch }, payload) => {
-  commit(types.SET_MY_TRAININGS, [sampleTrain])
+  dispatch('ActionSetLoadingTrainings', true)
+  await Http.get('modules', payload)
+    .then(response => {
+      commit(types.SET_MY_TRAININGS, response.data)
+    })
+    .catch(error => {
+      dispatch('ActionModalResponse', {
+        modal: true,
+        data: { msg: 'Erro ao buscar lista de treinamentos inscritos' }
+      })
+      console.error(error)
+    })
+  dispatch('ActionSetLoadingTrainings', false)
 }
 
-/* Call GET /trainings */
-export const ActionGetBehavior = async ({ commit, dispatch }, payload) => {
-  /*
-  await Http.get('trainings', payload)
+/* Call GET /modules/id */
+export const ActionGetTraining = async ({ commit, dispatch }, payload) => {
+  dispatch('ActionSetLoadingTrainings', true)
+  await Http.get(`modules/${payload}`)
     .then(response => {
-      commit(types.SET_TRAININGS, response.data)
+      commit(types.SET_BEHAVIOR_DETAILS, response.data)
     })
     .catch(error => {
       dispatch('ActionModalResponse', {
@@ -174,8 +186,58 @@ export const ActionGetBehavior = async ({ commit, dispatch }, payload) => {
       })
       console.error(error)
     })
-  */
-  commit(types.SET_BEHAVIOR_DETAILS, sampleTrain)
+  dispatch('ActionSetLoadingTrainings', false)
+}
+
+/* Call GET /modules */
+export const ActionGetModule = async ({ commit, dispatch }, payload) => {
+  dispatch('ActionSetLoadingTrainings', true)
+  await Http.get(`trainings/${payload}`)
+    .then(response => {
+      commit(types.SET_TRAIN, response.data)
+    })
+    .catch(error => {
+      dispatch('ActionModalResponse', {
+        modal: true,
+        data: { msg: 'Erro ao buscar modulo' }
+      })
+      console.error(error)
+    })
+  dispatch('ActionSetLoadingTrainings', false)
+}
+
+/* Call GET /slides */
+export const ActionGetSlide = async ({ commit, dispatch }, payload) => {
+  dispatch('ActionSetLoadingTrainings', true)
+  await Http.get(`slides/${payload}`)
+    .then(response => {
+      commit(types.SET_SLIDE, response.data)
+    })
+    .catch(error => {
+      dispatch('ActionModalResponse', {
+        modal: true,
+        data: { msg: 'Erro ao buscar slide' }
+      })
+      console.error(error)
+    })
+  dispatch('ActionSetLoadingTrainings', false)
+}
+
+/* Call GET /modules */
+export const ActionGetModules = async ({ commit, dispatch }, payload) => {
+  dispatch('ActionSetLoadingTrainings', true)
+  await Http.get('trainings', payload)
+    .then(response => {
+      commit(types.SET_MODULES, response.data)
+    })
+    .catch(error => {
+      dispatch('ActionModalResponse', {
+        modal: true,
+        data: { msg: 'Erro ao buscar lista de modulos' }
+      })
+      console.error(error)
+    })
+  dispatch('ActionSetLoadingTrainings', false)
 }
 
 export const ActionSetLoadingTrainings = ({ commit }, payload) => {

@@ -14,12 +14,14 @@
       <div class="col-12 col-md-12 col-xs-12">
         <div class="module-card-wrapper__footer">
           <h4 class="module-card-wrapper__footer__title p-0 m-0 text-main-background">
-            Equipamento de passeio
+            {{ module.title }}
           </h4>
           <p class="module-card-wrapper__footer__description p-0 m-0 mb-2 text-main-background">
-            Aprender quais os tipos de guia e coleira são mais adequados ao seu pet
+            {{ module.description }}
           </p>
-          <span class="module-card-wrapper__footer__badge text-main-background"> 3 sessões </span>
+          <span class="module-card-wrapper__footer__badge text-main-background">
+            {{ module.modules.length }} sessões
+          </span>
         </div>
       </div>
     </div>
@@ -40,16 +42,8 @@ const urlImage = require('../../../assets/images/test.svg')
 export default {
   name: 'ModuleCard',
   props: {
-    title: {
-      type: String,
-      default: ''
-    },
-    description: {
-      type: String
-    },
-    sessions: {
-      type: String,
-      default: ''
+    module: {
+      type: Object
     },
     locked: { type: Boolean, default: true },
     backgroundColor: {
