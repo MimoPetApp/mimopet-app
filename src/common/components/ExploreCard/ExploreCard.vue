@@ -5,11 +5,13 @@
         <q-btn class="explore-card__rating" dense flat>
           <div class="row justify-between flex-center">
             <q-icon
+              v-if="train.rating > 1"
               name="star"
               class="text-status-warning mr-1"
-              :style="{ opacity: train.rating / 5 }"
+              :style="{ opacity: normalize(train.rating, 5, 0) }"
               size="sm"
             />
+            <q-icon v-else name="star" class="text-utilities-border mr-1" size="sm" />
             {{ train.rating.toFixed(1) }}
           </div>
         </q-btn>
@@ -24,7 +26,7 @@
     </q-item>
     <q-item>
       <q-item-section>
-        <p class="explore-card__steps">
+        <p v-if="train.trainings" class="explore-card__steps">
           {{ train.trainings.length }} {{ `passo${train.trainings.length > 1 ? 's' : ''}` }}
         </p>
         <h4 class="explore-card__title">{{ train.title }}</h4>
@@ -56,6 +58,9 @@ export default {
         name: 'behaviorDetails',
         params: { id: this.train.id }
       })
+    },
+    normalize(val, max, min) {
+      return (val - min) / (max - min)
     }
   }
 }
