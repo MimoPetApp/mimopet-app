@@ -26,8 +26,11 @@
     </q-item>
     <q-item>
       <q-item-section>
-        <p v-if="train.trainings" class="explore-card__steps">
-          {{ train.trainings.length }} {{ `passo${train.trainings.length > 1 ? 's' : ''}` }}
+        <p v-if="train.modules" class="explore-card__steps">
+          <span v-if="train.modules.length > 0">
+            {{ train.modules.length }} {{ `passo${train.modules.length > 1 ? 's' : ''}` }}
+          </span>
+          <span v-else>Sem passos</span>
         </p>
         <h4 class="explore-card__title">{{ train.title }}</h4>
       </q-item-section>
@@ -83,6 +86,9 @@ export default {
   &__steps {
     margin: 0;
     padding: 0;
+  }
+
+  &__steps span {
     color: var(--utilities-alternate);
     font-size: var(--font-size-3);
     line-height: calc(var(--font-size-3) + 0.5rem);
