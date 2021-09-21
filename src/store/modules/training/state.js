@@ -3,6 +3,7 @@ export default {
   modules: [],
   behavior: {},
   train: {},
+  module: {},
   slide: {},
   myTrainings: [],
   loadingTrainings: false,

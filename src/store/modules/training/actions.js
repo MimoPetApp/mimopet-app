@@ -76,7 +76,7 @@ export const ActionGetModule = async ({ commit, dispatch }, payload) => {
   dispatch('ActionSetLoadingTrainings', true)
   await Http.get(`modules/${payload}`)
     .then(response => {
-      commit(types.SET_TRAIN, response.data)
+      commit(types.SET_MODULE, response.data)
     })
     .catch(error => {
       dispatch('ActionModalResponse', {
