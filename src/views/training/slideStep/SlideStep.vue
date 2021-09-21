@@ -43,18 +43,28 @@
           :name="index"
           class="slide-step__carousel-item"
         >
-          <div class="row justify-center pr-4 pl-4">
-            <q-img
-              :src="_getImageUrl(item.image)"
-              class="slide-step__image"
-              height="300px"
-              fit="scale-down"
-            />
+          <div class="column" style="height: calc(100% - 140px); margin-top: 70px">
+            <div class="col-5 center">
+              <q-img
+                :src="_getImageUrl(item.image)"
+                class="slide-step__image"
+                fit="scale-down"
+                height="100%"
+              />
+            </div>
+            <div class="col q-mt-md">
+              <q-scroll-area class="slide-step__text-area pr-4 pl-4">
+                <h3 class="text-center mb-3">{{ item.title }}</h3>
+                <p class="text-center">{{ item.description }}</p>
+              </q-scroll-area>
+            </div>
+            <!--
+            <div class="col justify-center pr-4 pl-4">
+            </div>
+            <div class="col">
+            </div>
+            -->
           </div>
-          <q-scroll-area class="slide-step__text-area pr-4 pl-4">
-            <h3 class="text-center mb-3">{{ item.title }}</h3>
-            <p class="text-center">{{ item.description }}</p>
-          </q-scroll-area>
         </q-carousel-slide>
 
         <template v-slot:control>

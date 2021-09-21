@@ -10,7 +10,7 @@ const hitIcon = require('../../../assets/images/feedback/hit.svg')
 
 export default {
   components: { LoadingCircle, Button, Tag, FeedbackModal },
-  data () {
+  data() {
     return {
       currSlide: 0,
       loading: false,
@@ -18,36 +18,40 @@ export default {
     }
   },
   computed: {
-    ...mapState('training', ['train', 'slide', 'loadingTrainings']),
-    feedbackIcon () {
+    ...mapState('training', ['behavior', 'module', 'slide', 'loadingTrainings']),
+    feedbackIcon() {
       return hitIcon
     }
   },
   methods: {
     ...utils,
     ...parser,
-    ...mapActions('training', ['ActionGetModule', 'ActionGetSlide']),
+    ...mapActions('training', ['ActionGetModule', 'ActionGetSlide', 'ActionGetTraining']),
     ...mapMutations('training', ['SET_HAS_HEADER']),
-    timeout (ms) {
+    timeout(ms) {
       return new Promise(resolve => setTimeout(resolve, ms))
     },
-    async onFinish () {
+    async onFinish() {
       this.loading = true
       await this.timeout(500)
       this.hasFeedback = true
       this.loading = false
     },
-    trainingDetailsHandler () {
-      this.$router.push({ name: 'TrainingDetails', params: { id: this.train.id } })
+    trainingDetailsHandler() {
+      this.$router.push({
+        name: 'ModuleDetails',
+        params: { id: this.behavior.id, idModulo: this.module.id }
+      })
     }
   },
-  beforeRouteLeave (to, from, next) {
+  beforeRouteLeave(to, from, next) {
     this.SET_HAS_HEADER(true)
     next()
   },
-  async mounted () {
+  async mounted() {
     this.SET_HAS_HEADER(false)
+    await this.ActionGetTraining(this.$route.params.id)
     await this.ActionGetModule(this.$route.params.idModulo)
-    await this.ActionGetSlide(this.train.steps[0].slides[0].id)
+    await this.ActionGetSlide(this.$route.params.idSessao)
   }
 }
