@@ -5,6 +5,7 @@ export default {
   train: {},
   module: {},
   slide: {},
+  video: {},
   myTrainings: [],
   loadingTrainings: false,
   hasHeader: true,

@@ -4,7 +4,7 @@
       <div
         class="behavior-details__header column justify-between p-4"
         :style="{
-          backgroundImage: `url('${_getImageUrl(behavior.thumbnail)}')`,
+          backgroundImage: `url('${_getMediaUrl(behavior.thumbnail)}')`,
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center center',
           backgroundSize: 'cover'

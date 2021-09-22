@@ -13,6 +13,9 @@ export default {
   [types.SET_SLIDE](state, payload) {
     state.slide = payload
   },
+  [types.SET_VIDEO](state, payload) {
+    state.video = payload
+  },
   [types.SET_MODULES](state, payload) {
     state.modules = payload
   },

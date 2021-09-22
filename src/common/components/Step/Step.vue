@@ -59,9 +59,18 @@ export default {
     getStepRouter(step) {
       let name = ''
       let id = 0
-      if (step.type === 'slide') {
-        name = 'SlideStep'
-        id = step.slides.id
+      switch (step.type) {
+        case 'slide':
+          name = 'SlideStep'
+          id = step.slides.id
+          break
+        case 'video':
+          name = 'VideoStep'
+          id = step.video.id
+          break
+
+        default:
+          break
       }
       return { name, params: { idSessao: id } }
     }

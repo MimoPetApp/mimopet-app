@@ -62,7 +62,7 @@ export default {
     },
     getCardStyle() {
       return {
-        backgroundImage: 'url(' + this._getImageUrl(this.module.thumbnail) + ')',
+        backgroundImage: 'url(' + this._getMediaUrl(this.module.thumbnail) + ')',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center center',
         backgroundSize: 'cover'

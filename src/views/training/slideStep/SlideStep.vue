@@ -46,7 +46,7 @@
           <div class="column" style="height: calc(100% - 140px); margin-top: 70px">
             <div class="col-5 center">
               <q-img
-                :src="_getImageUrl(item.image)"
+                :src="_getMediaUrl(item.image)"
                 class="slide-step__image"
                 fit="scale-down"
                 height="100%"

@@ -4,7 +4,7 @@
     flat
     class="train-card column justify-end mb-4"
     :style="{
-      backgroundImage: `url('${_getImageUrl(train.thumbnail)}')`,
+      backgroundImage: `url('${_getMediaUrl(train.thumbnail)}')`,
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'top center',
       backgroundSize: 'cover'

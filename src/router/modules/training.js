@@ -30,6 +30,11 @@ export default [
     component: () => import('../../views/training/slideStep/SlideStep.vue')
   },
   {
+    path: '/treinamentos/:id/detalhes/:idModulo/sessoes/:idSessao/video',
+    name: 'VideoStep',
+    component: () => import('../../views/training/videoStep/VideoStep.vue')
+  },
+  {
     path: '/treinamentos/:id/detalhes/:idModulo/sessoes/:idSessao/quiz',
     name: 'QuizStep',
     component: () => import('../../views/training/quizStep/QuizStep.vue')
