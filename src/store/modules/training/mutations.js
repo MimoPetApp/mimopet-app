@@ -7,8 +7,14 @@ export default {
   [types.SET_TRAIN](state, payload) {
     state.train = payload
   },
+  [types.SET_MODULE](state, payload) {
+    state.module = payload
+  },
   [types.SET_SLIDE](state, payload) {
     state.slide = payload
+  },
+  [types.SET_VIDEO](state, payload) {
+    state.video = payload
   },
   [types.SET_MODULES](state, payload) {
     state.modules = payload

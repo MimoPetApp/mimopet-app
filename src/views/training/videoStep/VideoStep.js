@@ -18,7 +18,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('training', ['behavior', 'module', 'slide', 'loadingTrainings']),
+    ...mapState('training', ['behavior', 'module', 'video', 'loadingTrainings']),
     feedbackIcon() {
       return hitIcon
     }
@@ -26,7 +26,7 @@ export default {
   methods: {
     ...utils,
     ...parser,
-    ...mapActions('training', ['ActionGetModule', 'ActionGetSlide', 'ActionGetTraining']),
+    ...mapActions('training', ['ActionGetModule', 'ActionGetVideo', 'ActionGetTraining']),
     ...mapMutations('training', ['SET_HAS_HEADER']),
     timeout(ms) {
       return new Promise(resolve => setTimeout(resolve, ms))
@@ -52,6 +52,6 @@ export default {
     this.SET_HAS_HEADER(false)
     await this.ActionGetTraining(this.$route.params.id)
     await this.ActionGetModule(this.$route.params.idModulo)
-    await this.ActionGetSlide(this.$route.params.idSessao)
+    await this.ActionGetVideo(this.$route.params.idSessao)
   }
 }

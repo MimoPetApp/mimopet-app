@@ -1,4 +1,4 @@
-.slide-step {
+.video-step {
   height: 100vh;
 
   &__carousel {
@@ -53,4 +53,10 @@
   &__header__btn__back {
     width: 40px;
   }
+}
+
+video {
+  /* override other styles to make responsive */
+  width: 100% !important;
+  height: auto !important;
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="step-wrapper">
     <QList v-bind="$attrs">
-      <QItem clickable v-ripple v-bind="$attrs">
+      <QItem clickable v-ripple v-bind="$attrs" :to="getStepRouter(step)">
         <QItemSection avatar v-bind="$attrs">
           <QAvatar
             :color="selectColorByType"
@@ -13,8 +13,8 @@
           />
         </QItemSection>
         <QItemSection v-bind="$attrs">
-          <QItemLabel v-bind="$attrs">Demonstração de passo</QItemLabel>
-          <QItemLabel caption v-bind="$attrs">4 min - Slide</QItemLabel>
+          <QItemLabel v-bind="$attrs">{{ step.title }}</QItemLabel>
+          <QItemLabel caption v-bind="$attrs">{{ step.duration }} min - {{ step.type }}</QItemLabel>
         </QItemSection>
       </QItem>
     </QList>
@@ -30,17 +30,9 @@ export default {
   name: 'Step',
   components: { QList, QItem, QItemSection, QAvatar, QItemLabel },
   props: {
-    title: {
-      type: String,
-      default: ''
-    },
-    subtitle: {
-      type: String
-    },
-    type: {
-      type: String,
-      default: 'slide',
-      validate: val => StepTypes.indexOf(val) !== -1
+    step: {
+      type: Object,
+      default: null
     }
   },
   data() {
@@ -48,7 +40,7 @@ export default {
   },
   computed: {
     selectColorByType() {
-      switch (this.type) {
+      switch (this.step.type) {
         case 'slide':
           return 'main-alternate'
         case 'quiz':
@@ -61,6 +53,26 @@ export default {
           // video
           return 'main-highlight'
       }
+    }
+  },
+  methods: {
+    getStepRouter(step) {
+      let name = ''
+      let id = 0
+      switch (step.type) {
+        case 'slide':
+          name = 'SlideStep'
+          id = step.slides.id
+          break
+        case 'video':
+          name = 'VideoStep'
+          id = step.video.id
+          break
+
+        default:
+          break
+      }
+      return { name, params: { idSessao: id } }
     }
   }
 }

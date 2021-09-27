@@ -9,9 +9,9 @@ export default {
     if (!val) return ''
     return val.replace(/[^\d]+/g, '')
   },
-  _getImageUrl(image) {
-    if (image) {
-      return `${process.env.API.slice(0, -1)}${image.url}`
+  _getMediaUrl(media) {
+    if (media) {
+      return `${process.env.API.slice(0, -1)}${media.url}`
     }
     return ''
   }

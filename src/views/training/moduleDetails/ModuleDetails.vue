@@ -1,21 +1,25 @@
 <template>
-  <div v-if="true" class="module-details-wrapper">
+  <div v-if="!loadingTrainings" class="module-details-wrapper">
     <div class="module-details-wrapper__header mb-4">
       <h2 class="module-details-wrapper__header__title text-main-alternate pl-3 pr-3">
-        Equipamentos de passeio
+        {{ module.title }}
       </h2>
       <q-separator class="mb-4" />
       <h3 class="module-details-wrapper__header__subtitle text-main-alternate pl-3 pr-3">
-        10 Passos
+        <span v-if="module.steps.length > 0">
+          {{ module.steps.length }} {{ `Passo${module.steps.length > 1 ? 's' : ''}` }}
+        </span>
+        <span v-else>Sem passos</span>
       </h3>
       <h4 class="module-details-wrapper__header__caption text-utilities-alternate pl-3 pr-3">
-        10-20 min cada
+        {{ module.min_duration }}-{{ module.max_duration }} min cada
       </h4>
     </div>
     <div class="module-details-wrapper__content pl-3 pr-3">
-      <div class="mb-2">
-        <step type="slide" :to="{ name: 'SlideStep', params: { idSessao: 1 } }"></step>
+      <div v-for="step in module.steps" :key="step.id" class="mb-2">
+        <step :step="step"></step>
       </div>
+      <!--
       <div class="mb-2">
         <step type="feedback" :to="{ name: 'FeedbackStep', params: { idSessao: 2 } }"></step>
       </div>
@@ -28,6 +32,7 @@
       <div class="mb-2">
         <step type="video"></step>
       </div>
+      -->
     </div>
   </div>
   <div v-else class="flex flex-center q-mt-xl">

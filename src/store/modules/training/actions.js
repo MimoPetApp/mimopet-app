@@ -76,7 +76,7 @@ export const ActionGetModule = async ({ commit, dispatch }, payload) => {
   dispatch('ActionSetLoadingTrainings', true)
   await Http.get(`modules/${payload}`)
     .then(response => {
-      commit(types.SET_TRAIN, response.data)
+      commit(types.SET_MODULE, response.data)
     })
     .catch(error => {
       dispatch('ActionModalResponse', {
@@ -88,7 +88,7 @@ export const ActionGetModule = async ({ commit, dispatch }, payload) => {
   dispatch('ActionSetLoadingTrainings', false)
 }
 
-/* Call GET /slides */
+/* Call GET /slides/:id */
 export const ActionGetSlide = async ({ commit, dispatch }, payload) => {
   dispatch('ActionSetLoadingTrainings', true)
   await Http.get(`slides/${payload}`)
@@ -99,6 +99,23 @@ export const ActionGetSlide = async ({ commit, dispatch }, payload) => {
       dispatch('ActionModalResponse', {
         modal: true,
         data: { msg: 'Erro ao buscar slide' }
+      })
+      console.error(error)
+    })
+  dispatch('ActionSetLoadingTrainings', false)
+}
+
+/* Call GET /videos/:id */
+export const ActionGetVideo = async ({ commit, dispatch }, payload) => {
+  dispatch('ActionSetLoadingTrainings', true)
+  await Http.get(`videos/${payload}`)
+    .then(response => {
+      commit(types.SET_VIDEO, response.data)
+    })
+    .catch(error => {
+      dispatch('ActionModalResponse', {
+        modal: true,
+        data: { msg: 'Erro ao buscar video' }
       })
       console.error(error)
     })

@@ -20,7 +20,7 @@
             {{ module.description }}
           </p>
           <span class="module-card-wrapper__footer__badge text-main-background">
-            {{ module.modules.length }} sessões
+            {{ module.steps.length }} sessões
           </span>
         </div>
       </div>
@@ -34,10 +34,10 @@
 </template>
 
 <script>
+import utils from '../../../common/helpers/utils'
 const lockIcon = require('../../../assets/images/lock.svg')
 const moduleShadowIcon = require('../../../assets/images/module-shadow.svg')
 const moduleIcon = require('../../../assets/images/happy.svg')
-const urlImage = require('../../../assets/images/test.svg')
 
 export default {
   name: 'ModuleCard',
@@ -45,11 +45,7 @@ export default {
     module: {
       type: Object
     },
-    locked: { type: Boolean, default: true },
-    backgroundColor: {
-      type: String,
-      default: '#67D0E8'
-    }
+    locked: { type: Boolean, default: true }
   },
   data() {
     return {}
@@ -66,11 +62,15 @@ export default {
     },
     getCardStyle() {
       return {
-        background: this.backgroundColor,
-        borderColor: this.backgroundColor,
-        backgroundImage: 'url(' + urlImage + ')'
+        backgroundImage: 'url(' + this._getMediaUrl(this.module.thumbnail) + ')',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center center',
+        backgroundSize: 'cover'
       }
     }
+  },
+  methods: {
+    ...utils
   }
 }
 </script>
@@ -79,7 +79,7 @@ export default {
 .module-card-wrapper {
   border-radius: 22px;
   border-style: solid;
-  border-width: 1px;
+  border-width: 0;
   min-width: 318px;
   min-height: 324px;
   position: relative;

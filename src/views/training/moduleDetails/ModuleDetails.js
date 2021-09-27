@@ -9,12 +9,12 @@ export default {
     Step
   },
   computed: {
-    ...mapState('pets', ['petsList', 'loadingPets', 'currPet'])
+    ...mapState('training', ['loadingTrainings', 'module'])
   },
   methods: {
-    ...mapActions('training', ['ActionGetModules'])
+    ...mapActions('training', ['ActionGetModule'])
   },
-  async created () {
-    this.ActionGetModules()
+  async created() {
+    this.ActionGetModule(this.$route.params.idModulo)
   }
 }

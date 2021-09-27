@@ -1,7 +1,15 @@
 <template>
   <div class="behavior-details">
     <div v-if="!loadingTrainings" class="">
-      <div class="behavior-details__header column justify-between p-4">
+      <div
+        class="behavior-details__header column justify-between p-4"
+        :style="{
+          backgroundImage: `url('${_getMediaUrl(behavior.thumbnail)}')`,
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center center',
+          backgroundSize: 'cover'
+        }"
+      >
         <div align="left">
           <q-btn
             to="/comportamentos"
@@ -11,9 +19,6 @@
           >
             <q-icon name="close" color="main-background" size="20px" />
           </q-btn>
-        </div>
-        <div align="right">
-          <q-img src="~assets/images/vectors/girlPet.svg" width="209px" fit="scale-down" />
         </div>
       </div>
       <div class="pt-4 pl-4 pr-4" align="left">

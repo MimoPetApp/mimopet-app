@@ -4,6 +4,7 @@ import Button from '../../../common/components/Button/Button'
 import LoadingCircle from '../../../common/components/loadingCircle'
 import Tag from '../../../common/components/Tag/Tag'
 import FeedbackModal from '../../../common/components/FeedbackModal/FeedbackModal'
+import utils from '../../../common/helpers/utils'
 
 const hitIcon = require('../../../assets/images/feedback/hit.svg')
 
@@ -22,6 +23,7 @@ export default {
     }
   },
   methods: {
+    ...utils,
     ...parser,
     ...mapActions('training', ['ActionGetTraining']),
     ...mapMutations('training', ['SET_HAS_HEADER']),

@@ -1,14 +1,28 @@
 <template>
-  <q-card v-if="train" flat class="train-card column justify-end mb-4" @click="onClick">
+  <q-card
+    v-if="train"
+    flat
+    class="train-card column justify-end mb-4"
+    :style="{
+      backgroundImage: `url('${_getMediaUrl(train.thumbnail)}')`,
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'top center',
+      backgroundSize: 'cover'
+    }"
+    @click="onClick"
+  >
+    <!--
     <div class="train-card__image">
       <q-img src="~assets/images/vectors/girlPet.svg" width="209px" fit="scale-down" />
     </div>
+    -->
     <TrainingCardBase :train="train" />
   </q-card>
 </template>
 
 <script>
 import TrainingCardBase from '../../../common/components/TrainingCardBase/TrainingCardBase'
+import utils from '../../../common/helpers/utils'
 
 export default {
   name: 'TrainingCard',
@@ -23,6 +37,7 @@ export default {
     return {}
   },
   methods: {
+    ...utils,
     onClick() {
       /*
       this.$router.push({
