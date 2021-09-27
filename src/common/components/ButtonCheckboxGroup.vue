@@ -40,11 +40,12 @@ export const ButtonCheckboxColors = ['main-primary', 'status-danger', 'status-su
 
 export default {
   name: 'ButtonCheckboxGroup',
-  data () {
+  data() {
     return {
       chosenAnswer: false,
       selectedOptions: [],
-      selected: false
+      selected: false,
+      answer: ''
     }
   },
   components: {
@@ -55,19 +56,33 @@ export default {
       type: Array,
       default: null
     },
-    answer: {
+    selectionType: {
       type: String,
-      default: ''
-    },
-    singleSelection: {
-      type: Boolean,
-      default: false
+      default: 'single'
     }
   },
   computed: {},
+  created() {
+    if (this.options.length > 0) {
+      this.formatOptions()
+      this.getAnswer()
+    }
+  },
   methods: {
-    clicked (option, index) {
-      if (this.singleSelection) {
+    getAnswer() {
+      this.options.forEach(option => {
+        if (option.isCorrect) {
+          this.answer = option.label
+        }
+      })
+    },
+    formatOptions() {
+      this.options.forEach(option => {
+        option.selected = false
+      })
+    },
+    clicked(option, index) {
+      if (this.selectionType === 'single') {
         // single selection with no answer
         if (!this.selected) {
           this.selectedOptions.push(option)
@@ -100,7 +115,7 @@ export default {
         }
       }
     },
-    toggleSelection (option) {
+    toggleSelection(option) {
       if (this.selectedOptions.length > 0) {
         // remove selection
         this.selectedOptions[0].selected = false
@@ -111,17 +126,17 @@ export default {
       }
     },
     // mapea-se 2 grandezas do mesmo tipo a serem comparadas se sao iguais
-    isCorrect (option1, option2, index = 0) {
+    isCorrect(option1, option2, index = 0) {
       return option1.toLowerCase() === option2.toLowerCase()
     },
-    showCorrectAnswer () {
+    showCorrectAnswer() {
       this.options.forEach(option => {
         if (this.isCorrect(option.label, this.answer)) {
           option.selected = true
         }
       })
     },
-    hasAlreadySelected (option) {
+    hasAlreadySelected(option) {
       let has = false
       if (this.selectedOptions.length > 0) {
         this.selectedOptions.forEach(selectedOption => {
@@ -132,7 +147,7 @@ export default {
       }
       return has
     },
-    removeSelectedOption (option) {
+    removeSelectedOption(option) {
       for (let index = 0; index < this.selectedOptions.length; index++) {
         if (this.isCorrect(this.selectedOptions[index].label, option.label)) {
           this.selectedOptions.splice(index, 1)

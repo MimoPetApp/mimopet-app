@@ -6,6 +6,7 @@ export default {
   module: {},
   slide: {},
   video: {},
+  feedback: {},
   myTrainings: [],
   loadingTrainings: false,
   hasHeader: true,

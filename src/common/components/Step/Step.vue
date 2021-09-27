@@ -68,7 +68,10 @@ export default {
           name = 'VideoStep'
           id = step.video.id
           break
-
+        case 'feedback':
+          name = 'FeedbackStep'
+          id = step.feedback.id
+          break
         default:
           break
       }
