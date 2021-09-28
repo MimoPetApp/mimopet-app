@@ -1,19 +1,13 @@
 <template>
-  <div v-if="!loadingTrainings" class="quiz-step-wrapper">
-    <div v-for="(item, index) in feedback.items" :key="index" v-show="step === index">
-      {{ index }}
-      <div v-if="step === index">
-        <Ask
-          :title="item.title"
-          :subtitle="item.description"
-          align-content="center"
-          v-if="isFeedback(item)"
-        >
+  <div class="feedback-step">
+    <div v-if="!loadingTrainings" class="quiz-step-wrapper">
+      <div v-for="(item, index) in questions" :key="index" v-show="step === index">
+        <Ask :title="item.title" :subtitle="item.description" align-content="center">
           <template v-slot:content>
             <Button-Checkbox-Group
               :options="item.options"
               :selectionType="item.selection"
-              @selected="selectedHandler('ask' + index, $event)"
+              @selected="selectedHandler(index, $event)"
             ></Button-Checkbox-Group>
           </template>
           <template v-slot:action>
@@ -23,24 +17,25 @@
               color="primary-flat"
               class="pl-7 pr-7"
               :disabled="!selected"
-              @click="nextStep()"
+              @click="nextStep(item)"
             ></Button>
           </template>
         </Ask>
       </div>
+    </div>
+    <div v-else class="flex flex-center q-mt-xl">
+      <LoadingCircle color="status-waiting" size="6em" :thickness="5" />
+    </div>
+    <div>
       <FeedbackModal
-        v-if="modalStatus"
-        :active="true"
+        :active="dialog.model"
         :icon="feedbackIcon"
-        :title="item.title"
-        :subtitle="item.description"
+        :title="dialog.title"
+        :subtitle="dialog.subtitle"
         buttonText="Continuar"
-        :action="nextStep()"
+        :action="dialog.action"
       ></FeedbackModal>
     </div>
-  </div>
-  <div v-else class="flex flex-center q-mt-xl">
-    <LoadingCircle color="status-waiting" size="6em" :thickness="5" />
   </div>
 </template>
 

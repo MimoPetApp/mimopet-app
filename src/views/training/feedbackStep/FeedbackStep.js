@@ -16,93 +16,99 @@ export default {
     Button,
     FeedbackModal
   },
-  data () {
+  data() {
     return {
       step: 0,
       selected: false,
-      form: {},
-      modalStatus: false,
+      form: [],
+      questions: [],
+      warnings: [],
+      dialog: {
+        model: false,
+        title: 'asdasd',
+        subtitle: 'asdasdasd',
+        action: () => {}
+      },
       modalData: null
     }
   },
   computed: {
     ...mapState('training', ['feedback', 'loadingTrainings']),
-    feedbackIcon () {
+    feedbackIcon() {
       return petIcon
     }
   },
   methods: {
     ...mapActions('training', ['ActionGetFeedback']),
-    selectedHandler (name, event) {
-      this.form[name] = event
+    selectedHandler(index, event) {
+      // TODO essa função ta incompleta
+      console.log('selectedHandler', index, event)
+      this.form.push({
+        feedback: index,
+        answer: event
+      })
       this.selected = true
     },
-    nextStep () {
+    handleWarning(warning) {
+      this.dialog.model = false
       this.step += 1
     },
-    isFeedback (item) {
-      const type = item.__component
-      // eslint-disable-next-line no-prototype-builtins
-      if (type === 'utils.quiz-item') {
-        return true
+    nextStep(currItem) {
+      const answer = 1 // TODO: pegar resposta do user
+      if (
+        currItem.warning &&
+        this.checkCondition(currItem.warning.condition, currItem.warning.index, answer)
+      ) {
+        this.dialog = {
+          model: true,
+          title: currItem.warning.title,
+          subtitle: currItem.warning.description,
+          action: () => {
+            this.handleWarning(currItem.warning)
+          }
+        }
       } else {
-        this.modalStatus = true
-        this.modalData = item
-        return false
+        if (this.step + 1 < this.questions.length) {
+          this.step += 1
+        } else {
+          // TODO go to last page
+        }
       }
     },
-    checkCondition (item, index) {
-      const form = this.form
-      switch (item.condition) {
+    filterData() {
+      this.feedback.items.map(item => {
+        if (item.__component === 'utils.quiz-item') {
+          this.questions.push(item)
+        } else if (item.__component === 'utils.option-warning') {
+          if (this.questions.length >= 1) {
+            this.questions[this.questions.length - 1].warning = item
+          }
+        }
+        return true
+      })
+    },
+    checkCondition(condition, index, answer) {
+      console.log('checkCondition', condition, index, answer)
+      switch (condition) {
         case 'equals':
-          form[index].some(obj => {
-            if (form[index].contains(obj)) {
-              console.log('a')
-            }
-            return true
-          })
-          break
+          return answer === index
         case 'different':
-          form[index].some(obj => {
-            if (form[index].contains(obj)) {
-              console.log('a')
-            }
-            return true
-          })
-
-          break
-        case 'lessThanOrEqual':
-          form[index].some(obj => {
-            if (form[index].contains(obj)) {
-              console.log('a')
-            }
-            return true
-          })
-          break
-        case 'greaterThanOrEqual':
-          form[index].some(obj => {
-            if (form[index].contains(obj)) {
-              console.log('a')
-            }
-            return true
-          })
-
-          break
+          return answer !== index
+        case 'lessThanOrEqualTo':
+          return answer <= index
+        case 'greaterThanOrEqualTo':
+          return answer >= index
         case 'lessThan':
-          form[index].some(obj => {
-            if (form[index].contains(obj)) {
-              console.log('a')
-            }
-            return true
-          })
-
-          break
+          return answer < index
+        case 'greaterThan':
+          return answer > index
         default:
-          break
+          return false
       }
     }
   },
-  async created () {
+  async created() {
     await this.ActionGetFeedback(this.$route.params.idSessao)
+    this.filterData()
   }
 }
