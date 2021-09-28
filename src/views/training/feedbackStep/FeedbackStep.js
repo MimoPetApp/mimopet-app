@@ -20,11 +20,13 @@ export default {
     return {
       step: 0,
       selected: false,
-      form: {}
+      form: {},
+      modalStatus: false,
+      modalData: null
     }
   },
   computed: {
-    ...mapState('training', ['feedback']),
+    ...mapState('training', ['feedback', 'loadingTrainings']),
     feedbackIcon () {
       return petIcon
     }
@@ -39,31 +41,65 @@ export default {
       this.step += 1
     },
     isFeedback (item) {
-      console.log('a', item)
+      const type = item.__component
       // eslint-disable-next-line no-prototype-builtins
-      if (item.hasOwnProperty('index')) {
-        return false
-      } else {
+      if (type === 'utils.quiz-item') {
         return true
+      } else {
+        this.modalStatus = true
+        this.modalData = item
+        return false
       }
     },
-    checkCondition (item) {
-      /*
+    checkCondition (item, index) {
+      const form = this.form
       switch (item.condition) {
         case 'equals':
+          form[index].some(obj => {
+            if (form[index].contains(obj)) {
+              console.log('a')
+            }
+            return true
+          })
           break
         case 'different':
+          form[index].some(obj => {
+            if (form[index].contains(obj)) {
+              console.log('a')
+            }
+            return true
+          })
+
           break
         case 'lessThanOrEqual':
+          form[index].some(obj => {
+            if (form[index].contains(obj)) {
+              console.log('a')
+            }
+            return true
+          })
           break
         case 'greaterThanOrEqual':
+          form[index].some(obj => {
+            if (form[index].contains(obj)) {
+              console.log('a')
+            }
+            return true
+          })
+
           break
         case 'lessThan':
+          form[index].some(obj => {
+            if (form[index].contains(obj)) {
+              console.log('a')
+            }
+            return true
+          })
+
           break
         default:
           break
       }
-      */
     }
   },
   async created () {

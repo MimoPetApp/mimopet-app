@@ -63,6 +63,7 @@ export default {
   },
   computed: {},
   created() {
+    console.log('a', this.options)
     if (this.options.length > 0) {
       this.formatOptions()
       this.getAnswer()
