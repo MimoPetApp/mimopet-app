@@ -6,6 +6,7 @@ import FeedbackModal from '../../../common/components/FeedbackModal/FeedbackModa
 import { mapState, mapActions } from 'vuex'
 
 const petIcon = require('../../../assets/images/feedback/pet.svg')
+const checkedIcon = require('../../../assets/images/feedback/checked.svg')
 
 export default {
   name: 'FeedbackStep',
@@ -16,7 +17,7 @@ export default {
     Button,
     FeedbackModal
   },
-  data() {
+  data () {
     return {
       step: 0,
       selected: false,
@@ -25,44 +26,55 @@ export default {
       warnings: [],
       dialog: {
         model: false,
-        title: 'asdasd',
-        subtitle: 'asdasdasd',
+        title: '',
+        subtitle: '',
+        loading: false,
+        icon: '',
+        btnText: '',
         action: () => {}
       },
-      modalData: null
+      feedbackID: null
     }
   },
   computed: {
     ...mapState('training', ['feedback', 'loadingTrainings']),
-    feedbackIcon() {
+    feedbackIcon () {
       return petIcon
+    },
+    checkedIcon () {
+      return checkedIcon
     }
   },
   methods: {
     ...mapActions('training', ['ActionGetFeedback']),
-    selectedHandler(index, event) {
-      // TODO essa função ta incompleta
-      console.log('selectedHandler', index, event)
-      this.form.push({
-        feedback: index,
-        answer: event
-      })
-      this.selected = true
+    selectedHandler (index, event) {
+      this.form[index] = {
+        feedbackID: this.feedbackID,
+        itemIndex: index,
+        answer: event,
+        answered: true
+      }
+      if (event.length === 0) {
+        // no elements selection
+        this.form[index].answered = false
+      }
     },
-    handleWarning(warning) {
+    handleWarning (warning) {
       this.dialog.model = false
       this.step += 1
     },
-    nextStep(currItem) {
-      const answer = 1 // TODO: pegar resposta do user
+    nextStep (currItem, index) {
+      const answerIndexList = this.mapAnswerToIndexList(index)
       if (
         currItem.warning &&
-        this.checkCondition(currItem.warning.condition, currItem.warning.index, answer)
+        this.checkCondition(currItem.warning.condition, currItem.warning.index - 1, answerIndexList)
       ) {
         this.dialog = {
           model: true,
           title: currItem.warning.title,
           subtitle: currItem.warning.description,
+          icon: currItem.warning.icon ? currItem.warning.icon : this.feedbackIcon,
+          btnText: 'Continuar',
           action: () => {
             this.handleWarning(currItem.warning)
           }
@@ -72,10 +84,45 @@ export default {
           this.step += 1
         } else {
           // TODO go to last page
+          this.dialog = {
+            model: true,
+            title: 'Quiz finalizado',
+            subtitle: 'Agora você tem mais conhecimento sobre como lidar com seu pet.',
+            icon: this.checkedIcon,
+            btnText: 'Ir para o treino',
+            action: () => {
+              this.saveFeedback()
+            }
+          }
         }
       }
     },
-    filterData() {
+    timeout (ms) {
+      return new Promise(resolve => setTimeout(resolve, ms))
+    },
+    async saveFeedback () {
+      // TODO: salvar os dados
+      this.dialog.loading = true
+      await this.timeout(500)
+      this.dialog.loading = false
+      this.$router.push({
+        name: 'ModuleDetails',
+        params: { id: this.$route.params.id, idModulo: this.$route.params.idModulo }
+      })
+    },
+    mapAnswerToIndexList (currIndex) {
+      const indexList = this.form[currIndex].answer.map(answer => {
+        const index = this.questions[currIndex].options.map((option, optionIndex) => {
+          return option.label === answer.label ? optionIndex : ''
+        })
+        const number = index.filter(item => {
+          return item !== ''
+        })
+        return number[0]
+      })
+      return indexList
+    },
+    filterData () {
       this.feedback.items.map(item => {
         if (item.__component === 'utils.quiz-item') {
           this.questions.push(item)
@@ -87,28 +134,45 @@ export default {
         return true
       })
     },
-    checkCondition(condition, index, answer) {
-      console.log('checkCondition', condition, index, answer)
+    checkCondition (condition, index, answers) {
+      if (answers.length === 0) {
+        return false
+      }
+      const answerIndexListAsc = answers
+      answerIndexListAsc.sort()
+
       switch (condition) {
         case 'equals':
-          return answer === index
+          return answerIndexListAsc.includes(index)
         case 'different':
-          return answer !== index
+          return !answerIndexListAsc.includes(index)
         case 'lessThanOrEqualTo':
-          return answer <= index
+          return answerIndexListAsc[answerIndexListAsc.length - 1] <= index
         case 'greaterThanOrEqualTo':
-          return answer >= index
+          return answerIndexListAsc[answerIndexListAsc.length - 1] >= index
         case 'lessThan':
-          return answer < index
+          return answerIndexListAsc[answerIndexListAsc.length - 1] < index
         case 'greaterThan':
-          return answer > index
+          return answerIndexListAsc[answerIndexListAsc.length - 1] > index
         default:
           return false
       }
+    },
+    formatForm () {
+      this.questions.forEach(question => {
+        this.form.push({
+          feedbackID: null,
+          itemIndex: null,
+          answer: [],
+          answered: false
+        })
+      })
     }
   },
-  async created() {
+  async created () {
     await this.ActionGetFeedback(this.$route.params.idSessao)
     this.filterData()
+    this.formatForm()
+    this.feedbackID = this.feedback.id
   }
 }

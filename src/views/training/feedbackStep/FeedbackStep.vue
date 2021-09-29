@@ -16,8 +16,8 @@
               noCaps
               color="primary-flat"
               class="pl-7 pr-7"
-              :disabled="!selected"
-              @click="nextStep(item)"
+              :disabled="!form[index].answered"
+              @click="nextStep(item, index)"
             ></Button>
           </template>
         </Ask>
@@ -29,10 +29,11 @@
     <div>
       <FeedbackModal
         :active="dialog.model"
-        :icon="feedbackIcon"
+        :icon="dialog.icon"
         :title="dialog.title"
         :subtitle="dialog.subtitle"
-        buttonText="Continuar"
+        :loading="dialog.loading"
+        :buttonText="dialog.btnText"
         :action="dialog.action"
       ></FeedbackModal>
     </div>
