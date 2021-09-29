@@ -18,7 +18,7 @@ export default {
     TextField,
     ButtonCheckboxGroup
   },
-  data() {
+  data () {
     return {
       showError: {
         email: false,
@@ -40,17 +40,17 @@ export default {
         {
           label: 'Mãe de pet',
           value: 'FEMALE',
-          selected: false
+          isCorrect: false
         },
         {
           label: 'Pai de pet',
           value: 'MALE',
-          selected: false
+          isCorrect: false
         },
         {
           label: 'Não binário',
           value: 'NONBINARY',
-          selected: false
+          isCorrect: false
         }
       ],
       step: 1,
@@ -60,22 +60,22 @@ export default {
   },
   computed: {
     ...mapState('auth', ['terms']),
-    emailIsValid() {
+    emailIsValid () {
       return this.validateField(this.form.email, this.pattern.email)
     },
-    passwordIsValid() {
+    passwordIsValid () {
       return this.validateField(this.form.password, this.pattern.password)
     },
-    nameIsValid() {
+    nameIsValid () {
       return this.validateField(this.form.username, this.pattern.name)
     },
-    genderIsValid() {
+    genderIsValid () {
       return this.form.gender !== ''
     },
-    birthdayIsValid() {
+    birthdayIsValid () {
       return this.form.birthday.length === 10 && this.userAge >= 18
     },
-    userAge() {
+    userAge () {
       if (this.form.birthday.length === 10) {
         const [day, month, year] = this.form.birthday.split('-')
         return this._calculateAge(new Date(year, month, day))
@@ -83,55 +83,55 @@ export default {
       return 0
     }
   },
-  beforeMount() {},
-  async mounted() {
+  beforeMount () {},
+  async mounted () {
     await this.ActionGetTermsOfUse()
   },
   methods: {
     ...utils,
     ...mapActions('auth', ['ActionGetTermsOfUse', 'ActionCreateAccount']),
-    nextStep() {
+    nextStep () {
       if (this.step < this.maxStep) this.step += 1
     },
-    previousStep() {
+    previousStep () {
       if (this.step > 1) this.step -= 1
       else this.hubHandler()
     },
-    hubHandler() {
+    hubHandler () {
       this.$router.push({ name: 'hub' })
     },
-    genderOptionsHandler(field, eventData) {
+    genderOptionsHandler (field, eventData) {
       if (field === 'gender') {
         this.form.gender = eventData[0].value
       }
     },
-    validateField(field, rule) {
+    validateField (field, rule) {
       if (field && rule) return rule.test(field)
       else return false
     },
-    onSubmitEmail() {
+    onSubmitEmail () {
       if (!this.emailIsValid) return
       this.nextStep()
     },
-    onSubmitPassword() {
+    onSubmitPassword () {
       if (this.passwordIsValid) {
         this.nextStep()
       }
     },
-    onSubmitName() {
+    onSubmitName () {
       if (!this.nameIsValid) return
       this.nextStep()
     },
-    onSubmitBirthDate() {
+    onSubmitBirthDate () {
       if (!this.birthdayIsValid) return
       this.nextStep()
     },
-    onSubmitGender() {
+    onSubmitGender () {
       if (!this.genderIsValid) return
       this.nextStep()
       this.submitNewUser()
     },
-    async submitNewUser() {
+    async submitNewUser () {
       this.loading = true
       this.form.birthday = this._noMask(this.form.birthday)
       await this.ActionCreateAccount(this.form)
