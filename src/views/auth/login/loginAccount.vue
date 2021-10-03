@@ -48,7 +48,7 @@
                 flat
                 color="primary-filled"
                 :disabled="true"
-                class="text-weight-bold"
+                class="text-weight-bold login__bottom-modal--button"
                 size="md"
                 no-caps
                 icon="mail"
@@ -60,7 +60,7 @@
                 flat
                 color="primary-filled"
                 :disabled="true"
-                class="text-weight-bold"
+                class="text-weight-bold login__bottom-modal--button"
                 size="md"
                 no-caps
                 label="Esqueci minha senha"
