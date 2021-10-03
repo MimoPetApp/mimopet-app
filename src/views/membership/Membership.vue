@@ -60,6 +60,18 @@
           </div>
         </div>
       </div>
+      <div class="col-12 col-md-12 col-xs-12">
+        <div class="membership-wrapper__dialog">
+          <FeedbackModal
+            :active="step === 5"
+            :icon="feedbackIcon"
+            title="Pet Adicionado"
+            subtitle="Você pode adicionar inúmeros pets a sua conta cadastrada"
+            buttonText="Acessar o app"
+            :action="goToHome"
+          ></FeedbackModal>
+        </div>
+      </div>
     </div>
     <!-- Loading content -->
     <div v-if="false" class="flex flex-center q-mt-xl">
