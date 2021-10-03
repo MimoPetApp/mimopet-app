@@ -198,7 +198,7 @@
           <template v-slot:content>
             <Button-Checkbox-Group
               :options="genderOptions"
-              single-selection
+              selectionType="single"
               @selected="genderOptionsHandler('gender', $event)"
             ></Button-Checkbox-Group>
           </template>

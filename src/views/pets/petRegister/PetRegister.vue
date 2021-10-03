@@ -51,7 +51,7 @@
         <template v-slot:content>
           <Button-Checkbox-Group
             :options="ageOptions"
-            single-selection
+            selectionType="single"
             @selected="selectedHandler('petAge', $event)"
           ></Button-Checkbox-Group>
         </template>
@@ -96,7 +96,7 @@
             <div class="col-12 col-md-12 col-xs-12 list-breeds-wrapper">
               <Button-Checkbox-Group
                 :options="breedsList"
-                single-selection
+                selectionType="single"
                 @selected="selectedHandler('petBreed', $event)"
               ></Button-Checkbox-Group>
               <!--
@@ -140,6 +140,7 @@
         <template v-slot:content>
           <Button-Checkbox-Group
             :options="detailOptions"
+            selectionType="multi"
             @selected="selectedHandler('petDetails', $event)"
           ></Button-Checkbox-Group>
         </template>

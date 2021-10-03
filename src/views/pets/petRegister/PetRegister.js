@@ -29,43 +29,43 @@ export default {
     Checkbox,
     FeedbackModal
   },
-  data() {
+  data () {
     return {
       test: null,
       ageOptions: [
         {
           label: 'Filhote até 6 meses',
-          selected: false
+          isCorrect: false
         },
         {
           label: 'Filhote até 1,5 anos',
-          selected: false
+          isCorrect: false
         },
         {
           label: 'Adulto',
-          selected: false
+          isCorrect: false
         },
         {
           label: 'Sênior',
-          selected: false
+          isCorrect: false
         }
       ],
       detailOptions: [
         {
           label: 'Adotado',
-          selected: false
+          isCorrect: false
         },
         {
           label: 'Castrado',
-          selected: false
+          isCorrect: false
         },
         {
           label: 'Com deficiência',
-          selected: false
+          isCorrect: false
         },
         {
           label: 'De serviço',
-          selected: false
+          isCorrect: false
         }
       ],
       form: {
@@ -114,24 +114,24 @@ export default {
   },
   computed: {
     ...mapState('petRegister', { breedsData: 'breeds', registerPetData: 'registerPet' }),
-    feedbackIcon() {
+    feedbackIcon () {
       return petIcon
     },
-    petAgeFilled() {
+    petAgeFilled () {
       if (this.form.petAge) {
         return true
       } else {
         return false
       }
     },
-    petBreedFilled() {
+    petBreedFilled () {
       if (this.form.petBreed.name || this.form.petBreed.isUnknown) {
         return true
       } else {
         return false
       }
     },
-    petDetailsFilled() {
+    petDetailsFilled () {
       if (this.form.petDetails) {
         return true
       } else {
@@ -139,11 +139,11 @@ export default {
       }
     }
   },
-  beforeMount() {},
-  mounted() {
+  beforeMount () {},
+  mounted () {
     this.ActionSetHomeMenuVisibility(false)
   },
-  beforeRouteLeave(to, from, next) {
+  beforeRouteLeave (to, from, next) {
     // eslint-disable-next-line no-unused-vars
     this.ActionSetHomeMenuVisibility(true)
     next()
@@ -151,7 +151,7 @@ export default {
   methods: {
     ...mapActions('pets', ['ActionSetHomeMenuVisibility', 'ActionCreatePet']),
     ...mapActions('petRegister', ['ActionGetBreeds', 'ActionRegisterPet']),
-    searchBreed() {
+    searchBreed () {
       let aux = []
       const vue = this
       if (this.form.petBreed.searchName) {
@@ -164,7 +164,7 @@ export default {
         this.formatBreedList(this.breedsData.data)
       }
     },
-    formatBreedList(breedList) {
+    formatBreedList (breedList) {
       let aux = []
       if (breedList.length > 0) {
         aux = breedList.map(function (breed) {
@@ -176,7 +176,7 @@ export default {
       }
       this.breedsList = aux
     },
-    noBreedHandler() {
+    noBreedHandler () {
       if (this.form.petBreed.isUnknown) {
         this.form.petBreed.searchName = ''
         this.form.petBreed.name = 'Sem raça'
@@ -186,13 +186,13 @@ export default {
         this.formatBreedList(this.breedsData.data)
       }
     },
-    goToHome() {
+    goToHome () {
       this.$router.push({ name: 'home' })
     },
-    async nextStep() {
+    async nextStep () {
       this.step++
     },
-    async registerPet() {
+    async registerPet () {
       const form = this.formatForm()
       await this.ActionRegisterPet(form)
       if (this.registerPetData.error) {
@@ -201,7 +201,7 @@ export default {
         this.nextStep()
       }
     },
-    formatForm() {
+    formatForm () {
       let form = JSON.parse(JSON.stringify(this.form))
       form = {
         name: form.petName,
@@ -216,7 +216,7 @@ export default {
       }
       return form
     },
-    mapAge(age) {
+    mapAge (age) {
       switch (age) {
         case 'Filhote até 6 meses':
           return 'SIX_MONTS'
@@ -228,7 +228,7 @@ export default {
           return 'SENIOR'
       }
     },
-    backStep() {
+    backStep () {
       if (this.step > 1) {
         this.step--
       } else {
@@ -236,7 +236,7 @@ export default {
         this.$router.push({ name: 'home' })
       }
     },
-    async onSubmit() {
+    async onSubmit () {
       const body = {
         name: this.form.petName,
         gender: this.form.petGender,
@@ -254,13 +254,13 @@ export default {
       }
       this.loading = false
     },
-    finishRegister() {
+    finishRegister () {
       this.$router.push({
         name: 'petdetails',
         params: { id: `${this.createdPet.id}` }
       })
     },
-    selectedHandler(field, eventData) {
+    selectedHandler (field, eventData) {
       if (eventData.length > 0) {
         if (field !== 'petBreed') {
           this.form[field] = []
@@ -277,7 +277,7 @@ export default {
       }
     }
   },
-  async created() {
+  async created () {
     await this.ActionGetBreeds()
     this.formatBreedList(this.breedsData.data)
   }
