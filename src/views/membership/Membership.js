@@ -9,6 +9,7 @@ export default {
     return {
       isMembership: false,
       title: '',
+      subTitle: '',
       description: '',
       benefitsList: [
         {
@@ -39,9 +40,15 @@ export default {
       if (this.isMembership) {
         this.title = 'Você é um tutor de pet premium!️'
       } else {
-        this.title = 'Torne-se premium! Seu pet merece um mimo 🐶️'
+        this.title = 'Torne-se premium!'
       }
       return this.title
+    },
+    getMembershipSubTitle () {
+      if (!this.isMembership) {
+        this.subTitle = 'Seu pet merece um mimo 🐶️'
+      }
+      return this.subTitle
     },
     getMembershipDescription () {
       if (this.isMembership) {
