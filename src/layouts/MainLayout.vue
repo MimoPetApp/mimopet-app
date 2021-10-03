@@ -29,7 +29,7 @@
       <q-footer v-if="hasFooter" class="bg-white flex flex-center">
         <q-tabs v-model="tab" class="text-blue-grey-2" active-color="main-alternate">
           <q-route-tab default name="home" icon="dashboard" :to="'/'" />
-          <q-route-tab name="userProfile" icon="drag_handle" :to="'/userProfile'" />
+          <q-route-tab name="userProfile" icon="drag_handle" :to="'/meu-perfil'" />
         </q-tabs>
       </q-footer>
     </div>
