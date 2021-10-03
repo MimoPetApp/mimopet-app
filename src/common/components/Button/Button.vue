@@ -55,15 +55,16 @@ export default {
 }
 
 .bg-primary-flat {
-  color: var(--main-background) !important;
-  background: var(--main-primary) !important;
+  color: var(--main-primary) !important;
+  background: var(--utilities-disabled) !important;
 
   &:disabled {
     color: var(--utilities-alternate) !important;
     background: var(--utilities-disabled) !important;
   }
   &:active {
-    background: var(--main-secondary) !important;
+    color: var(--main-background) !important;
+    background: var(--main-primary) !important;
   }
 }
 

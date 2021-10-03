@@ -18,7 +18,7 @@
           <Button
             label="Enviar"
             noCaps
-            color="primary-flat"
+            color="primary-filled"
             class="pl-7 pr-7"
             :disabled="!selected"
             @click="nextStep()"
