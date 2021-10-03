@@ -1,5 +1,5 @@
-.user-profile-wrapper {
-  background: var(--main-alternate);
+.user-profile-details-wrapper {
+  background: var(--main-background);
   margin-top: 50px;
   &__content {
     height: 570px;
@@ -95,4 +95,10 @@
   font-size: 16px;
   line-height: 19px;
   letter-spacing: -0.014em;
+}
+.pet-profile-row {
+  width: calc(100vw);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

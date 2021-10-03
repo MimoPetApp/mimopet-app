@@ -1,17 +1,27 @@
 import LoadingCircle from '../../common/components/loadingCircle'
 import { mapState, mapActions } from 'vuex'
-import ConfirmDeletePet from '../../common/components/confirmDeletePet'
-import PetProfileComponent from '../../common/components/PetProfile'
 
 export default {
   name: 'UserProfile',
   data () {
-    return {}
+    return {
+      info: [
+        { label: 'Informações pessoais', icon: 'switch_account', value: 'personal' },
+        {
+          label: 'Suporte',
+          icon: 'policy',
+          value: 'help'
+        },
+        {
+          label: 'Termos de uso',
+          icon: 'manage_search',
+          value: 'terms'
+        }
+      ]
+    }
   },
   components: {
-    LoadingCircle,
-    ConfirmDeletePet,
-    PetProfileComponent
+    LoadingCircle
   },
   computed: {
     ...mapState('pets', ['petProfile', 'loadingPets']),
@@ -27,6 +37,17 @@ export default {
       'ActionSetLoadingPet',
       'ActionmodalDeletePet',
       'ActionSetHomeMenuVisibility'
-    ])
+    ]),
+    clickHandler (index) {
+      if (this.info[index].value === 'personal') {
+        this.$router.push({
+          name: 'UserProfileDetails',
+          params: { id: this.user.id }
+        })
+      }
+    },
+    logout () {
+      // TODO: requisicao para sair do app
+    }
   }
 }
