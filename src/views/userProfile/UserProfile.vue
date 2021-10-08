@@ -29,16 +29,19 @@
                       flex flex-center
                       mt-3
                     "
+                    :style="getCardStyle"
                   >
-                    <div
-                      class="
-                        user-profile-wrapper__content__card-white__header__premium-box__info
-                        text-center
-                      "
-                    >
-                      <h5 class="text-main-background">Seja Premium</h5>
-                      <p class="text-main-alternate mb-0">Diversos mimos para os seus pets</p>
-                    </div>
+                    <router-link :to="{ name: 'Membership' }" class="router-link-style">
+                      <div
+                        class="
+                          user-profile-wrapper__content__card-white__header__premium-box__info
+                          text-center
+                        "
+                      >
+                        <h5 class="text-main-background">Seja Premium</h5>
+                        <p class="text-main-alternate mb-0">Diversos mimos para os seus pets</p>
+                      </div>
+                    </router-link>
                   </div>
                 </div>
                 <div class="user-profile-wrapper__content__card-white__body mt-2">

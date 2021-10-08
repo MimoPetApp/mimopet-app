@@ -1,12 +1,19 @@
 import LoadingCircle from '../../common/components/loadingCircle'
 import Button from '../../common/components/Button/Button.vue'
+import PaymentModal from '../../common/components/Modal/PaymentModal/PaymentModal.vue'
+import FeedbackModal from '../../common/components/FeedbackModal/FeedbackModal.vue'
+import { Notify } from 'quasar'
 
 import { mapState, mapActions } from 'vuex'
+
+const aimIcon = require('../../assets/images/feedback/aim.svg')
 
 export default {
   name: 'Membership',
   data () {
     return {
+      paymentModalStatus: false,
+      feedbackModalStatus: false,
       isMembership: false,
       title: '',
       subTitle: '',
@@ -26,12 +33,23 @@ export default {
         }
       ],
       firstBtnLabel: '',
-      secondBtnLabel: ''
+      secondBtnLabel: '',
+      paymentModalTitle: 'Pague com PIX✌️',
+      paymentModalSubtitle: 'Liberação da assinatura em minutos',
+      paymentModalDescription:
+        'Sua mensalidade é de 49,90 com benefícios em treinamentos e pets ilimitados.',
+      paymentModalButtonText: 'Copiar PIX',
+      paymentModalSubButtonText: 'Continuar',
+      feedbackModalTitle: 'Aguardando recebimento',
+      feedbackModalSubtitle: 'Assim que recebermos o valor sua assinatura será confirmada',
+      feedbackModalButtonText: 'Entendi'
     }
   },
   components: {
     LoadingCircle,
-    Button
+    Button,
+    PaymentModal,
+    FeedbackModal
   },
   computed: {
     ...mapState('pets', ['petProfile', 'loadingPets']),
@@ -73,6 +91,9 @@ export default {
         this.secondBtnLabel = 'Assinar por R$49,90'
       }
       return this.secondBtnLabel
+    },
+    feedbackIcon () {
+      return aimIcon
     }
   },
   created () {},
@@ -84,7 +105,24 @@ export default {
       'ActionmodalDeletePet',
       'ActionSetHomeMenuVisibility'
     ]),
-    cancel () {},
-    redirect () {}
+    goToUserProfile () {
+      this.$router.push({
+        name: 'UserProfile'
+      })
+    },
+    copyPixCode () {
+      Notify.create({
+        message: 'Código PIX copiado com sucesso!',
+        color: 'status-success',
+        timeout: 300
+      })
+    },
+    confirmPayment () {
+      this.hideHandler()
+      this.feedbackModalStatus = true
+    },
+    hideHandler () {
+      this.paymentModalStatus = false
+    }
   }
 }

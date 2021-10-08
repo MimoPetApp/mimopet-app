@@ -1,5 +1,7 @@
 import LoadingCircle from '../../common/components/loadingCircle'
+
 import { mapState, mapActions } from 'vuex'
+const premiumIcon = require('../../assets/images/premiumBg.svg')
 
 export default {
   name: 'UserProfile',
@@ -25,7 +27,15 @@ export default {
   },
   computed: {
     ...mapState('pets', ['petProfile', 'loadingPets']),
-    ...mapState('auth', ['user'])
+    ...mapState('auth', ['user']),
+    getCardStyle () {
+      return {
+        backgroundImage: `url(${premiumIcon})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center center',
+        backgroundSize: 'cover'
+      }
+    }
   },
   watch: {},
   mounted () {},

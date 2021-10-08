@@ -1,5 +1,7 @@
 <template>
-  <QBtn v-bind="$attrs" :color="color" :outline="isOutline" :flat="isFlat" class="button-wrapper" />
+  <QBtn v-bind="$attrs" :color="color" :outline="isOutline" :flat="isFlat" class="button-wrapper">
+    <slot name="icon"></slot>
+  </QBtn>
 </template>
 
 <script>

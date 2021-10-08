@@ -6,9 +6,11 @@
         <div class="membership-wrapper__card">
           <div class="row">
             <div class="col-12 col-md-12 col-xs-12 pl-3 pt-3">
-              <div class="membership-wrapper__card__btn flex flex-center">
-                <q-icon name="close" color="white" class="membership-wrapper__card__btn__icon" />
-              </div>
+              <router-link :to="{ name: 'UserProfile' }" class="router-link-style">
+                <div class="membership-wrapper__card__btn flex flex-center">
+                  <q-icon name="close" color="white" class="membership-wrapper__card__btn__icon" />
+                </div>
+              </router-link>
             </div>
             <div class="col-12 col-md-12 col-xs-12">
               <div class="membership-wrapper__card__header mt-4 pl-4 pr-3">
@@ -47,7 +49,7 @@
               color="primary-flat"
               class=""
               :disabled="false"
-              @click="cancel()"
+              @click="goToUserProfile"
             ></Button>
             <Button
               :label="getMembershipSecondBtnLabel"
@@ -55,20 +57,31 @@
               color="primary-filled"
               class="mt-3"
               :disabled="false"
-              @click="redirect()"
+              @click="paymentModalStatus = true"
             ></Button>
           </div>
         </div>
       </div>
       <div class="col-12 col-md-12 col-xs-12">
         <div class="membership-wrapper__dialog">
+          <PaymentModal
+            :active="paymentModalStatus"
+            :title="paymentModalTitle"
+            :subtitle="paymentModalSubtitle"
+            :description="paymentModalDescription"
+            :buttonText="paymentModalButtonText"
+            :subButtonText="paymentModalSubButtonText"
+            :action="copyPixCode"
+            :subAction="confirmPayment"
+            @hide="hideHandler"
+          />
           <FeedbackModal
-            :active="step === 5"
+            :active="feedbackModalStatus"
             :icon="feedbackIcon"
-            title="Pet Adicionado"
-            subtitle="Você pode adicionar inúmeros pets a sua conta cadastrada"
-            buttonText="Acessar o app"
-            :action="goToHome"
+            :title="feedbackModalTitle"
+            :subtitle="feedbackModalSubtitle"
+            :buttonText="feedbackModalButtonText"
+            :action="goToUserProfile"
           ></FeedbackModal>
         </div>
       </div>
