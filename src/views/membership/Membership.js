@@ -96,15 +96,15 @@ export default {
       return aimIcon
     }
   },
-  created () {},
+  mounted () {
+    this.ActionSetHomeMenuVisibility(false)
+  },
+  beforeRouteLeave (to, from, next) {
+    this.ActionSetHomeMenuVisibility(true)
+    next()
+  },
   methods: {
-    ...mapActions('pets', [
-      'ActionGetPetById',
-      'ActionCommitPet',
-      'ActionSetLoadingPet',
-      'ActionmodalDeletePet',
-      'ActionSetHomeMenuVisibility'
-    ]),
+    ...mapActions('pets', ['ActionSetHomeMenuVisibility']),
     goToUserProfile () {
       this.$router.push({
         name: 'UserProfile'
@@ -114,7 +114,8 @@ export default {
       Notify.create({
         message: 'Código PIX copiado com sucesso!',
         color: 'status-success',
-        timeout: 300
+        timeout: 300,
+        position: 'top'
       })
     },
     confirmPayment () {

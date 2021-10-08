@@ -1,4 +1,5 @@
 import LoadingCircle from '../../common/components/loadingCircle'
+import ActionModal from '../../common/components/Modal/ActionModal/ActionModal'
 
 import { mapState, mapActions } from 'vuex'
 const premiumIcon = require('../../assets/images/premiumBg.svg')
@@ -19,11 +20,21 @@ export default {
           icon: 'manage_search',
           value: 'terms'
         }
-      ]
+      ],
+      logoutModal: {
+        model: false,
+        data: {
+          title: 'Deseja sair do app?',
+          message: 'Você terá que realizar login para acessar o app novamente',
+          btnLabel: 'Sair do app',
+          backLabel: 'Voltar'
+        }
+      }
     }
   },
   components: {
-    LoadingCircle
+    LoadingCircle,
+    ActionModal
   },
   computed: {
     ...mapState('pets', ['petProfile', 'loadingPets']),
@@ -38,7 +49,6 @@ export default {
     }
   },
   watch: {},
-  mounted () {},
   created () {},
   methods: {
     ...mapActions('pets', [
@@ -58,6 +68,12 @@ export default {
     },
     logout () {
       // TODO: requisicao para sair do app
+    },
+    hideLogoutModal () {
+      this.logoutModal.model = false
+    },
+    showLogoutModal () {
+      this.logoutModal.model = true
     }
   }
 }

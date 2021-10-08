@@ -2,7 +2,7 @@
   <div class="q-pa-xs user-profile-wrapper">
     <!-- Main content -->
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 col-md-12 col-xs-12">
         <div class="user-profile-wrapper__content">
           <div class="row">
             <div class="col-12">
@@ -70,7 +70,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-12 col-md-12 col-xs-12" @click="logout()">
+                    <div class="col-12 col-md-12 col-xs-12" @click="showLogoutModal">
                       <h4 class="text-utilities-alternate text-h4 text-center">Sair do app</h4>
                     </div>
                   </div>
@@ -78,6 +78,11 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-12 col-xs-12">
+        <div class="user-profile-wrapper__dialog">
+          <ActionModal :content="logoutModal" :onHide="hideLogoutModal" :onSubmit="logout" />
         </div>
       </div>
     </div>
