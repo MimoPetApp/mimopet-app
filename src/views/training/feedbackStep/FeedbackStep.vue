@@ -14,7 +14,7 @@
             <Button
               label="Enviar"
               noCaps
-              color="primary-flat"
+              color="primary-filled"
               class="pl-7 pr-7"
               :disabled="!form[index].answered"
               @click="nextStep(item, index)"

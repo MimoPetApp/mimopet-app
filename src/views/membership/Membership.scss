@@ -1,0 +1,66 @@
+.membership-wrapper {
+  background: linear-gradient(180deg, rgba(42, 29, 70, 1) 45%, rgba(255, 255, 255, 1) 55%);
+  &__card {
+    height: 510px;
+    background: var(--status-warning);
+    border-radius: 38px;
+    &__btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background-color: var(--main-alternate);
+      &__icon {
+        font-size: var(--font-size-5);
+      }
+    }
+    &__header {
+      margin-bottom: 60px;
+      h3 {
+        margin-top: 12px;
+      }
+    }
+    &__body {
+      p {
+        padding-left: 14px;
+        font-family: 'customfont650';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 19px;
+        letter-spacing: -0.014em;
+        margin-bottom: 20px;
+      }
+    }
+  }
+  &__actions {
+    height: 185px;
+  }
+}
+
+.checked-green-wrapper {
+  width: 20px;
+  height: 20px;
+  border-radius: 100px;
+  background-color: var(--status-success);
+  &__icon {
+    font-size: var(--font-size-2);
+  }
+}
+
+.text-h2 {
+  font-family: 'customfont700';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  letter-spacing: -0.014em;
+}
+
+.text-h3 {
+  font-family: 'customfont650';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.014em;
+}

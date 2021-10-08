@@ -32,7 +32,7 @@
           <Button
             label="Continuar"
             noCaps
-            color="primary-flat"
+            color="primary-filled"
             class="pl-7 pr-7"
             :disabled="form.petName.length === 0"
             @click="nextStep()"
@@ -59,7 +59,7 @@
           <Button
             label="Continuar"
             noCaps
-            color="primary-flat"
+            color="primary-filled"
             class="pl-7 pr-7"
             :disabled="!petAgeFilled"
             @click="nextStep()"
@@ -120,7 +120,7 @@
           <Button
             label="Continuar"
             noCaps
-            color="primary-flat"
+            color="primary-filled"
             class="pl-7 pr-7"
             :disabled="!petBreedFilled"
             @click="nextStep()"
@@ -148,7 +148,7 @@
           <Button
             label="Continuar"
             noCaps
-            color="primary-flat"
+            color="primary-filled"
             class="pl-7 pr-7"
             :disabled="!petDetailsFilled"
             @click="registerPet()"

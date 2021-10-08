@@ -3,13 +3,14 @@ import pets from './modules/pets'
 import auth from './modules/auth'
 import training from './modules/training'
 import userProfile from './modules/userProfile'
+import membership from './modules/membership'
 import { autentication } from '../middlewares/navigationGuards'
 
 const routes = [
   {
     path: '/',
     component: () => import('src/layouts/MainLayout.vue'),
-    children: [...pets, ...userProfile],
+    children: [...pets, ...userProfile, ...membership],
     beforeEnter: autentication
   },
   {
