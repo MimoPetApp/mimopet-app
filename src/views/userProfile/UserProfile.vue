@@ -83,6 +83,11 @@
       <div class="col-12 col-md-12 col-xs-12">
         <div class="user-profile-wrapper__dialog">
           <ActionModal :content="logoutModal" :onHide="hideLogoutModal" :onSubmit="logout" />
+          <SupportModal
+            :active="supportModalStatus"
+            @hide="hideSupportModal"
+            :action="hideSupportModal"
+          ></SupportModal>
         </div>
       </div>
     </div>
