@@ -31,28 +31,37 @@
         </div>
       </div>
       <div class="row get-started__bottom-modal--footer">
-        <div class="col-6" align="left">
+        <div class="col-6 col-md-6 col-xs-6 flex flex-center">
           <Button
             flat
-            color="primary-filled"
-            :disabled="true"
+            color="utilities-alternate"
             class="text-weight-bold"
             size="md"
             no-caps
             icon="mail"
             label="Suporte"
+            @click="showSupportModal"
           />
         </div>
-        <div class="col-6" align="right">
+        <div class="col-6 col-md-6 col-xs-6 flex flex-center">
           <Button
             flat
-            color="primary-filled"
+            color="utilities-alternate"
             :disabled="true"
             class="text-weight-bold"
             size="md"
             no-caps
-            label="Esqueci minha senha"
+            label="Esqueci a senha"
           />
+        </div>
+      </div>
+      <div class="col-12 col-md-12 col-xs-12">
+        <div class="get-started__dialog">
+          <SupportModal
+            :active="supportModalStatus"
+            @hide="hideSupportModal"
+            :action="hideSupportModal"
+          ></SupportModal>
         </div>
       </div>
     </div>
@@ -60,4 +69,4 @@
 </template>
 
 <script src="./getStarted.js"></script>
-<style src="./getStarted.scss" lang="scss"></style>
+<style src="./getStarted.scss" lang="scss" scoped></style>
