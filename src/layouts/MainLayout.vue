@@ -2,7 +2,7 @@
   <q-layout view="lHh Lpr lFf">
     <div class="home__container">
       <!-- Top header -->
-      <q-header v-if="hasHeader" reveal class="bg-transparent">
+      <q-header v-if="hasHeader" reveal class="bg-main-alternate home__container__header">
         <q-toolbar>
           <div class="row justify-between items-center q-px-lg" style="width: 100%">
             <q-toolbar-title>
@@ -70,6 +70,12 @@ export default {
 .home__container {
   background: var(--main-alternate);
   min-height: 100vh;
+  &__header {
+    height: 88px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .home__badge {
