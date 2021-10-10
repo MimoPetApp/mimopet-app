@@ -6,19 +6,6 @@ export default {
   name: 'UserProfileDetails',
   data () {
     return {
-      info: [
-        { label: 'Informações pessoais', icon: 'switch_account', value: 'personal' },
-        {
-          label: 'Suporte',
-          icon: 'policy',
-          value: 'help'
-        },
-        {
-          label: 'Termos de uso',
-          icon: 'manage_search',
-          value: 'terms'
-        }
-      ],
       userData: []
     }
   },
@@ -30,11 +17,15 @@ export default {
     ...mapState('pets', ['petProfile', 'loadingPets']),
     ...mapState('auth', ['user'])
   },
-  async created () {
+  async mounted () {
     this.loading = true
-    // await this.ActionSetHomeMenuVisibility(false)
+    await this.ActionSetHomeMenuVisibility(false)
     await this.structUserData()
     this.loading = false
+  },
+  beforeRouteLeave (to, from, next) {
+    this.ActionSetHomeMenuVisibility(true)
+    next()
   },
   methods: {
     ...mapActions('pets', ['ActionSetHomeMenuVisibility']),
@@ -46,12 +37,19 @@ export default {
     formatBirthday (number) {
       return number
     },
+    getUserLabel (gender) {
+      if (gender === 'MALE') {
+        return 'Tutor de pet'
+      } else {
+        return 'Tutora de pet'
+      }
+    },
     async structUserData () {
       const aux = []
       if (this.user) {
         aux.push(
           {
-            label: 'Tutor de pet',
+            label: this.getUserLabel(this.user.gender),
             value: this.user.username
           },
           {
@@ -69,6 +67,7 @@ export default {
         )
       }
       this.userData = aux
-    }
+    },
+    selectedHandler (index) {}
   }
 }
