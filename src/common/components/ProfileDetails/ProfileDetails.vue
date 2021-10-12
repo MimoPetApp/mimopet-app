@@ -40,7 +40,7 @@
     </div>
     <div class="profile-details-wrapper__content" :class="{ 'mt-5': hasAvatar }">
       <div class="row">
-        <div class="col-12 col-md-12 col-xs-12 profile-details-wrapper__content__subtitle">
+        <div class="col-12 col-md-12 col-xs-12 profile-details-wrapper__content__subtitle mt-2">
           <h3 class="text-utilities-alternate">
             {{ subtitle }}
           </h3>
@@ -71,7 +71,7 @@
         </div>
       </div>
     </div>
-    <div class="profile-details-wrapper__footer">
+    <div class="profile-details-wrapper__footer" v-if="hasFooter">
       <div class="row">
         <div class="col-12 col-md-12 col-xs-12 flex items-center justify-center">
           <slot name="action"></slot>
@@ -109,6 +109,10 @@ export default {
     subtitle: {
       type: String,
       default: 'Insert your subTitle'
+    },
+    hasFooter: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {},
@@ -124,7 +128,7 @@ export default {
 
 <style lang="scss" scoped>
 .profile-details-wrapper {
-  min-height: calc(100vh - 115px);
+  //min-height: calc(100vh - 115px);// 181px
   justify-content: space-between;
   align-content: space-between;
   flex-direction: column;
@@ -210,7 +214,8 @@ export default {
       height: 67px;
       padding-right: var(--font-size-7);
       padding-left: var(--font-size-7);
-      &__divider:not(:last-child) {
+      &__divider {
+        //:not(:last-child)
         border-width: 1px;
         border-bottom-style: solid;
         border-color: var(--utilities-border);
