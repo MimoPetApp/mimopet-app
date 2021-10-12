@@ -2,19 +2,34 @@ import Title from '../../../common/components/title'
 import Logo from '../../../common/components/logo'
 import Button from '../../../common/components/Button/Button'
 import AuthContainer from '../../../common/components/AuthContainer'
+import SupportModal from '../../../common/components/Modal/SupportModal/SupportModal'
+
 export default {
+  data () {
+    return {
+      supportModalStatus: false
+    }
+  },
   components: {
     Title,
     Logo,
     Button,
-    AuthContainer
+    AuthContainer,
+    SupportModal
   },
   methods: {
-    loginHandler() {
+    loginHandler () {
       this.$router.push({ name: 'acesso' })
     },
-    registerHandler() {
+    registerHandler () {
       this.$router.push({ name: 'criar' })
+    },
+    showSupportModal () {
+      console.log('aa')
+      this.supportModalStatus = true
+    },
+    hideSupportModal () {
+      this.supportModalStatus = false
     }
   }
 }

@@ -1,5 +1,6 @@
 import LoadingCircle from '../../common/components/loadingCircle'
 import ActionModal from '../../common/components/Modal/ActionModal/ActionModal'
+import SupportModal from '../../common/components/Modal/SupportModal/SupportModal'
 
 import { mapState, mapActions } from 'vuex'
 const premiumIcon = require('../../assets/images/premiumBg.svg')
@@ -29,12 +30,14 @@ export default {
           btnLabel: 'Sair do app',
           backLabel: 'Voltar'
         }
-      }
+      },
+      supportModalStatus: false
     }
   },
   components: {
     LoadingCircle,
-    ActionModal
+    ActionModal,
+    SupportModal
   },
   computed: {
     ...mapState('pets', ['petProfile', 'loadingPets']),
@@ -64,6 +67,8 @@ export default {
           name: 'UserProfileDetails',
           params: { id: this.user.id }
         })
+      } else if (this.info[index].value === 'help') {
+        this.showSupportModal()
       }
     },
     logout () {
@@ -74,6 +79,12 @@ export default {
     },
     showLogoutModal () {
       this.logoutModal.model = true
+    },
+    hideSupportModal () {
+      this.supportModalStatus = false
+    },
+    showSupportModal () {
+      this.supportModalStatus = true
     }
   }
 }
