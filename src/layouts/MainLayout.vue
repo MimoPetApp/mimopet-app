@@ -8,10 +8,11 @@
             <q-toolbar-title>
               <q-img src="~assets/images/mimoicon-white.svg" style="width: 80px" />
             </q-toolbar-title>
-
-            <q-btn class="home__badge" outline color="white q-mr-md">
-              <q-icon name="notifications" class="cursor-pointer"></q-icon>
-            </q-btn>
+            <router-link :to="{ name: 'Notifications' }" class="router-link-style">
+              <q-btn class="home__badge" outline color="white q-mr-md">
+                <q-icon name="notifications" class="cursor-pointer"></q-icon>
+              </q-btn>
+            </router-link>
             <q-btn class="home__badge" outline color="white" no-caps @click="showPetList">
               <q-badge color="main-highlight" text-color="main-background" rounded>
                 {{ petsList.length }}
