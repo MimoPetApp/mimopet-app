@@ -16,7 +16,7 @@ export default {
     Button,
     Logo
   },
-  data() {
+  data () {
     return {
       form: {
         identifier: '',
@@ -27,23 +27,28 @@ export default {
     }
   },
   computed: {
-    formIsValid() {
+    formIsValid () {
       return this.form.identifier.length !== 0 && this.form.password.length >= 8
     }
   },
-  beforeMount() {},
+  beforeMount () {},
   methods: {
     ...mapActions('auth', ['ActionLogin']),
-    nextStep() {},
-    async onSubmitEmail() {
+    nextStep () {},
+    async onSubmitEmail () {
       if (!this.formIsValid) return
       this.loading = true
       await this.ActionLogin(this.form)
       this.loading = false
     },
-    async wait(ms) {
+    async wait (ms) {
       return new Promise(resolve => {
         setTimeout(resolve, ms)
+      })
+    },
+    goToForgetPassword () {
+      this.$router.push({
+        name: 'ForgetPassword'
       })
     }
   }

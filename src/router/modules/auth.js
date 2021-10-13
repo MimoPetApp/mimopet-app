@@ -13,5 +13,10 @@ export default [
     path: 'acesso',
     name: 'acesso',
     component: () => import('../../views/auth/login/loginAccount.vue')
+  },
+  {
+    path: 'esqueci-senha',
+    name: 'ForgetPassword',
+    component: () => import('../../views/auth/forgetPassword/ForgetPassword.vue')
   }
 ]
