@@ -5,6 +5,7 @@ import Button from '../../../common/components/Button/Button'
 import TextField from '../../../common/components/TextField/TextField'
 import AuthContainer from '../../../common/components/AuthContainer'
 import LoadingCircle from '../../../common/components/loadingCircle'
+import SupportModal from '../../../common/components/Modal/SupportModal/SupportModal'
 
 export default {
   name: 'LoginAccount',
@@ -14,7 +15,8 @@ export default {
     LoadingCircle,
     TextField,
     Button,
-    Logo
+    Logo,
+    SupportModal
   },
   data () {
     return {
@@ -23,7 +25,8 @@ export default {
         password: ''
       },
       showPassword: false,
-      loading: false
+      loading: false,
+      supportModalStatus: false
     }
   },
   computed: {
@@ -50,6 +53,12 @@ export default {
       this.$router.push({
         name: 'ForgetPassword'
       })
+    },
+    hideSupportModal () {
+      this.supportModalStatus = false
+    },
+    showSupportModal () {
+      this.supportModalStatus = true
     }
   }
 }

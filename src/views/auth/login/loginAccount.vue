@@ -73,6 +73,13 @@
     <div v-else class="flex flex-center q-mt-xl">
       <LoadingCircle color="status-waiting" size="6em" :thickness="5" />
     </div>
+    <div class="login__dialog" v-if="supportModalStatus">
+      <SupportModal
+        :active="supportModalStatus"
+        @hide="hideSupportModal"
+        :action="hideSupportModal"
+      ></SupportModal>
+    </div>
   </div>
 </template>
 
