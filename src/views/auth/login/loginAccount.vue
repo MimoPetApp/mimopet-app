@@ -35,7 +35,7 @@
               <Button
                 @click="onSubmitEmail"
                 color="primary-filled"
-                class="main-button no-shadow"
+                class="main-button no-shadow mb-3"
                 type="submit"
                 label="Entrar"
                 no-caps
@@ -43,27 +43,27 @@
             </div>
           </div>
           <div class="row login__bottom-modal--footer">
-            <div class="col-6" align="left">
+            <div class="col-6 col-md-6 col-xs-6 flex flex-center">
               <Button
                 flat
-                color="primary-filled"
-                :disabled="true"
+                color="utilities-alternate"
                 class="text-weight-bold"
                 size="md"
                 no-caps
                 icon="mail"
                 label="Suporte"
+                @click="showSupportModal"
               />
             </div>
-            <div class="col-6" align="right">
+            <div class="col-6 col-md-6 col-xs-6 flex flex-center">
               <Button
                 flat
-                color="primary-filled"
+                color="utilities-alternate"
                 :disabled="true"
                 class="text-weight-bold"
                 size="md"
                 no-caps
-                label="Esqueci minha senha"
+                label="Esqueci a senha"
               />
             </div>
           </div>
