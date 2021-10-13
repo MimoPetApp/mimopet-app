@@ -78,6 +78,8 @@ export default {
           name: 'UserProfileDetails',
           params: { id: this.user.id }
         })
+      } else if (this.info[index].value === 'help') {
+        this.showSupportModal()
       }
     },
     logout () {
