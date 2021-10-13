@@ -83,6 +83,19 @@
       <div class="col-12 col-md-12 col-xs-12">
         <div class="user-profile-wrapper__dialog">
           <ActionModal :content="logoutModal" :onHide="hideLogoutModal" :onSubmit="logout" />
+          <SupportModal
+            :active="supportModalStatus"
+            @hide="hideSupportModal"
+            :action="hideSupportModal"
+          ></SupportModal>
+          <FeedbackModal
+            :active="feedbackModalStatus"
+            :icon="feedbackIcon"
+            :title="feedbackModalTitle"
+            :subtitle="feedbackModalSubtitle"
+            :buttonText="feedbackModalButtonText"
+            :action="closeFeedbackModal"
+          ></FeedbackModal>
         </div>
       </div>
     </div>
@@ -93,7 +106,6 @@
         <p class="text-main-background mb-0">Versão 1.0 lançado em Outubro de 2021</p>
       </div>
     </div>
-
     <!-- Loading content -->
     <div v-if="false" class="flex flex-center q-mt-xl">
       <LoadingCircle color="status-waiting" size="6em" :thickness="5" />
