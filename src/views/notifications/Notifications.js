@@ -6,7 +6,23 @@ export default {
   name: 'UserProfileDetails',
   data () {
     return {
-      notificationsList: []
+      notificationsList: [
+        {
+          label: 'Vencimento da assinatura',
+          color: 'status-danger',
+          description: 'Em 21/04 às 18:00'
+        },
+        {
+          label: 'Assinatura renovada',
+          color: 'status-success',
+          description: 'Em 21/04 às 18:00'
+        },
+        {
+          label: 'Treino pendente',
+          color: 'status-warning',
+          description: 'Objetivo: Levar pet ao shopping'
+        }
+      ]
     }
   },
   components: {

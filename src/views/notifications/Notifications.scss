@@ -1,77 +1,43 @@
 .notifications-wrapper {
   background: var(--main-background);
-  margin-top: 17px;
+  min-height: 100vh;
+  margin-top: 38px;
   &__content {
-    height: 570px;
-    position: relative;
-    &__card-purple {
-      width: 100%;
-      height: 570px;
-      background: var(--main-highlight);
-      position: absolute;
-      border-radius: 30px;
-    }
-    &__card-white {
-      width: 100%;
-      height: 538px;
-      margin-top: 32px;
-      border-radius: 30px;
-      background: var(--main-background);
-      position: absolute;
-      &__header {
-        padding-right: 26px;
-        &__info {
-          padding-left: 20px;
-          padding-top: 14px;
-          padding-bottom: 14px;
-          p {
-            font-family: 'customfont650';
-            font-style: normal;
-            font-weight: 600;
-            font-size: 14px;
-            line-height: 17px;
-            letter-spacing: -0.014em;
-            margin-bottom: 4px;
-          }
-        }
-        &__premium-box {
-          width: 320px;
-          height: 90px;
-          border-radius: 12px;
-          box-shadow: 2px 2px 20px 2px rgba(169, 175, 187, 0.15);
-          background: #fbd061;
-          h5 {
-            font-family: 'customfont650';
-            font-style: normal;
-            font-weight: 600;
-            font-size: 20px;
-            line-height: 24px;
-            letter-spacing: -0.014em;
-            margin-bottom: 4px;
-          }
-          p {
-            font-family: 'customfont650';
-            font-style: normal;
-            font-weight: 600;
-            font-size: 12px;
-            line-height: 15px;
-            letter-spacing: -0.014em;
-          }
-        }
+    &__header {
+      h2 {
+        font-family: 'customfont700';
+        font-style: normal;
+        font-weight: bold;
+        font-size: var(--font-size-7);
+        line-height: 29px;
+        letter-spacing: -0.014em;
       }
-      &__body {
-        &__info {
-          height: 70px;
-          &__divider {
-            border-width: 1px;
-            border-bottom-style: solid;
-            border-color: var(--utilities-border);
-          }
-          &__icon {
-            font-size: var(--font-size-7);
-            padding-right: 44px;
-          }
-        }
+    }
+    &__info {
+      height: 68px;
+      &__divider {
+        border-width: 1px;
+        border-bottom-style: solid;
+        border-color: var(--utilities-border);
+      }
+      p {
+        font-family: 'customfont620';
+        font-style: normal;
+        font-weight: 500;
+        font-size: var(--font-size-3);
+        line-height: 17px;
+        letter-spacing: -0.018em;
+        margin: 0;
+      }
+      h4 {
+        margin-bottom: 0;
+        margin-top: 3px;
+        font-family: 'customfont650';
+        font-style: normal;
+        font-weight: 600;
+        font-size: var(--font-size-4);
+        line-height: 19px;
+        letter-spacing: -0.014em;
       }
     }
     &__footer {

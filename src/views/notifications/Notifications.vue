@@ -1,9 +1,9 @@
 <template>
-  <div class="q-pa-xs notifications-wrapper">
+  <div class="notifications-wrapper">
     <!-- Header -->
     <div class="row">
       <div class="col-12">
-        <q-toolbar class="text-primary text-main-primary">
+        <q-toolbar class="text-primary text-main-primary ml-2">
           <router-link :to="{ name: 'UserProfile' }" class="router-link-style">
             <q-btn flat round dense icon="arrow_back" text-color="utilities-alternate" />
           </router-link>
@@ -13,15 +13,15 @@
     <!-- Main content -->
     <div class="row">
       <div class="col-12">
-        <div class="notifications-wrapper__conzdsstent">
-          <div class="notifications-wrapper__header">
+        <div class="notifications-wrapper__content">
+          <div class="notifications-wrapper__content__header">
             <div class="row">
               <div class="col-12 col-md-12 col-xs-12">
-                <h2 class="text-main-alternate">Notificações</h2>
+                <h2 class="text-main-alternate mt-2 pl-4 mb-1">Notificações</h2>
               </div>
             </div>
           </div>
-          <div class="notifications-wrapper__content">
+          <div class="notifications-wrapper__content__info">
             <div class="row">
               <div
                 v-for="(item, index) in notificationsList"
@@ -32,14 +32,17 @@
                   notifications-wrapper__content__info notifications-wrapper__content__info__divider
                 "
               >
-                <div class="row">
-                  <div class="col-10 col-md-10 col-xs-10">
-                    <p class="text-main-alternate">
-                      {{ item.value }}
-                    </p>
-                    <h4 class="text-utilities-alternate">
+                <div class="row pl-4">
+                  <div class="col-1 col-md-1 col-xs-1">
+                    <q-icon size="24px" name="error" :color="item.color" />
+                  </div>
+                  <div class="col-11 col-md-11 col-xs-11 pl-1">
+                    <h4 class="text-main-alternate">
                       {{ item.label }}
                     </h4>
+                    <p class="text-utilities-alternate">
+                      {{ item.description }}
+                    </p>
                   </div>
                 </div>
               </div>
