@@ -18,10 +18,9 @@
         <Button
           v-if="subButtonText"
           class="main-button no-shadow text-weight-bold mb-2"
-          color="secondary-bordless"
+          color="primary-flat"
           :label="subButtonText"
           @click="subAction"
-          outline
           no-caps
         />
         <Button

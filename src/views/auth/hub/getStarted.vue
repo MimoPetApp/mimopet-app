@@ -47,11 +47,11 @@
           <Button
             flat
             color="utilities-alternate"
-            :disabled="true"
             class="text-weight-bold"
             size="md"
             no-caps
             label="Esqueci a senha"
+            @click="goToForgetPassword"
           />
         </div>
       </div>
