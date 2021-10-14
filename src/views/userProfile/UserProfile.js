@@ -1,9 +1,11 @@
 import LoadingCircle from '../../common/components/loadingCircle'
 import ActionModal from '../../common/components/Modal/ActionModal/ActionModal'
 import SupportModal from '../../common/components/Modal/SupportModal/SupportModal'
+import FeedbackModal from '../../common/components/FeedbackModal/FeedbackModal.vue'
 
 import { mapState, mapActions } from 'vuex'
 const premiumIcon = require('../../assets/images/premiumBg.svg')
+const rocketIcon = require('../../assets/images/feedback/rocket.svg')
 
 export default {
   name: 'UserProfile',
@@ -31,13 +33,19 @@ export default {
           backLabel: 'Voltar'
         }
       },
-      supportModalStatus: false
+      supportModalStatus: false,
+      feedbackModalStatus: false,
+      feedbackModalTitle: 'Assinatura confirmada',
+      feedbackModalSubtitle:
+        'Agora você é um tutor premium do Mimo Pet App. Aproveite os benefícios até a renovação de sua assinatura em 12/05/2020',
+      feedbackModalButtonText: 'Entendi'
     }
   },
   components: {
     LoadingCircle,
     ActionModal,
-    SupportModal
+    SupportModal,
+    FeedbackModal
   },
   computed: {
     ...mapState('pets', ['petProfile', 'loadingPets']),
@@ -49,6 +57,9 @@ export default {
         backgroundPosition: 'center center',
         backgroundSize: 'cover'
       }
+    },
+    feedbackIcon () {
+      return rocketIcon
     }
   },
   watch: {},
@@ -85,6 +96,9 @@ export default {
     },
     showSupportModal () {
       this.supportModalStatus = true
+    },
+    closeFeedbackModal () {
+      this.feedbackModalStatus = false
     }
   }
 }
