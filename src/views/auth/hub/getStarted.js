@@ -25,11 +25,15 @@ export default {
       this.$router.push({ name: 'criar' })
     },
     showSupportModal () {
-      console.log('aa')
       this.supportModalStatus = true
     },
     hideSupportModal () {
       this.supportModalStatus = false
+    },
+    goToForgetPassword () {
+      this.$router.push({
+        name: 'ForgetPassword'
+      })
     }
   }
 }

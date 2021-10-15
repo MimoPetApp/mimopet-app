@@ -88,6 +88,14 @@
             @hide="hideSupportModal"
             :action="hideSupportModal"
           ></SupportModal>
+          <FeedbackModal
+            :active="feedbackModalStatus"
+            :icon="feedbackIcon"
+            :title="feedbackModalTitle"
+            :subtitle="feedbackModalSubtitle"
+            :buttonText="feedbackModalButtonText"
+            :action="closeFeedbackModal"
+          ></FeedbackModal>
         </div>
       </div>
     </div>
@@ -98,7 +106,6 @@
         <p class="text-main-background mb-0">Versão 1.0 lançado em Outubro de 2021</p>
       </div>
     </div>
-
     <!-- Loading content -->
     <div v-if="false" class="flex flex-center q-mt-xl">
       <LoadingCircle color="status-waiting" size="6em" :thickness="5" />
