@@ -6,6 +6,7 @@
           <h2 class="text-main-alternate">{{ title }}</h2>
         </div>
         <div
+          v-if="hasAvatar"
           class="col-12 col-md-12 col-xs-12 flex flex-center"
           :class="{ 'profile-details-wrapper__header__avatar': hasAvatar }"
         >
@@ -15,7 +16,11 @@
                 <img v-if="petAvatar" :src="parseProfileThumbnail(petAvatar[0])" />
                 <div
                   v-if="!petAvatar"
-                  class="profile-details-wrapper__header__avatar-default avatar-default-style flex flex-center"
+                  class="
+                    profile-details-wrapper__header__avatar-default
+                    avatar-default-style
+                    flex flex-center
+                  "
                 >
                   🐶
                 </div>
@@ -33,9 +38,9 @@
         </div>
       </div>
     </div>
-    <div class="profile-details-wrapper__content mt-5">
+    <div class="profile-details-wrapper__content" :class="{ 'mt-5': hasAvatar }">
       <div class="row">
-        <div class="col-12 col-md-12 col-xs-12 profile-details-wrapper__content__subtitle">
+        <div class="col-12 col-md-12 col-xs-12 profile-details-wrapper__content__subtitle mt-2">
           <h3 class="text-utilities-alternate">
             {{ subtitle }}
           </h3>
@@ -44,7 +49,11 @@
         <div
           v-for="(item, index) in info"
           :key="index"
-          class="col-12 col-md-12 col-xs-12 mt-3 profile-details-wrapper__content__info profile-details-wrapper__content__info__divider"
+          class="
+            col-12 col-md-12 col-xs-12
+            mt-3
+            profile-details-wrapper__content__info profile-details-wrapper__content__info__divider
+          "
         >
           <div class="row">
             <div class="col-10 col-md-10 col-xs-10">
@@ -56,15 +65,13 @@
               </h4>
             </div>
             <div class="col-2 col-md-2 col-xs-2 profile-details-wrapper__content__btn">
-              <p class="text-utilities-alternate" @click="clickHandler(index)">
-                Editar
-              </p>
+              <p class="text-utilities-alternate" @click="clickHandler(index)">Editar</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="profile-details-wrapper__footer">
+    <div class="profile-details-wrapper__footer" v-if="hasFooter">
       <div class="row">
         <div class="col-12 col-md-12 col-xs-12 flex items-center justify-center">
           <slot name="action"></slot>
@@ -102,13 +109,17 @@ export default {
     subtitle: {
       type: String,
       default: 'Insert your subTitle'
+    },
+    hasFooter: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {},
-  created () {},
+  created() {},
   methods: {
     ...parser,
-    clickHandler (index) {
+    clickHandler(index) {
       this.$emit('selectedEdition', index)
     }
   }
@@ -117,7 +128,7 @@ export default {
 
 <style lang="scss" scoped>
 .profile-details-wrapper {
-  min-height: calc(100vh - 115px);
+  //min-height: calc(100vh - 115px);// 181px
   justify-content: space-between;
   align-content: space-between;
   flex-direction: column;
@@ -203,7 +214,8 @@ export default {
       height: 67px;
       padding-right: var(--font-size-7);
       padding-left: var(--font-size-7);
-      &__divider:not(:last-child) {
+      &__divider {
+        //:not(:last-child)
         border-width: 1px;
         border-bottom-style: solid;
         border-color: var(--utilities-border);

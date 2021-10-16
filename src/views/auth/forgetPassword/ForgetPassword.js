@@ -5,10 +5,13 @@ import Button from '../../../common/components/Button/Button'
 import TextField from '../../../common/components/TextField/TextField'
 import AuthContainer from '../../../common/components/AuthContainer'
 import LoadingCircle from '../../../common/components/loadingCircle'
+import FeedbackModal from '../../../common/components/FeedbackModal/FeedbackModal.vue'
 import SupportModal from '../../../common/components/Modal/SupportModal/SupportModal'
 
+const emailIcon = require('../../../assets/images/feedback/aim.svg')
+
 export default {
-  name: 'LoginAccount',
+  name: 'ForgetPassword',
   components: {
     Title,
     AuthContainer,
@@ -16,6 +19,7 @@ export default {
     TextField,
     Button,
     Logo,
+    FeedbackModal,
     SupportModal
   },
   data () {
@@ -26,12 +30,20 @@ export default {
       },
       showPassword: false,
       loading: false,
-      supportModalStatus: false
+      feedbackModalStatus: false,
+      supportModalStatus: false,
+      feedbackModalTitle: 'E-mail enviado',
+      feedbackModalSubtitle: 'Enviamos um link especial para você recuperar sua conta',
+      feedbackModalButtonText: 'Voltar para início',
+      feedbackModalSubButtonText: 'Enviar novamente'
     }
   },
   computed: {
     formIsValid () {
-      return this.form.identifier.length !== 0 && this.form.password.length >= 8
+      return this.form.identifier.length !== 0
+    },
+    feedbackIcon () {
+      return emailIcon
     }
   },
   beforeMount () {},
@@ -41,7 +53,8 @@ export default {
     async onSubmitEmail () {
       if (!this.formIsValid) return
       this.loading = true
-      await this.ActionLogin(this.form)
+      // await this.ActionLogin(this.form)
+      this.showFeedbackModal()
       this.loading = false
     },
     async wait (ms) {
@@ -49,16 +62,22 @@ export default {
         setTimeout(resolve, ms)
       })
     },
-    goToForgetPassword () {
-      this.$router.push({
-        name: 'ForgetPassword'
-      })
+    showFeedbackModal () {
+      this.feedbackModalStatus = true
+    },
+    showSupportModal () {
+      this.supportModalStatus = true
     },
     hideSupportModal () {
       this.supportModalStatus = false
     },
-    showSupportModal () {
-      this.supportModalStatus = true
+    goToLogin () {
+      this.$router.push({
+        name: 'hub'
+      })
+    },
+    sendAgain () {
+      // send e-mail again
     }
   }
 }

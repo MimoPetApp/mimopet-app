@@ -30,6 +30,7 @@
         flat
         no-caps
         v-close-popup
+        @click="onSubmit"
       />
     </q-card-actions>
   </BaseModal>
@@ -60,6 +61,10 @@ export default {
       }
     },
     onHide: {
+      type: Function,
+      default: () => {}
+    },
+    onSubmit: {
       type: Function,
       default: () => {}
     }

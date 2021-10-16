@@ -2,16 +2,17 @@
   <q-layout view="lHh Lpr lFf">
     <div class="home__container">
       <!-- Top header -->
-      <q-header v-if="hasHeader" reveal class="bg-transparent">
+      <q-header v-if="hasHeader" reveal class="bg-main-alternate home__container__header">
         <q-toolbar>
           <div class="row justify-between items-center q-px-lg" style="width: 100%">
             <q-toolbar-title>
               <q-img src="~assets/images/mimoicon-white.svg" style="width: 80px" />
             </q-toolbar-title>
-
-            <q-btn class="home__badge" outline color="white q-mr-md">
-              <q-icon name="notifications" class="cursor-pointer"></q-icon>
-            </q-btn>
+            <router-link :to="{ name: 'Notifications' }" class="router-link-style">
+              <q-btn class="home__badge" outline color="white q-mr-md">
+                <q-icon name="notifications" class="cursor-pointer"></q-icon>
+              </q-btn>
+            </router-link>
             <q-btn class="home__badge" outline color="white" no-caps @click="showPetList">
               <q-badge color="main-highlight" text-color="main-background" rounded>
                 {{ petsList.length }}
@@ -29,7 +30,7 @@
       <q-footer v-if="hasFooter" class="bg-white flex flex-center">
         <q-tabs v-model="tab" class="text-blue-grey-2" active-color="main-alternate">
           <q-route-tab default name="home" icon="dashboard" :to="'/'" />
-          <q-route-tab name="userProfile" icon="drag_handle" :to="'/userProfile'" />
+          <q-route-tab name="userProfile" icon="drag_handle" :to="'/meu-perfil'" />
         </q-tabs>
       </q-footer>
     </div>
@@ -70,6 +71,12 @@ export default {
 .home__container {
   background: var(--main-alternate);
   min-height: 100vh;
+  &__header {
+    height: 88px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .home__badge {

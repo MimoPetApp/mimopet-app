@@ -14,12 +14,14 @@
                 <q-avatar text-color="main-primary" icon="keyboard_arrow_right" />
               </q-item-section>
               -->
+              <!--
               <q-item-section avatar>
                 <q-avatar color="main-primary" text-color="white" size="52px">
                   <span v-if="pet.image.length == 0">{{ pet.name[0].toUpperCase() }}</span>
                   <img v-else :src="parseProfileThumbnail(pet.image[0])" />
                 </q-avatar>
               </q-item-section>
+              -->
               <q-item-section class="select-pet-modal__pet-name text-utilities-alternate">
                 {{ pet.name }}
               </q-item-section>

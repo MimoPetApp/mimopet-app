@@ -32,7 +32,7 @@
           <Button
             label="Continuar"
             noCaps
-            color="primary-flat"
+            color="primary-filled"
             class="pl-7 pr-7"
             :disabled="form.petName.length === 0"
             @click="nextStep()"
@@ -51,7 +51,7 @@
         <template v-slot:content>
           <Button-Checkbox-Group
             :options="ageOptions"
-            single-selection
+            selectionType="single"
             @selected="selectedHandler('petAge', $event)"
           ></Button-Checkbox-Group>
         </template>
@@ -59,7 +59,7 @@
           <Button
             label="Continuar"
             noCaps
-            color="primary-flat"
+            color="primary-filled"
             class="pl-7 pr-7"
             :disabled="!petAgeFilled"
             @click="nextStep()"
@@ -96,7 +96,7 @@
             <div class="col-12 col-md-12 col-xs-12 list-breeds-wrapper">
               <Button-Checkbox-Group
                 :options="breedsList"
-                single-selection
+                selectionType="single"
                 @selected="selectedHandler('petBreed', $event)"
               ></Button-Checkbox-Group>
               <!--
@@ -120,7 +120,7 @@
           <Button
             label="Continuar"
             noCaps
-            color="primary-flat"
+            color="primary-filled"
             class="pl-7 pr-7"
             :disabled="!petBreedFilled"
             @click="nextStep()"
@@ -140,6 +140,7 @@
         <template v-slot:content>
           <Button-Checkbox-Group
             :options="detailOptions"
+            selectionType="multi"
             @selected="selectedHandler('petDetails', $event)"
           ></Button-Checkbox-Group>
         </template>
@@ -147,7 +148,7 @@
           <Button
             label="Continuar"
             noCaps
-            color="primary-flat"
+            color="primary-filled"
             class="pl-7 pr-7"
             :disabled="!petDetailsFilled"
             @click="registerPet()"

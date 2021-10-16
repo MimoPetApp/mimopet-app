@@ -6,6 +6,7 @@ import FeedbackModal from '../../../common/components/FeedbackModal/FeedbackModa
 import { mapState, mapActions } from 'vuex'
 
 const petIcon = require('../../../assets/images/feedback/pet.svg')
+const checkedIcon = require('../../../assets/images/feedback/checked.svg')
 
 export default {
   name: 'FeedbackStep',
@@ -20,53 +21,158 @@ export default {
     return {
       step: 0,
       selected: false,
-      form: {}
+      form: [],
+      questions: [],
+      warnings: [],
+      dialog: {
+        model: false,
+        title: '',
+        subtitle: '',
+        loading: false,
+        icon: '',
+        btnText: '',
+        action: () => {}
+      },
+      feedbackID: null
     }
   },
   computed: {
-    ...mapState('training', ['feedback']),
+    ...mapState('training', ['feedback', 'loadingTrainings']),
     feedbackIcon () {
       return petIcon
+    },
+    checkedIcon () {
+      return checkedIcon
     }
   },
   methods: {
     ...mapActions('training', ['ActionGetFeedback']),
-    selectedHandler (name, event) {
-      this.form[name] = event
-      this.selected = true
+    selectedHandler (index, event) {
+      this.form[index] = {
+        feedbackID: this.feedbackID,
+        itemIndex: index,
+        answer: event,
+        answered: true
+      }
+      if (event.length === 0) {
+        // no elements selection
+        this.form[index].answered = false
+      }
     },
-    nextStep () {
+    handleWarning (warning) {
+      this.dialog.model = false
       this.step += 1
     },
-    isFeedback (item) {
-      console.log('a', item)
-      // eslint-disable-next-line no-prototype-builtins
-      if (item.hasOwnProperty('index')) {
-        return false
+    nextStep (currItem, index) {
+      const answerIndexList = this.mapAnswerToIndexList(index)
+      if (
+        currItem.warning &&
+        this.checkCondition(currItem.warning.condition, currItem.warning.index - 1, answerIndexList)
+      ) {
+        this.dialog = {
+          model: true,
+          title: currItem.warning.title,
+          subtitle: currItem.warning.description,
+          icon: currItem.warning.icon ? currItem.warning.icon : this.feedbackIcon,
+          btnText: 'Continuar',
+          action: () => {
+            this.handleWarning(currItem.warning)
+          }
+        }
       } else {
-        return true
+        if (this.step + 1 < this.questions.length) {
+          this.step += 1
+        } else {
+          // TODO go to last page
+          this.dialog = {
+            model: true,
+            title: 'Quiz finalizado',
+            subtitle: 'Agora você tem mais conhecimento sobre como lidar com seu pet.',
+            icon: this.checkedIcon,
+            btnText: 'Ir para o treino',
+            action: () => {
+              this.saveFeedback()
+            }
+          }
+        }
       }
     },
-    checkCondition (item) {
-      /*
-      switch (item.condition) {
-        case 'equals':
-          break
-        case 'different':
-          break
-        case 'lessThanOrEqual':
-          break
-        case 'greaterThanOrEqual':
-          break
-        case 'lessThan':
-          break
-        default:
-          break
+    timeout (ms) {
+      return new Promise(resolve => setTimeout(resolve, ms))
+    },
+    async saveFeedback () {
+      // TODO: salvar os dados
+      this.dialog.loading = true
+      await this.timeout(500)
+      this.dialog.loading = false
+      this.$router.push({
+        name: 'ModuleDetails',
+        params: { id: this.$route.params.id, idModulo: this.$route.params.idModulo }
+      })
+    },
+    mapAnswerToIndexList (currIndex) {
+      const indexList = this.form[currIndex].answer.map(answer => {
+        const index = this.questions[currIndex].options.map((option, optionIndex) => {
+          return option.label === answer.label ? optionIndex : ''
+        })
+        const number = index.filter(item => {
+          return item !== ''
+        })
+        return number[0]
+      })
+      return indexList
+    },
+    filterData () {
+      this.feedback.items.map(item => {
+        if (item.__component === 'utils.quiz-item') {
+          this.questions.push(item)
+        } else if (item.__component === 'utils.option-warning') {
+          if (this.questions.length >= 1) {
+            this.questions[this.questions.length - 1].warning = item
+          }
+        }
+        return true
+      })
+    },
+    checkCondition (condition, index, answers) {
+      if (answers.length === 0) {
+        return false
       }
-      */
+      const answerIndexListAsc = answers
+      answerIndexListAsc.sort()
+
+      switch (condition) {
+        case 'equals':
+          return answerIndexListAsc.includes(index)
+        case 'different':
+          return !answerIndexListAsc.includes(index)
+        case 'lessThanOrEqualTo':
+          return answerIndexListAsc[answerIndexListAsc.length - 1] <= index
+        case 'greaterThanOrEqualTo':
+          return answerIndexListAsc[answerIndexListAsc.length - 1] >= index
+        case 'lessThan':
+          return answerIndexListAsc[answerIndexListAsc.length - 1] < index
+        case 'greaterThan':
+          return answerIndexListAsc[answerIndexListAsc.length - 1] > index
+        default:
+          return false
+      }
+    },
+    formatForm () {
+      this.questions.forEach(question => {
+        this.form.push({
+          feedbackID: null,
+          itemIndex: null,
+          answer: [],
+          answered: false
+        })
+      })
     }
   },
   async created () {
     await this.ActionGetFeedback(this.$route.params.idSessao)
+    this.filterData()
+    this.formatForm()
+    this.feedbackID = this.feedback.id
   }
 }

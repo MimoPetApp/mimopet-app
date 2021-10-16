@@ -111,7 +111,7 @@ export default {
             this.showCorrectAnswer()
           }
           this.chosenAnswer = true
-          this.$emit('answered', this.selectedOptions)
+          this.$emit('selected', this.selectedOptions)
         }
       }
     },

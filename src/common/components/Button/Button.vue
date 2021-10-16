@@ -1,5 +1,7 @@
 <template>
-  <QBtn v-bind="$attrs" :color="color" :outline="isOutline" :flat="isFlat" class="button-wrapper" />
+  <QBtn v-bind="$attrs" :color="color" :outline="isOutline" :flat="isFlat" class="button-wrapper">
+    <slot name="icon"></slot>
+  </QBtn>
 </template>
 
 <script>
@@ -55,15 +57,16 @@ export default {
 }
 
 .bg-primary-flat {
-  color: var(--main-background) !important;
-  background: var(--main-primary) !important;
+  color: var(--main-primary) !important;
+  background: var(--utilities-disabled) !important;
 
   &:disabled {
     color: var(--utilities-alternate) !important;
     background: var(--utilities-disabled) !important;
   }
   &:active {
-    background: var(--main-secondary) !important;
+    color: var(--main-background) !important;
+    background: var(--main-primary) !important;
   }
 }
 
