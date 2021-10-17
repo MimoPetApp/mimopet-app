@@ -139,6 +139,23 @@ export const ActionGetFeedback = async ({ commit, dispatch }, payload) => {
   dispatch('ActionSetLoadingTrainings', false)
 }
 
+/* Call GET /exercises/:id */
+export const ActionGetExercise = async ({ commit, dispatch }, payload) => {
+  dispatch('ActionSetLoadingTrainings', true)
+  await Http.get(`exercises/${payload}`)
+    .then(response => {
+      commit(types.SET_EXERCISE, response.data)
+    })
+    .catch(error => {
+      dispatch('ActionModalResponse', {
+        modal: true,
+        data: { msg: 'Erro ao buscar slide' }
+      })
+      console.error(error)
+    })
+  dispatch('ActionSetLoadingTrainings', false)
+}
+
 export const ActionSetLoadingTrainings = ({ commit }, payload) => {
   commit(types.SET_LOADINGTRAININGS, payload)
 }

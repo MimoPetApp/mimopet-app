@@ -1,0 +1,31 @@
+.exercise-step {
+  &__subtitle {
+    font-family: 'customfont650';
+    font-style: normal;
+    font-weight: 600;
+    font-size: var(--font-size-4);
+    line-height: 19px;
+    letter-spacing: -0.014em;
+    margin-bottom: 2px;
+  }
+
+  &__caption {
+    font-family: 'customfont620';
+    font-style: normal;
+    font-weight: 500;
+    font-size: var(--font-size-3);
+    line-height: 17px;
+    letter-spacing: -0.018em;
+    margin: 0;
+  }
+
+  &__repetitions {
+    width: 320px;
+  }
+}
+
+video {
+  /* override other styles to make responsive */
+  width: 100% !important;
+  // height: auto !important;
+}
