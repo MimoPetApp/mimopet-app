@@ -1,9 +1,10 @@
 import { mapActions, mapState } from 'vuex'
 import LoadingCircle from '../../../common/components/loadingCircle'
+import Button from '../../../common/components/Button/Button'
 import TrainingCard from '../../../common/components/TrainingCard/TrainingCard'
 
 export default {
-  components: { LoadingCircle, TrainingCard },
+  components: { LoadingCircle, TrainingCard, Button },
   data() {
     return {}
   },

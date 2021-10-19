@@ -23,7 +23,7 @@ export const ActionGetTrainings = async ({ commit, dispatch }, payload) => {
 /* Call GET /trainings/my */
 export const ActionGetMyTrainings = async ({ commit, dispatch }, payload) => {
   dispatch('ActionSetLoadingTrainings', true)
-  await Http.get('trainings', payload)
+  await Http.get('/trainings/index/my', payload)
     .then(response => {
       commit(types.SET_MY_TRAININGS, response.data)
     })
@@ -34,6 +34,19 @@ export const ActionGetMyTrainings = async ({ commit, dispatch }, payload) => {
       })
       console.error(error)
     })
+  dispatch('ActionSetLoadingTrainings', false)
+}
+
+/* Call PUT /trainings/:id/subscribe */
+export const ActionSubscribeOnTraining = async ({ commit, dispatch }, payload) => {
+  dispatch('ActionSetLoadingTrainings', true)
+  await Http.put(`/trainings/${payload}/subscribe`, payload).catch(error => {
+    dispatch('ActionModalResponse', {
+      modal: true,
+      data: { msg: 'Erro ao buscar lista de treinamentos inscritos' }
+    })
+    console.error(error)
+  })
   dispatch('ActionSetLoadingTrainings', false)
 }
 
