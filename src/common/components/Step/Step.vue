@@ -47,7 +47,7 @@ export default {
           return 'status-success'
         case 'feedback':
           return 'utilities-alternate'
-        case 'repetitions':
+        case 'exercise':
           return 'main-secondary'
         default:
           // video
@@ -71,6 +71,10 @@ export default {
         case 'feedback':
           name = 'FeedbackStep'
           id = step.feedback.id
+          break
+        case 'exercise':
+          name = 'ExerciseStep'
+          id = step.exercise.id
           break
         default:
           break
