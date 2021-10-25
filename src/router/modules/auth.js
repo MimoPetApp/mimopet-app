@@ -23,5 +23,10 @@ export default [
     path: 'alterar-senha',
     name: 'ChangePassword',
     component: () => import('../../views/auth/changePassword/ChangePassword.vue')
+  },
+  {
+    path: 'logout',
+    name: 'logout',
+    component: () => import('../../views/auth/logout/logout.vue')
   }
 ]

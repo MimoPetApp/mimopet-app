@@ -1,8 +1,3 @@
-<template>
-  <div>...Saindo</div>
-</template>
-
-<script>
 import { mapActions } from 'vuex'
 export default {
   name: 'Logout',
@@ -13,6 +8,3 @@ export default {
     ...mapActions('auth', ['ActionLogoutUser'])
   }
 }
-</script>
-
-<style></style>

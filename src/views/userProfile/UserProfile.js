@@ -9,7 +9,7 @@ const rocketIcon = require('../../assets/images/feedback/rocket.svg')
 
 export default {
   name: 'UserProfile',
-  data () {
+  data() {
     return {
       info: [
         { label: 'Informações pessoais', icon: 'switch_account', value: 'personal' },
@@ -50,7 +50,7 @@ export default {
   computed: {
     ...mapState('pets', ['petProfile', 'loadingPets']),
     ...mapState('auth', ['user']),
-    getCardStyle () {
+    getCardStyle() {
       return {
         backgroundImage: `url(${premiumIcon})`,
         backgroundRepeat: 'no-repeat',
@@ -58,12 +58,12 @@ export default {
         backgroundSize: 'cover'
       }
     },
-    feedbackIcon () {
+    feedbackIcon() {
       return rocketIcon
     }
   },
   watch: {},
-  created () {},
+  created() {},
   methods: {
     ...mapActions('pets', [
       'ActionGetPetById',
@@ -72,7 +72,7 @@ export default {
       'ActionmodalDeletePet',
       'ActionSetHomeMenuVisibility'
     ]),
-    clickHandler (index) {
+    clickHandler(index) {
       if (this.info[index].value === 'personal') {
         this.$router.push({
           name: 'UserProfileDetails',
@@ -82,22 +82,25 @@ export default {
         this.showSupportModal()
       }
     },
-    logout () {
-      // TODO: requisicao para sair do app
+    logout() {
+      console.log('hello')
+      this.$router.push({
+        name: 'logout'
+      })
     },
-    hideLogoutModal () {
+    hideLogoutModal() {
       this.logoutModal.model = false
     },
-    showLogoutModal () {
+    showLogoutModal() {
       this.logoutModal.model = true
     },
-    hideSupportModal () {
+    hideSupportModal() {
       this.supportModalStatus = false
     },
-    showSupportModal () {
+    showSupportModal() {
       this.supportModalStatus = true
     },
-    closeFeedbackModal () {
+    closeFeedbackModal() {
       this.feedbackModalStatus = false
     }
   }
