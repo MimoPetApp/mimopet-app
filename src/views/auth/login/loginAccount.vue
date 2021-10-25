@@ -47,7 +47,6 @@
               <Button
                 flat
                 color="primary-filled"
-                :disabled="true"
                 class="text-weight-bold login__bottom-modal--button"
                 size="md"
                 no-caps
@@ -60,7 +59,6 @@
               <Button
                 flat
                 color="primary-filled"
-                :disabled="true"
                 class="text-weight-bold login__bottom-modal--button"
                 size="md"
                 no-caps
