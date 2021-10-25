@@ -10,6 +10,12 @@
           <TrainingCard :train="train" />
         </router-link>
       </div>
+      <div v-if="Array.isArray(myTrainings) && myTrainings.length == 0" class="flex flex-center">
+        <p>Sem treinamentos. Se inscreva aqui</p>
+        <router-link :to="{ name: 'behaviorList' }" class="router-link-style">
+          <Button color="primary-filled" type="submit" label="Inscrever-se" no-caps />
+        </router-link>
+      </div>
     </div>
     <div v-else class="flex flex-center q-mt-xl">
       <LoadingCircle color="status-waiting" size="6em" :thickness="5" />

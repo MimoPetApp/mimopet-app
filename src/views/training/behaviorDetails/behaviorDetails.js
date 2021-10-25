@@ -25,14 +25,14 @@ export default {
   methods: {
     ...utils,
     ...parser,
-    ...mapActions('training', ['ActionGetTraining']),
+    ...mapActions('training', ['ActionGetTraining', 'ActionSubscribeOnTraining']),
     ...mapMutations('training', ['SET_HAS_HEADER']),
     timeout(ms) {
       return new Promise(resolve => setTimeout(resolve, ms))
     },
     async onSubscribe() {
       this.loadingSubscribe = true
-      await this.timeout(500)
+      await this.ActionSubscribeOnTraining(this.$route.params.id)
       this.hasFeedback = true
       this.loadingSubscribe = false
     },
