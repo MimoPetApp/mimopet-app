@@ -1,6 +1,6 @@
 <template>
   <q-card class="module-card-wrapper p-2 pt-2 mt-1 mb-2" :style="getCardStyle">
-    <div v-if="locked" class="module-card-wrapper__lock bg-main-background">
+    <div v-if="module.locked" class="module-card-wrapper__lock bg-main-background">
       <img :src="getLockIcon" />
     </div>
     <div class="row module-card-wrapper__content">
