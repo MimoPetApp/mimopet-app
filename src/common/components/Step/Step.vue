@@ -76,6 +76,10 @@ export default {
           name = 'ExerciseStep'
           id = step.exercise.id
           break
+        case 'quiz':
+          name = 'QuizStep'
+          id = step.quizzes.id
+          break
         default:
           break
       }
