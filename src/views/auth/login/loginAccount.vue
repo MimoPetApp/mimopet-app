@@ -46,7 +46,7 @@
             <div class="col-6 col-md-6 col-xs-6 flex flex-center">
               <Button
                 flat
-                color="primary-filled"
+                color="utilities-alternate"
                 class="text-weight-bold login__bottom-modal--button"
                 size="md"
                 no-caps
@@ -58,7 +58,7 @@
             <div class="col-6 col-md-6 col-xs-6 flex flex-center">
               <Button
                 flat
-                color="primary-filled"
+                color="utilities-alternate"
                 class="text-weight-bold login__bottom-modal--button"
                 size="md"
                 no-caps

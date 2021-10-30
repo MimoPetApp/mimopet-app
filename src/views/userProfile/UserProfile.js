@@ -83,7 +83,6 @@ export default {
       }
     },
     logout() {
-      console.log('hello')
       this.$router.push({
         name: 'logout'
       })
