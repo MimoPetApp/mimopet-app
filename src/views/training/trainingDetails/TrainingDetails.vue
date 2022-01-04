@@ -1,12 +1,24 @@
 <template>
   <div v-if="!loadingTrainings" class="training-details-wrapper">
+    <q-header class="bg-main-background">
+      <q-toolbar>
+        <q-btn
+          flat
+          round
+          dense
+          icon="arrow_back"
+          to="/treinamentos"
+          text-color="utilities-alternate"
+        />
+      </q-toolbar>
+    </q-header>
     <div class="training-details-wrapper__header">
       <h2 class="training-details-wrapper__header__title text-main-alternate">
         Preparação para primeiro passeio
       </h2>
-      <span class="training-details-wrapper__header__subtitle text-utilities-alternate"
-        >O que você vai aprender?</span
-      >
+      <span class="training-details-wrapper__header__subtitle text-utilities-alternate">
+        O que você vai aprender?
+      </span>
     </div>
     <div class="training-details-wrapper__content" v-for="module in modules" :key="module.id">
       <router-link

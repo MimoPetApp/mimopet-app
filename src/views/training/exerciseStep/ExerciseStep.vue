@@ -4,6 +4,7 @@
       <div class="column justify-center">
         <h2 class="m-0 p-3">{{ exercise.name }}</h2>
         <div v-if="currExercise" class="">
+          <!--
           <video controls autoplay :key="player" height="300">
             <source
               :src="_getMediaUrl(currExercise.session.video)"
@@ -13,6 +14,7 @@
             <a :href="_getMediaUrl(currExercise.session.video)">baixá-lo</a>
             e assistir pelo seu reprodutor de mídia favorito!
           </video>
+          -->
         </div>
         <div class="p-3" align="left">
           <p class="text-main-alternate m-0 p-0">Por {{ exercise.author }}</p>
@@ -40,6 +42,7 @@
               :key="exe.id"
               :label="exe.title"
               :enabled="exe.is_complete"
+              :router="getStepRouter(exe)"
               @click="play(exe)"
             />
           </div>

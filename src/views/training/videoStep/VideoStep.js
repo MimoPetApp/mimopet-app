@@ -38,10 +38,13 @@ export default {
       this.loading = false
     },
     trainingDetailsHandler() {
+      this.$router.go(-1)
+      /*
       this.$router.push({
         name: 'ModuleDetails',
         params: { id: this.behavior.id, idModulo: this.module.id }
       })
+      */
     }
   },
   beforeRouteLeave(to, from, next) {
@@ -50,8 +53,8 @@ export default {
   },
   async mounted() {
     this.SET_HAS_HEADER(false)
-    await this.ActionGetTraining(this.$route.params.id)
-    await this.ActionGetModule(this.$route.params.idModulo)
+    // await this.ActionGetTraining(this.$route.params.id)
+    // await this.ActionGetModule(this.$route.params.idModulo)
     await this.ActionGetVideo(this.$route.params.idSessao)
   }
 }

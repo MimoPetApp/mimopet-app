@@ -2,7 +2,14 @@
   <q-layout view="lHh Lpr lFf" class="training__container">
     <q-header v-if="hasHeader" class="bg-main-background">
       <q-toolbar>
-        <q-btn flat round dense icon="arrow_back" to="/" text-color="utilities-alternate" />
+        <q-btn
+          flat
+          round
+          dense
+          icon="arrow_back"
+          @click="back()"
+          text-color="utilities-alternate"
+        />
       </q-toolbar>
     </q-header>
     <q-page-container>
@@ -52,6 +59,9 @@ export default {
     },
     onHideModalCancelTraining() {
       this.ActionModalCancelTraining({ modal: false, data: this.modalCancelTraining.data })
+    },
+    back() {
+      this.$router.go(-1)
     }
   }
 }

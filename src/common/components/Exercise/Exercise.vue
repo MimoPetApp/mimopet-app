@@ -5,6 +5,7 @@
       icon="play_arrow"
       text-color="utilities-alternate"
       color="transparent"
+      :to="router"
       unelevated
     >
     </q-btn>
@@ -22,6 +23,10 @@ export default {
     enabled: {
       type: Boolean,
       default: false
+    },
+    router: {
+      type: Object,
+      default: () => {}
     }
   }
 }

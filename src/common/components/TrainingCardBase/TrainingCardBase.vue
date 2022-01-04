@@ -2,7 +2,7 @@
   <q-card v-if="train" flat class="train-card-base">
     <q-item>
       <q-item-section v-if="train.modules">
-        <p class="train-card-base__steps">{{ train.modules.length }} {{ ` de 10 passos` }}</p>
+        <p class="train-card-base__steps">{{ 0 }} {{ ` de ${train.modules.length} passos` }}</p>
       </q-item-section>
 
       <q-item-section side>

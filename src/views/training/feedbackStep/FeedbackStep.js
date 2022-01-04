@@ -17,7 +17,7 @@ export default {
     Button,
     FeedbackModal
   },
-  data () {
+  data() {
     return {
       step: 0,
       selected: false,
@@ -38,16 +38,16 @@ export default {
   },
   computed: {
     ...mapState('training', ['feedback', 'loadingTrainings']),
-    feedbackIcon () {
+    feedbackIcon() {
       return petIcon
     },
-    checkedIcon () {
+    checkedIcon() {
       return checkedIcon
     }
   },
   methods: {
     ...mapActions('training', ['ActionGetFeedback']),
-    selectedHandler (index, event) {
+    selectedHandler(index, event) {
       this.form[index] = {
         feedbackID: this.feedbackID,
         itemIndex: index,
@@ -59,11 +59,11 @@ export default {
         this.form[index].answered = false
       }
     },
-    handleWarning (warning) {
+    handleWarning(warning) {
       this.dialog.model = false
       this.step += 1
     },
-    nextStep (currItem, index) {
+    nextStep(currItem, index) {
       const answerIndexList = this.mapAnswerToIndexList(index)
       if (
         currItem.warning &&
@@ -97,20 +97,23 @@ export default {
         }
       }
     },
-    timeout (ms) {
+    timeout(ms) {
       return new Promise(resolve => setTimeout(resolve, ms))
     },
-    async saveFeedback () {
+    async saveFeedback() {
       // TODO: salvar os dados
       this.dialog.loading = true
       await this.timeout(500)
       this.dialog.loading = false
+      /*
       this.$router.push({
         name: 'ModuleDetails',
         params: { id: this.$route.params.id, idModulo: this.$route.params.idModulo }
       })
+      */
+      this.$router.go(-1)
     },
-    mapAnswerToIndexList (currIndex) {
+    mapAnswerToIndexList(currIndex) {
       const indexList = this.form[currIndex].answer.map(answer => {
         const index = this.questions[currIndex].options.map((option, optionIndex) => {
           return option.label === answer.label ? optionIndex : ''
@@ -122,7 +125,7 @@ export default {
       })
       return indexList
     },
-    filterData () {
+    filterData() {
       this.feedback.items.map(item => {
         if (item.__component === 'utils.quiz-item') {
           this.questions.push(item)
@@ -134,7 +137,7 @@ export default {
         return true
       })
     },
-    checkCondition (condition, index, answers) {
+    checkCondition(condition, index, answers) {
       if (answers.length === 0) {
         return false
       }
@@ -158,7 +161,7 @@ export default {
           return false
       }
     },
-    formatForm () {
+    formatForm() {
       this.questions.forEach(question => {
         this.form.push({
           feedbackID: null,
@@ -169,7 +172,7 @@ export default {
       })
     }
   },
-  async created () {
+  async created() {
     await this.ActionGetFeedback(this.$route.params.idSessao)
     this.filterData()
     this.formatForm()
