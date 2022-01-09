@@ -26,7 +26,7 @@
                 </div>
               </q-avatar>
             </div>
-            <div class="mt-2">
+            <div class="mt-2" v-if="false">
               <Button
                 label="Alterar imagem"
                 noCaps
