@@ -2,12 +2,14 @@
   <q-card class="home-card q-animate--scale q-mt-xl" style="background: #7166f1">
     <q-card-section class="q-pa-xl">
       <h3 class="home-card__text mb-2">Acompanhe o mural de atividades do pet</h3>
-      <q-avatar size="60px">
-        <img :src="parseProfileThumbnail(pet.image[0])" />
-      </q-avatar>
-      <q-btn class="home-card__button no-shadow q-ml-md" :to="`/pet/${pet.id}`" no-caps flat>
-        <span class="home-card__text home-card__text--pet-name">{{ pet.name }}</span>
-      </q-btn>
+      <router-link :to="`/pet/${pet.id}`" class="router-link-style">
+        <q-avatar size="60px">
+          <img :src="parseProfileThumbnail(pet.image[0])" />
+        </q-avatar>
+        <q-btn class="home-card__button no-shadow q-ml-md" no-caps flat>
+          <span class="home-card__text home-card__text--pet-name">{{ pet.name }}</span>
+        </q-btn>
+      </router-link>
     </q-card-section>
     <q-card class="home-card q-animate--scale q-pa-lg" style="background: #ffffff">
       <HomeCard
