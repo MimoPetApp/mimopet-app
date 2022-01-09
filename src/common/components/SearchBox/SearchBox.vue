@@ -10,7 +10,7 @@
           @update:model-value="onSearch(query)"
         />
       </div>
-      <div class="mt-2">
+      <div class="mt-2" v-if="false">
         <q-btn
           :label="buttonLabel"
           :to="to"
