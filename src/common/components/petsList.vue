@@ -18,25 +18,24 @@
         to="/comportamentos"
       />
 
-      <q-card
-        class="p-3 mt-1 mb-2"
-        :style="{ background: '#4ad5da', borderRadius: '25px !important' }"
-      >
-        <div class="row justify-between items-center">
-          <div style="max-width: 45%">
+      <q-card class="mt-1 mb-2 my-trainings">
+        <div class="row">
+          <div class="col-7 col-md-7 col-xs-7">
             <h4 class="text-weight-bold m-0 p-0">Meus treinos</h4>
             <p class="text-weight-medium m-0 p-0">Programas de socialização</p>
           </div>
-          <q-btn
-            rounded
-            flat
-            no-caps
-            text-color="main-background"
-            style="background: rgba(255, 255, 255, 0.2)"
-            to="/treinamentos"
-          >
-            Detalhar
-          </q-btn>
+          <div class="col-5 col-md-5 col-xs-5 flex items-start btn-details">
+            <q-btn
+              rounded
+              flat
+              no-caps
+              text-color="main-background"
+              style="background: rgba(255, 255, 255, 0.2)"
+              to="/treinamentos"
+            >
+              Detalhar
+            </q-btn>
+          </div>
         </div>
       </q-card>
     </q-card>
@@ -65,6 +64,7 @@ export default {
 
 <style lang="scss" scoped>
 $text-main-button-size: 1.16rem;
+$xxs: 320px;
 
 .home-card {
   border-radius: 35px 35px 0 0 !important;
@@ -86,6 +86,21 @@ $text-main-button-size: 1.16rem;
 
     &--pet-name {
       font-size: var(--font-size-5);
+    }
+  }
+}
+.my-trainings {
+  height: 143px;
+  background: #4ad5da;
+  border-radius: 25px !important;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 26px;
+  .btn-details {
+    justify-content: flex-end;
+    @media (max-width: $xxs) {
+      justify-content: flex-start;
     }
   }
 }
