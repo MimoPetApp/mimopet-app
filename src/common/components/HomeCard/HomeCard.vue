@@ -3,7 +3,7 @@
     <div class="row justify-center items-center">
       <h4 class="text-weight-bolder m-0 p-0">{{ label }}</h4>
     </div>
-    <div class="row justify-center items-center">
+    <div class="row justify-center items-center text-center">
       <p class="text-weight-medium m-0 p-0">{{ description }}</p>
     </div>
     <div class="row justify-center items-center mt-2">

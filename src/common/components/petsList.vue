@@ -11,8 +11,8 @@
     </q-card-section>
     <q-card class="home-card q-animate--scale q-pa-lg" style="background: #ffffff">
       <HomeCard
-        label="Explore comportamentos"
-        description="Vantages de ter um pet treinado"
+        label="Encontre treinamentos"
+        description="Aprenda sobre a construção de comportamentos junto ao seu cão"
         color="#FF8E4A"
         colorAlt="#f66917"
         to="/comportamentos"
@@ -24,8 +24,8 @@
       >
         <div class="row justify-between items-center">
           <div style="max-width: 45%">
-            <h4 class="text-weight-bold m-0 p-0">Treinamentos</h4>
-            <p class="text-weight-medium m-0 p-0">Meus programas de adestramento</p>
+            <h4 class="text-weight-bold m-0 p-0">Meus treinos</h4>
+            <p class="text-weight-medium m-0 p-0">Programas de socialização</p>
           </div>
           <q-btn
             rounded
