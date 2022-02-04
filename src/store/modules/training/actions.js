@@ -40,7 +40,7 @@ export const ActionGetMyTrainings = async ({ commit, dispatch }, payload) => {
 /* Call PUT /trainings/:id/subscribe */
 export const ActionSubscribeOnTraining = async ({ commit, dispatch }, payload) => {
   dispatch('ActionSetLoadingTrainings', true)
-  await Http.put(`trainings/${payload}/subscribe`, payload).catch(error => {
+  await Http.put(`trainings/${payload}/subscribe`).catch(error => {
     dispatch('ActionModalResponse', {
       modal: true,
       data: { msg: 'Erro ao buscar lista de treinamentos inscritos' }

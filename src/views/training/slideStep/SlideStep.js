@@ -27,13 +27,42 @@ export default {
     ...utils,
     ...parser,
     ...mapActions('training', ['ActionGetModule', 'ActionGetSlide', 'ActionGetTraining']),
+    ...mapActions('progress', ['ActionGetStepUser', 'ActionCreateStepUser', 'ActionUpdateStepUser']),
     ...mapMutations('training', ['SET_HAS_HEADER']),
     timeout(ms) {
       return new Promise(resolve => setTimeout(resolve, ms))
     },
     async onFinish() {
       this.loading = true
-      await this.timeout(500)
+
+      /** Consulta o status */
+      const stepsUsers = await this.ActionGetStepUser({
+        step: this.slide.id,
+        type: 'slide'
+      })
+      if (stepsUsers.length > 0) {
+        /** Atualizar o status */
+        await this.ActionUpdateStepUser(
+          {
+            id: stepsUsers[0].id,
+            body: {
+              step: this.slide.id,
+              type: 'slide',
+              status: 'done'
+            }
+          }
+        )
+      } else {
+        /** 
+         * Criar quando não tem
+         * 
+         *  */
+        await this.ActionCreateStepUser({
+          step: this.slide.id,
+          type: 'slide',
+          status: 'done'
+        })
+      }
       this.hasFeedback = true
       this.loading = false
     },
