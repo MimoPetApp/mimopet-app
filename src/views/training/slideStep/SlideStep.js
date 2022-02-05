@@ -10,7 +10,7 @@ const hitIcon = require('../../../assets/images/feedback/hit.svg')
 
 export default {
   components: { LoadingCircle, Button, Tag, FeedbackModal },
-  data() {
+  data () {
     return {
       currSlide: 0,
       loading: false,
@@ -19,7 +19,7 @@ export default {
   },
   computed: {
     ...mapState('training', ['behavior', 'module', 'slide', 'loadingTrainings']),
-    feedbackIcon() {
+    feedbackIcon () {
       return hitIcon
     }
   },
@@ -27,12 +27,16 @@ export default {
     ...utils,
     ...parser,
     ...mapActions('training', ['ActionGetModule', 'ActionGetSlide', 'ActionGetTraining']),
-    ...mapActions('progress', ['ActionGetStepUser', 'ActionCreateStepUser', 'ActionUpdateStepUser']),
+    ...mapActions('progress', [
+      'ActionGetStepUser',
+      'ActionCreateStepUser',
+      'ActionUpdateStepUser'
+    ]),
     ...mapMutations('training', ['SET_HAS_HEADER']),
-    timeout(ms) {
+    timeout (ms) {
       return new Promise(resolve => setTimeout(resolve, ms))
     },
-    async onFinish() {
+    async onFinish () {
       this.loading = true
 
       /** Consulta o status */
@@ -42,20 +46,18 @@ export default {
       })
       if (stepsUsers.length > 0) {
         /** Atualizar o status */
-        await this.ActionUpdateStepUser(
-          {
-            id: stepsUsers[0].id,
-            body: {
-              step: this.slide.id,
-              type: 'slide',
-              status: 'done'
-            }
+        await this.ActionUpdateStepUser({
+          id: stepsUsers[0].id,
+          body: {
+            step: this.slide.id,
+            type: 'slide',
+            status: 'done'
           }
-        )
+        })
       } else {
-        /** 
+        /**
          * Criar quando não tem
-         * 
+         *
          *  */
         await this.ActionCreateStepUser({
           step: this.slide.id,
@@ -66,7 +68,7 @@ export default {
       this.hasFeedback = true
       this.loading = false
     },
-    trainingDetailsHandler() {
+    trainingDetailsHandler () {
       this.$router.go(-1)
       /*
       this.$router.push({
@@ -76,11 +78,11 @@ export default {
       */
     }
   },
-  beforeRouteLeave(to, from, next) {
+  beforeRouteLeave (to, from, next) {
     this.SET_HAS_HEADER(true)
     next()
   },
-  async mounted() {
+  async mounted () {
     this.SET_HAS_HEADER(false)
     // await this.ActionGetTraining(this.$route.params.id)
     // await this.ActionGetModule(this.$route.params.idModulo)

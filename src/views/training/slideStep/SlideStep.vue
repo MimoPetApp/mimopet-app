@@ -105,8 +105,8 @@
       <FeedbackModal
         :active="hasFeedback"
         :icon="feedbackIcon"
-        title="Leitura de hoje finalizada"
-        subtitle="Agora você tem mais conhecimento sobre como se preparar o treino de guia e passeio."
+        title="Etapa concluída"
+        subtitle="Parabéns, você adquiriu mais conhecimento para lidar com seu pet."
         buttonText="Ir para treino"
         :action="trainingDetailsHandler"
       ></FeedbackModal>
