@@ -60,8 +60,15 @@ export default {
     onHideModalCancelTraining() {
       this.ActionModalCancelTraining({ modal: false, data: this.modalCancelTraining.data })
     },
+    hasHistory() {
+      return window.history.length > 2
+    },
+    isFirstLevelPath() {
+      const path = this.$route.path
+      return path.length - path.replaceAll('/', '').length === 1
+    },
     back() {
-      this.$router.go(-1)
+      this.isFirstLevelPath() ? this.$router.push('/') : this.$router.go(-1)
     }
   }
 }
