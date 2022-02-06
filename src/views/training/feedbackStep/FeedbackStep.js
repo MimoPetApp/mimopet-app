@@ -94,10 +94,10 @@ export default {
           await this.stepDone()
           this.dialog = {
             model: true,
-            title: 'Quiz finalizado',
-            subtitle: 'Agora você tem mais conhecimento sobre como lidar com seu pet.',
+            title: 'Etapa concluída',
+            subtitle: 'Parabéns, você adquiriu mais conhecimento para lidar com seu pet.',
             icon: this.checkedIcon,
-            btnText: 'Ir para o treino',
+            btnText: 'Voltar',
             action: () => {
               // go to last page
               this.goBack()
