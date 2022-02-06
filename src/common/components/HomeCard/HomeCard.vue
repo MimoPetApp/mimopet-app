@@ -1,5 +1,9 @@
 <template>
-  <q-card class="home-card__item p-2 pt-4 mt-1 mb-2" :style="`background: ${color}`">
+  <q-card
+    class="home-card__item p-2 pt-4 mt-1 mb-2"
+    :style="`background: ${color}`"
+    @click="$router.push(to)"
+  >
     <div class="row justify-center items-center">
       <h4 class="text-weight-bolder m-0 p-0">{{ label }}</h4>
     </div>

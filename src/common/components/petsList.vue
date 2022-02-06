@@ -23,6 +23,7 @@
       <q-card
         class="p-3 mt-1 mb-2"
         :style="{ background: '#4ad5da', borderRadius: '25px !important' }"
+        @click="$router.push('/treinamentos')"
       >
         <div class="row justify-between items-center">
           <div style="max-width: 45%">
