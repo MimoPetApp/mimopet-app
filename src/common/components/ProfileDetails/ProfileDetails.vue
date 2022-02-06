@@ -64,7 +64,7 @@
                 {{ item.label }}
               </h4>
             </div>
-            <div class="col-2 col-md-2 col-xs-2 profile-details-wrapper__content__btn">
+            <div class="col-2 col-md-2 col-xs-2 profile-details-wrapper__content__btn" v-if="false">
               <p class="text-utilities-alternate" @click="clickHandler(index)">Editar</p>
             </div>
           </div>
