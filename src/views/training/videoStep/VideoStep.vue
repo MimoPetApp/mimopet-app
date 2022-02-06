@@ -44,9 +44,9 @@
       <FeedbackModal
         :active="hasFeedback"
         :icon="feedbackIcon"
-        title="Video de hoje finalizado"
-        subtitle="Agora você tem mais conhecimento."
-        buttonText="Ir para treino"
+        title="Etapa concluída"
+        subtitle="Parabéns, você adquiriu mais conhecimento para lidar com seu pet."
+        buttonText="Voltar"
         :action="trainingDetailsHandler"
       ></FeedbackModal>
     </div>
