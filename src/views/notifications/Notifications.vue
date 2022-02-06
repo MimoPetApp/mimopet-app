@@ -4,9 +4,14 @@
     <div class="row">
       <div class="col-12">
         <q-toolbar class="text-primary text-main-primary ml-2">
-          <router-link :to="{ name: 'UserProfile' }" class="router-link-style">
-            <q-btn flat round dense icon="arrow_back" text-color="utilities-alternate" />
-          </router-link>
+          <q-btn
+            flat
+            round
+            dense
+            icon="arrow_back"
+            text-color="utilities-alternate"
+            @click="$router.go(-1)"
+          />
         </q-toolbar>
       </div>
     </div>
