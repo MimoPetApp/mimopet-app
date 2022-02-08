@@ -14,7 +14,6 @@ export const ActionGetPets = ({ commit, dispatch }) => {
     Http.get('pets')
       .then(response => {
         dispatch('ActionCommitPet', response.data)
-        dispatch('ActionSetLoadingPet', false)
         resolve(response.data)
       })
       .catch(error => {
@@ -28,6 +27,19 @@ export const ActionCreatePet = async ({ commit, dispatch }, payload) => {
     return error.response
   })
   return res.data
+}
+
+export const ActionSetMainPet = async ({ commit, dispatch }, payload) => {
+  commit(types.LOADING_SETMAINPET)
+  await Http.put(`pets/${payload}/select`)
+    .then(response => {
+      commit(types.SUCCESS_SETMAINPET, response.data)
+      return true
+    })
+    .catch(error => {
+      commit(types.ERROR_SETMAINPET, error.response)
+      return false
+    })
 }
 
 export const ActionGetPetById = async ({ commit, dispatch }, payload) => {

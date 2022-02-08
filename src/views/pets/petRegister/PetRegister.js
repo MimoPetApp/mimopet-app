@@ -66,6 +66,10 @@ export default {
         {
           label: 'De serviço',
           isCorrect: false
+        },
+        {
+          label: 'Nenhum',
+          isCorrect: false
         }
       ],
       form: {
@@ -149,7 +153,7 @@ export default {
     next()
   },
   methods: {
-    ...mapActions('pets', ['ActionSetHomeMenuVisibility', 'ActionCreatePet']),
+    ...mapActions('pets', ['ActionSetHomeMenuVisibility', 'ActionCreatePet', 'ActionSetMainPet']),
     ...mapActions('petRegister', ['ActionGetBreeds', 'ActionRegisterPet']),
     searchBreed () {
       let aux = []
@@ -198,6 +202,7 @@ export default {
       if (this.registerPetData.error) {
         // notify
       } else {
+        await this.ActionSetMainPet(this.registerPetData.data.id)
         this.nextStep()
       }
     },
@@ -248,7 +253,7 @@ export default {
       }
       this.loading = true
       const res = await this.ActionCreatePet(body)
-      if (res.id) {
+      if (res) {
         this.createdPet = res
         this.nextStep()
       }

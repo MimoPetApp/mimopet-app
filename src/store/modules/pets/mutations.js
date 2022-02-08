@@ -1,28 +1,28 @@
 import * as types from './mutation-types'
 
 export default {
-  [types.SET_HAS_HEADER](state, payload) {
+  [types.SET_HAS_HEADER] (state, payload) {
     state.hasHeader = payload
   },
-  [types.SET_HAS_FOOTER](state, payload) {
+  [types.SET_HAS_FOOTER] (state, payload) {
     state.hasFooter = payload
   },
-  [types.SET_LOADINGPETS](state, payload) {
+  [types.SET_LOADINGPETS] (state, payload) {
     state.loadingPets = payload
   },
-  [types.SET_PETSLIST](state, payload) {
+  [types.SET_PETSLIST] (state, payload) {
     state.petsList = payload
   },
-  SET_CURRPET(state, payload) {
+  [types.SET_CURRPET] (state, payload) {
     state.currPet = payload
   },
-  [types.SET_PROFILEPET](state, payload) {
+  [types.SET_PROFILEPET] (state, payload) {
     state.petProfile = payload
   },
-  [types.SET_MODALDELETEPET](state, payload) {
+  [types.SET_MODALDELETEPET] (state, payload) {
     state.modalDeletePet = payload
   },
-  [types.SET_MODALDELETEPETLIST](state, payload) {
+  [types.SET_MODALDELETEPETLIST] (state, payload) {
     state.modalPetList = payload
   },
   [types.LOADING_GETPETBYID] (state) {
@@ -39,5 +39,20 @@ export default {
     state.petProfile.success = false
     state.petProfile.data = {}
     state.petProfile.error = payload
+  },
+  [types.LOADING_SETMAINPET] (state) {
+    state.mainPet.loading = true
+  },
+  [types.SUCCESS_SETMAINPET] (state, payload) {
+    state.mainPet.loading = false
+    state.mainPet.success = true
+    state.mainPet.data = payload
+    state.mainPet.error = false
+  },
+  [types.ERROR_SETMAINPET] (state, payload) {
+    state.mainPet.loading = false
+    state.mainPet.success = false
+    state.mainPet.data = {}
+    state.mainPet.error = payload
   }
 }

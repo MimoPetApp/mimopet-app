@@ -38,21 +38,21 @@ export default {
     state.breeds.success = false
   },
   [types.LOADING_REGISTERPET] (state) {
-    state.breeds.loading = true
+    state.registerPet.loading = true
   },
   [types.SUCCESS_REGISTERPET] (state, payload) {
-    state.breeds.loading = false
-    state.breeds.success = true
-    state.breeds.data = payload
-    state.breeds.error = false
+    state.registerPet.loading = false
+    state.registerPet.success = true
+    state.registerPet.data = payload
+    state.registerPet.error = false
   },
   [types.ERROR_REGISTERPET] (state, payload) {
-    state.breeds.loading = false
-    state.breeds.success = false
-    state.breeds.data = {}
-    state.breeds.error = payload
+    state.registerPet.loading = false
+    state.registerPet.success = false
+    state.registerPet.data = {}
+    state.registerPet.error = payload
   },
   [types.RESET_REGISTERPET] (state, payload) {
-    state.breeds.success = false
+    state.registerPet.success = false
   }
 }

@@ -8,7 +8,7 @@
           </q-item>
           <q-separator class="bg-utilities-border" />
           <div v-for="(pet, index) in petsList" :key="index">
-            <q-item class="ml-2" v-ripple clickable @click="onSelect(index)">
+            <q-item class="ml-2" v-ripple clickable @click="onSelect(pet)">
               <!--
               <q-item-section avatar>
                 <q-avatar text-color="main-primary" icon="keyboard_arrow_right" />
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import parser from './../../../helpers/PetProfileParser'
 export default {
   name: 'SelectPetModal',
@@ -57,18 +57,21 @@ export default {
     }
   },
   computed: {
-    ...mapState('pets', ['petsList', 'modalPetList'])
+    ...mapState('pets', ['petsList', 'modalPetList']),
+    ...mapState('auth', ['user'])
   },
   methods: {
     ...parser,
-    ...mapActions('pets', ['ActionPetModalList', 'ActionSetLoadingPet']),
-    ...mapMutations('pets', ['SET_CURRPET']),
-    onSelect(id) {
-      this.SET_CURRPET(id)
-      this.ActionPetModalList({ modal: false, data: {} })
+    ...mapActions('pets', ['ActionPetModalList', 'ActionSetLoadingPet', 'ActionSetMainPet']),
+
+    async onSelect(pet) {
+      this.hide()
+      if (pet.id !== this.user.current_pet) {
+        this.ActionSetLoadingPet(true)
+        await this.ActionSetMainPet(pet.id)
+      }
     },
     hide() {
-      this.ActionSetLoadingPet(true)
       this.ActionPetModalList({ modal: false, data: {} })
     }
   }

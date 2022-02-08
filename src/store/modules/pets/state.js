@@ -18,5 +18,11 @@ export default {
     modal: false,
     data: {}
   },
-  loadingScreen: false
+  loadingScreen: false,
+  mainPet: {
+    loading: false,
+    data: {},
+    error: false,
+    success: false
+  }
 }

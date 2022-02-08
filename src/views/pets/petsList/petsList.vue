@@ -2,7 +2,7 @@
   <div>
     <div v-if="!loadingPets">
       <div v-if="petsList.length >= 1">
-        <PetsList :pet="petsList[currPet]" />
+        <PetsList :pet="petsList[mainPetIndex]" />
       </div>
       <div v-else class="error-home">
         <q-card class="error-home__card q-animate--scale mt-8 p-4">
@@ -11,7 +11,7 @@
           </q-card-section>
           <q-card-section class="text-center">
             <q-btn class="error-home__button no-shadow" to="/novo/pet" no-caps flat>
-              <span class="text-main-background">Cadastrar Pet?</span>
+              <span class="text-main-background">Cadastrar Pet</span>
             </q-btn>
           </q-card-section>
         </q-card>

@@ -86,11 +86,12 @@ export const ActionGetBreeds = async ({ commit, dispatch }) => {
 
 export const ActionRegisterPet = async ({ commit, dispatch }, payload) => {
   commit(types.LOADING_REGISTERPET)
-  await Http.post('pets', payload)
-    .then(response => {
-      commit(types.SUCCESS_REGISTERPET, response.data)
-    })
-    .catch(error => {
-      commit(types.ERROR_REGISTERPET, error.response)
-    })
+  try {
+    let response = await Http.post('pets', payload)
+    commit(types.SUCCESS_REGISTERPET, response.data)
+    return true
+  } catch (error) {
+    commit(types.ERROR_REGISTERPET, error.response.data)
+    return false
+  }
 }
