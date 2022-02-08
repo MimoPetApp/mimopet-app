@@ -5,6 +5,7 @@ import petRegister from './petRegister/index'
 import userProfile from './userProfile/index'
 import progress from './progress/index'
 import feedback from './steps/feedback/index'
+import video from './steps/video/index'
 
 export default {
   auth,
@@ -13,5 +14,6 @@ export default {
   petRegister,
   userProfile,
   progress,
-  feedback
+  feedback,
+  video
 }
