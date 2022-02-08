@@ -145,7 +145,24 @@ export const ActionGetFeedback = async ({ commit, dispatch }, payload) => {
     .catch(error => {
       dispatch('ActionModalResponse', {
         modal: true,
-        data: { msg: 'Erro ao buscar slide' }
+        data: { msg: 'Erro ao buscar feedback' }
+      })
+      console.error(error)
+    })
+  dispatch('ActionSetLoadingTrainings', false)
+}
+
+/* Call GET /feedbacks/:id */
+export const ActionGetQuiz = async ({ commit, dispatch }, payload) => {
+  dispatch('ActionSetLoadingTrainings', true)
+  await Http.get(`quizzes/${payload}`)
+    .then(response => {
+      commit(types.SET_QUIZ, response.data)
+    })
+    .catch(error => {
+      dispatch('ActionModalResponse', {
+        modal: true,
+        data: { msg: 'Erro ao buscar quiz' }
       })
       console.error(error)
     })

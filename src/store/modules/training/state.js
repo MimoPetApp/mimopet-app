@@ -7,6 +7,7 @@ export default {
   slide: {},
   video: {},
   feedback: {},
+  quiz: {},
   exercise: {},
   myTrainings: [],
   loadingTrainings: false,

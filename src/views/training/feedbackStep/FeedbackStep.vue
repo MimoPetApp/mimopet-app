@@ -1,6 +1,6 @@
 <template>
   <div class="feedback-step">
-    <div v-if="!loadingTrainings" class="quiz-step-wrapper">
+    <div v-if="!loadingTrainings" class="feedback-step-wrapper">
       <div v-for="(item, index) in questions" :key="index" v-show="step === index">
         <Ask :title="item.title" :subtitle="item.description" align-content="center">
           <template v-slot:content>
