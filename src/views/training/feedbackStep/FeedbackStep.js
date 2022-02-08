@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     ...mapActions('training', ['ActionGetFeedback']),
-    ...mapActions('feedback', ['ActionUpdateStepCompleted']),
+    ...mapActions('feedback', ['ActionUpdateFeedbackStepCompleted']),
     selectedHandler (index, event) {
       this.form[index] = {
         feedbackID: this.feedbackID,
@@ -134,7 +134,7 @@ export default {
     async stepDone () {
       if (!this.isStepDone()) {
         // Atualizar o status
-        const res = await this.ActionUpdateStepCompleted({
+        const res = await this.ActionUpdateFeedbackStepCompleted({
           id: this.feedbackID,
           body: {
             completed: true

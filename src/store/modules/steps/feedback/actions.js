@@ -5,7 +5,7 @@ import { Notify } from 'quasar'
 import store from '../../../../store/index'
 
 export default {
-  async ActionUpdateStepCompleted ({ commit }, payload) {
+  async ActionUpdateFeedbackStepCompleted ({ commit }, payload) {
     commit(types.LOADING_STEP_COMPLETED)
 
     try {
