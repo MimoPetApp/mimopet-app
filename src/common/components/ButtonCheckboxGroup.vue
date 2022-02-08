@@ -82,27 +82,29 @@ export default {
       })
     },
     clicked(option, index) {
-      if (this.selectionType === 'single') {
-        // single selection with no answer
-        if (!this.selected) {
-          this.selectedOptions.push(option)
+      if (!this.answer) {
+        // feedback
+        if (this.selectionType === 'single') {
+          // single selection with no answer
+          if (!this.selected) {
+            this.selectedOptions.push(option)
+            option.selected = !option.selected
+            this.selected = true
+          } else {
+            this.toggleSelection(option)
+          }
+          this.$emit('selected', this.selectedOptions)
+        } else {
+          if (this.hasAlreadySelected(option)) {
+            this.removeSelectedOption(option)
+          } else {
+            this.selectedOptions.push(option)
+          }
           option.selected = !option.selected
-          this.selected = true
-        } else {
-          this.toggleSelection(option)
+          this.$emit('selected', this.selectedOptions)
         }
-        this.$emit('selected', this.selectedOptions)
-      } else if (!this.answer) {
-        // feedback screen
-        if (this.hasAlreadySelected(option)) {
-          this.removeSelectedOption(option)
-        } else {
-          this.selectedOptions.push(option)
-        }
-        option.selected = !option.selected
-        this.$emit('selected', this.selectedOptions)
       } else {
-        // quiz screen
+        // quiz
         if (!this.chosenAnswer) {
           option.selected = true
           this.selectedOptions.push(option)
