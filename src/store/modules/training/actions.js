@@ -70,7 +70,7 @@ export const ActionGetTraining = async ({ commit, dispatch }, payload) => {
 /* Call GET /modules */
 export const ActionGetModules = async ({ commit, dispatch }, payload) => {
   dispatch('ActionSetLoadingTrainings', true)
-  await Http.get(`modules/trainings/${payload}`)
+  await Http.get(`trainings/${payload}/modules`)
     .then(response => {
       commit(types.SET_MODULES, response.data)
     })
