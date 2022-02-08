@@ -6,7 +6,7 @@ import FeedbackModal from '../../../common/components/FeedbackModal/FeedbackModa
 import { mapState, mapActions } from 'vuex'
 
 const petIcon = require('../../../assets/images/feedback/pet.svg')
-const checkedIcon = require('../../../assets/images/feedback/checked.svg')
+const checkedIcon = require('../../../assets/images/feedback/shine.svg')
 
 export default {
   name: 'FeedbackStep',
@@ -33,8 +33,7 @@ export default {
         btnText: '',
         action: () => {}
       },
-      feedbackID: null,
-      stepStatus: null
+      feedbackID: null
     }
   },
   computed: {
@@ -48,11 +47,7 @@ export default {
   },
   methods: {
     ...mapActions('training', ['ActionGetFeedback']),
-    ...mapActions('progress', [
-      'ActionGetStepUser',
-      'ActionCreateStepUser',
-      'ActionUpdateStepUser'
-    ]),
+    ...mapActions('feedback', ['ActionUpdateStepCompleted']),
     selectedHandler (index, event) {
       this.form[index] = {
         feedbackID: this.feedbackID,
@@ -90,17 +85,19 @@ export default {
           this.step += 1
         } else {
           // TODO save feedback data
-          this.saveFeedback()
-          await this.stepDone()
-          this.dialog = {
-            model: true,
-            title: 'Etapa concluída',
-            subtitle: 'Parabéns, você adquiriu mais conhecimento para lidar com seu pet.',
-            icon: this.checkedIcon,
-            btnText: 'Voltar',
-            action: () => {
-              // go to last page
-              this.goBack()
+          // this.saveFeedback()
+          const res = await this.stepDone()
+          if (res) {
+            this.dialog = {
+              model: true,
+              title: 'Etapa concluída',
+              subtitle: 'Parabéns, você adquiriu mais conhecimento para lidar com seu pet.',
+              icon: this.checkedIcon,
+              btnText: 'Voltar',
+              action: () => {
+                // go to last page
+                this.goBack()
+              }
             }
           }
         }
@@ -109,9 +106,12 @@ export default {
     timeout (ms) {
       return new Promise(resolve => setTimeout(resolve, ms))
     },
+    /*
     isStepDoing () {
       return this.stepStatus[0].status === 'doing'
     },
+    */
+    /*
     async setStepToDoing () {
       // if is first time to do
       if (this.stepStatus.length === 0) {
@@ -122,9 +122,29 @@ export default {
         })
       }
     },
+    */
+    isEmptyObject (obj) {
+      return obj && Object.keys(obj).length === 0 && Object.getPrototypeOf(obj) === Object.prototype
+    },
+    isStepDone () {
+      if (!this.isEmptyObject(this.feedback)) {
+        return this.feedback.completed
+      }
+    },
     async stepDone () {
+      if (!this.isStepDone()) {
+        // Atualizar o status
+        const res = await this.ActionUpdateStepCompleted({
+          id: this.feedbackID,
+          body: {
+            completed: true
+          }
+        })
+        return res
+      }
+      /*
       if (this.isStepDoing()) {
-        /** Atualizar o status */
+        // Atualizar o status
         await this.ActionUpdateStepUser({
           id: this.stepsUsers[0].id,
           body: {
@@ -134,6 +154,7 @@ export default {
           }
         })
       }
+      */
     },
     goBack () {
       this.$router.go(-1)
@@ -207,20 +228,22 @@ export default {
           answered: false
         })
       })
-    },
+    }
+    /*
     async getStepStatus () {
       this.stepStatus = await this.ActionGetStepUser({
         step: this.feedbackID,
         type: 'feedback'
       })
     }
+    */
   },
   async created () {
     await this.ActionGetFeedback(this.$route.params.idSessao)
     this.filterData()
     this.formatForm()
     this.feedbackID = this.feedback.id
-    await this.getStepStatus()
-    await this.setStepToDoing()
+    // await this.getStepStatus()
+    // await this.setStepToDoing()
   }
 }

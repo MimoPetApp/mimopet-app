@@ -4,6 +4,7 @@ import training from './training/index'
 import petRegister from './petRegister/index'
 import userProfile from './userProfile/index'
 import progress from './progress/index'
+import feedback from './steps/feedback/index'
 
 export default {
   auth,
@@ -11,5 +12,6 @@ export default {
   training,
   petRegister,
   userProfile,
-  progress
+  progress,
+  feedback
 }
