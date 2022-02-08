@@ -6,7 +6,7 @@ import Tag from '../../../common/components/Tag/Tag'
 import FeedbackModal from '../../../common/components/FeedbackModal/FeedbackModal'
 import utils from '../../../common/helpers/utils'
 
-const hitIcon = require('../../../assets/images/feedback/hit.svg')
+const hitIcon = require('../../../assets/images/feedback/shine.svg')
 
 export default {
   components: { LoadingCircle, Button, Tag, FeedbackModal },
@@ -27,25 +27,27 @@ export default {
     ...utils,
     ...parser,
     ...mapActions('training', ['ActionGetModule', 'ActionGetSlide', 'ActionGetTraining']),
-    ...mapActions('progress', [
-      'ActionGetStepUser',
-      'ActionCreateStepUser',
-      'ActionUpdateStepUser'
-    ]),
+    ...mapActions('slide', ['ActionUpdateSlideStepCompleted']),
     ...mapMutations('training', ['SET_HAS_HEADER']),
     timeout (ms) {
       return new Promise(resolve => setTimeout(resolve, ms))
     },
     async onFinish () {
       this.loading = true
-
-      /** Consulta o status */
+      const res = await this.stepDone()
+      if (res) {
+        // successs
+        this.hasFeedback = true
+        this.loading = false
+      }
+      /*
+      // Consulta o status
       const stepsUsers = await this.ActionGetStepUser({
         step: this.slide.id,
         type: 'slide'
       })
       if (stepsUsers.length > 0) {
-        /** Atualizar o status */
+        // Atualizar o status
         await this.ActionUpdateStepUser({
           id: stepsUsers[0].id,
           body: {
@@ -55,37 +57,58 @@ export default {
           }
         })
       } else {
-        /**
-         * Criar quando não tem
-         *
-         *  */
+        // Criar quando não tem
         await this.ActionCreateStepUser({
           step: this.slide.id,
           type: 'slide',
           status: 'done'
         })
       }
-      this.hasFeedback = true
-      this.loading = false
+      */
     },
     trainingDetailsHandler () {
-      this.$router.go(-1)
+      this.goBack()
       /*
       this.$router.push({
         name: 'ModuleDetails',
         params: { id: this.behavior.id, idModulo: this.module.id }
       })
       */
+    },
+    goBack () {
+      this.$router.go(-1)
+    },
+    isEmptyObject (obj) {
+      return obj && Object.keys(obj).length === 0 && Object.getPrototypeOf(obj) === Object.prototype
+    },
+    isStepDone () {
+      if (!this.isEmptyObject(this.video)) {
+        return this.slide.completed
+      }
+    },
+    async stepDone () {
+      if (!this.isStepDone()) {
+        // Atualizar o status
+        const res = await this.ActionUpdateSlideStepCompleted({
+          id: this.slide.id,
+          body: {
+            completed: true
+          }
+        })
+        return res
+      }
     }
   },
   beforeRouteLeave (to, from, next) {
     this.SET_HAS_HEADER(true)
     next()
   },
+  async created () {
+    await this.ActionGetSlide(this.$route.params.idSessao)
+  },
   async mounted () {
     this.SET_HAS_HEADER(false)
     // await this.ActionGetTraining(this.$route.params.id)
     // await this.ActionGetModule(this.$route.params.idModulo)
-    await this.ActionGetSlide(this.$route.params.idSessao)
   }
 }

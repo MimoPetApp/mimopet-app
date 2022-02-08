@@ -6,6 +6,7 @@ import userProfile from './userProfile/index'
 import progress from './progress/index'
 import feedback from './steps/feedback/index'
 import video from './steps/video/index'
+import slide from './steps/slide/index'
 
 export default {
   auth,
@@ -15,5 +16,6 @@ export default {
   userProfile,
   progress,
   feedback,
-  video
+  video,
+  slide
 }
