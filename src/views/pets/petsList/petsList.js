@@ -1,14 +1,9 @@
 import Loading from '../../../common/components/loading'
 import PetsList from '../../../common/components/petsList'
-import { mapState, mapActions, mapGetters } from 'vuex'
+import { mapState, mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'PageIndex',
-  data () {
-    return {
-      mainPetIndex: null
-    }
-  },
   components: {
     PetsList,
     Loading
@@ -19,18 +14,10 @@ export default {
     ...mapState('auth', ['user']),
     ...mapGetters('pets', ['getMainPetId'])
   },
-  watch: {
-    getMainPetId (newVal, oldVal) {
-      if (newVal) {
-        this.findMainPetIndex(newVal)
-        this.ActionSetLoadingPet(false)
-      }
-    }
-  },
   async created () {
     this.ActionSetLoadingPet(true)
     await this.ActionGetPets()
-    this.findMainPetIndex()
+    await this.setMainPet()
     this.ActionSetLoadingPet(false)
   },
   beforeRouteLeave (to, from, next) {
@@ -38,18 +25,35 @@ export default {
     next()
   },
   methods: {
+    ...mapMutations('pets', { SET_MAINPET: 'PETS/SET_MAINPET' }),
     ...mapActions('pets', ['ActionGetPets', 'ActionCommitPet', 'ActionSetLoadingPet']),
-    findMainPetIndex (id = null) {
-      let mainPetId
-      if (!id) {
-        // get main pet id by user
-        mainPetId = this.user.current_pet
-      } else {
-        mainPetId = id
+    hasPet () {
+      return this.petsList.length >= 1
+    },
+    isEmptyObject (obj) {
+      return obj && Object.keys(obj).length === 0 && Object.getPrototypeOf(obj) === Object.prototype
+    },
+    findMainPet () {
+      let mainPet = null
+      if (this.hasPet()) {
+        mainPet = this.petsList.find(pet => {
+          return pet.id === this.user.current_pet
+        })
       }
-      this.mainPetIndex = this.petsList.findIndex(pet => {
-        return pet.id === mainPetId
-      })
+      return mainPet
+    },
+    setMainPet () {
+      let pet = null
+      if (!this.isEmptyObject(this.mainPet.data)) {
+        // main pet from vuex
+        pet = this.mainPet.data
+      } else {
+        // main pet from user
+        pet = this.findMainPet()
+      }
+      if (pet) {
+        this.SET_MAINPET(pet)
+      }
     }
   }
 }

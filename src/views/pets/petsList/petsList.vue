@@ -2,7 +2,7 @@
   <div>
     <div v-if="!loadingPets">
       <div v-if="petsList.length >= 1">
-        <PetsList :pet="petsList[mainPetIndex]" />
+        <PetsList :pet="mainPet.data" />
       </div>
       <div v-else class="error-home">
         <q-card class="error-home__card q-animate--scale mt-8 p-4">

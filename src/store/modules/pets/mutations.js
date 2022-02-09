@@ -40,19 +40,22 @@ export default {
     state.petProfile.data = {}
     state.petProfile.error = payload
   },
-  [types.LOADING_SETMAINPET] (state) {
+  [types.LOADING_UPDATEMAINPET] (state) {
     state.mainPet.loading = true
   },
-  [types.SUCCESS_SETMAINPET] (state, payload) {
+  [types.SUCCESS_UPDATEMAINPET] (state, payload) {
     state.mainPet.loading = false
     state.mainPet.success = true
     state.mainPet.data = payload
     state.mainPet.error = false
   },
-  [types.ERROR_SETMAINPET] (state, payload) {
+  [types.ERROR_UPDATEMAINPET] (state, payload) {
     state.mainPet.loading = false
     state.mainPet.success = false
     state.mainPet.data = {}
     state.mainPet.error = payload
+  },
+  [types.SET_MAINPET] (state, payload) {
+    state.mainPet.data = payload
   }
 }

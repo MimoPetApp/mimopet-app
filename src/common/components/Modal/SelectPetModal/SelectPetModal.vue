@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
 import parser from './../../../helpers/PetProfileParser'
 export default {
   name: 'SelectPetModal',
@@ -58,21 +58,26 @@ export default {
   },
   computed: {
     ...mapState('pets', ['petsList', 'modalPetList']),
-    ...mapState('auth', ['user'])
+    ...mapState('auth', ['user']),
+    ...mapGetters('pets', ['getMainPetId'])
   },
   methods: {
     ...parser,
-    ...mapActions('pets', ['ActionPetModalList', 'ActionSetLoadingPet', 'ActionSetMainPet']),
+    ...mapActions('pets', ['ActionPetModalList', 'ActionSetLoadingPet', 'ActionUpdateMainPet']),
 
     async onSelect(pet) {
       this.hide()
-      if (pet.id !== this.user.current_pet) {
-        this.ActionSetLoadingPet(true)
-        await this.ActionSetMainPet(pet.id)
+      if (pet.id !== this.getMainPetId) {
+        this.updateMainpet(pet.id)
       }
     },
     hide() {
       this.ActionPetModalList({ modal: false, data: {} })
+    },
+    async updateMainpet(id) {
+      this.ActionSetLoadingPet(true)
+      await this.ActionUpdateMainPet(id)
+      this.ActionSetLoadingPet(false)
     }
   }
 }

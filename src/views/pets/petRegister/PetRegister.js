@@ -153,7 +153,11 @@ export default {
     next()
   },
   methods: {
-    ...mapActions('pets', ['ActionSetHomeMenuVisibility', 'ActionCreatePet', 'ActionSetMainPet']),
+    ...mapActions('pets', [
+      'ActionSetHomeMenuVisibility',
+      'ActionCreatePet',
+      'ActionUpdateMainPet'
+    ]),
     ...mapActions('petRegister', ['ActionGetBreeds', 'ActionRegisterPet']),
     searchBreed () {
       let aux = []
@@ -202,7 +206,7 @@ export default {
       if (this.registerPetData.error) {
         // notify
       } else {
-        await this.ActionSetMainPet(this.registerPetData.data.id)
+        await this.ActionUpdateMainPet(this.registerPetData.data.id)
         this.nextStep()
       }
     },
