@@ -39,8 +39,21 @@
         label="Cancelar inscrição"
         size="md"
         no-caps
-        @click="unsubscribeTraining()"
+        @click="showUnsubscribeTrainingModal()"
       />
+      <ActionModal
+        :content="unsubscribeTrainingModal"
+        :onHide="hideUnsubscribeTrainingModal"
+        :onSubmit="unsubscribeTrainingModal.action"
+      ></ActionModal>
+      <FeedbackModal
+        :active="feedbackModal.status"
+        :icon="feedbackModal.icon"
+        :title="feedbackModal.title"
+        :subtitle="feedbackModal.subtitle"
+        :buttonText="feedbackModal.buttonText"
+        :action="feedbackModal.action"
+      ></FeedbackModal>
     </div>
   </div>
   <div v-else class="flex flex-center q-mt-xl">
