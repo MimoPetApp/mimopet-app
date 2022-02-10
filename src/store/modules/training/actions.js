@@ -50,6 +50,20 @@ export const ActionSubscribeOnTraining = async ({ commit, dispatch }, payload) =
   dispatch('ActionSetLoadingTrainings', false)
 }
 
+/* Call PUT /trainings/:id/unsubscribe */
+export const ActionUnsubscribeTraining = async ({ commit, dispatch }, payload) => {
+  commit(types.LOADING_UNSUBSCRIBETRAINING)
+  await Http.put(`trainings/${payload.id}/unsubscribe`, payload.body)
+    .then(response => {
+      commit(types.SUCCESS_UNSUBSCRIBETRAINING, response.data)
+      return true
+    })
+    .catch(error => {
+      commit(types.ERROR_UNSUBSCRIBETRAINING, error.response)
+      return false
+    })
+}
+
 /* Call GET /trainings/id */
 export const ActionGetTraining = async ({ commit, dispatch }, payload) => {
   dispatch('ActionSetLoadingTrainings', true)

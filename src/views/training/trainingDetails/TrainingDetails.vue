@@ -28,19 +28,20 @@
         <module-card :module="module" class="mt-2"></module-card>
       </router-link>
     </div>
-    <!--
-    <q-list v-if="modules.length > 0" class="mt-4 mb-4">
-      <q-item clickable v-ripple dense :to="`/treinamentos/${modules[0].id}/slide`">
-        <q-item-section avatar>
-          <q-avatar color="main-alternate" text-color="white" icon="play_arrow" />
-        </q-item-section>
-        <q-item-section>
-          <q-item-label>Demonstração de passo</q-item-label>
-          <q-item-label caption>4 min - Slide</q-item-label>
-        </q-item-section>
-      </q-item>
-    </q-list>
-    -->
+    <div class="training-details-wrapper__footer flex flex-center">
+      <span class="training-details-wrapper__footer__subtitle text-utilities-alternate">
+        Inscrito em
+      </span>
+      <Button
+        flat
+        class="no-shadow training-details-wrapper__footer__btn"
+        color="secondary-bordless"
+        label="Cancelar inscrição"
+        size="md"
+        no-caps
+        @click="unsubscribeTraining()"
+      />
+    </div>
   </div>
   <div v-else class="flex flex-center q-mt-xl">
     <LoadingCircle color="status-waiting" size="6em" :thickness="5" />

@@ -19,4 +19,26 @@
       letter-spacing: -0.014em;
     }
   }
+  &__footer {
+    margin-top: 17px;
+    flex-direction: column;
+    &__subtitle {
+      font-family: 'customfont620';
+      font-style: normal;
+      font-weight: 500;
+      font-size: var(--font-size-3);
+      line-height: 17px;
+      letter-spacing: -0.018em;
+    }
+    &__btn {
+      font-family: 'customfont650';
+      font-style: normal;
+      font-weight: 600;
+      font-size: var(--font-size-4);
+      line-height: 19px;
+      letter-spacing: -0.014em;
+      margin-bottom: 20px;
+      margin-top: 5px;
+    }
+  }
 }

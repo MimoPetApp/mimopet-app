@@ -12,6 +12,12 @@ export default {
   myTrainings: [],
   loadingTrainings: false,
   hasHeader: true,
+  unsubscribeTraining: {
+    loading: false,
+    success: true,
+    error: false,
+    data: {}
+  },
   modalResponse: {
     model: false,
     data: {}

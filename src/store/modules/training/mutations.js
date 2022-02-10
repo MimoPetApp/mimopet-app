@@ -51,5 +51,20 @@ export default {
   },
   [types.SET_MODALCANCELTRAINING] (state, payload) {
     state.modalCancelTraining = payload
+  },
+  [types.LOADING_UNSUBSCRIBETRAINING] (state) {
+    state.loading = true
+  },
+  [types.SUCCESS_UNSUBSCRIBETRAINING] (state, payload) {
+    state.loading = false
+    state.success = true
+    state.data = payload
+    state.error = false
+  },
+  [types.ERROR_UNSUBSCRIBETRAINING] (state, payload) {
+    state.loading = false
+    state.success = false
+    state.data = {}
+    state.error = payload
   }
 }
