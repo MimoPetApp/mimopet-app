@@ -20,7 +20,7 @@
     }
   }
   &__footer {
-    margin-top: 17px;
+    margin-top: var(--spacing-4);
     flex-direction: column;
     &__subtitle {
       font-family: 'customfont620';
@@ -37,7 +37,7 @@
       font-size: var(--font-size-4);
       line-height: 19px;
       letter-spacing: -0.014em;
-      margin-bottom: 20px;
+      margin-bottom: var(--spacing-3);
       margin-top: 5px;
     }
   }
