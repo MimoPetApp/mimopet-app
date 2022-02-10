@@ -206,8 +206,10 @@ export default {
       if (this.registerPetData.error) {
         // notify
       } else {
-        await this.ActionUpdateMainPet(this.registerPetData.data.id)
-        this.nextStep()
+        const res = await this.ActionUpdateMainPet(this.registerPetData.data.id)
+        if (res) {
+          this.nextStep()
+        }
       }
     },
     formatForm () {

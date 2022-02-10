@@ -31,15 +31,14 @@ export const ActionCreatePet = async ({ commit, dispatch }, payload) => {
 
 export const ActionUpdateMainPet = async ({ commit, dispatch }, payload) => {
   commit(types.LOADING_UPDATEMAINPET)
-  await Http.put(`pets/${payload}/select`)
-    .then(response => {
-      commit(types.SUCCESS_UPDATEMAINPET, response.data)
-      return true
-    })
-    .catch(error => {
-      commit(types.ERROR_UPDATEMAINPET, error.response)
-      return false
-    })
+  try {
+    const response = await Http.put(`pets/${payload}/select`)
+    commit(types.SUCCESS_UPDATEMAINPET, response.data)
+    return true
+  } catch (error) {
+    commit(types.ERROR_UPDATEMAINPET, error.response)
+    return false
+  }
 }
 
 export const ActionGetPetById = async ({ commit, dispatch }, payload) => {
@@ -63,7 +62,7 @@ export const ActionCommitPet = ({ commit }, payload) => {
   commit(types.SET_PETSLIST, payload)
 }
 
-export const ActionmodalDeletePet = ({ commit }, payload) => {
+export const ActionModalDeletePet = ({ commit }, payload) => {
   commit(types.SET_MODALDELETEPET, payload)
 }
 
