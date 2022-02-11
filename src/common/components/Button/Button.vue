@@ -18,6 +18,8 @@ export const ButtonColors = [
   'primary-flat',
   'secondary-outline',
   'secondary-bordless',
+  'danger-bordless',
+  'danger-outline',
   'alternate-outline',
   'alternate-filled'
 ]
@@ -103,6 +105,16 @@ export default {
   }
 }
 
+.text-danger-bordless {
+  color: var(--status-danger) !important;
+  &:disabled {
+    color: var(--utilities-alternate) !important;
+  }
+  &:active {
+    color: var(--complementar-red) !important;
+  }
+}
+
 .bg-alternate-filled {
   color: var(--main-background) !important;
   background: var(--main-alternate) !important;
@@ -124,6 +136,18 @@ export default {
     color: var(--main-highlight) !important;
   }
 }
+
+.text-danger-outline {
+  color: var(--status-danger) !important;
+
+  &:disabled {
+    color: var(--utilities-disabled) !important;
+  }
+  &:active {
+    color: var(--main-background) !important;
+  }
+}
+
 .button-wrapper {
   height: 48px;
   width: 223px;
