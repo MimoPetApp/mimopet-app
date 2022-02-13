@@ -43,15 +43,14 @@ export const ActionUpdateMainPet = async ({ commit, dispatch }, payload) => {
 
 export const ActionGetPetById = async ({ commit, dispatch }, payload) => {
   commit(types.LOADING_GETPETBYID)
-  await Http.get(`pets/${payload}`)
-    .then(response => {
-      commit(types.SUCCESS_GETPETBYID, response.data)
-      return true
-    })
-    .catch(error => {
-      commit(types.ERROR_GETPETBYID, error.response)
-      return false
-    })
+  try {
+    const response = await Http.get(`pets/${payload}`)
+    commit(types.SUCCESS_GETPETBYID, response.data)
+    return true
+  } catch (error) {
+    commit(types.SUCCESS_GETPETBYID, error.response)
+    return false
+  }
 }
 
 export const ActionSetLoadingPet = ({ commit, dispatch }, payload) => {
@@ -62,20 +61,20 @@ export const ActionCommitPet = ({ commit }, payload) => {
   commit(types.SET_PETSLIST, payload)
 }
 
-export const ActionModalDeletePet = ({ commit }, payload) => {
-  commit(types.SET_MODALDELETEPET, payload)
+export const ActionDeletePetModal = ({ commit }, payload) => {
+  commit(types.SET_DELETEPETMODAL, payload)
 }
 
-export const ActionDeletePet = ({ commit, dispatch }, payload) => {
-  dispatch('ActionSetLoadingPet', true)
-  Http.delete(`pets/${payload}`)
-    .then(response => {
-      dispatch('ActionmodalDeletePet', { modal: false, data: {} })
-      store.$router.push({ name: 'home' })
-    })
-    .catch(error => {
-      console.log(error)
-    })
+export const ActionDeleteMainPet = async ({ commit, dispatch }, payload) => {
+  commit(types.LOADING_UPDATEMAINPET)
+  try {
+    const response = await Http.delete(`pets/${payload}`)
+    commit(types.SUCCESS_UPDATEMAINPET, response.data)
+    return true
+  } catch (error) {
+    commit(types.ERROR_UPDATEMAINPET, error.response)
+    return false
+  }
 }
 
 export const ActionPetModalList = ({ commit }, payload) => {

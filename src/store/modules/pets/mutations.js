@@ -19,8 +19,8 @@ export default {
   [types.SET_PROFILEPET] (state, payload) {
     state.petProfile = payload
   },
-  [types.SET_MODALDELETEPET] (state, payload) {
-    state.modalDeletePet = payload
+  [types.SET_DELETEPETMODAL] (state, payload) {
+    state.deletePetModal = payload
   },
   [types.SET_MODALDELETEPETLIST] (state, payload) {
     state.modalPetList = payload

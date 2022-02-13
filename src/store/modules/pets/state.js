@@ -10,9 +10,14 @@ export default {
     error: false,
     success: false
   },
-  modalDeletePet: {
+  deletePetModal: {
     modal: false,
-    data: {}
+    data: {
+      title: '',
+      message: '',
+      btnLabel: '',
+      backLabel: ''
+    }
   },
   modalPetList: {
     modal: false,

@@ -50,7 +50,7 @@ export const ActionCommitPet = ({ commit }, payload) => {
   commit(types.SET_PETSLIST, payload)
 }
 
-export const ActionmodalDeletePet = ({ commit }, payload) => {
+export const ActionModalDeletePet = ({ commit }, payload) => {
   commit(types.SET_MODALDELETEPET, payload)
 }
 

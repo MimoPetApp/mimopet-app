@@ -16,6 +16,7 @@ export default {
   },
   async created () {
     this.ActionSetLoadingPet(true)
+    await this.ActionGetUser()
     await this.ActionGetPets()
     await this.setMainPet()
     this.ActionSetLoadingPet(false)
@@ -27,6 +28,7 @@ export default {
   methods: {
     ...mapMutations('pets', { SET_MAINPET: 'PETS/SET_MAINPET' }),
     ...mapActions('pets', ['ActionGetPets', 'ActionCommitPet', 'ActionSetLoadingPet']),
+    ...mapActions('auth', ['ActionGetUser']),
     hasPet () {
       return this.petsList.length >= 1
     },

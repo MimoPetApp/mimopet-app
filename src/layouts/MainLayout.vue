@@ -55,7 +55,7 @@ export default {
     ...mapState('pets', ['petsList', 'hasHeader', 'hasFooter'])
   },
   async mounted() {
-    await this.ActionGetUser()
+    // await this.ActionGetUser()
   },
   methods: {
     ...mapActions('auth', ['ActionGetUser']),

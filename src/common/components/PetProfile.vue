@@ -83,16 +83,14 @@
       <q-card-section>
         <div class="col-12 mt-3 mb-3 column justify-center items-center">
           <Button
-            flat
-            color="red-7"
-            class="text-weight-bold"
+            color="danger-bordless"
+            class="no-shadow text-weight-bold"
             size="md"
             icon="delete_outline"
             no-caps
             :label="$t('petProfile.button.delete')"
-            @click="deletePet"
+            @click="showDeletePetModal()"
           />
-          <ConfirmDeletePet />
         </div>
       </q-card-section>
     </q-card>
@@ -100,16 +98,14 @@
 </template>
 
 <script>
-import ConfirmDeletePet from './confirmDeletePet'
 import parser from '../helpers/PetProfileParser'
 import Button from './Button/Button'
-import { mapActions } from 'vuex'
+import { mapActions, mapMutations } from 'vuex'
 
 export default {
   name: 'PetProfileComponent',
   components: {
-    Button,
-    ConfirmDeletePet
+    Button
   },
   props: {
     data: {
@@ -117,27 +113,19 @@ export default {
       default: () => {}
     }
   },
-  data () {
+  data() {
     return {
       petDetails: []
     }
   },
-  created () {
+  created() {
     this.getPetDetails()
   },
   methods: {
     ...parser,
-    ...mapActions('pets', ['ActionmodalDeletePet']),
-    deletePet () {
-      this.ActionmodalDeletePet({
-        modal: true,
-        data: {
-          id: this.$route.params.id,
-          name: this.data.name
-        }
-      })
-    },
-    getPetDetails () {
+    ...mapActions('pets', ['ActionDeletePetModal']),
+    ...mapMutations('pets', { SET_DELETEPETMODAL: 'PETS/SET_DELETEPETMODAL' }),
+    getPetDetails() {
       const aux = []
       if (this.data) {
         if (this.data.is_adopted) {
@@ -154,6 +142,18 @@ export default {
         }
         this.petDetails = aux
       }
+    },
+    showDeletePetModal() {
+      const modal = {
+        model: true,
+        data: {
+          title: 'Deseja excluir o pet?',
+          message: 'Você não terá mais informações deste animal vinculadas a sua conta',
+          btnLabel: 'Continuar',
+          backLabel: 'Voltar'
+        }
+      }
+      this.SET_DELETEPETMODAL(modal)
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-xs pet-profile-container">
+  <div class="q-pa-xs pet-profile-container" v-if="!loading">
     <!-- Top nav menu -->
     <q-toolbar class="text-primary">
       <div class="pet-profile-row q-pt-md">
@@ -25,9 +25,30 @@
       <div class="col-12 flex flex-center">
         <div class="row">
           <pet-profile-component :data="petProfile.data" />
+          <ActionModal
+            :content="deletePetModal"
+            :onHide="hideDeletePetModal"
+            :onSubmit="showConfirmDeleteModal"
+          ></ActionModal>
+          <ConfirmDeleteModal
+            :active="confirmDeleteModal.status"
+            :title="confirmDeleteModal.title"
+            :subtitle="confirmDeleteModal.subtitle"
+            :inputTextPlaceholder="confirmDeleteModal.inputTextPlaceholder"
+            :buttonText="confirmDeleteModal.buttonText"
+            :action="confirmDeleteModal.action"
+            :toCompare="confirmDeleteModal.toCompare"
+          ></ConfirmDeleteModal>
+          <FeedbackModal
+            :active="feedbackModal.status"
+            :icon="feedbackModal.icon"
+            :title="feedbackModal.title"
+            :subtitle="feedbackModal.subtitle"
+            :buttonText="feedbackModal.buttonText"
+            :action="feedbackModal.action"
+          ></FeedbackModal>
         </div>
       </div>
-      <ConfirmDeletePet />
     </div>
     <!-- Loading content -->
     <div v-else class="flex flex-center q-mt-xl">
