@@ -4,9 +4,9 @@
       <QItem clickable v-ripple v-bind="$attrs" :to="getStepRouter(step)">
         <QItemSection avatar v-bind="$attrs">
           <QAvatar
-            :color="selectColorByType"
+            :color="selectColor"
             text-color="white"
-            icon="play_arrow"
+            :icon="selectIcon"
             size="36.8px"
             font-size="22px"
             v-bind="$attrs"
@@ -40,6 +40,19 @@ export default {
     return {}
   },
   computed: {
+    selectColor() {
+      if (this.isStepDone()) {
+        return this.getStepDoneColor()
+      } else {
+        return this.selectColorByType()
+      }
+    },
+    selectIcon() {
+      return this.isStepDone() ? 'check' : 'play_arrow'
+    }
+  },
+  methods: {
+    ...stepParser,
     selectColorByType() {
       switch (this.step.type) {
         case 'slide':
@@ -54,10 +67,13 @@ export default {
           // video
           return 'main-highlight'
       }
+    },
+    getStepDoneColor() {
+      return 'status-success'
+    },
+    isStepDone() {
+      return this.step.completed
     }
-  },
-  methods: {
-    ...stepParser
   }
 }
 </script>
