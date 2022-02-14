@@ -38,7 +38,7 @@ export default {
     if (image) {
       return `${process.env.API.slice(0, -1)}${image.formats.thumbnail.url}`
     }
-    return 'https://i.pinimg.com/originals/24/cb/7f/24cb7f9b961a5bad99662e149d8bb978.png'
+    return require('../../assets/images/default_pet_avatar.svg') // 'https://i.pinimg.com/originals/24/cb/7f/24cb7f9b961a5bad99662e149d8bb978.png'
   },
   getAge (age) {
     switch (age) {
