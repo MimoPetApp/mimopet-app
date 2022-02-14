@@ -34,12 +34,8 @@ export default {
     },
     async onFinish () {
       this.loading = true
-      const res = await this.stepDone()
-      if (res) {
-        // successs
-        this.hasFeedback = true
-        this.loading = false
-      }
+      await this.stepDone()
+      this.loading = false
       /*
       // Consulta o status
       const stepsUsers = await this.ActionGetStepUser({
@@ -86,6 +82,9 @@ export default {
         return this.slide.completed
       }
     },
+    showFeedbackModal () {
+      this.hasFeedback = true
+    },
     async stepDone () {
       if (!this.isStepDone()) {
         // Atualizar o status
@@ -95,7 +94,12 @@ export default {
             completed: true
           }
         })
-        return res
+        if (res) {
+          // successs
+          this.showFeedbackModal()
+        }
+      } else {
+        this.showFeedbackModal()
       }
     }
   },

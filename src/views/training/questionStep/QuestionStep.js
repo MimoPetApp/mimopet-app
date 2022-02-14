@@ -86,20 +86,7 @@ export default {
         } else {
           // TODO save question data
           // this.saveQuestion()
-          const res = await this.stepDone()
-          if (res) {
-            this.dialog = {
-              model: true,
-              title: 'Etapa concluída',
-              subtitle: 'Parabéns, você adquiriu mais conhecimento para lidar com seu pet.',
-              icon: this.checkedIcon,
-              btnText: 'Voltar',
-              action: () => {
-                // go to last page
-                this.goBack()
-              }
-            }
-          }
+          await this.stepDone()
         }
       }
     },
@@ -127,8 +114,21 @@ export default {
       return obj && Object.keys(obj).length === 0 && Object.getPrototypeOf(obj) === Object.prototype
     },
     isStepDone () {
-      if (!this.isEmptyObject(this.question)) {
-        return this.question.completed
+      if (!this.isEmptyObject(this.question.data)) {
+        return this.question.data.completed
+      }
+    },
+    showFeedbackModal () {
+      this.dialog = {
+        model: true,
+        title: 'Etapa concluída',
+        subtitle: 'Parabéns, você adquiriu mais conhecimento para lidar com seu pet.',
+        icon: this.checkedIcon,
+        btnText: 'Voltar',
+        action: () => {
+          // go to last page
+          this.goBack()
+        }
       }
     },
     async stepDone () {
@@ -140,7 +140,13 @@ export default {
             completed: true
           }
         })
-        return res
+        if (res) {
+          // successs
+          this.showFeedbackModal()
+        }
+      } else {
+        // step is done
+        this.showFeedbackModal()
       }
       /*
       if (this.isStepDoing()) {
@@ -184,7 +190,7 @@ export default {
       return indexList
     },
     filterData () {
-      this.question.items.map(item => {
+      this.question.data.items.map(item => {
         if (item.__component === 'utils.quiz-item') {
           this.questions.push(item)
         } else if (item.__component === 'utils.option-warning') {
@@ -242,7 +248,7 @@ export default {
     await this.ActionGetQuestion(this.$route.params.idSessao)
     this.filterData()
     this.formatForm()
-    this.questionID = this.question.id
+    this.questionID = this.question.data.id
     // await this.getStepStatus()
     // await this.setStepToDoing()
   }

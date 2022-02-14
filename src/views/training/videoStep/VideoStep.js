@@ -34,12 +34,11 @@ export default {
     },
     async onFinish () {
       this.loading = true
-      const res = await this.stepDone()
-      if (res) {
-        // successs
-        this.hasFeedback = true
-        this.loading = false
-      }
+      await this.stepDone()
+      this.loading = false
+    },
+    showFeedbackModal () {
+      this.hasFeedback = true
     },
     trainingDetailsHandler () {
       this.goBack()
@@ -78,7 +77,12 @@ export default {
             completed: true
           }
         })
-        return res
+        if (res) {
+          // successs
+          this.showFeedbackModal()
+        }
+      } else {
+        this.showFeedbackModal()
       }
 
       /*

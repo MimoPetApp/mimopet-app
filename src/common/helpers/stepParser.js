@@ -5,23 +5,19 @@ export default {
     switch (step.type) {
       case 'slide':
         name = 'SlideStep'
-        id = step.id
+        id = step.slide.id
         break
       case 'video':
         name = 'VideoStep'
-        id = step.id
-        break
-      case 'feedback':
-        name = 'FeedbackStep'
-        id = step.id
+        id = step.video.id
         break
       case 'exercise':
         name = 'ExerciseStep'
-        id = step.id
+        id = step.exercise.id
         break
-      case 'quiz':
-        name = 'QuizStep'
-        id = step.id
+      case 'question':
+        name = 'QuestionStep'
+        id = step.question.id
         break
       default:
         break

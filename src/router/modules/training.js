@@ -35,14 +35,9 @@ export default [
     component: () => import('../../views/training/videoStep/VideoStep.vue')
   },
   {
-    path: '/treinamentos/:id/detalhes/:idModulo/sessoes/:idSessao/quiz',
-    name: 'QuizStep',
-    component: () => import('../../views/training/quizStep/QuizStep.vue')
-  },
-  {
-    path: '/treinamentos/:id/detalhes/:idModulo/sessoes/:idSessao/feedback',
-    name: 'FeedbackStep',
-    component: () => import('../../views/training/feedbackStep/FeedbackStep.vue')
+    path: '/treinamentos/:id/detalhes/:idModulo/sessoes/:idSessao/question',
+    name: 'QuestionStep',
+    component: () => import('../../views/training/questionStep/QuestionStep.vue')
   },
   {
     path: '/treinamentos/:id/detalhes/:idModulo/sessoes/:idSessao/exercise',
