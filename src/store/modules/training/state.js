@@ -8,6 +8,12 @@ export default {
   video: {},
   feedback: {},
   quiz: {},
+  question: {
+    loading: false,
+    success: true,
+    error: false,
+    data: {}
+  },
   exercise: {},
   myTrainings: [],
   loadingTrainings: false,

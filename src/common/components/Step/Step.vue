@@ -61,6 +61,8 @@ export default {
           return 'status-success'
         case 'feedback':
           return 'utilities-alternate'
+        case 'question':
+          return 'support-ciano'
         case 'exercise':
           return 'main-secondary'
         default:

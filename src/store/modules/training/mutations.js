@@ -53,18 +53,33 @@ export default {
     state.modalCancelTraining = payload
   },
   [types.LOADING_UNSUBSCRIBETRAINING] (state) {
-    state.loading = true
+    state.unsubscribeTraining.loading = true
   },
   [types.SUCCESS_UNSUBSCRIBETRAINING] (state, payload) {
-    state.loading = false
-    state.success = true
-    state.data = payload
-    state.error = false
+    state.unsubscribeTraining.loading = false
+    state.unsubscribeTraining.success = true
+    state.unsubscribeTraining.data = payload
+    state.unsubscribeTraining.error = false
   },
   [types.ERROR_UNSUBSCRIBETRAINING] (state, payload) {
-    state.loading = false
-    state.success = false
-    state.data = {}
-    state.error = payload
+    state.unsubscribeTraining.loading = false
+    state.unsubscribeTraining.success = false
+    state.unsubscribeTraining.data = {}
+    state.unsubscribeTraining.error = payload
+  },
+  [types.LOADING_QUESTION] (state) {
+    state.question.loading = true
+  },
+  [types.SUCCESS_QUESTION] (state, payload) {
+    state.question.loading = false
+    state.question.success = true
+    state.question.data = payload
+    state.question.error = false
+  },
+  [types.ERROR_QUESTION] (state, payload) {
+    state.question.loading = false
+    state.question.success = false
+    state.question.data = {}
+    state.question.error = payload
   }
 }

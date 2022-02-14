@@ -199,6 +199,19 @@ export const ActionGetExercise = async ({ commit, dispatch }, payload) => {
   dispatch('ActionSetLoadingTrainings', false)
 }
 
+/* Call GET /questions/:id */
+export const ActionGetQuestion = async ({ commit, dispatch }, payload) => {
+  commit(types.LOADING_QUESTION)
+  try {
+    const response = await Http.get(`questions/${payload}`)
+    commit(types.SUCCESS_QUESTION, response.data)
+    return true
+  } catch (error) {
+    commit(types.ERROR_QUESTION, error.response)
+    return false
+  }
+}
+
 export const ActionSetLoadingTrainings = ({ commit }, payload) => {
   commit(types.SET_LOADINGTRAININGS, payload)
 }

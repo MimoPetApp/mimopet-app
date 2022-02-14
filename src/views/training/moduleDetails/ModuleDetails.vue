@@ -19,20 +19,6 @@
       <div v-for="step in module.steps" :key="step.id" class="mb-2">
         <step :step="step"></step>
       </div>
-      <!--
-      <div class="mb-2">
-        <step type="feedback" :to="{ name: 'FeedbackStep', params: { idSessao: 2 } }"></step>
-      </div>
-      <div class="mb-2">
-        <step type="quiz" :to="{ name: 'QuizStep', params: { idSessao: 2 } }"></step>
-      </div>
-      <div class="mb-2">
-        <step type="repetitions"></step>
-      </div>
-      <div class="mb-2">
-        <step type="video"></step>
-      </div>
-      -->
     </div>
   </div>
   <div v-else class="flex flex-center q-mt-xl">

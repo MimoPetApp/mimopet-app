@@ -98,3 +98,19 @@
 .bg-utilities-disabled {
   background: #f9f9f9;
 }
+
+.text-complementar-red {
+  color: #e54545;
+}
+
+.bg-complementar-disabled {
+  background: #e54545;
+}
+
+.text-support-ciano {
+  color: #4ad5da;
+}
+
+.bg-support-ciano {
+  background: #4ad5da;
+}

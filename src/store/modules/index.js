@@ -8,6 +8,7 @@ import feedback from './steps/feedback/index'
 import video from './steps/video/index'
 import slide from './steps/slide/index'
 import quiz from './steps/quiz/index'
+import question from './steps/question/index'
 
 export default {
   auth,
@@ -19,5 +20,6 @@ export default {
   feedback,
   video,
   slide,
-  quiz
+  quiz,
+  question
 }
