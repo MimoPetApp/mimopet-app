@@ -160,12 +160,12 @@
 
       <!-- Pet Added -->
       <FeedbackModal
-        :active="step === 5"
-        :icon="feedbackIcon"
-        title="Pet Adicionado"
-        subtitle="Você pode adicionar inúmeros pets a sua conta cadastrada"
-        buttonText="Acessar o app"
-        :action="goToHome"
+        :active="feedbackModal.status"
+        :icon="feedbackModal.icon"
+        :title="feedbackModal.title"
+        :subtitle="feedbackModal.subtitle"
+        :buttonText="feedbackModal.buttonText"
+        :action="feedbackModal.action"
       ></FeedbackModal>
       <!-- End Pet Added -->
     </q-layout>

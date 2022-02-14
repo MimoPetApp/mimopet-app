@@ -31,7 +31,6 @@ export default {
   },
   data () {
     return {
-      test: null,
       ageOptions: [
         {
           label: 'Filhote até 6 meses',
@@ -87,11 +86,23 @@ export default {
       loading: false,
       formHasError: [false, false],
       btnDisabled: true,
-      breedsList: []
+      breedsList: [],
+      feedbackModal: {
+        status: false,
+        icon: petIcon,
+        title: 'Pet Adicionado',
+        subtitle: 'Você pode adicionar inúmeros pets a sua conta cadastrada',
+        buttonText: 'Voltar',
+        action: () => {
+          this.hideFeedbackModal()
+          this.goToHome()
+        }
+      }
     }
   },
   computed: {
     ...mapState('petRegister', { breedsData: 'breeds', registerPetData: 'registerPet' }),
+    ...mapState('auth', ['user']),
     feedbackIcon () {
       return petIcon
     },
@@ -182,7 +193,7 @@ export default {
       } else {
         const res = await this.ActionUpdateMainPet(this.registerPetData.data.id)
         if (res) {
-          this.nextStep()
+          this.showFeedbackModal()
         }
       }
     },
@@ -266,10 +277,29 @@ export default {
       } else {
         this.form[field] = null
       }
+    },
+    hideFeedbackModal () {
+      this.feedbackModal.status = false
+    },
+    showFeedbackModal () {
+      this.feedbackModal.status = true
+    },
+    getSubTitle () {
+      let subtitle
+      if (this.isUserPremium()) {
+        subtitle = 'Você pode adicionar inúmeros pets a sua conta cadastrada'
+      } else {
+        subtitle = 'Você pode adicionar apenas um pet a sua conta cadastrada'
+      }
+      this.feedbackModal.subtitle = subtitle
+    },
+    isUserPremium () {
+      return this.user.is_premium
     }
   },
   async created () {
     await this.ActionGetBreeds()
+    this.getSubTitle()
     this.formatBreedList(this.breedsData.data)
   }
 }
