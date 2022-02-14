@@ -83,32 +83,6 @@ export default {
         petDetails: null
       },
       createdPet: null,
-      listOptions: [
-        {
-          id: 1,
-          name: 'Akita'
-        },
-        {
-          id: 2,
-          name: 'Yorkshire'
-        },
-        {
-          id: 3,
-          name: 'Yorkshire Terrier'
-        },
-        {
-          id: 4,
-          name: 'Vira-lata'
-        },
-        {
-          id: 5,
-          name: 'Splitz Alemão'
-        },
-        {
-          id: 6,
-          name: 'Dálmata'
-        }
-      ],
       step: 1,
       loading: false,
       formHasError: [false, false],
@@ -220,12 +194,18 @@ export default {
         age: this.mapAge(form.petAge.label),
         gender: 'male',
         type: 'canine',
-        is_adopted: form.petDetails.includes('Adotado'),
-        is_neutered: form.petDetails.includes('Castrado'),
-        is_deficiency: form.petDetails.includes('Com deficiência'),
-        is_service: form.petDetails.includes('De serviço')
+        is_adopted: this.isDetailIncluded('Adotado'),
+        is_neutered: this.isDetailIncluded('Castrado'),
+        is_deficiency: this.isDetailIncluded('Com deficiência'),
+        is_service: this.isDetailIncluded('De serviço'),
+        is_none: this.isDetailIncluded('Nenhum')
       }
       return form
+    },
+    isDetailIncluded (string) {
+      if (this.form.petDetails) {
+        return this.form.petDetails.some(detail => detail.label.includes(string))
+      }
     },
     mapAge (age) {
       switch (age) {

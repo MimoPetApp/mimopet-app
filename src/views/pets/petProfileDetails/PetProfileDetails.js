@@ -66,25 +66,20 @@ export default {
     },
     mapPetDetails () {
       const aux = []
-      let noDetails = true
       if (this.petProfile.data) {
         if (this.petProfile.data.is_adopted) {
           aux.push('Adotado')
-          noDetails = false
         }
         if (this.petProfile.data.is_deficiency) {
           aux.push('Com deficiência')
-          noDetails = false
         }
         if (this.petProfile.data.is_neutered) {
           aux.push('Castrado')
-          noDetails = false
         }
         if (this.petProfile.data.is_service) {
           aux.push('De serviço')
-          noDetails = false
         }
-        if (noDetails) {
+        if (this.petProfile.data.is_none) {
           aux.push('Nenhum')
         }
       }

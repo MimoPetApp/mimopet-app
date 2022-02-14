@@ -20,8 +20,10 @@ export default {
         return this.$t('petProfile.details.neutered')
       case 'deficiency':
         return this.$t('petProfile.details.deficiency')
-      default:
+      case 'service':
         return this.$t('petProfile.details.service')
+      default:
+        return this.$t('petProfile.details.none')
     }
   },
   parseGender (gender) {

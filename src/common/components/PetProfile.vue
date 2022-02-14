@@ -140,6 +140,9 @@ export default {
         if (this.data.is_service) {
           aux.push(this.parseDetails('service'))
         }
+        if (this.data.is_none) {
+          aux.push(this.parseDetails('none'))
+        }
         this.petDetails = aux
       }
     },
