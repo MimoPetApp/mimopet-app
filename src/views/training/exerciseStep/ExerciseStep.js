@@ -130,6 +130,7 @@ export default {
     async onSent (val) {
       val = JSON.parse(JSON.stringify(val))
       if (val.length > 0) {
+        //
       }
       if (this.currExercise === this.getExerciseSessions.length - 1) {
         // await this.stepDone()
