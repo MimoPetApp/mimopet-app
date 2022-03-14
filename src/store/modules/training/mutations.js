@@ -81,5 +81,20 @@ export default {
     state.question.success = false
     state.question.data = {}
     state.question.error = payload
+  },
+  [types.LOADING_EXERCISE] (state) {
+    state.exercise.loading = true
+  },
+  [types.SUCCESS_EXERCISE] (state, payload) {
+    state.exercise.loading = false
+    state.exercise.success = true
+    state.exercise.data = payload
+    state.exercise.error = false
+  },
+  [types.ERROR_EXERCISE] (state, payload) {
+    state.exercise.loading = false
+    state.exercise.success = false
+    state.exercise.data = {}
+    state.exercise.error = payload
   }
 }

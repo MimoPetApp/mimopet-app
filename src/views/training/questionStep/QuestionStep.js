@@ -17,6 +17,12 @@ export default {
     Button,
     FeedbackModal
   },
+  props: {
+    id: {
+      type: Number,
+      default: null
+    }
+  },
   data () {
     return {
       step: 0,
@@ -64,6 +70,9 @@ export default {
       this.dialog.model = false
       this.step += 1
     },
+    hasPropId () {
+      return this.id !== null
+    },
     async nextStep (currItem, index) {
       const answerIndexList = this.mapAnswerToIndexList(index)
       if (
@@ -86,7 +95,11 @@ export default {
         } else {
           // TODO save question data
           // this.saveQuestion()
-          await this.stepDone()
+          if (this.hasPropId()) {
+            this.$emit('sent', this.form)
+          } else {
+            await this.stepDone()
+          }
         }
       }
     },
@@ -245,7 +258,8 @@ export default {
     */
   },
   async created () {
-    await this.ActionGetQuestion(this.$route.params.idSessao)
+    const params = this.id || this.$route.params.idSessao
+    await this.ActionGetQuestion(params)
     this.filterData()
     this.formatForm()
     this.questionID = this.question.data.id

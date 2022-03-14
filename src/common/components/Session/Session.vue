@@ -1,7 +1,7 @@
 <template>
-  <div class="exercise" align="center">
+  <div class="session" align="center">
     <q-btn
-      :class="'exercise__button ' + `exercise__button--${enabled ? 'on' : 'off'}`"
+      :class="'session__button ' + `session__button--${enabled ? 'on' : 'off'}`"
       icon="play_arrow"
       text-color="utilities-alternate"
       color="transparent"
@@ -9,13 +9,13 @@
       unelevated
     >
     </q-btn>
-    {{ label }}
+    <p class="mt-1 mb-0 text-utilities-alternate session__label">{{ label }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Exercise',
+  name: 'Session',
   props: {
     label: {
       type: String
@@ -33,11 +33,19 @@ export default {
 </script>
 
 <style lang="scss">
-.exercise {
+.session {
   width: 64px;
   height: 82px;
   font-weight: 500;
   font-size: var(--font-size-3);
+
+  &__label {
+    font-family: 'customfont620';
+    font-weight: 500;
+    font-size: var(--font-size-4);
+    line-height: 19px;
+    letter-spacing: -0.014em;
+  }
 
   &__button {
     width: 40px;
@@ -45,7 +53,7 @@ export default {
     border-radius: 12px;
 
     &--off {
-      border: 1px solid var(--utilities-disabled);
+      border: 1px solid var(--utilities-border);
     }
 
     &--on {

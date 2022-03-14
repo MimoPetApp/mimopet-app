@@ -14,7 +14,12 @@ export default {
     error: false,
     data: {}
   },
-  exercise: {},
+  exercise: {
+    loading: false,
+    success: true,
+    error: false,
+    data: {}
+  },
   myTrainings: [],
   loadingTrainings: false,
   hasHeader: true,

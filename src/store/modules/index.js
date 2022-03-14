@@ -9,6 +9,7 @@ import video from './steps/video/index'
 import slide from './steps/slide/index'
 import quiz from './steps/quiz/index'
 import question from './steps/question/index'
+import exercise from './steps/exercise/index'
 
 export default {
   auth,
@@ -21,5 +22,6 @@ export default {
   video,
   slide,
   quiz,
-  question
+  question,
+  exercise
 }

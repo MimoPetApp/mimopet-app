@@ -184,19 +184,15 @@ export const ActionGetQuiz = async ({ commit, dispatch }, payload) => {
 
 /* Call GET /exercises/:id */
 export const ActionGetExercise = async ({ commit, dispatch }, payload) => {
-  dispatch('ActionSetLoadingTrainings', true)
-  await Http.get(`exercises/${payload}`)
-    .then(response => {
-      commit(types.SET_EXERCISE, response.data)
-    })
-    .catch(error => {
-      dispatch('ActionModalResponse', {
-        modal: true,
-        data: { msg: 'Erro ao buscar slide' }
-      })
-      console.error(error)
-    })
-  dispatch('ActionSetLoadingTrainings', false)
+  commit(types.LOADING_EXERCISE)
+  try {
+    const response = await Http.get(`exercises/${payload}`)
+    commit(types.SUCCESS_EXERCISE, response.data)
+    return true
+  } catch (error) {
+    commit(types.ERROR_EXERCISE, error.response)
+    return false
+  }
 }
 
 /* Call GET /questions/:id */
