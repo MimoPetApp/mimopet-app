@@ -34,7 +34,7 @@ export default {
       },
       feedbackTitle: '',
       feedbackSubtitle: '',
-      answers: []
+      questionsAnswers: []
     }
   },
   computed: {
@@ -55,13 +55,19 @@ export default {
       }
     },
     showSentBtn () {
-      // in the last slide and not question
+      // in the last session and not question
       return (
         this.currExercise === this.getExerciseSessions.length - 1 &&
         !this.getExerciseSessions[this.getExerciseSessions.length - 1].__component.includes(
           'question'
         )
       )
+    },
+    notLastSession () {
+      return this.currExercise !== this.getExerciseSessions.length - 1
+    },
+    isQuestionStep () {
+      return this.getExerciseSessions[this.currExercise].__component.includes('question')
     }
   },
   methods: {
@@ -127,13 +133,49 @@ export default {
         return this.getExercise.completed
       }
     },
+    hasQuestionAnswerId (id) {
+      return this.questionsAnswers.find(question => question.id === id)
+    },
+    updateValueSameId (id, val) {
+      const index = this.questionsAnswers.findIndex(question => question.id === id)
+      this.questionsAnswers[index] = val
+    },
     async onSent (val) {
       val = JSON.parse(JSON.stringify(val))
       if (val.length > 0) {
-        //
+        // has answer
+        const data = []
+        val.forEach(question => {
+          const title = question.title
+          // return answer label
+          const answers = question.answer.map(item => {
+            return item.label
+          })
+          // format obj
+          const obj = {
+            name: title,
+            answers
+          }
+          data.push(obj)
+        })
+        const id = this.getExerciseSessions[this.currExercise].question.id
+        const params = {
+          type: 'question',
+          id,
+          data
+        }
+        // check if has already questionAnswer Id
+        if (!this.hasQuestionAnswerId(id)) {
+          this.questionsAnswers.push(params)
+        } else {
+          this.updateValueSameId(id, params)
+        }
       }
       if (this.currExercise === this.getExerciseSessions.length - 1) {
-        // await this.stepDone()
+        await this.stepDone()
+      } else {
+        // not the last question
+        this.currExercise += 1
       }
     },
     async stepDone () {
@@ -141,9 +183,7 @@ export default {
         // Atualizar o status
         const res = await this.ActionUpdateExerciseStepCompleted({
           id: this.getExercise.id,
-          body: {
-            completed: true
-          }
+          body: this.questionsAnswers
         })
         if (res) {
           // successs

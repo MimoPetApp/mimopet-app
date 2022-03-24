@@ -59,7 +59,8 @@ export default {
         questionID: this.questionID,
         itemIndex: index,
         answer: event,
-        answered: true
+        answered: true,
+        title: this.questions[index].title
       }
       if (event.length === 0) {
         // no elements selection

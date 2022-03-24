@@ -43,7 +43,7 @@
               <div
                 class="row exercise-step__btn-group"
                 style="width: 100%"
-                v-if="currExercise !== getExerciseSessions.length - 1"
+                v-if="notLastSession && !isQuestionStep"
               >
                 <div
                   class="col-6 col-md-6 col-xs-6 flex justify-center items-center left-btn"
@@ -59,7 +59,7 @@
                 </div>
               </div>
             </q-carousel-slide>
-            <template v-slot:control v-if="currExercise !== getExerciseSessions.length - 1">
+            <template v-slot:control>
               <q-carousel-control position="bottom-left" :offset="[18, 18]" class="q-gutter-xs">
                 <q-btn
                   flat
@@ -71,7 +71,12 @@
                   @click="$refs.carousel.previous()"
                 />
               </q-carousel-control>
-              <q-carousel-control position="bottom-right" :offset="[18, 18]" class="q-gutter-xs">
+              <q-carousel-control
+                position="bottom-right"
+                :offset="[18, 18]"
+                class="q-gutter-xs"
+                v-if="!isQuestionStep"
+              >
                 <q-btn
                   flat
                   round
@@ -85,10 +90,7 @@
             </template>
           </q-carousel>
           <!-- slide length -->
-          <div
-            v-if="getExercise && currExercise !== getExerciseSessions.length - 1"
-            class="exercise-step__carousel-footer"
-          >
+          <div v-if="getExercise" class="exercise-step__carousel-footer">
             <div v-if="getExerciseSessions" class="exercise-step__carousel-footer-item">
               <p>{{ currExercise + 1 }} / {{ getExerciseSessions.length }}</p>
             </div>
