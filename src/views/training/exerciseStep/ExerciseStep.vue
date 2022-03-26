@@ -19,7 +19,10 @@
               class="exercise-step__carousel-item"
             >
               <div class="row" style="flex-grow: 1">
-                <div class="col-12 col-md-12 col-xs-12 exercise-step__content">
+                <div
+                  class="col-12 col-md-12 col-xs-12 exercise-step__content"
+                  :class="{ 'sides-spacing': isQuestionStep }"
+                >
                   <instruction-step
                     v-if="enableStep(item, 'instruction')"
                     :thumbnail="item.thumbnail"
@@ -60,7 +63,12 @@
               </div>
             </q-carousel-slide>
             <template v-slot:control>
-              <q-carousel-control position="bottom-left" :offset="[18, 18]" class="q-gutter-xs">
+              <q-carousel-control
+                position="bottom-left"
+                :offset="[18, 18]"
+                class="q-gutter-xs"
+                v-if="this.currExercise !== 0"
+              >
                 <q-btn
                   flat
                   round

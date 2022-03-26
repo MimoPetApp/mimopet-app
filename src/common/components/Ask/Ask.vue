@@ -8,17 +8,19 @@
         </div>
       </div>
     </div>
-    <div class="ask-wrapper__content" :class="selectAlignContent">
-      <div class="row">
-        <div class="col-12 col-md-12 col-xs-12">
-          <slot name="content"></slot>
+    <div class="ask-wrapper__body">
+      <div class="ask-wrapper__content" :class="selectAlignContent">
+        <div class="row">
+          <div class="col-12 col-md-12 col-xs-12">
+            <slot name="content"></slot>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="ask-wrapper__footer">
-      <div class="row">
-        <div class="col-12 col-md-12 col-xs-12 flex items-center justify-center">
-          <slot name="action"></slot>
+      <div class="ask-wrapper__footer">
+        <div class="row">
+          <div class="col-12 col-md-12 col-xs-12 flex items-center justify-center">
+            <slot name="action"></slot>
+          </div>
         </div>
       </div>
     </div>
@@ -74,12 +76,13 @@ export default {
 
 <style lang="scss" scoped>
 .ask-wrapper {
-  min-height: calc(100vh - 115px);
-  justify-content: space-between;
-  align-content: space-between;
+  min-height: calc(100vh - 90px);
+  justify-content: flex-start;
+  align-content: center;
   flex-direction: column;
   display: flex;
   &__header {
+    padding-top: 40px;
     h2 {
       font-size: var(--font-size-7);
       line-height: 29.05px;
@@ -87,6 +90,7 @@ export default {
       padding-right: var(--font-size-10);
       padding-left: var(--font-size-8);
       margin-bottom: var(--font-size-2);
+      margin-top: 0;
     }
     p {
       font-family: 'customfont';
@@ -99,7 +103,6 @@ export default {
     }
   }
   &__content {
-    min-height: calc(100vh - 295px);
     display: flex;
     justify-content: center;
     &--align-start {
@@ -111,6 +114,13 @@ export default {
     &--align-end {
       align-items: flex-end;
     }
+  }
+  &__body {
+    height: calc(100vh - 289.13px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
   }
 }
 </style>

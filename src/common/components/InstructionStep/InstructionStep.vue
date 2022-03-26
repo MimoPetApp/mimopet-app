@@ -45,6 +45,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../../assets/styles/css/themes/viewports.scss';
+
 .instruction-step {
   &__img {
     display: flex;
@@ -58,6 +60,10 @@ export default {
     align-items: center;
     flex-direction: column;
     margin-top: 55px;
+
+    @include xxs() {
+      margin-top: 25px;
+    }
 
     &__title {
       font-family: 'customfont700';
@@ -74,6 +80,9 @@ export default {
       letter-spacing: -0.018em;
       margin-top: 36px;
       text-align: center;
+      @include xxs() {
+        margin-top: 16px;
+      }
     }
   }
 }
