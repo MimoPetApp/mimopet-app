@@ -57,5 +57,20 @@ export default {
   },
   [types.SET_MAINPET] (state, payload) {
     state.mainPet.data = payload
+  },
+  [types.LOADING_GETPETTIMELINE] (state) {
+    state.petTimeline.loading = true
+  },
+  [types.SUCCESS_GETPETTIMELINE] (state, payload) {
+    state.petTimeline.loading = false
+    state.petTimeline.success = true
+    state.petTimeline.data = payload
+    state.petTimeline.error = false
+  },
+  [types.ERROR_GETPETTIMELINE] (state, payload) {
+    state.petTimeline.loading = false
+    state.petTimeline.success = false
+    state.petTimeline.data = {}
+    state.petTimeline.error = payload
   }
 }

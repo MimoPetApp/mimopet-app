@@ -6,5 +6,8 @@ export default {
     } else {
       return state.mainPet.data.id
     }
+  },
+  getPetTimeline (state) {
+    return state.petTimeline.data || null
   }
 }

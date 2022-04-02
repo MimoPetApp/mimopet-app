@@ -80,3 +80,15 @@ export const ActionDeleteMainPet = async ({ commit, dispatch }, payload) => {
 export const ActionPetModalList = ({ commit }, payload) => {
   commit(types.SET_MODALDELETEPETLIST, payload)
 }
+
+export const ActionGetPetTimeline = async ({ commit, dispatch }, payload) => {
+  commit(types.LOADING_GETPETTIMELINE)
+  try {
+    const response = await Http.get(`pets/${payload}/pet-timelines`)
+    commit(types.SUCCESS_GETPETTIMELINE, response.data)
+    return true
+  } catch (error) {
+    commit(types.ERROR_GETPETTIMELINE, error.response)
+    return false
+  }
+}

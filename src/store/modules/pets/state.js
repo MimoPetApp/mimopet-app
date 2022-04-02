@@ -29,5 +29,11 @@ export default {
     data: {},
     error: false,
     success: false
+  },
+  petTimeline: {
+    loading: false,
+    data: {},
+    error: false,
+    success: false
   }
 }

@@ -26,7 +26,8 @@
           {{ $t('petProfile.extra.journey') }}
         </h3>
         <h4 class="pet-profile__card-subtitle">
-          {{ $t('petProfile.extra.since') }} {{ 2009 }} &#128525;
+          {{ $t('petProfile.extra.since') }}
+          {{ $filters.getDateYear(petTimeline.created_at) }} &#128525;
         </h4>
       </q-card-section>
       <!--
@@ -47,35 +48,15 @@
       -->
       <q-card-section>
         <q-timeline color="utilities-border" layout="dense" class="pet-profile__timeline">
-          <q-timeline-entry subtitle="Teste de comportamento" color="utilities-border">
-          </q-timeline-entry>
-          <q-timeline-entry color="utilities-border">
-            <div class="pet-profile__timeline-entry bg-color-pink">
-              <p>Recebendo parentes e amigos em casa</p>
-              <p>15 Fev 2020</p>
+          <q-timeline-entry
+            v-for="(item, index) in petTimeline.items"
+            :key="index"
+            color="utilities-border"
+          >
+            <div class="pet-profile__timeline-entry" :class="setBgColor(item)">
+              <p>{{ $filters.formattedDate(item.data) }}</p>
+              <p>{{ item.label }}</p>
             </div>
-          </q-timeline-entry>
-          <q-timeline-entry color="utilities-border">
-            <div class="pet-profile__timeline-entry bg-color-yellow">
-              <p>Recebendo parentes e amigos em casa</p>
-              <p>14 Fev 2020</p>
-            </div>
-          </q-timeline-entry>
-          <q-timeline-entry subtitle="Teste de comportamento" color="utilities-border">
-          </q-timeline-entry>
-          <q-timeline-entry color="utilities-border">
-            <div class="pet-profile__timeline-entry bg-color-ice">
-              <p>Recebendo parentes e amigos em casa</p>
-              <p>13 Fev 2020</p>
-            </div>
-          </q-timeline-entry>
-          <q-timeline-entry color="utilities-border">
-            <div class="pet-profile__timeline-entry bg-color-orange">
-              <p>Recebendo parentes e amigos em casa</p>
-              <p>12 Fev 2020</p>
-            </div>
-          </q-timeline-entry>
-          <q-timeline-entry subtitle="Teste de comportamento" color="utilities-border">
           </q-timeline-entry>
         </q-timeline>
       </q-card-section>
@@ -100,7 +81,7 @@
 <script>
 import parser from '../helpers/PetProfileParser'
 import Button from './Button/Button'
-import { mapActions, mapMutations } from 'vuex'
+import { mapActions, mapMutations, mapGetters } from 'vuex'
 
 export default {
   name: 'PetProfileComponent',
@@ -115,15 +96,20 @@ export default {
   },
   data() {
     return {
-      petDetails: []
+      petDetails: [],
+      petID: this.$route.params.id
     }
   },
-  created() {
+  computed: {
+    ...mapGetters('pets', { petTimeline: 'getPetTimeline' })
+  },
+  async created() {
     this.getPetDetails()
+    await this.ActionGetPetTimeline(this.petID)
   },
   methods: {
     ...parser,
-    ...mapActions('pets', ['ActionDeletePetModal']),
+    ...mapActions('pets', ['ActionDeletePetModal', 'ActionGetPetTimeline']),
     ...mapMutations('pets', { SET_DELETEPETMODAL: 'PETS/SET_DELETEPETMODAL' }),
     getPetDetails() {
       const aux = []
@@ -157,6 +143,31 @@ export default {
         }
       }
       this.SET_DELETEPETMODAL(modal)
+    },
+    isBgOrange(item) {
+      if (item.type === 'training' && item.status === 'done') return true
+      else return false
+    },
+    isBgTransparent(item) {
+      // pet registered and training removed
+      if ((item.type === 'training' && item.status === 'removed') || item.type === 'other') {
+        return true
+      } else return false
+    },
+    isBgCyan(item) {
+      if (item.type === 'module' && item.status === 'done') return true
+      else return false
+    },
+    setBgColor(item) {
+      let classColor
+      if (this.isBgOrange(item)) {
+        classColor = 'bg-color-orange'
+      } else if (this.isBgTransparent(item)) {
+        classColor = ''
+      } else if (this.isBgCyan(item)) {
+        classColor = 'bg-color-cyan'
+      }
+      return classColor
     }
   }
 }
@@ -234,6 +245,7 @@ h2.pet-profile__text {
   border-radius: 0 var(--font-size-3) var(--font-size-3) var(--font-size-3) !important;
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
 }
 
 .pet-profile__timeline-entry p {
@@ -242,15 +254,15 @@ h2.pet-profile__text {
 }
 
 .pet-profile__timeline-entry p:first-child {
+  max-width: 40%;
+  font-size: var(--font-size-1);
+}
+
+.pet-profile__timeline-entry p:last-child {
   font-size: var(--font-size-2);
   line-height: calc(var(--font-size-2) + 3px);
   max-width: 60%;
   font-weight: 800;
-}
-
-.pet-profile__timeline-entry p:last-child {
-  max-width: 40%;
-  font-size: var(--font-size-1);
 }
 
 .bg-color-pink {
@@ -267,6 +279,10 @@ h2.pet-profile__text {
 
 .bg-color-orange {
   background: var(--main-secondary);
+}
+
+.bg-color-cyan {
+  background: var(--support-ciano);
 }
 
 .q-timeline {
