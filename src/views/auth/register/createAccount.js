@@ -6,6 +6,7 @@ import LoadingCircle from '../../../common/components/loadingCircle'
 import Button from '../../../common/components/Button/Button'
 import TextField from '../../../common/components/TextField/TextField'
 import ButtonCheckboxGroup from '../../../common/components/ButtonCheckboxGroup'
+import Token from '../../../common/components/Token/Token.vue'
 import utils from '../../../common/helpers/utils'
 
 export default {
@@ -16,7 +17,8 @@ export default {
     Ask,
     Button,
     TextField,
-    ButtonCheckboxGroup
+    ButtonCheckboxGroup,
+    Token
   },
   data () {
     return {
@@ -54,7 +56,7 @@ export default {
         }
       ],
       step: 1,
-      maxStep: 6,
+      maxStep: 7,
       loading: false
     }
   },
@@ -129,13 +131,15 @@ export default {
     onSubmitGender () {
       if (!this.genderIsValid) return
       this.nextStep()
-      this.submitNewUser()
     },
     async submitNewUser () {
       this.loading = true
       this.form.birthday = this._noMask(this.form.birthday)
       await this.ActionCreateAccount(this.form)
       this.loading = false
+    },
+    async sendToken () {
+      this.submitNewUser()
     }
   }
 }

@@ -213,6 +213,9 @@
             ></Button>
           </template>
         </Ask>
+        <div v-else-if="step == 7">
+          <Token :recipient="form.email" @click="sendToken"></Token>
+        </div>
       </div>
     </AuthContainer>
     <div v-else class="flex flex-center q-mt-xl">
