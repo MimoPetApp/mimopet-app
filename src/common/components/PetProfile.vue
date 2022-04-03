@@ -55,7 +55,7 @@
           >
             <div class="pet-profile__timeline-entry" :class="setBgColor(item)">
               <p>{{ $filters.formattedDate(item.data) }}</p>
-              <p>{{ item.label }}</p>
+              <p>{{ showEntryLabel(item) }}</p>
             </div>
           </q-timeline-entry>
         </q-timeline>
@@ -145,12 +145,12 @@ export default {
       this.SET_DELETEPETMODAL(modal)
     },
     isBgOrange(item) {
-      if (item.type === 'training' && item.status === 'done') return true
+      if (item.type === 'training' && item.details === 'subscribe') return true
       else return false
     },
     isBgTransparent(item) {
       // pet registered and training removed
-      if ((item.type === 'training' && item.status === 'removed') || item.type === 'other') {
+      if ((item.type === 'training' && item.details === 'unsubscribe') || item.type === 'other') {
         return true
       } else return false
     },
@@ -168,6 +168,24 @@ export default {
         classColor = 'bg-color-cyan'
       }
       return classColor
+    },
+    isSubscribed(entry) {
+      return entry.details === 'subscribe' || false
+    },
+    isDoing(entry) {
+      return entry.status === 'doing' || false
+    },
+    isUnsubscribe(entry) {
+      return entry.details === 'unsubscribe' || false
+    },
+    showEntryLabel(entry) {
+      let label
+      if (this.isSubscribed(entry)) {
+        label = this.isDoing(entry) ? `Inscrito: ${entry.label}` : `Finalizado: ${entry.label}`
+      } else {
+        label = this.isUnsubscribe(entry) ? `Removido: ${entry.label}` : entry.label
+      }
+      return label
     }
   }
 }
