@@ -10,6 +10,11 @@ export default [
     component: () => import('../../views/auth/register/createAccount.vue')
   },
   {
+    path: ':from/confirmar-token',
+    name: 'TokenConfirm',
+    component: () => import('../../views/auth/token/Token.vue')
+  },
+  {
     path: 'acesso',
     name: 'acesso',
     component: () => import('../../views/auth/login/loginAccount.vue')

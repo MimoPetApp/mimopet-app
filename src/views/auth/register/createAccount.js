@@ -1,12 +1,11 @@
 /* eslint-disable no-useless-escape */
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
 import AuthContainer from '../../../common/components/AuthContainer'
 import Ask from '../../../common/components/Ask'
 import LoadingCircle from '../../../common/components/loadingCircle'
 import Button from '../../../common/components/Button/Button'
 import TextField from '../../../common/components/TextField/TextField'
 import ButtonCheckboxGroup from '../../../common/components/ButtonCheckboxGroup'
-import Token from '../../../common/components/Token/Token.vue'
 import utils from '../../../common/helpers/utils'
 
 export default {
@@ -17,8 +16,7 @@ export default {
     Ask,
     Button,
     TextField,
-    ButtonCheckboxGroup,
-    Token
+    ButtonCheckboxGroup
   },
   data () {
     return {
@@ -62,6 +60,7 @@ export default {
   },
   computed: {
     ...mapState('auth', ['terms']),
+    ...mapGetters('auth', ['getSendToken']),
     emailIsValid () {
       return this.validateField(this.form.email, this.pattern.email)
     },
@@ -91,7 +90,7 @@ export default {
   },
   methods: {
     ...utils,
-    ...mapActions('auth', ['ActionGetTermsOfUse', 'ActionCreateAccount']),
+    ...mapActions('auth', ['ActionGetTermsOfUse', 'ActionCreateAccount', 'ActionSendToken']),
     nextStep () {
       if (this.step < this.maxStep) this.step += 1
     },
@@ -128,18 +127,21 @@ export default {
       if (!this.birthdayIsValid) return
       this.nextStep()
     },
-    onSubmitGender () {
+    async onSubmitGender () {
       if (!this.genderIsValid) return
-      this.nextStep()
+      await this.submitNewUser()
     },
     async submitNewUser () {
       this.loading = true
       this.form.birthday = this._noMask(this.form.birthday)
-      await this.ActionCreateAccount(this.form)
+      const created = await this.ActionCreateAccount(this.form)
+      if (created) {
+        this.$router.push({
+          name: 'TokenConfirm',
+          params: { from: 'criar' }
+        })
+      }
       this.loading = false
-    },
-    async sendToken () {
-      this.submitNewUser()
     }
   }
 }

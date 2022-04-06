@@ -6,6 +6,28 @@ import store from '../../../store/index'
 import { setLocalToken, deleteLocalToken } from '../../../services/storage'
 
 export const ActionCreateAccount = async ({ commit, dispatch }, payload) => {
+  try {
+    await Http.post('auth/local/register', payload)
+    dispatch('ActionLogin', {
+      identifier: payload.email,
+      password: payload.password
+    })
+    dispatch('ActionSendToken', {
+      email: payload.email
+    })
+    return true
+  } catch (error) {
+    dispatch('ActionModalResponseUser', {
+      modal: true,
+      data: {
+        title: 'Atenção',
+        message: 'O e-mail informado já está em uso por outro usuário cadastrado',
+        btnLabel: 'Corrigir informações'
+      }
+    })
+    return false
+  }
+  /*
   await Http.post('auth/local/register', payload)
     .then(response => {
       dispatch('ActionModalResponseUser', {
@@ -32,6 +54,7 @@ export const ActionCreateAccount = async ({ commit, dispatch }, payload) => {
         }
       })
     })
+    */
 }
 
 export const ActionLogoutUser = async ({ commit }) => {
@@ -53,10 +76,29 @@ export const ActionRefreshUser = async ({ commit, dispatch }) => {
 }
 
 export const ActionLogin = async ({ commit, dispatch }, payload) => {
+  try {
+    let response = await Http.post('auth/local', payload)
+    commit(types.SET_USER, response.data.user)
+    setLocalToken(response.data.jwt)
+    //store.$router.push({ name: 'home' })
+    return true
+  } catch (error) {
+    dispatch('ActionModalResponseUser', {
+      modal: true,
+      data: {
+        title: 'Credenciais inválidas!',
+        message: 'E-mail ou senha incorretos',
+        btnLabel: 'Ok'
+      }
+    })
+    return false
+  }
+
+  /*
   await Http.post('auth/local', payload)
     .then(response => {
       setLocalToken(response.data.jwt)
-      store.$router.push({ name: 'home' })
+      //store.$router.push({ name: 'home' })
       commit(types.SET_USER, response.data.user)
     })
     .catch(error => {
@@ -70,6 +112,7 @@ export const ActionLogin = async ({ commit, dispatch }, payload) => {
       })
       console.log(error)
     })
+    */
 }
 
 export const ActionGetUser = ({ commit, dispatch }) => {
@@ -117,4 +160,28 @@ export const ActionSetTokenAfter = ({ getters }, payload) => {
 
 export const ActionModalResponseUser = ({ commit }, payload) => {
   commit(types.SET_MODALRESPONSEUSER, payload)
+}
+
+export const ActionSendToken = async ({ commit, dispatch }, payload) => {
+  commit(types.LOADING_SENDTOKEN)
+  try {
+    const response = await Http.post(`users/email/verify`, payload)
+    commit(types.SUCCESS_SENDTOKEN, response.data)
+    return true
+  } catch (error) {
+    commit(types.ERROR_SENDTOKEN, error.response)
+    return false
+  }
+}
+
+export const ActionConfirmToken = async ({ commit, dispatch }, payload) => {
+  commit(types.LOADING_CONFIRMTOKEN)
+  try {
+    const response = await Http.post(`users/email/confirm-token`, payload)
+    commit(types.SUCCESS_CONFIRMTOKEN, response.data)
+    return true
+  } catch (error) {
+    commit(types.ERROR_CONFIRMTOKEN, error.response)
+    return false
+  }
 }
