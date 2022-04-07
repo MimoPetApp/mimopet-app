@@ -19,5 +19,17 @@ export default {
       message: '',
       btnLabel: ''
     }
+  },
+  sendToken: {
+    loading: false,
+    data: {},
+    error: false,
+    success: false
+  },
+  confirmToken: {
+    loading: false,
+    data: {},
+    error: false,
+    success: false
   }
 }
