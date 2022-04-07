@@ -41,8 +41,11 @@ export default {
     async onSubmitEmail () {
       if (!this.formIsValid) return
       this.loading = true
-      await this.ActionLogin(this.form)
+      const res = await this.ActionLogin(this.form)
       this.loading = false
+      if (res) {
+        this.$router.push({ name: 'home' })
+      }
     },
     async wait (ms) {
       return new Promise(resolve => {
