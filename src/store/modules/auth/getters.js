@@ -13,3 +13,7 @@ export const getTerms = ({ terms }) => {
 export const getConfirmToken = ({ confirmToken }) => {
   return confirmToken.data
 }
+
+export const getSendToken = ({ sendToken }) => {
+  return sendToken.data
+}

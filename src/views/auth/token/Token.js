@@ -53,7 +53,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('auth', ['getUser']),
+    ...mapGetters('auth', ['getUser', 'getSendToken']),
     getCheckSuccess () {
       return checkSuccess
     }
@@ -63,6 +63,13 @@ export default {
     formatInput (val, index) {
       // only number
       this.inputTextFields[index].value = val.target._value.replace(/[^0-9]/g, '')
+    },
+    getCode() {
+      return this.inputTextFields.reduce(
+        (acc, curr) => {
+          return acc + curr.value
+        }, ''
+      )
     },
     onlyNumber ($event) {
       const keyCode = $event.keyCode ? $event.keyCode : $event.which
@@ -100,11 +107,11 @@ export default {
     },
     showChangePassword () {},
     async confirmToken () {
-      // const params = {
-      //   code: ''
-      // }
-      // let res = await this.ActionConfirmToken(params)
-      const res = true
+      const params = {
+        email: this.getSendToken.email,
+        code: this.getCode()
+      }
+      const res = await this.ActionConfirmToken(params)
       return res
     },
     setCreateAccountSuccess () {

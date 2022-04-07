@@ -51,6 +51,7 @@
             size="md"
             no-caps
             label="Esqueci a senha"
+            disabled
             @click="goToForgetPassword"
           />
         </div>
