@@ -14,10 +14,10 @@
     </q-header>
     <div class="training-details-wrapper__header">
       <h2 class="training-details-wrapper__header__title text-main-alternate">
-        Preparação para primeiro passeio
+        {{ getTrainingTitle }}
       </h2>
       <span class="training-details-wrapper__header__subtitle text-utilities-alternate">
-        O que você vai aprender?
+        {{ getTrainingDescription }}
       </span>
     </div>
     <div class="training-details-wrapper__content" v-for="module in modules" :key="module.id">

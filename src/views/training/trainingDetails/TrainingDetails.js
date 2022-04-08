@@ -4,7 +4,7 @@ import Button from '../../../common/components/Button/Button'
 import ActionModal from '../../../common/components/Modal/ActionModal/ActionModal'
 import FeedbackModal from '../../../common/components/FeedbackModal/FeedbackModal'
 
-import { mapState, mapActions, mapMutations } from 'vuex'
+import { mapState, mapActions, mapMutations, mapGetters } from 'vuex'
 
 const checkedIcon = require('../../../assets/images/feedback/checked.svg')
 
@@ -42,14 +42,30 @@ export default {
           this.hideFeedbackModal()
           this.goToMyTrainings()
         }
-      }
+      },
+      trainingID: this.$route.params.id
     }
   },
   computed: {
-    ...mapState('training', ['modules', 'loadingTrainings'])
+    ...mapState('training', ['modules', 'loadingTrainings']),
+    ...mapGetters('training', ['getTraining']),
+    getTrainingTitle () {
+      if (!this.isEmptyObject(this.getTraining)) {
+        return this.getTraining.title
+      }
+    },
+    getTrainingDescription () {
+      if (!this.isEmptyObject(this.getTraining)) {
+        return this.getTraining.description
+      }
+    }
   },
   methods: {
-    ...mapActions('training', ['ActionGetModules', 'ActionUnsubscribeTraining']),
+    ...mapActions('training', [
+      'ActionGetModules',
+      'ActionUnsubscribeTraining',
+      'ActionGetTraining'
+    ]),
     ...mapMutations('training', ['SET_HAS_HEADER']),
     async unsubscribeTraining () {
       const payload = {
@@ -77,6 +93,9 @@ export default {
     },
     goToMyTrainings () {
       this.$router.push({ name: 'TrainingList' })
+    },
+    isEmptyObject (obj) {
+      return obj && Object.keys(obj).length === 0 && Object.getPrototypeOf(obj) === Object.prototype
     }
   },
   beforeRouteLeave (to, from, next) {
@@ -88,6 +107,7 @@ export default {
     this.SET_HAS_HEADER(false)
   },
   async created () {
-    this.ActionGetModules(this.$route.params.id)
+    await this.ActionGetModules(this.trainingID)
+    await this.ActionGetTraining(this.trainingID)
   }
 }
