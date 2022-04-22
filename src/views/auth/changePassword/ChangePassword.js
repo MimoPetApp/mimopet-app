@@ -1,80 +1,97 @@
-import { mapActions } from 'vuex'
-import Logo from '../../../common/components/logo'
-import Title from '../../../common/components/title'
-import Button from '../../../common/components/Button/Button'
+import Button from '../../../common/components/Button/Button.vue'
 import TextField from '../../../common/components/TextField/TextField'
-import AuthContainer from '../../../common/components/AuthContainer'
-import LoadingCircle from '../../../common/components/loadingCircle'
-import FeedbackModal from '../../../common/components/FeedbackModal/FeedbackModal.vue'
-import SupportModal from '../../../common/components/Modal/SupportModal/SupportModal'
+import Response from '../../../common/components/Response/Response'
+import { mapActions, mapGetters } from 'vuex'
 
-const emailIcon = require('../../../assets/images/feedback/aim.svg')
+const checkSuccess = require('../../../assets/images/feedback/check_success.svg')
+const lockOpen = require('../../../assets/images/feedback/lock_open.svg')
 
 export default {
-  name: 'ForgetPassword',
-  components: {
-    Title,
-    AuthContainer,
-    LoadingCircle,
-    TextField,
-    Button,
-    Logo,
-    FeedbackModal,
-    SupportModal
+  name: 'Token',
+  components: { Button, TextField, Response },
+  props: {
+    recipient: {
+      type: String,
+      default: ''
+    }
   },
   data () {
     return {
+      errorMessage: '',
+      response: {
+        status: false,
+        title: '',
+        subtitle: '',
+        buttonText: '',
+        action: () => {},
+        subAction: () => {},
+        icon: null
+      },
       form: {
-        identifier: '',
         password: '',
         confirmPassword: ''
-      },
-      showPassword: false,
-      loading: false,
-      feedbackModalStatus: false,
-      supportModalStatus: false,
-      feedbackModalTitle: 'Senha alterada',
-      feedbackModalSubtitle: 'Entre novamente na sua conta com a nova senha.',
-      feedbackModalButtonText: 'Entrar'
+      }
     }
   },
   computed: {
-    formIsValid () {
-      return this.form.password === this.form.confirmPassword
+    ...mapGetters('auth', ['getRecoverConfirmToken']),
+    getLockOpen () {
+      return lockOpen
     },
-    feedbackIcon () {
-      return emailIcon
+    getCheckSuccess () {
+      return checkSuccess
     }
   },
-  beforeMount () {},
   methods: {
-    ...mapActions('auth', ['ActionLogin']),
-    nextStep () {},
+    ...mapActions('auth', ['ActionUpdateUserPassword']),
+    getCode () {
+      return this.inputTextFields.reduce((acc, curr) => {
+        return acc + curr.value
+      }, '')
+    },
+    onlyNumber ($event) {
+      const keyCode = $event.keyCode ? $event.keyCode : $event.which
+      if (keyCode < 48 || keyCode > 57) {
+        $event.preventDefault()
+      }
+    },
     async onSubmitPassword () {
-      if (!this.formIsValid) return
-      this.loading = true
-      // await this.ActionLogin(this.form)
-      this.showFeedbackModal()
-      this.loading = false
+      const res = await this.updateUserPassword()
+      if (res) {
+        this.setRecoverSucces()
+      } else {
+        this.errorMessage = 'error'
+      }
     },
-    async wait (ms) {
-      return new Promise(resolve => {
-        setTimeout(resolve, ms)
-      })
+    async updateUserPassword () {
+      const params = {
+        password: this.form.password,
+        token: this.getRecoverConfirmToken
+      }
+      let res = await this.ActionUpdateUserPassword(params)
+      res = true
+      return res
     },
-    showFeedbackModal () {
-      this.feedbackModalStatus = true
+    setRecoverSucces () {
+      this.response = {
+        status: true,
+        title: 'Senha alterada com sucesso',
+        subtitle: 'Tente entrar na sua conta utilizando a nova senha',
+        buttonText: 'Ir para login',
+        action: () => {
+          this.goToHome()
+        },
+        icon: checkSuccess
+      }
     },
-    showSupportModal () {
-      this.supportModalStatus = true
+    goToPetRegister () {
+      this.$router.push({ name: 'PetRegister' })
     },
-    hideSupportModal () {
-      this.supportModalStatus = false
+    goToHome () {
+      this.$router.push({ name: 'home' })
     },
-    goToLogin () {
-      this.$router.push({
-        name: 'acesso'
-      })
+    goToChangePassword () {
+      this.$router.push({ name: 'ChangePassword' })
     }
   }
 }

@@ -31,5 +31,23 @@ export default {
     data: {},
     error: false,
     success: false
+  },
+  recoverSendToken: {
+    loading: false,
+    data: {},
+    error: false,
+    success: false
+  },
+  recoverConfirmToken: {
+    loading: false,
+    data: {},
+    error: false,
+    success: false
+  },
+  updateUserPassword: {
+    loading: false,
+    data: {},
+    error: false,
+    success: false
   }
 }

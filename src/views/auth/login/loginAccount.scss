@@ -17,5 +17,22 @@
   &__bottom-modal--footer {
     background-color: var(--utilities-disabled);
     padding: var(--spacing-3) var(--spacing-2);
+    .footer-btn {
+      width: 100%;
+      span.q-btn__content {
+        font-size: var(--font-size-3);
+        font-weight: 600;
+        line-height: 110%;
+      }
+      i.material-icons {
+        width: 15px;
+        height: 12px;
+      }
+      i.fa-lock {
+        width: 13.5px;
+        height: 15.75px;
+        font-size: 19.5px;
+      }
+    }
   }
 }

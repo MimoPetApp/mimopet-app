@@ -47,7 +47,7 @@
               <Button
                 flat
                 color="utilities-alternate"
-                class="text-weight-bold login__bottom-modal--button"
+                class="text-weight-bold footer-btn"
                 size="md"
                 no-caps
                 icon="mail"
@@ -59,9 +59,10 @@
               <Button
                 flat
                 color="utilities-alternate"
-                class="text-weight-bold login__bottom-modal--button"
+                class="text-weight-bold footer-btn"
                 size="md"
                 no-caps
+                icon="fas fa-lock"
                 label="Esqueci a senha"
                 @click="goToForgetPassword"
               />

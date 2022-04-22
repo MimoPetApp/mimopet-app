@@ -5,7 +5,7 @@
       <div>
         <Title
           text="Recupere sua conta"
-          subtitle="Enviaremos um e-mail para você"
+          subtitle="Entraremos em contato com instruções para recuperação da sua conta"
           class="ml-4 mr-4 mb-4 pt-6"
         />
         <div class="forget-password__bottom-modal">
@@ -13,11 +13,14 @@
             <div class="col-12">
               <form ref="form" @submit.prevent.stop="onSubmitEmail">
                 <TextField
-                  v-model="form.identifier"
+                  v-model="form.email"
                   class="mb-1"
                   type="email"
                   :label="$t('login.email.label')"
+                  clearable
                   :rules="[val => !!val || $t('login.email.error')]"
+                  icon="mail"
+                  prepend
                 />
               </form>
             </div>
@@ -25,33 +28,22 @@
               <Button
                 @click="onSubmitEmail"
                 color="primary-filled"
-                class="main-button no-shadow mb-3"
+                class="main-button no-shadow mt-2"
                 type="submit"
-                label="Enviar"
+                label="Enviar e-mail"
                 no-caps
               />
               <Button
                 @click="goToLogin"
                 color="secondary-outline"
-                class="main-button no-shadow mb-3"
+                class="main-button no-shadow mt-3"
                 type="submit"
                 label="Cancelar"
                 no-caps
               />
             </div>
-          </div>
-          <div class="row forget-password__bottom-modal--footer">
-            <div class="col-12 col-md-12 col-xs-12 flex flex-center">
-              <Button
-                flat
-                color="utilities-alternate"
-                class="text-weight-bold"
-                size="md"
-                no-caps
-                icon="mail"
-                label="Suporte"
-                @click="showSupportModal"
-              />
+            <div class="col-12 error text-center mt-3" align="center" v-if="getSendTokenError">
+              <p class="text-status-danger">{{ getSendTokenError.data.message }}</p>
             </div>
           </div>
         </div>

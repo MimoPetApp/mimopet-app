@@ -18,6 +18,9 @@
         @click="showPassword = !showPassword"
       />
     </template>
+    <template v-slot:prepend v-if="icon && prepend">
+      <q-icon :name="icon" />
+    </template>
   </QInput>
 </template>
 
@@ -29,6 +32,9 @@ export default {
   props: {
     icon: {
       type: String
+    },
+    prepend: {
+      type: Boolean
     },
     label: {
       type: String

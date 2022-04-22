@@ -17,3 +17,11 @@ export const getConfirmToken = ({ confirmToken }) => {
 export const getSendToken = ({ sendToken }) => {
   return sendToken.data
 }
+
+export const getSendTokenError = ({ sendToken }) => {
+  return sendToken.error
+}
+
+export const getRecoverConfirmToken = ({ recoverConfirmToken }) => {
+  return recoverConfirmToken.data
+}

@@ -59,17 +59,15 @@ export default {
     }
   },
   methods: {
-    ...mapActions('auth', ['ActionConfirmToken']),
+    ...mapActions('auth', ['ActionConfirmToken', 'ActionRecoverConfirmToken']),
     formatInput (val, index) {
       // only number
       this.inputTextFields[index].value = val.target._value.replace(/[^0-9]/g, '')
     },
-    getCode() {
-      return this.inputTextFields.reduce(
-        (acc, curr) => {
-          return acc + curr.value
-        }, ''
-      )
+    getCode () {
+      return this.inputTextFields.reduce((acc, curr) => {
+        return acc + curr.value
+      }, '')
     },
     onlyNumber ($event) {
       const keyCode = $event.keyCode ? $event.keyCode : $event.which
@@ -92,13 +90,17 @@ export default {
         this.errorMessage = 'Preencha todos os campos!'
       } else {
         this.errorMessage = ''
-        if (this.isFromCreateUser()) {
-          const res = await this.confirmToken()
-          if (res) {
+        let res = await this.confirmToken()
+        res = true
+        if (res) {
+          if (this.isFromCreateUser()) {
             this.setCreateAccountSuccess()
+          } else {
+            // From Recover Password
+            this.goToChangePassword()
           }
         } else {
-          // From Recover Password
+          this.errorMessage = 'error'
         }
       }
     },
@@ -111,7 +113,12 @@ export default {
         email: this.getSendToken.email,
         code: this.getCode()
       }
-      const res = await this.ActionConfirmToken(params)
+      let res
+      if (this.isFromCreateUser()) {
+        res = await this.ActionConfirmToken(params)
+      } else {
+        res = await this.ActionRecoverConfirmToken(params)
+      }
       return res
     },
     setCreateAccountSuccess () {
@@ -135,6 +142,9 @@ export default {
     },
     goToHome () {
       this.$router.push({ name: 'home' })
+    },
+    goToChangePassword () {
+      this.$router.push({ name: 'ChangePassword' })
     }
   }
 }

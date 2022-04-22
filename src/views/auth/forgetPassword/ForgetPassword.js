@@ -1,4 +1,4 @@
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 import Logo from '../../../common/components/logo'
 import Title from '../../../common/components/title'
 import Button from '../../../common/components/Button/Button'
@@ -25,10 +25,8 @@ export default {
   data () {
     return {
       form: {
-        identifier: '',
-        password: ''
+        email: ''
       },
-      showPassword: false,
       loading: false,
       feedbackModalStatus: false,
       supportModalStatus: false,
@@ -39,28 +37,42 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('auth', ['getSendTokenError']),
     formIsValid () {
-      return this.form.identifier.length !== 0
+      return this.form.email.length !== 0
     },
     feedbackIcon () {
       return emailIcon
     }
   },
-  beforeMount () {},
+  created () {
+    this.RESET_ERROR_RECOVERSENDTOKEN()
+  },
   methods: {
-    ...mapActions('auth', ['ActionLogin']),
+    ...mapActions('auth', ['ActionLogin', 'ActionRecoverSendToken']),
+    ...mapMutations('auth', ['RESET_ERROR_RECOVERSENDTOKEN']),
     nextStep () {},
     async onSubmitEmail () {
       if (!this.formIsValid) return
       this.loading = true
       // await this.ActionLogin(this.form)
-      this.showFeedbackModal()
+      let send = await this.sendEmailToken()
+      send = true
+      if (send) {
+        this.RESET_ERROR_RECOVERSENDTOKEN()
+        this.$router.push({
+          name: 'TokenConfirm',
+          params: { from: 'esqueci-senha' }
+        })
+      }
+      // this.showFeedbackModal()
       this.loading = false
     },
-    async wait (ms) {
-      return new Promise(resolve => {
-        setTimeout(resolve, ms)
-      })
+    async sendEmailToken () {
+      const params = {
+        email: this.form.email
+      }
+      await this.ActionRecoverSendToken(params)
     },
     showFeedbackModal () {
       this.feedbackModalStatus = true

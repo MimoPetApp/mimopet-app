@@ -185,3 +185,39 @@ export const ActionConfirmToken = async ({ commit, dispatch }, payload) => {
     return false
   }
 }
+
+export const ActionRecoverSendToken = async ({ commit, dispatch }, payload) => {
+  commit(types.LOADING_RECOVERSENDTOKEN)
+  try {
+    const response = await Http.post(`users/password/reset`, payload)
+    commit(types.SUCCESS_RECOVERSENDTOKEN, response.data)
+    return true
+  } catch (error) {
+    commit(types.ERROR_RECOVERSENDTOKEN, error.response)
+    return false
+  }
+}
+
+export const ActionRecoverConfirmToken = async ({ commit, dispatch }, payload) => {
+  commit(types.LOADING_RECOVERCONFIRMTOKEN)
+  try {
+    const response = await Http.post(`users/password/confirm-token`, payload)
+    commit(types.SUCCESS_RECOVERCONFIRMTOKEN, response.data)
+    return true
+  } catch (error) {
+    commit(types.ERROR_RECOVERCONFIRMTOKEN, error.response)
+    return false
+  }
+}
+
+export const ActionUpdateUserPassword = async ({ commit, dispatch }, payload) => {
+  commit(types.LOADING_UPDATEUSERPASSWORD)
+  try {
+    const response = await Http.put(`/users/password/update`, payload)
+    commit(types.SUCCESS_UPDATEUSERPASSWORD, response.data)
+    return true
+  } catch (error) {
+    commit(types.ERROR_UPDATEUSERPASSWORD, error.response)
+    return false
+  }
+}

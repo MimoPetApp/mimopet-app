@@ -1,84 +1,72 @@
 <template>
   <div>
-    <AuthContainer v-if="!loading" has-background>
-      <Logo class="ml-4 mt-4" />
-      <div>
-        <Title
-          text="Crie uma nova senha"
-          subtitle="Recupere sua conta"
-          class="ml-4 mr-4 mb-4 pt-6"
-        />
-        <div class="forget-password__bottom-modal">
-          <div class="row pl-5 pr-5 pt-5" style="z-index: 1">
-            <div class="col-12">
-              <form ref="form" @submit.prevent.stop="onSubmitEmail">
-                <TextField
-                  v-model="form.password"
-                  label="Sua nova senha"
-                  :isPassword="true"
-                  :rules="[
-                    val => !!val || $t('login.password.error.required'),
-                    val => /^(?=.{8,})/.test(val) || $t('login.password.error.min')
-                  ]"
-                />
-                <TextField
-                  v-model="form.confirmPassword"
-                  class="mb-2"
-                  label="Repita a senha"
-                  :isPassword="true"
-                  :rules="[
-                    val => !!val || $t('login.password.error.required'),
-                    val => /^(?=.{8,})/.test(val) || $t('login.password.error.min')
-                  ]"
-                />
-              </form>
-            </div>
-            <div class="col-12" align="center">
-              <Button
-                @click="onSubmitPassword"
-                color="primary-filled"
-                class="main-button no-shadow mb-3"
-                type="submit"
-                label="Confirmar"
-                no-caps
+    <div class="change-password-wrapper" v-if="!response.status">
+      <div class="change-password-wrapper__header">
+        <q-img :src="getLockOpen" class="change-password-wrapper__header__image" fit="scale-down" />
+      </div>
+      <div class="change-password-wrapper__body">
+        <div class="content">
+          <h2 class="content__title">Crie uma nova senha para recuperar sua conta</h2>
+          <p class="content__description">Use a nova senha para realizar login</p>
+        </div>
+        <div class="input-token row q-gutter-sm">
+          <div class="col-12 group-input" align="center">
+            <form ref="form" @submit.prevent.stop="onSubmitPassword">
+              <TextField
+                v-model="form.password"
+                class="mb-1"
+                label="Senha"
+                lazy-rules
+                :isPassword="true"
+                :rules="[
+                  val => !!val || $t('login.password.error.required'),
+                  val => /^(?=.{8,})/.test(val) || $t('login.password.error.min'),
+                  val => /^(?=.*[a-z])/.test(val) || $t('login.password.error.lowercase'),
+                  val => /^(?=.*[A-Z])/.test(val) || $t('login.password.error.uppercase'),
+                  val => /^(?=.*[0-9])/.test(val) || $t('login.password.error.number'),
+                  val =>
+                    /^(?=.*[!@#\$%\^&\*])/.test(val) || $t('login.password.error.specialCharacter'),
+                  val => /^(?=.{8,})/.test(val) || $t('login.password.error.length')
+                ]"
               />
-            </div>
-          </div>
-          <div class="row forget-password__bottom-modal--footer">
-            <div class="col-12 col-md-12 col-xs-12 flex flex-center">
-              <Button
-                flat
-                color="utilities-alternate"
-                class="text-weight-bold"
-                size="md"
-                no-caps
-                icon="mail"
-                label="Suporte"
-                @click="showSupportModal"
+              <TextField
+                v-model="form.confirmPassword"
+                label="Repita a senha"
+                :isPassword="true"
+                lazy-rules
+                :rules="[
+                  val => !!val || $t('login.password.error.required'),
+                  val => val === form.password || 'Senha não confere'
+                ]"
               />
-            </div>
+            </form>
           </div>
         </div>
+        <div class="error-wrapper text-negative" v-if="errorMessage">
+          <p>{{ errorMessage }}</p>
+        </div>
       </div>
-    </AuthContainer>
-
-    <div v-else class="flex flex-center q-mt-xl">
-      <LoadingCircle color="status-waiting" size="6em" :thickness="5" />
+      <div class="token-wrapper__footer">
+        <Button
+          color="primary-filled"
+          class="no-shadow text-weight-bold"
+          size="md"
+          no-caps
+          label="Salvar nova senha"
+          @click="onSubmitPassword"
+        />
+      </div>
     </div>
-    <div class="forget-password__dialog" v-if="feedbackModalStatus || supportModalStatus">
-      <FeedbackModal
-        :active="feedbackModalStatus"
-        :icon="feedbackIcon"
-        :title="feedbackModalTitle"
-        :subtitle="feedbackModalSubtitle"
-        :buttonText="feedbackModalButtonText"
-        :action="goToLogin"
-      ></FeedbackModal>
-      <SupportModal
-        :active="supportModalStatus"
-        @hide="hideSupportModal"
-        :action="hideSupportModal"
-      ></SupportModal>
+    <div v-else>
+      <Response
+        :title="response.title"
+        :subtitle="response.subtitle"
+        :buttonText="response.buttonText"
+        :subButtonText="response.subButtonText"
+        :icon="response.icon"
+        :action="response.action"
+        :subAction="response.subAction"
+      ></Response>
     </div>
   </div>
 </template>
