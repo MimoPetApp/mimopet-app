@@ -31,11 +31,11 @@
         </div>
       </div>
       <div class="row get-started__bottom-modal--footer">
-        <div class="col-6 col-md-6 col-xs-6 flex flex-center">
+        <div class="col-12 col-md-12 col-xs-12 flex flex-center">
           <Button
             flat
             color="utilities-alternate"
-            class="text-weight-bold get-started__bottom-modal--button"
+            class="text-weight-bold footer-btn"
             size="md"
             no-caps
             icon="mail"
@@ -43,20 +43,8 @@
             @click="showSupportModal"
           />
         </div>
-        <div class="col-6 col-md-6 col-xs-6 flex flex-center">
-          <Button
-            flat
-            color="utilities-alternate"
-            class="text-weight-bold get-started__bottom-modal--button"
-            size="md"
-            no-caps
-            label="Esqueci a senha"
-            disabled
-            @click="goToForgetPassword"
-          />
-        </div>
       </div>
-      <div class="col-12 col-md-12 col-xs-12">
+      <div class="col-12 col-md-12 col-xs-12" v-if="supportModalStatus">
         <div class="get-started__dialog">
           <SupportModal
             :active="supportModalStatus"

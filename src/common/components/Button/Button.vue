@@ -21,7 +21,8 @@ export const ButtonColors = [
   'danger-bordless',
   'danger-outline',
   'alternate-outline',
-  'alternate-filled'
+  'alternate-filled',
+  'tertiary-dark'
 ]
 export default {
   name: 'Button',
@@ -131,6 +132,16 @@ export default {
   color: var(--main-alternate) !important;
   &:disabled {
     color: var(--utilities-disabled) !important;
+  }
+  &:active {
+    color: var(--main-highlight) !important;
+  }
+}
+
+.text-tertiary-dark {
+  color: var(--main-alternate) !important;
+  &:disabled {
+    color: var(--utilities-alternate) !important;
   }
   &:active {
     color: var(--main-highlight) !important;
