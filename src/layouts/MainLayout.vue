@@ -8,7 +8,7 @@
             <q-toolbar-title>
               <q-img src="~assets/images/mimoicon-white.svg" style="width: 80px" />
             </q-toolbar-title>
-            <router-link :to="{ name: 'Notifications' }" class="router-link-style">
+            <router-link :to="{ name: 'Notifications' }" class="router-link-style" v-if="false">
               <q-btn class="home__badge" outline color="white q-mr-md">
                 <q-icon name="notifications" class="cursor-pointer"></q-icon>
               </q-btn>
