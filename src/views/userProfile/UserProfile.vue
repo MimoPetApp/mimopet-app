@@ -30,6 +30,7 @@
                       mt-3
                     "
                     :style="getCardStyle"
+                    v-if="false"
                   >
                     <router-link :to="{ name: 'Membership' }" class="router-link-style">
                       <div
