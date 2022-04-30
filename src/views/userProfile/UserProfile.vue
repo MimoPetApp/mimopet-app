@@ -21,7 +21,7 @@
                   </div>
                   <div class="user-profile-wrapper__content__card-white__header__info">
                     <p class="text-utilities-alternate mb-0">Pai de pet</p>
-                    <h4 class="text-main-alternate m-0 text-h4">Pedro Michel Henrique Lins</h4>
+                    <h4 class="text-main-alternate m-0 text-h4">{{ userName }}</h4>
                   </div>
                   <div
                     class="
