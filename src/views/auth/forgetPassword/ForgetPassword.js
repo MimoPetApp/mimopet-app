@@ -56,8 +56,7 @@ export default {
       if (!this.formIsValid) return
       this.loading = true
       // await this.ActionLogin(this.form)
-      let send = await this.sendEmailToken()
-      send = true
+      const send = await this.sendEmailToken()
       if (send) {
         this.RESET_ERROR_RECOVERSENDTOKEN()
         this.$router.push({
@@ -72,7 +71,7 @@ export default {
       const params = {
         email: this.form.email
       }
-      await this.ActionRecoverSendToken(params)
+      return await this.ActionRecoverSendToken(params)
     },
     showFeedbackModal () {
       this.feedbackModalStatus = true

@@ -53,7 +53,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('auth', ['getUser', 'getSendToken']),
+    ...mapGetters('auth', ['getSendToken', 'getRecoverSendToken']),
     getCheckSuccess () {
       return checkSuccess
     }
@@ -90,8 +90,7 @@ export default {
         this.errorMessage = 'Preencha todos os campos!'
       } else {
         this.errorMessage = ''
-        let res = await this.confirmToken()
-        res = true
+        const res = await this.confirmToken()
         if (res) {
           if (this.isFromCreateUser()) {
             this.setCreateAccountSuccess()
@@ -110,13 +109,14 @@ export default {
     showChangePassword () {},
     async confirmToken () {
       const params = {
-        email: this.getSendToken.email,
         code: this.getCode()
       }
       let res
       if (this.isFromCreateUser()) {
+        params.email = this.getSendToken.email
         res = await this.ActionConfirmToken(params)
       } else {
+        params.email = this.getRecoverSendToken.email
         res = await this.ActionRecoverConfirmToken(params)
       }
       return res

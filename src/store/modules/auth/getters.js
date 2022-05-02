@@ -22,6 +22,14 @@ export const getSendTokenError = ({ sendToken }) => {
   return sendToken.error
 }
 
+export const getRecoverSendToken = ({ recoverSendToken }) => {
+  return recoverSendToken.data
+}
+
+export const getRecoverSendTokenError = ({ recoverSendToken }) => {
+  return recoverSendToken.error
+}
+
 export const getRecoverConfirmToken = ({ recoverConfirmToken }) => {
   return recoverConfirmToken.data
 }

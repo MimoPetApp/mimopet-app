@@ -7,7 +7,7 @@ const checkSuccess = require('../../../assets/images/feedback/check_success.svg'
 const lockOpen = require('../../../assets/images/feedback/lock_open.svg')
 
 export default {
-  name: 'Token',
+  name: 'ChangePassword',
   components: { Button, TextField, Response },
   props: {
     recipient: {
@@ -66,10 +66,9 @@ export default {
     async updateUserPassword () {
       const params = {
         password: this.form.password,
-        token: this.getRecoverConfirmToken
+        token: this.getRecoverConfirmToken.token
       }
-      let res = await this.ActionUpdateUserPassword(params)
-      res = true
+      const res = await this.ActionUpdateUserPassword(params)
       return res
     },
     setRecoverSucces () {
@@ -89,9 +88,6 @@ export default {
     },
     goToHome () {
       this.$router.push({ name: 'home' })
-    },
-    goToChangePassword () {
-      this.$router.push({ name: 'ChangePassword' })
     }
   }
 }
