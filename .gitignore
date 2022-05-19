@@ -49,3 +49,5 @@ Thumbs.db
 *.wmv
 
 .quasar/artifacts.json
+
+yarn.lock
