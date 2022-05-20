@@ -21,5 +21,5 @@ RUN yarn global add @quasar/cli
 
 USER node
 
-#CMD quasar dev -m pwa
-CMD quasar serve -m pwa
+#CMD quasar serve -m pwa
+CMD quasar dev -m pwa
