@@ -14,6 +14,7 @@ ENV NODE_ENV=production
 
 #RUN npm install -g npm@latest
 RUN npm install --production
+RUN npm install -g @quasar/cli
 
 RUN quasar build -m pwa
 
