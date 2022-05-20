@@ -23,4 +23,4 @@ RUN quasar build -m pwa
 USER node
 
 #CMD quasar serve -m pwa
-CMD quasar dev -m pwa
+CMD quasar serve ./dist/pwa --port 1337
