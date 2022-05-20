@@ -17,8 +17,9 @@ RUN npm install --production
 RUN yarn global add quasar
 RUN yarn global add @quasar/cli
 
-RUN yarn quasar build -m pwa
+#RUN quasar build -m pwa
 
 USER node
 
-CMD quasar dev -m pwa
+#CMD quasar dev -m pwa
+CMD quasar serve -m pwa
