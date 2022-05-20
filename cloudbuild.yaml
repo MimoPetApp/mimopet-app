@@ -21,7 +21,7 @@ steps: # https://cloud.google.com/build/docs/deploying-builds/deploy-cloud-run?h
   - --concurrency=80
   - --ingress=all
   - --allow-unauthenticated
-  - --port=3001
+  - --port=80
 images: 
 - 'gcr.io/driven-pillar-349122/mimopet-app:$COMMIT_SHA'
 timeout: 1800s
