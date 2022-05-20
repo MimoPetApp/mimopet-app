@@ -1,4 +1,4 @@
-FROM node:14
+FROM node:14 as develop-stage
 MAINTAINER JadsonLucena <jadsonlucena@gmail.com>
 
 RUN apt-get update && apt-get install -y \
@@ -20,7 +20,8 @@ RUN npm install -g @quasar/cli
 
 RUN quasar build -m pwa
 
-USER node
-
-#CMD quasar serve -m pwa
-CMD quasar serve ./dist/pwa --port 1337
+# production stage
+FROM nginx:alpine as production-stage
+COPY --from=develop-stage /usr/src/app/dist/pwa /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
