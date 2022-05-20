@@ -15,13 +15,12 @@ COPY --chown=node:node ./ ./
 #RUN npm install -g npm@latest
 #RUN npm install --production
 RUN npm install
-RUN npm install -g quasar
 RUN npm install -g @quasar/cli
 
-RUN quasar build -m pwa
+RUN quasar build
 
 # production stage
 FROM nginx:alpine as production-stage
-COPY --from=develop-stage /usr/src/app/dist/pwa /usr/share/nginx/html
+COPY --from=develop-stage /usr/src/app/dist/spa /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
