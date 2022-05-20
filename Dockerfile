@@ -10,14 +10,15 @@ WORKDIR /usr/src/app
 
 COPY --chown=node:node ./ ./
 
-ENV NODE_ENV=production
+#ENV NODE_ENV=production
 
 #RUN npm install -g npm@latest
-RUN npm install --production
-RUN yarn global add quasar
-RUN yarn global add @quasar/cli
+#RUN npm install --production
+RUN npm install
+RUN npm install -g quasar
+RUN npm install -g @quasar/cli
 
-#RUN quasar build -m pwa
+RUN quasar build -m pwa
 
 USER node
 
