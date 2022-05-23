@@ -49,7 +49,7 @@ module.exports = configure(function (ctx) {
     build: {
       vueRouterMode: 'history', // available values: 'hash', 'history'
       env: {
-        API: ctx.dev ? 'http://localhost:1337/' : 'http://strapi.mimopetapp.com:1337/'
+        API: ctx.dev ? 'http://localhost:1337/' : 'https://strapi.mimopetapp.com/'
         /*
           API: ctx.dev
           ? "http://localhost:8080/api/"
