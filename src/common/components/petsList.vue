@@ -13,8 +13,8 @@
     </q-card-section>
     <q-card class="home-card q-animate--scale q-pa-lg" style="background: #ffffff">
       <HomeCard
-        label="Encontre treinamentos"
-        description="Aprenda sobre a construção de comportamentos junto ao seu cão"
+        label="Jornadas de treino"
+        description="Descubra e se inscreva em novos programas de treino"
         color="#FF8E4A"
         colorAlt="#f66917"
         to="/comportamentos"
@@ -27,7 +27,7 @@
       >
         <div class="row justify-between items-center">
           <div style="max-width: 45%">
-            <h4 class="text-weight-bold m-0 p-0">Meus treinos</h4>
+            <h4 class="text-weight-bold m-0 p-0">Meus treinamentos</h4>
             <p class="text-weight-medium m-0 p-0">Programas de socialização</p>
           </div>
           <q-btn
