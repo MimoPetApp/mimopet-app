@@ -1,4 +1,4 @@
-import ObedienceCard from '../../common/components/ObedienceCard/ObedienceCard.vue'
+import ObedienceCard from '../../../common/components/ObedienceCard/ObedienceCard.vue'
 
 export default {
   name: 'Obedience',
@@ -9,24 +9,28 @@ export default {
     return {
       commandsList: [
         {
+          id: 1,
           title: 'Sentar',
           level: 'Básico',
           badges: 3,
           status: 'Habilitado'
         },
         {
+          id: 2,
           title: 'Dar patinha',
           level: 'Intermediário',
           badges: 2,
           status: 'Habilitado'
         },
         {
+          id: 3,
           title: 'Rolar',
           level: 'Avançado',
           badges: 1,
           status: 'Habilitado'
         },
         {
+          id: 4,
           title: 'Auto controle',
           level: 'Em breve',
           status: 'Desabilitado'
@@ -36,5 +40,9 @@ export default {
   },
   computed: {},
   created () {},
-  methods: {}
+  methods: {
+    clickHandler (id) {
+      this.$router.push({ name: 'ObedienceDetails', params: { id: id } })
+    }
+  }
 }

@@ -1,0 +1,58 @@
+.obedienceDetails {
+  border-radius: 35px 35px 0 0 !important;
+  width: 100%;
+
+  &__button {
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 12px 12px 12px 0;
+    padding: 5px 15px;
+  }
+
+  &__text {
+    color: var(---main-alternate);
+    font-family: 'customfont700';
+    font-size: var(--font-size-7);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    letter-spacing: -0.014em;
+
+    &--pet-name {
+      font-size: var(--font-size-5);
+    }
+  }
+  &__badge {
+    width: 118px;
+    height: 31px;
+    border-radius: 100px;
+    margin-top: 4px;
+  }
+  .repetition {
+    font-family: 'customfont620';
+    font-style: normal;
+    font-weight: 500;
+    font-size: var(--font-size-4);
+    line-height: 19px;
+    letter-spacing: -0.014em;
+  }
+  &__description {
+    font-family: 'customfont620';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: -0.018em;
+    color: var(--main-alternate);
+    margin-top: 20px;
+  }
+  .card-section {
+    min-height: 171px;
+  }
+  .commands-list {
+    min-height: calc(100vh - 355px);
+  }
+  .card-gutter {
+    margin-top: 20px;
+  }
+}

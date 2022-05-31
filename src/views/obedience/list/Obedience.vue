@@ -11,6 +11,7 @@
           :badges="command.badges"
           :class="{ 'card-gutter': index > 0 }"
           :disabled="command.status"
+          @click="clickHandler(command.id)"
         ></ObedienceCard>
       </div>
     </q-card>
