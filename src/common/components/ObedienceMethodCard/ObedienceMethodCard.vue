@@ -134,8 +134,4 @@ export default {
     margin-top: 12px;
   }
 }
-
-.pointer {
-  cursor: pointer;
-}
 </style>
