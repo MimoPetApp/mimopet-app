@@ -13,27 +13,27 @@ export default {
           title: 'Sentar',
           level: 'Básico',
           badges: 3,
-          status: 'Habilitado'
+          disabled: false
         },
         {
           id: 2,
           title: 'Dar patinha',
           level: 'Intermediário',
           badges: 2,
-          status: 'Habilitado'
+          disabled: false
         },
         {
           id: 3,
           title: 'Rolar',
           level: 'Avançado',
           badges: 1,
-          status: 'Habilitado'
+          disabled: false
         },
         {
           id: 4,
           title: 'Auto controle',
           level: 'Em breve',
-          status: 'Desabilitado'
+          disabled: true
         }
       ]
     }
@@ -42,9 +42,12 @@ export default {
   created () {},
   methods: {
     clickHandler (command) {
-      if (command.level !== 'Em breve') {
+      if (!this.isDisabled(command.disabled)) {
         this.$router.push({ name: 'ObedienceDetails', params: { id: command.id } })
       }
+    },
+    isDisabled (disabled) {
+      return disabled
     }
   }
 }

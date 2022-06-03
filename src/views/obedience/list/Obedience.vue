@@ -10,8 +10,8 @@
             :title="command.title"
             :subtitle="command.level"
             :badges="command.badges"
-            :class="{ 'card-gutter': index > 0 }"
-            :disabled="command.status"
+            :class="[{ 'card-gutter': index > 0 }, { pointer: !isDisabled }]"
+            :disabled="command.disabled"
             @click="clickHandler(command)"
           ></ObedienceCard>
         </div>
