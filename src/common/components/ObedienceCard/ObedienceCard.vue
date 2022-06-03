@@ -1,48 +1,59 @@
 <template>
   <q-card :class="['command', { pointer: !isDisabled }]" :style="`background: ${setBgColor}`">
-    <div class="row justify-between items-center">
-      <div class="col-6">
-        <h4
-          :class="[
-            'command-title',
-            'text-weight-bold',
-            'm-0',
-            'p-0',
-            isDisabled ? 'text-utilities-alternate' : 'main-alternate'
-          ]"
-        >
-          {{ title }}
-        </h4>
-        <p
-          :class="[
-            'command-level',
-            'text-weight-medium',
-            'm-0',
-            'p-0',
-            isDisabled ? 'text-utilities-alternate' : 'main-alternate'
-          ]"
-        >
-          {{ level }}
-        </p>
+    <q-card-section class="command__header p-0">
+      <div class="row justify-between items-center">
+        <div class="col-6">
+          <div class="command__text-wrapper">
+            <h4
+              :class="[
+                'command__title',
+                'text-weight-bold',
+                'm-0',
+                'p-0',
+                isDisabled ? 'text-utilities-alternate' : 'main-alternate'
+              ]"
+            >
+              {{ title }}
+            </h4>
+            <p
+              :class="[
+                'command__subtitle',
+                'text-weight-medium',
+                'm-0',
+                'p-0',
+                isDisabled ? 'text-utilities-alternate' : 'main-alternate'
+              ]"
+            >
+              {{ subtitle }}
+            </p>
+          </div>
+        </div>
+        <div class="col-3 items-center justify-end flex">
+          <div class="command__badges">
+            <q-badge text-color="utilities-alternate" :class="setClass">
+              <q-avatar
+                v-if="isDisabled"
+                class="badges--info flex justify-center items-center"
+                color="utilities-disabled"
+                text-color="utilities-alternate"
+              >
+                <q-img :src="infoIcon" width="6.41px" height="16px" />
+              </q-avatar>
+              <div v-else class="flex justify-center items-center">
+                <q-icon name="workspace_premium" class="badges__icon"></q-icon>
+                <span class="text-main-alternate badges__amount">{{ badges }}</span>
+              </div>
+            </q-badge>
+          </div>
+        </div>
       </div>
-      <div class="col-3 items-center justify-end flex">
-        <q-btn
-          rounded
-          flat
-          no-caps
-          text-color="utilities-alternate"
-          :icon="setIcon"
-          :class="setClass"
-          to="/treinamentos"
-        >
-          <span v-if="!isDisabled" class="text-main-alternate badges-amount">{{ badges }}</span>
-        </q-btn>
-      </div>
-    </div>
+    </q-card-section>
   </q-card>
 </template>
 
 <script>
+const infoIcon = require('../../../assets/images/info-icon.svg')
+
 export default {
   name: 'ObedienceCard',
   props: {
@@ -50,7 +61,7 @@ export default {
       type: String,
       default: ''
     },
-    level: {
+    subtitle: {
       type: String,
       default: ''
     },
@@ -59,8 +70,8 @@ export default {
       default: 0
     },
     disabled: {
-      type: String,
-      default: 'Habilitado'
+      type: Boolean,
+      default: false
     },
     to: {
       type: String,
@@ -71,9 +82,12 @@ export default {
     return {}
   },
   computed: {
+    infoIcon() {
+      return infoIcon
+    },
     setBgColor() {
       let bgColor = ''
-      switch (this.level) {
+      switch (this.subtitle) {
         case 'Básico':
           bgColor = '#4ad5da'
           break
@@ -92,15 +106,12 @@ export default {
       }
       return bgColor
     },
-    setIcon() {
-      return this.isDisabled ? 'fas fa-info' : 'workspace_premium'
-    },
     setClass() {
       let classes
       if (!this.isDisabled) {
         classes = 'badges flex justify-center items-center'
       } else {
-        classes = 'info flex justify-center items-center'
+        classes = 'badges--info flex justify-center items-center'
       }
       return classes
     },
@@ -108,16 +119,7 @@ export default {
       return this.isDisabled ? 'text-utilities-alternate' : ''
     },
     isDisabled() {
-      let status
-      switch (this.disabled) {
-        case 'Desabilitado':
-          status = true
-          break
-        default:
-          status = false
-          break
-      }
-      return status
+      return this.disabled
     }
   },
   methods: {}
@@ -131,7 +133,8 @@ export default {
   padding: 25px 20px;
   box-shadow: none;
 
-  &-title {
+  &__title {
+    font-family: 'customfont700';
     font-style: normal;
     font-weight: 700;
     font-size: var(--font-size-5);
@@ -140,10 +143,11 @@ export default {
     margin-bottom: 4px;
   }
 
-  &-level {
+  &__subtitle {
+    font-family: 'customfont620';
     font-style: normal;
     font-weight: 500;
-    font-size: 14px;
+    font-size: var(--font-size-3);
     line-height: 17px;
     letter-spacing: -0.018em;
   }
@@ -154,33 +158,25 @@ export default {
     height: 32px;
     border-radius: 100px;
     padding: 0;
-    i {
+    &__icon {
       width: 15px;
       height: 19.33px;
+      font-size: var(--font-size-6);
     }
-    &-amount {
+    &__amount {
+      font-family: 'customfont620';
       margin-left: 6.5px;
       font-weight: 500;
       font-size: var(--font-size-4);
       line-height: 19px;
       letter-spacing: -0.014em;
     }
-  }
-
-  .info {
-    width: 40px;
-    height: 40px;
-    background: var(--utilities-disabled);
-    border-radius: 100px;
-    .fa-info {
-      width: 6.41px;
-      height: 16px;
-      color: var(--utilities-alternate);
+    &--info {
+      width: 40px;
+      height: 40px;
+      border-radius: 100px;
+      background: var(--utilities-disabled);
     }
   }
-}
-
-.pointer {
-  cursor: pointer;
 }
 </style>
