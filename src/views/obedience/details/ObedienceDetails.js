@@ -1,9 +1,9 @@
-import ObedienceCard from '../../../common/components/ObedienceCard/ObedienceCard.vue'
+import ObedienceMethodCard from '../../../common/components/ObedienceMethodCard/ObedienceMethodCard.vue'
 
 export default {
   name: 'ObedienceDetails',
   components: {
-    ObedienceCard
+    ObedienceMethodCard
   },
   data () {
     return {
@@ -37,6 +37,54 @@ export default {
           status: 'Desabilitado'
         }
       ],
+      methodsList: [
+        {
+          id: 1,
+          type: 'guideline',
+          repetitions: 11,
+          items: [
+            {
+              title: 'Aprender',
+              stepID: '1',
+              typeStep: 'slideStep'
+            }
+          ]
+        },
+        {
+          id: 2,
+          type: 'generalization',
+          repetitions: 4,
+          items: [
+            {
+              title: 'Sentar no elevador',
+              stepID: '2',
+              typeStep: 'slideStep'
+            },
+            {
+              title: 'Receber carinho',
+              stepID: '3',
+              typeStep: 'videoStep'
+            }
+          ]
+        },
+        {
+          id: 3,
+          type: 'challenge',
+          repetitions: 1,
+          items: [
+            {
+              title: '1 ',
+              stepID: '4',
+              typeStep: 'exerciseStep'
+            },
+            {
+              title: '2 ',
+              stepID: '5',
+              typeStep: 'exerciseStep'
+            }
+          ]
+        }
+      ],
       repetitionAmount: 15
     }
   },
@@ -64,10 +112,29 @@ export default {
     },
     setBadgeLabel () {
       return this.repetitionAmount > 1 ? 'execuções' : 'execução'
+    },
+    setDetailsTitle () {
+      return this.commandsList[this.commandID - 1].title
     }
   },
   created () {
     this.commandID = this.$route.params.id
   },
-  methods: {}
+  methods: {
+    setMethodTitle (type) {
+      let title
+      switch (type) {
+        case 'guideline':
+          title = 'Instruções'
+          break
+        case 'generalization':
+          title = 'Generalização'
+          break
+        default:
+          title = 'Desafio'
+          break
+      }
+      return title
+    }
+  }
 }
