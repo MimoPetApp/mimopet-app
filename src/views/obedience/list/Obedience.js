@@ -41,8 +41,10 @@ export default {
   computed: {},
   created () {},
   methods: {
-    clickHandler (id) {
-      this.$router.push({ name: 'ObedienceDetails', params: { id: id } })
+    clickHandler (command) {
+      if (command.level !== 'Em breve') {
+        this.$router.push({ name: 'ObedienceDetails', params: { id: command.id } })
+      }
     }
   }
 }
