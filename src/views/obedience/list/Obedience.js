@@ -1,3 +1,4 @@
+import { mapActions, mapGetters } from 'vuex'
 import ObedienceCard from '../../../common/components/ObedienceCard/ObedienceCard.vue'
 
 export default {
@@ -7,47 +8,63 @@ export default {
   },
   data () {
     return {
-      commandsList: [
-        {
-          id: 1,
-          title: 'Sentar',
-          level: 'Básico',
-          badges: 3,
-          disabled: false
-        },
-        {
-          id: 2,
-          title: 'Dar patinha',
-          level: 'Intermediário',
-          badges: 2,
-          disabled: false
-        },
-        {
-          id: 3,
-          title: 'Rolar',
-          level: 'Avançado',
-          badges: 1,
-          disabled: false
-        },
-        {
-          id: 4,
-          title: 'Auto controle',
-          level: 'Em breve',
-          disabled: true
-        }
-      ]
+      loading: false
     }
   },
-  computed: {},
-  created () {},
+  computed: {
+    ...mapGetters('obedience', ['getObedienceList']),
+    noContentAvailable () {
+      return 'Sem conteúdo disponível'
+    },
+    hasContentAvailable () {
+      return this.getObedienceList.length > 0
+    },
+    noContentAvailableClass () {
+      if (!this.hasContentAvailable) {
+        return 'flex justify-center items-center'
+      }
+    }
+  },
+  async created () {
+    await this.loadObedienceContent()
+  },
   methods: {
+    ...mapActions('obedience', ['ActionListObediences']),
     clickHandler (command) {
       if (!this.isDisabled(command.disabled)) {
         this.$router.push({ name: 'ObedienceDetails', params: { id: command.id } })
       }
     },
-    isDisabled (disabled) {
+    isDisabled (type) {
+      let disabled = false
+      if (type === 'upcoming') {
+        disabled = true
+      }
       return disabled
+    },
+    selectType (type) {
+      let string
+      switch (type) {
+        case 'basic':
+          string = 'Básico'
+          break
+        case 'intermediary':
+          string = 'Intermediário'
+          break
+        case 'advanced':
+          string = 'Avançado'
+          break
+
+        default:
+          string = 'Em breve'
+          break
+      }
+      return string
+    },
+    async loadObedienceContent () {
+      this.loading = true
+      await this.ActionListObediences()
+      this.loading = false
     }
   }
 }
