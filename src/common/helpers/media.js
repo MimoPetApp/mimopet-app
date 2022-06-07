@@ -1,11 +1,18 @@
-import urlExist from "url-exist"
+import axios from 'axios'
+
 export default class MediaHelper {
   constructor(media) {
     this.media = media
   }
 
   async doesFileExist(urlToFile) {
-    return await urlExist(urlToFile)
+    try {
+      const res = await axios.head(urlToFile)
+      return res.status === 200
+    } catch (error) {
+      console.error(error)
+    }
+    return false
   }
 
   getWebmUrl(urlToFile) {
@@ -18,7 +25,7 @@ export default class MediaHelper {
     return this.media.mime.includes('video')
   }
 
-  async getOptimizerVideoUrl () {
+  async getOptimizerVideoUrl() {
     if (this.media.mime !== 'video/webm') {
       const webmUrl = this.getWebmUrl(this.media.url)
       const fileExist = await this.doesFileExist(webmUrl)
