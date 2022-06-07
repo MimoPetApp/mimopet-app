@@ -31,7 +31,7 @@ export default {
   methods: {
     ...mapActions('obedience', ['ActionListObediences']),
     clickHandler (command) {
-      if (!this.isDisabled(command.disabled)) {
+      if (!this.isDisabled(command.type)) {
         this.$router.push({ name: 'ObedienceDetails', params: { id: command.id } })
       }
     },
