@@ -1,3 +1,4 @@
+import MediaHelper from './media'
 export default {
   _calculateAge (birthday) {
     // birthday is a date
@@ -9,9 +10,13 @@ export default {
     if (!val) return ''
     return val.replace(/[^\d]+/g, '')
   },
-  _getMediaUrl (media) {
+  async _getMediaUrl (media) {
     if (media) {
       if (media.url.includes('https')) {
+        const videoMedia = new MediaHelper(media)
+        if (videoMedia.isVideo()) {
+          return await videoMedia.getOptimizerVideoUrl()
+        }
         return media.url
       }
       return `${process.env.API.slice(0, -1)}${media.url}`
