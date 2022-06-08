@@ -15,5 +15,20 @@ export default {
     state.obedienceList.success = false
     state.obedienceList.data = []
     state.obedienceList.error = payload
+  },
+  [types.LOADING_OBEDIENCE] (state) {
+    state.obedience.loading = true
+  },
+  [types.SUCCESS_OBEDIENCE] (state, payload) {
+    state.obedience.loading = false
+    state.obedience.success = true
+    state.obedience.data = payload
+    state.obedience.error = false
+  },
+  [types.ERROR_OBEDIENCE] (state, payload) {
+    state.obedience.loading = false
+    state.obedience.success = false
+    state.obedience.data = {}
+    state.obedience.error = payload
   }
 }

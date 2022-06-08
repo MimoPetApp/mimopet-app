@@ -1,16 +1,25 @@
 <template>
-  <q-card class="obedience-details q-animate--scale q-mt-xl" :style="`background: ${setBgColor}`">
-    <q-card-section class="q-pa-xl obedience-details__header">
+  <q-card
+    class="obedience-details q-animate--scale q-mt-xl"
+    :style="`background: ${setBgColor}`"
+    v-if="!loading"
+  >
+    <q-card-section class="obedience-details__header">
       <h3 class="obedience-details__title">{{ setDetailsTitle }}</h3>
       <q-badge
         color="main-background"
         text-color="main-alternate"
         class="obedience-details__badge flex justify-center items-center"
       >
-        <span class="badge-label"> {{ repetitionAmount }} {{ setBadgeLabel }} </span>
+        <span class="badge-label"> {{ getObedience.executions }} {{ setBadgeLabel }} </span>
       </q-badge>
+      <ObedienceProgress
+        color="main-background"
+        :max="4"
+        :value="setObedienceProgress"
+      ></ObedienceProgress>
       <p class="obedience-details__description mb-0">
-        Acompanhe seu progresso, e continue praticando para consolidar o comando.
+        {{ setDetailsDescription }}
       </p>
     </q-card-section>
     <q-card
@@ -18,13 +27,13 @@
       style="background: #ffffff"
     >
       <q-card-section class="p-0">
-        <div v-for="(method, index) in methodsList" :key="index">
-          <ObedienceMethodCard
-            :title="setMethodTitle(method.type)"
-            :subtitle="method.repetitions"
+        <div v-for="(guideline, index) in getObedience.guidelines" :key="index">
+          <ObedienceGuidelineCard
+            :title="setMethodTitle(guideline.__component)"
+            :subtitle="guideline.executions"
             :class="{ 'card-gutter': index > 0 }"
-            :buttons="method.items"
-          ></ObedienceMethodCard>
+            :buttons="guideline.items"
+          ></ObedienceGuidelineCard>
         </div>
       </q-card-section>
     </q-card>
