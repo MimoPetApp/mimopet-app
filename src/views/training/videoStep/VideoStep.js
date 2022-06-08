@@ -4,13 +4,14 @@ import Button from '../../../common/components/Button/Button'
 import LoadingCircle from '../../../common/components/loadingCircle'
 import Tag from '../../../common/components/Tag/Tag'
 import FeedbackModal from '../../../common/components/FeedbackModal/FeedbackModal'
+import VideoPlayer from '../../../common/components/VideoPlayer/VideoPlayer'
 import utils from '../../../common/helpers/utils'
 
 const hitIcon = require('../../../assets/images/feedback/shine.svg')
 
 export default {
-  components: { LoadingCircle, Button, Tag, FeedbackModal },
-  data () {
+  components: { LoadingCircle, Button, Tag, FeedbackModal, VideoPlayer },
+  data() {
     return {
       currSlide: 0,
       loading: false,
@@ -19,7 +20,7 @@ export default {
   },
   computed: {
     ...mapState('training', ['behavior', 'module', 'video', 'loadingTrainings']),
-    feedbackIcon () {
+    feedbackIcon() {
       return hitIcon
     }
   },
@@ -29,18 +30,18 @@ export default {
     ...mapActions('training', ['ActionGetModule', 'ActionGetVideo', 'ActionGetTraining']),
     ...mapActions('video', ['ActionUpdateVideoStepCompleted']),
     ...mapMutations('training', ['SET_HAS_HEADER']),
-    timeout (ms) {
+    timeout(ms) {
       return new Promise(resolve => setTimeout(resolve, ms))
     },
-    async onFinish () {
+    async onFinish() {
       this.loading = true
       await this.stepDone()
       this.loading = false
     },
-    showFeedbackModal () {
+    showFeedbackModal() {
       this.hasFeedback = true
     },
-    trainingDetailsHandler () {
+    trainingDetailsHandler() {
       this.goBack()
       /*
       this.$router.push({
@@ -57,18 +58,18 @@ export default {
       })
     },
     */
-    goBack () {
+    goBack() {
       this.$router.go(-1)
     },
-    isEmptyObject (obj) {
+    isEmptyObject(obj) {
       return obj && Object.keys(obj).length === 0 && Object.getPrototypeOf(obj) === Object.prototype
     },
-    isStepDone () {
+    isStepDone() {
       if (!this.isEmptyObject(this.video)) {
         return this.video.completed
       }
     },
-    async stepDone () {
+    async stepDone() {
       if (!this.isStepDone()) {
         // Atualizar o status
         const res = await this.ActionUpdateVideoStepCompleted({
@@ -115,18 +116,18 @@ export default {
     }
     */
   },
-  beforeRouteLeave (to, from, next) {
+  beforeRouteLeave(to, from, next) {
     this.SET_HAS_HEADER(true)
     next()
   },
-  async created () {
+  async created() {
     await this.ActionGetVideo(this.$route.params.idSessao)
     /*
     await this.getStepStatus()
     await this.setStepToDoing()
     */
   },
-  async mounted () {
+  async mounted() {
     this.SET_HAS_HEADER(false)
     // await this.ActionGetTraining(this.$route.params.id)
     // await this.ActionGetModule(this.$route.params.idModulo)

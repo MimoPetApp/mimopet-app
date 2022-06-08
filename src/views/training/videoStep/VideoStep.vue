@@ -28,12 +28,7 @@
       </div>
       <div class="column justify-center" style="height: 100vh">
         <div class="flex flex-center mr-4 ml-4">
-          <video controls autoplay>
-            <source :src="_getMediaUrl(video.item)" :type="video.mime" />
-            Desculpa, o seu dipositivo não suporta vídeos incorporados, mas você pode
-            <a :href="_getMediaUrl(video.item)">baixá-lo</a>
-            e assistir pelo seu reprodutor de mídia favorito!
-          </video>
+          <VideoPlayer :video="video" />
         </div>
       </div>
     </div>
