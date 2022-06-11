@@ -13,7 +13,11 @@
       >
         <span class="badge-label"> {{ getObedience.executions }} {{ setBadgeLabel }} </span>
       </q-badge>
-      <ObedienceProgress color="main-background" :max="4"></ObedienceProgress>
+      <ObedienceProgress
+        color="main-background"
+        :max="4"
+        :value="getObedience.badge_progress"
+      ></ObedienceProgress>
       <p class="obedience-details__description mb-0">
         {{ setDetailsDescription }}
       </p>

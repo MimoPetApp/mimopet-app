@@ -1,6 +1,6 @@
 <template>
   <div class="obedience-progress flex justify-center items-center">
-    <q-rating :v-model="value" :color="color" icon="pets" :max="max" readonly no-dimming />
+    <q-rating v-model="progress" :color="color" icon="pets" :max="max" readonly no-dimming />
     <div>
       <q-avatar rounded class="obedience-progress__badge">
         <img :src="badgeIcon" />
@@ -30,7 +30,9 @@ export default {
     }
   },
   data() {
-    return {}
+    return {
+      progress: this.value
+    }
   },
   computed: {
     setSubtitleLabel() {
