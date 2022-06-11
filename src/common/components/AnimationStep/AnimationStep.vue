@@ -26,12 +26,7 @@
         >
           <div class="row video-wrapper" style="flex-grow: 1">
             <div class="col-12 col-md-12 col-xs-12">
-              <video controls class="video-content">
-                <source :src="_getMediaUrl(video.item)" :type="video.mime" />
-                Desculpa, o seu dipositivo não suporta vídeos incorporados, mas você pode
-                <a :href="_getMediaUrl(video.item)">baixá-lo</a>
-                e assistir pelo seu reprodutor de mídia favorito!
-              </video>
+              <VideoPlayer :video="video" />
             </div>
           </div>
         </q-carousel-slide>
@@ -42,10 +37,13 @@
 
 <script>
 import utils from '../../helpers/utils'
+import VideoPlayer from '../../../common/components/VideoPlayer/VideoPlayer'
 
 export default {
   name: 'AnimationStep',
-  components: {},
+  components: {
+    VideoPlayer
+  },
   props: {
     videos: {
       type: Array,
