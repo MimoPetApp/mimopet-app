@@ -1,14 +1,17 @@
 import { mapActions, mapGetters } from 'vuex'
 import ObedienceCard from '../../../common/components/ObedienceCard/ObedienceCard.vue'
+import Loading from '../../../common/components/loading'
 
 export default {
   name: 'Obedience',
   components: {
-    ObedienceCard
+    ObedienceCard,
+    Loading
   },
   data () {
     return {
-      loading: false
+      loading: false,
+      clicked: false
     }
   },
   computed: {
@@ -32,6 +35,7 @@ export default {
     ...mapActions('obedience', ['ActionListObediences']),
     clickHandler (command) {
       if (!this.isDisabled(command.type)) {
+        this.clicked = true
         this.$router.push({ name: 'ObedienceDetails', params: { id: command.id } })
       }
     },

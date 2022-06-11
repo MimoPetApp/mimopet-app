@@ -25,7 +25,10 @@
       </div>
     </q-card>
   </q-card>
+  <div v-else class="flex flex-center loading-screen">
+    <Loading />
+  </div>
 </template>
 
-<script src="./Obedience.js"></script>
-<style src="./Obedience.scss" lang="scss" scoped></style>
+<script src="./ObedienceList.js"></script>
+<style src="./ObedienceList.scss" lang="scss" scoped></style>
