@@ -48,6 +48,9 @@ Thumbs.db
 *.mov
 *.wmv
 
+#quasar
 .quasar/artifacts.json
+.quasar/app.js
+.quasar/client-entry.js
 
 yarn.lock
