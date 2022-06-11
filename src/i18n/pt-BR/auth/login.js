@@ -6,6 +6,7 @@ export default {
     email: {
       label: 'E-mail',
       error: 'E-mail é obrigatório',
+      invalid: 'E-mail inválido',
       fail: 'E-mail não está cadastrado'
     },
     password: {
