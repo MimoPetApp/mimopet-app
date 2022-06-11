@@ -13,11 +13,7 @@
       >
         <span class="badge-label"> {{ getObedience.executions }} {{ setBadgeLabel }} </span>
       </q-badge>
-      <ObedienceProgress
-        color="main-background"
-        :max="4"
-        :value="setObedienceProgress"
-      ></ObedienceProgress>
+      <ObedienceProgress color="main-background" :max="4"></ObedienceProgress>
       <p class="obedience-details__description mb-0">
         {{ setDetailsDescription }}
       </p>
@@ -38,6 +34,9 @@
       </q-card-section>
     </q-card>
   </q-card>
+  <div v-else class="flex flex-center loading-screen">
+    <Loading />
+  </div>
 </template>
 
 <script src="./ObedienceDetails.js"></script>

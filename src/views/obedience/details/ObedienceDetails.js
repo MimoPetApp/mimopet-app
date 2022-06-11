@@ -1,12 +1,14 @@
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 import ObedienceGuidelineCard from '../../../common/components/ObedienceGuidelineCard/ObedienceGuidelineCard.vue'
 import ObedienceProgress from '../../../common/components/ObedienceProgress/ObedienceProgress.vue'
+import Loading from '../../../common/components/loading'
 
 export default {
   name: 'ObedienceDetails',
   components: {
     ObedienceGuidelineCard,
-    ObedienceProgress
+    ObedienceProgress,
+    Loading
   },
   data () {
     return {
@@ -134,8 +136,18 @@ export default {
     await this.loadObedienceDetails()
     this.loading = false
   },
+  mounted () {
+    this.showInnerHeader()
+  },
+  beforeRouteLeave (to, from, next) {
+    this.resetInnerHeader()
+    next()
+  },
   methods: {
     ...mapActions('obedience', ['ActionFindObedience']),
+    ...mapMutations('pets', {
+      SET_INNER_HEADER: 'PETS/SET_INNER_HEADER'
+    }),
     setMethodTitle (guidelineType) {
       let title
       if (guidelineType.includes('instruction')) {
@@ -149,6 +161,29 @@ export default {
     },
     async loadObedienceDetails () {
       await this.ActionFindObedience(this.obedienceID)
+    },
+    showInnerHeader () {
+      const params = {
+        status: true,
+        title: 'Comando de obediência',
+        modal: {}
+      }
+      this.SET_INNER_HEADER(params)
+    },
+    resetInnerHeader () {
+      const params = {
+        status: false,
+        title: '',
+        modal: {}
+      }
+      this.SET_INNER_HEADER(params)
     }
+  },
+  isFirstLevelPath () {
+    const path = this.$route.path
+    return path.length - path.replaceAll('/', '').length === 1
+  },
+  back () {
+    this.isFirstLevelPath() ? this.$router.push('/') : this.$router.go(-1)
   }
 }

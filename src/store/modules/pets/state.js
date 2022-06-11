@@ -1,6 +1,11 @@
 export default {
   hasHeader: true,
   hasFooter: true,
+  innerHeader: {
+    status: false,
+    title: '',
+    modal: {}
+  },
   loadingPets: true,
   currPet: 0,
   petsList: [],
