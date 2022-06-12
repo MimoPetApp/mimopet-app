@@ -83,7 +83,7 @@
               ref="password"
               borderless
               light
-              type="text"
+              :isPassword="true"
               align="center"
               :label="$t('create.password.label')"
               :rules="
