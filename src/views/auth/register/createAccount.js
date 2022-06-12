@@ -18,7 +18,7 @@ export default {
     TextField,
     ButtonCheckboxGroup
   },
-  data () {
+  data() {
     return {
       showError: {
         email: false,
@@ -33,7 +33,7 @@ export default {
       },
       pattern: {
         email: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-        password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+        password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\.\,\+\_])(?=.{8,})/,
         name: /^(?=.{3,})/
       },
       genderOptions: [
@@ -61,22 +61,22 @@ export default {
   computed: {
     ...mapState('auth', ['terms']),
     ...mapGetters('auth', ['getSendToken']),
-    emailIsValid () {
+    emailIsValid() {
       return this.validateField(this.form.email, this.pattern.email)
     },
-    passwordIsValid () {
+    passwordIsValid() {
       return this.validateField(this.form.password, this.pattern.password)
     },
-    nameIsValid () {
+    nameIsValid() {
       return this.validateField(this.form.username, this.pattern.name)
     },
-    genderIsValid () {
+    genderIsValid() {
       return this.form.gender !== ''
     },
-    birthdayIsValid () {
+    birthdayIsValid() {
       return this.form.birthday.length === 10 && this.userAge >= 18
     },
-    userAge () {
+    userAge() {
       if (this.form.birthday.length === 10) {
         const [day, month, year] = this.form.birthday.split('-')
         return this._calculateAge(new Date(year, month, day))
@@ -84,54 +84,54 @@ export default {
       return 0
     }
   },
-  beforeMount () {},
-  async mounted () {
+  beforeMount() {},
+  async mounted() {
     await this.ActionGetTermsOfUse()
   },
   methods: {
     ...utils,
     ...mapActions('auth', ['ActionGetTermsOfUse', 'ActionCreateAccount', 'ActionSendToken']),
-    nextStep () {
+    nextStep() {
       if (this.step < this.maxStep) this.step += 1
     },
-    previousStep () {
+    previousStep() {
       if (this.step > 1) this.step -= 1
       else this.hubHandler()
     },
-    hubHandler () {
+    hubHandler() {
       this.$router.push({ name: 'hub' })
     },
-    genderOptionsHandler (field, eventData) {
+    genderOptionsHandler(field, eventData) {
       if (field === 'gender') {
         this.form.gender = eventData[0].value
       }
     },
-    validateField (field, rule) {
+    validateField(field, rule) {
       if (field && rule) return rule.test(field)
       else return false
     },
-    onSubmitEmail () {
+    onSubmitEmail() {
       if (!this.emailIsValid) return
       this.nextStep()
     },
-    onSubmitPassword () {
+    onSubmitPassword() {
       if (this.passwordIsValid) {
         this.nextStep()
       }
     },
-    onSubmitName () {
+    onSubmitName() {
       if (!this.nameIsValid) return
       this.nextStep()
     },
-    onSubmitBirthDate () {
+    onSubmitBirthDate() {
       if (!this.birthdayIsValid) return
       this.nextStep()
     },
-    async onSubmitGender () {
+    async onSubmitGender() {
       if (!this.genderIsValid) return
       await this.submitNewUser()
     },
-    async submitNewUser () {
+    async submitNewUser() {
       this.loading = true
       this.form.birthday = this._noMask(this.form.birthday)
       const created = await this.ActionCreateAccount(this.form)

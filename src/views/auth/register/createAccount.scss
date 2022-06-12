@@ -39,3 +39,12 @@
   font-family: 'customfont600';
   font-size: 1.16rem !important;
 }
+
+.single-input__birth-day {
+  font-family: 'customfont700';
+  font-weight: 500;
+  color: var(--main-alternate);
+  font-size: var(--font-size-5);
+  text-align: center;
+  // margin-top: clamp(-15px, -10%, -1px);
+}

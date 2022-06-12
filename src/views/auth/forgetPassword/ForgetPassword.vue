@@ -21,7 +21,7 @@
                   :rules="[
                     val => !!val || $t('login.email.error'),
                     val =>
-                      /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(val) ||
+                      /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(val) ||
                       $t('login.email.invalid')
                   ]"
                   icon="mail"
