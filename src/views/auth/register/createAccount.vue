@@ -161,7 +161,7 @@
               outlined
               input-class="single-input__birth-day text-main-alternate"
               class="single-input pr-5 pl-5"
-              mask="##-##-####"
+              mask="##/##/####"
               no-error-icon
               :rules="[
                 val => val.length == 10 || $t('create.birthDate.error'),

@@ -78,7 +78,7 @@ export default {
     },
     userAge() {
       if (this.form.birthday.length === 10) {
-        const [day, month, year] = this.form.birthday.split('-')
+        const [day, month, year] = this.form.birthday.split('/')
         return this._calculateAge(new Date(year, month, day))
       }
       return 0
