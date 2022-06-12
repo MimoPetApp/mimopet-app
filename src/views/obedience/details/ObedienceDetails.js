@@ -1,13 +1,19 @@
-import ObedienceMethodCard from '../../../common/components/ObedienceMethodCard/ObedienceMethodCard.vue'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
+import ObedienceGuidelineCard from '../../../common/components/ObedienceGuidelineCard/ObedienceGuidelineCard.vue'
+import ObedienceProgress from '../../../common/components/ObedienceProgress/ObedienceProgress.vue'
+import Loading from '../../../common/components/loading'
 
 export default {
   name: 'ObedienceDetails',
   components: {
-    ObedienceMethodCard
+    ObedienceGuidelineCard,
+    ObedienceProgress,
+    Loading
   },
   data () {
     return {
-      commandID: null,
+      obedienceID: null,
+      loading: false,
       commandsList: [
         {
           id: 1,
@@ -89,18 +95,19 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('obedience', ['getObedience']),
     setBgColor () {
       let bgColor = ''
-      switch (this.commandsList[this.commandID - 1].level) {
-        case 'Básico':
+      switch (this.getObedience.type) {
+        case 'basic':
           bgColor = '#4ad5da'
           break
 
-        case 'Intermediário':
+        case 'intermediary':
           bgColor = '#FFCD5C'
           break
 
-        case 'Avançado':
+        case 'advanced':
           bgColor = '#F2A16A'
           break
 
@@ -111,30 +118,72 @@ export default {
       return bgColor
     },
     setBadgeLabel () {
-      return this.repetitionAmount > 1 ? 'execuções' : 'execução'
+      return this.getObedience.executions > 1 ? 'execuções' : 'execução'
     },
     setDetailsTitle () {
-      return this.commandsList[this.commandID - 1].title
+      return this.getObedience.title
+    },
+    setDetailsDescription () {
+      return this.getObedience.description
+    },
+    setObedienceProgress () {
+      return this.getObedience.badge_progress
     }
   },
-  created () {
-    this.commandID = this.$route.params.id
+  async created () {
+    this.loading = true
+    this.obedienceID = this.$route.params.id
+    await this.loadObedienceDetails()
+    this.loading = false
+  },
+  mounted () {
+    this.showInnerHeader()
+  },
+  beforeRouteLeave (to, from, next) {
+    this.resetInnerHeader()
+    next()
   },
   methods: {
-    setMethodTitle (type) {
+    ...mapActions('obedience', ['ActionFindObedience']),
+    ...mapMutations('pets', {
+      SET_INNER_HEADER: 'PETS/SET_INNER_HEADER'
+    }),
+    setMethodTitle (guidelineType) {
       let title
-      switch (type) {
-        case 'guideline':
-          title = 'Instruções'
-          break
-        case 'generalization':
-          title = 'Generalização'
-          break
-        default:
-          title = 'Desafio'
-          break
+      if (guidelineType.includes('instruction')) {
+        title = 'Instruções'
+      } else if (guidelineType.includes('generalization')) {
+        title = 'Generalização'
+      } else {
+        title = 'Desafio'
       }
       return title
+    },
+    async loadObedienceDetails () {
+      await this.ActionFindObedience(this.obedienceID)
+    },
+    showInnerHeader () {
+      const params = {
+        status: true,
+        title: 'Comando de obediência',
+        modal: {}
+      }
+      this.SET_INNER_HEADER(params)
+    },
+    resetInnerHeader () {
+      const params = {
+        status: false,
+        title: '',
+        modal: {}
+      }
+      this.SET_INNER_HEADER(params)
     }
+  },
+  isFirstLevelPath () {
+    const path = this.$route.path
+    return path.length - path.replaceAll('/', '').length === 1
+  },
+  back () {
+    this.isFirstLevelPath() ? this.$router.push('/') : this.$router.go(-1)
   }
 }

@@ -17,7 +17,7 @@
         </q-card>
       </div>
     </div>
-    <div v-else class="flex flex-center q-mt-xl">
+    <div v-else class="flex flex-center loading-screen">
       <Loading />
     </div>
     <!-- <CardHealth/> -->

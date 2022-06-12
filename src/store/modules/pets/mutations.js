@@ -4,6 +4,9 @@ export default {
   [types.SET_HAS_HEADER] (state, payload) {
     state.hasHeader = payload
   },
+  [types.SET_INNER_HEADER] (state, payload) {
+    state.innerHeader = payload
+  },
   [types.SET_HAS_FOOTER] (state, payload) {
     state.hasFooter = payload
   },

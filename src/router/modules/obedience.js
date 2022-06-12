@@ -1,12 +1,19 @@
 export default [
   {
-    path: '/obedience',
+    path: 'obediencia',
     name: 'Obedience',
-    component: () => import('../../views/obedience/list/Obedience.vue')
-  },
-  {
-    path: '/obedience/:id/detalhes',
-    name: 'ObedienceDetails',
-    component: () => import('../../views/obedience/details/ObedienceDetails.vue')
+    component: () => import('../../views/obedience/Obedience.vue'),
+    children: [
+      {
+        path: '',
+        name: 'ObedienceList',
+        component: () => import('../../views/obedience/list/ObedienceList.vue')
+      },
+      {
+        path: ':id/detalhes',
+        name: 'ObedienceDetails',
+        component: () => import('../../views/obedience/details/ObedienceDetails.vue')
+      }
+    ]
   }
 ]

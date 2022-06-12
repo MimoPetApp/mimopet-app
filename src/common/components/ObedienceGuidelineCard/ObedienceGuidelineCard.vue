@@ -1,19 +1,19 @@
 <template>
-  <q-card class="method-card">
-    <q-card-section class="method-card__header p-0">
+  <q-card class="guideline-card">
+    <q-card-section class="guideline-card__header p-0">
       <div class="row justify-between items-center">
         <div class="col-6">
-          <div class="method-card__text-wrapper">
-            <h4 :class="['method-card__title', 'text-weight-bold', 'm-0', 'p-0']">
+          <div class="guideline-card__text-wrapper">
+            <h4 :class="['guideline-card__title', 'text-weight-bold', 'm-0', 'p-0']">
               {{ title }}
             </h4>
-            <p :class="['method-card__subtitle', 'text-weight-medium', 'm-0', 'p-0']">
+            <p :class="['guideline-card__subtitle', 'text-weight-medium', 'm-0', 'p-0']">
               {{ subtitle }} {{ setSubtitleLabel }}
             </p>
           </div>
         </div>
         <div class="col-3 items-center justify-end flex">
-          <div class="method-card__icon">
+          <div class="guideline-card__icon">
             <q-avatar
               class="info-icon flex justify-center items-center"
               color="utilities-disabled"
@@ -25,17 +25,21 @@
         </div>
       </div>
     </q-card-section>
-    <q-card-section class="method-card__footer p-0">
+    <q-card-section class="guideline-card__footer p-0">
       <div class="row justify-center items-center">
         <div class="col-12">
-          <div class="method-card__buttons-wrapper" v-for="(button, index) in buttons" :key="index">
+          <div
+            class="guideline-card__buttons-wrapper"
+            v-for="(button, index) in buttons"
+            :key="index"
+          >
             <Button
               color="primary-flat"
-              class="text-weight-bold method-card__button"
+              class="text-weight-bold guideline-card__button"
               :class="{ 'button-gutter': index > 0 }"
               size="md"
               no-caps
-              :label="button.title"
+              :label="button.label"
             />
           </div>
         </div>
@@ -49,7 +53,7 @@ import Button from '../Button/Button.vue'
 const infoIcon = require('../../../assets/images/info-icon.svg')
 
 export default {
-  name: 'ObedienceMethodCard',
+  name: 'ObedienceGuidelineCard',
   components: {
     Button
   },
@@ -87,7 +91,7 @@ export default {
 </script>
 
 <style lang="scss">
-.method-card {
+.guideline-card {
   box-shadow: 4px 4px 40px rgb(0 0 0 / 10%);
   border-radius: 22px !important;
   display: flex;
