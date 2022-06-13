@@ -193,6 +193,7 @@ export default {
       this.SET_INNER_HEADER(params)
     },
     actionHandler (item, guideline) {
+      // teste
       const guidelineUrlTitle = this.setGuidelineUrlTitle(guideline.__component)
       this.$router.push({
         name: 'ObediencieExercise',
