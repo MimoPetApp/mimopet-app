@@ -13,7 +13,7 @@
           </div>
         </div>
         <div class="col-3 items-center justify-end flex">
-          <div class="guideline-card__icon">
+          <div class="guideline-card__icon" @click="modalHandler">
             <q-avatar
               class="info-icon flex justify-center items-center"
               color="utilities-disabled"
@@ -40,6 +40,7 @@
               size="md"
               no-caps
               :label="button.label"
+              @click="actionHandler(button)"
             />
           </div>
         </div>
@@ -59,6 +60,10 @@ export default {
   },
   props: {
     title: {
+      type: String,
+      default: ''
+    },
+    guide: {
       type: String,
       default: ''
     },
@@ -86,7 +91,12 @@ export default {
       return infoIcon
     }
   },
-  methods: {}
+  methods: {
+    actionHandler(item) {
+      this.$emit('clicked', item)
+    },
+    modalHandler() {}
+  }
 }
 </script>
 
