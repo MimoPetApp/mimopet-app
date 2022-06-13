@@ -223,7 +223,9 @@ export default {
     },
     async stepDone () {
       if (!this.isStepDone()) {
+        this.loading = true
         await this.exerciseCompleted()
+        this.loading = false
       } else {
         this.finishModal()
       }
