@@ -1,9 +1,34 @@
 @import '../../../assets/styles/css/themes/viewports.scss';
 
 .exercise-step {
-  height: calc(100vh - 50px);
+  height: calc(100vh - 60px);
+
+  &__header {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main-alternate);
+  }
+  &__toolbar {
+    padding: 0 38px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__back-btn {
+    font-family: 'customfont650';
+    font-style: normal;
+    font-weight: 600;
+    font-size: var(--font-size-3);
+    line-height: 17px;
+    text-align: center;
+    letter-spacing: -0.014em;
+  }
+
   &__carousel {
-    height: calc(100vh - 50px);
+    height: calc(100vh - 60px);
   }
   &__carousel-item {
     display: flex;

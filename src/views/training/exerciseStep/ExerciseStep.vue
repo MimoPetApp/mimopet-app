@@ -4,6 +4,39 @@
       <!-- Carousel Wrapper-->
       <div class="row">
         <div class="col-12 col-md-12 col-xs-12">
+          <q-header
+            v-if="!mainLayoutHeader || !trainingLayoutHeader"
+            reveal
+            class="bg-main-background exercise-step__header"
+          >
+            <q-toolbar class="exercise-step__toolbar" style="width: 100%">
+              <q-btn
+                flat
+                round
+                dense
+                @click="back()"
+                text-color="main-background"
+                class="exercise-step__back-btn"
+                unelevated
+                no-caps
+              >
+                <span>Voltar</span>
+              </q-btn>
+              <q-btn
+                flat
+                unelevated
+                no-caps
+                round
+                dense
+                @click="stepDone()"
+                text-color="main-background"
+              >
+                <span class="exercise-step__back-btn">Finalizar</span>
+              </q-btn>
+            </q-toolbar>
+          </q-header>
+        </div>
+        <div class="col-12 col-md-12 col-xs-12">
           <q-carousel
             animated
             v-model="currExercise"
@@ -103,9 +136,9 @@
               <p>{{ currExercise + 1 }} / {{ getExerciseSessions.length }}</p>
             </div>
           </div>
-          <div v-if="showSentBtn">
+          <!-- <div v-if="showSentBtn">
             <Button label="Finalizar" noCaps color="primary-filled" class="pl-7 pr-7"></Button>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

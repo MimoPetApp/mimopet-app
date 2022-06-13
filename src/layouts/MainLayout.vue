@@ -161,6 +161,26 @@ export default {
       height: 15.58px;
     }
   }
+  .toolbar {
+    &__title {
+      font-family: 'customfont650';
+      color: var(--main-background);
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 19px;
+      text-align: center;
+      letter-spacing: -0.014em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+    }
+    &__modal {
+      background-color: transparent !important;
+      box-shadow: none;
+    }
+  }
 }
 
 .main-container__badge {
@@ -171,26 +191,6 @@ export default {
   background: transparent;
   &__panel {
     padding: 0;
-  }
-}
-
-.toolbar {
-  &__title {
-    font-family: 'customfont650';
-    color: var(--main-background);
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 19px;
-    text-align: center;
-    letter-spacing: -0.014em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  &__modal {
-    background-color: transparent !important;
-    box-shadow: none;
   }
 }
 </style>

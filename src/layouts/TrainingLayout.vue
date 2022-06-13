@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf" class="training__container">
+  <q-layout view="lHh Lpr lFf" class="training">
     <q-header v-if="hasHeader" class="bg-main-background">
       <q-toolbar>
         <q-btn
@@ -73,10 +73,8 @@ export default {
   }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .training {
-  &__container {
-    background: var(--main-background);
-  }
+  background: var(--main-background);
 }
 </style>

@@ -1,4 +1,4 @@
-import { mapActions, mapState, mapGetters } from 'vuex'
+import { mapActions, mapState, mapGetters, mapMutations } from 'vuex'
 import Button from '../../../common/components/Button/Button'
 import LoadingCircle from '../../../common/components/loadingCircle'
 import Session from '../../../common/components/Session/Session'
@@ -24,6 +24,17 @@ export default {
     InstructionStep,
     QuestionStep
   },
+  props: {
+    guia: {
+      type: String
+    },
+    exercicioID: {
+      type: String
+    },
+    obedienceID: {
+      type: String
+    }
+  },
   data () {
     return {
       currExercise: 0,
@@ -39,7 +50,9 @@ export default {
   },
   computed: {
     ...mapState('training', ['exercise', 'loadingTrainings']),
+    ...mapState('training', { trainingLayoutHeader: 'hasHeader' }),
     ...mapGetters('training', ['getExercise']),
+    ...mapState('pets', { mainLayoutHeader: 'hasHeader' }),
     feedbackIcon () {
       if (this.hasFeedback.status) {
         if (this.hasFeedback.type === 'jump') {
@@ -56,6 +69,13 @@ export default {
     },
     showSentBtn () {
       // in the last session and not question
+      console.log(
+        'a',
+        this.currExercise === this.getExerciseSessions.length - 1 &&
+          !this.getExerciseSessions[this.getExerciseSessions.length - 1].__component.includes(
+            'question'
+          )
+      )
       return (
         this.currExercise === this.getExerciseSessions.length - 1 &&
         !this.getExerciseSessions[this.getExerciseSessions.length - 1].__component.includes(
@@ -76,6 +96,8 @@ export default {
     ...stepParser,
     ...mapActions('training', ['ActionGetExercise']),
     ...mapActions('exercise', ['ActionUpdateExerciseStepCompleted']),
+    ...mapActions('pets', ['ActionSetHomeMenuVisibility']),
+    ...mapMutations('training', { setTrainingLayoutMenuVisibility: 'SET_HAS_HEADER' }),
     timeout (ms) {
       return new Promise(resolve => setTimeout(resolve, ms))
     },
@@ -178,17 +200,37 @@ export default {
         this.currExercise += 1
       }
     },
+    setExerciseCompletedParams () {
+      let params
+      const guidelineType = this.guia
+      const idExercise = this.getExercise.id
+      const idObedience = this.obedienceID
+      if (this.isFromObedience()) {
+        params = {
+          url: `obedience-trainings/${idObedience}/guidelines/${guidelineType}/exercises/${idExercise}/complete`,
+          body: []
+        }
+      } else {
+        // general trainings
+        params = {
+          url: `exercises/${idExercise}/complete`,
+          body: this.questionsAnswers
+        }
+      }
+      return params
+    },
+    async exerciseCompleted () {
+      const params = this.setExerciseCompletedParams()
+      // Atualizar o status
+      const res = await this.ActionUpdateExerciseStepCompleted(params)
+      if (res) {
+        // successs
+        this.finishModal()
+      }
+    },
     async stepDone () {
       if (!this.isStepDone()) {
-        // Atualizar o status
-        const res = await this.ActionUpdateExerciseStepCompleted({
-          id: this.getExercise.id,
-          body: this.questionsAnswers
-        })
-        if (res) {
-          // successs
-          this.finishModal()
-        }
+        await this.exerciseCompleted()
       } else {
         this.finishModal()
       }
@@ -206,14 +248,60 @@ export default {
         })
       }
       */
+    },
+    isFromObedience () {
+      return this.$route.meta.isFromObedience
+    },
+    setGetExerciseParams () {
+      let params
+      if (this.isFromObedience()) {
+        params = this.exercicioID
+      } else {
+        params = this.$route.params.idSessao
+      }
+      return params
+    },
+    async loadExercise () {
+      const params = this.setGetExerciseParams()
+      const res = await this.ActionGetExercise(params)
+      if (!res) {
+        // throw error
+      }
+    },
+    toggleMainLayoutNavigation () {
+      this.ActionSetHomeMenuVisibility(!this.mainLayoutHeader)
+    },
+    toggleTrainingLayoutNavigation () {
+      this.setTrainingLayoutMenuVisibility(!this.trainingLayoutHeader)
+    },
+    toggleNavigation () {
+      if (this.isFromObedience()) {
+        this.toggleMainLayoutNavigation()
+      } else {
+        this.toggleTrainingLayoutNavigation()
+      }
+    },
+    isFirstLevelPath () {
+      const path = this.$route.path
+      return path.length - path.replaceAll('/', '').length === 1
+    },
+    back () {
+      this.isFirstLevelPath() ? this.$router.push('/') : this.$router.go(-1)
     }
   },
   async created () {
     this.loading = true
-    await this.ActionGetExercise(this.$route.params.idSessao)
+    await this.loadExercise()
     // if (this.exercise.sessions.items.length > 0) {
     //   this.currExercise = this.exercise.sessions.items[0]
     // }
     this.loading = false
+  },
+  mounted () {
+    this.toggleNavigation()
+  },
+  beforeRouteLeave (to, from, next) {
+    this.toggleNavigation()
+    next()
   }
 }

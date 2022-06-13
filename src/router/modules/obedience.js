@@ -10,9 +10,17 @@ export default [
         component: () => import('../../views/obedience/list/ObedienceList.vue')
       },
       {
-        path: ':id/detalhes',
+        path: ':obedienceID/detalhes',
         name: 'ObedienceDetails',
+        props: true,
         component: () => import('../../views/obedience/details/ObedienceDetails.vue')
+      },
+      {
+        path: ':obedienceID/detalhes/:guia/:exercicioID',
+        name: 'ObediencieExercise',
+        props: true,
+        meta: { isFromObedience: true },
+        component: () => import('../../views/training/exerciseStep/ExerciseStep.vue')
       }
     ]
   }
