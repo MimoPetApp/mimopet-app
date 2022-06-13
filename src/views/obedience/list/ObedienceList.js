@@ -36,7 +36,7 @@ export default {
     clickHandler (command) {
       if (!this.isDisabled(command.type)) {
         this.clicked = true
-        this.$router.push({ name: 'ObedienceDetails', params: { id: command.id } })
+        this.$router.push({ name: 'ObedienceDetails', params: { obedienceID: command.id } })
       }
     },
     isDisabled (type) {
