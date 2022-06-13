@@ -10,9 +10,13 @@ export default {
     ObedienceProgress,
     Loading
   },
+  props: {
+    obedienceID: {
+      type: String
+    }
+  },
   data () {
     return {
-      obedienceID: null,
       loading: false,
       commandsList: [
         {
@@ -132,7 +136,6 @@ export default {
   },
   async created () {
     this.loading = true
-    this.obedienceID = this.$route.params.id
     await this.loadObedienceDetails()
     this.loading = false
   },
@@ -148,14 +151,25 @@ export default {
     ...mapMutations('pets', {
       SET_INNER_HEADER: 'PETS/SET_INNER_HEADER'
     }),
-    setMethodTitle (guidelineType) {
+    setGuidelineTitle (guidelineType) {
       let title
       if (guidelineType.includes('instruction')) {
-        title = 'Instruções'
+        title = 'Instrução'
       } else if (guidelineType.includes('generalization')) {
         title = 'Generalização'
       } else {
         title = 'Desafio'
+      }
+      return title
+    },
+    setGuidelineUrlTitle (guidelineType) {
+      let title
+      if (guidelineType.includes('instruction')) {
+        title = 'instruction'
+      } else if (guidelineType.includes('generalization')) {
+        title = 'generalization'
+      } else {
+        title = 'challenge'
       }
       return title
     },
@@ -177,13 +191,13 @@ export default {
         modal: {}
       }
       this.SET_INNER_HEADER(params)
+    },
+    actionHandler (item, guideline) {
+      const guidelineUrlTitle = this.setGuidelineUrlTitle(guideline.__component)
+      this.$router.push({
+        name: 'ObediencieExercise',
+        params: { guia: guidelineUrlTitle, exercicioID: item.id, obedienceID: this.obedienceID }
+      })
     }
-  },
-  isFirstLevelPath () {
-    const path = this.$route.path
-    return path.length - path.replaceAll('/', '').length === 1
-  },
-  back () {
-    this.isFirstLevelPath() ? this.$router.push('/') : this.$router.go(-1)
   }
 }

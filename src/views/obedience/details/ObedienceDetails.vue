@@ -29,10 +29,12 @@
       <q-card-section class="p-0">
         <div v-for="(guideline, index) in getObedience.guidelines" :key="index">
           <ObedienceGuidelineCard
-            :title="setMethodTitle(guideline.__component)"
+            :title="setGuidelineTitle(guideline.__component)"
             :subtitle="guideline.executions"
+            :guide="guideline.guide"
             :class="{ 'card-gutter': index > 0 }"
             :buttons="guideline.items"
+            @clicked="actionHandler($event, guideline)"
           ></ObedienceGuidelineCard>
         </div>
       </q-card-section>
