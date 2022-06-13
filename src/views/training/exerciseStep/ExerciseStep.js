@@ -69,13 +69,6 @@ export default {
     },
     showSentBtn () {
       // in the last session and not question
-      console.log(
-        'a',
-        this.currExercise === this.getExerciseSessions.length - 1 &&
-          !this.getExerciseSessions[this.getExerciseSessions.length - 1].__component.includes(
-            'question'
-          )
-      )
       return (
         this.currExercise === this.getExerciseSessions.length - 1 &&
         !this.getExerciseSessions[this.getExerciseSessions.length - 1].__component.includes(
