@@ -13,7 +13,7 @@
           <ObedienceCard
             :title="command.title"
             :subtitle="selectType(command.type)"
-            :badges="command.executions"
+            :badges="command.badges"
             :class="[{ 'card-gutter': index > 0 }, { pointer: !isDisabled(command.type) }]"
             :disabled="isDisabled(command.type)"
             @click="clickHandler(command)"
