@@ -1,7 +1,13 @@
 <template>
   <div class="step-wrapper">
     <QList v-bind="$attrs">
-      <QItem clickable v-ripple v-bind="$attrs" :to="getStepRouter(step)">
+      <QItem
+        :disable="step.locked"
+        v-ripple
+        v-bind="$attrs"
+        :to="getStepRouter(step)"
+        :clickable="!step.locked"
+      >
         <QItemSection avatar v-bind="$attrs">
           <QAvatar
             :color="selectColor"
