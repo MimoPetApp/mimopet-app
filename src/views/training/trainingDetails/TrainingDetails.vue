@@ -23,9 +23,10 @@
     <div class="training-details-wrapper__content" v-for="module in modules" :key="module.id">
       <router-link
         :to="{ name: 'ModuleDetails', params: { idModulo: module.id } }"
+        @click.capture="isClickable($event, module)"
         class="router-link-style"
       >
-        <module-card :module="module" class="mt-2"></module-card>
+        <module-card :module="module" class="mt-2" :locked="module.locked"></module-card>
       </router-link>
     </div>
     <div class="training-details-wrapper__footer flex flex-center">

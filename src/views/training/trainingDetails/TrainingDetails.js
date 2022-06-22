@@ -96,6 +96,14 @@ export default {
     },
     isEmptyObject (obj) {
       return obj && Object.keys(obj).length === 0 && Object.getPrototypeOf(obj) === Object.prototype
+    },
+    isClickable (event, module) {
+      let isClickable = true
+      if (module.locked) {
+        isClickable = false
+        event.preventDefault()
+      }
+      return isClickable
     }
   },
   beforeRouteLeave (to, from, next) {
