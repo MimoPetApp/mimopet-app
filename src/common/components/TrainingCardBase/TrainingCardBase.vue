@@ -2,7 +2,9 @@
   <q-card v-if="train" flat class="train-card-base">
     <q-item>
       <q-item-section v-if="train.modules">
-        <p class="train-card-base__steps">{{ 0 }} {{ ` de ${train.modules.length} passos` }}</p>
+        <p class="train-card-base__steps">
+          {{ setAmountCompletedModules }} {{ ` de ${train.modules.length} passos` }}
+        </p>
       </q-item-section>
 
       <q-item-section side>
@@ -18,7 +20,7 @@
         <q-linear-progress
           v-if="train.modules"
           size="12px"
-          :value="train.modules.length / 10"
+          :value="setProgressValue"
           color="main-highlight"
           track-color="utilities-light"
           class="train-card-base__progress mt-1"
@@ -43,6 +45,20 @@ export default {
   },
   data() {
     return {}
+  },
+  computed: {
+    setProgressValue() {
+      return Number(this.train.progress) / 100
+    },
+    setAmountCompletedModules() {
+      let amount = 0
+      this.train.modules.forEach(module => {
+        if (module.completed) {
+          amount += 1
+        }
+      })
+      return amount
+    }
   },
   methods: {
     ...parser
