@@ -1,0 +1,1 @@
+(self["webpackChunkmimopetapp"]=self["webpackChunkmimopetapp"]||[]).push([[830],{7723:(e,t,n)=>{"use strict";n.r(t),n.d(t,{default:()=>a});var p=n(3673);function u(e,t,n,u,r,a){const c=(0,p.up)("router-view");return(0,p.wg)(),(0,p.j4)("div",null,[(0,p.Wm)(c,{key:e.$route.path})])}const r={name:"Obedience"};r.render=u;const a=r}}]);
