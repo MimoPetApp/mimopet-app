@@ -158,9 +158,14 @@ export default {
       if (item.type === 'module' && item.status === 'done') return true
       else return false
     },
+    isBgGrey(item) {
+      return item.type === 'obedience'
+    },
     setBgColor(item) {
       let classColor
-      if (this.isBgOrange(item)) {
+      if (this.isBgGrey(item)) {
+        classColor = 'bg-color-grey'
+      } else if (this.isBgOrange(item)) {
         classColor = 'bg-color-orange'
       } else if (this.isBgTransparent(item)) {
         classColor = ''
@@ -178,9 +183,14 @@ export default {
     isUnsubscribe(entry) {
       return entry.details === 'unsubscribe' || false
     },
+    isBadge(entry) {
+      return entry.details === 'badge' || false
+    },
     showEntryLabel(entry) {
       let label
-      if (this.isSubscribed(entry)) {
+      if (this.isBadge(entry)) {
+        label = `Medalha conquistada no comando de obediência: ${entry.label}`
+      } else if (this.isSubscribed(entry)) {
         label = this.isDoing(entry) ? `Inscrito: ${entry.label}` : `Finalizado: ${entry.label}`
       } else {
         label = this.isUnsubscribe(entry) ? `Removido: ${entry.label}` : entry.label
@@ -301,6 +311,10 @@ h2.pet-profile__text {
 
 .bg-color-cyan {
   background: var(--support-ciano);
+}
+
+.bg-color-grey {
+  background: var(--utilities-border);
 }
 
 .q-timeline {
