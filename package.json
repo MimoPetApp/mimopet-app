@@ -1,8 +1,8 @@
 {
   "name": "mimopetapp",
-  "version": "1.1.3",
+  "version": "1.2.0",
   "description": "Treinamentos para seu lazer com o pet",
-  "cordovaId": "32",
+  "cordovaId": "33",
   "productName": "Mimo Pet",
   "author": "Mimo Pet",
   "private": true,
