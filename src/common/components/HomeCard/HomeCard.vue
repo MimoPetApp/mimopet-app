@@ -62,7 +62,7 @@ export default {
     },
     buttonLabel: {
       type: String,
-      default: 'Ver mais'
+      default: 'Detalhar'
     }
   },
   data() {

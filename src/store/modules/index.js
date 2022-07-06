@@ -10,6 +10,7 @@ import slide from './steps/slide/index'
 import quiz from './steps/quiz/index'
 import question from './steps/question/index'
 import exercise from './steps/exercise/index'
+import obedience from './obedience/index'
 
 export default {
   auth,
@@ -23,5 +24,6 @@ export default {
   slide,
   quiz,
   question,
-  exercise
+  exercise,
+  obedience
 }

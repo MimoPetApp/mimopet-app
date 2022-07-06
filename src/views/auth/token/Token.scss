@@ -9,7 +9,7 @@
     width: 100%;
   }
   &__body {
-    height: calc(100vh - 288px);
+    min-height: 55vh;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;

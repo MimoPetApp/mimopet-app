@@ -17,7 +17,7 @@
         <Ask v-if="step == 1" :title="$t('create.terms.title')" align-content="center">
           <template v-slot:content>
             <div class="pr-5 pl-5">
-              <p v-html="terms.terms" class="text-weight-bold"></p>
+              <p v-html="terms.terms" style="text-align: justify"></p>
             </div>
           </template>
           <template v-slot:action>
@@ -47,7 +47,10 @@
               type="email"
               align="center"
               :label="$t('create.email.label')"
-              :rules="[val => !!val || $t('login.email.error')]"
+              :rules="[
+                val => !!val || $t('login.email.error'),
+                val => pattern.email.test(val) || $t('login.email.invalid')
+              ]"
               hint=""
               no-error-icon
               lazy-rules
@@ -80,7 +83,7 @@
               ref="password"
               borderless
               light
-              type="text"
+              :isPassword="true"
               align="center"
               :label="$t('create.password.label')"
               :rules="
@@ -92,7 +95,7 @@
                       val => /^(?=.*[A-Z])/.test(val) || $t('create.password.error.uppercase'),
                       val => /^(?=.*[0-9])/.test(val) || $t('create.password.error.number'),
                       val =>
-                        /^(?=.*[!@#\$%\^&\*])/.test(val) ||
+                        /^(?=.*[!@#\$%\^&\*\.\,\+\_])/.test(val) ||
                         $t('create.password.error.specialCharacter'),
                       val => /^(?=.{8,})/.test(val) || $t('create.password.error.length')
                     ]
@@ -155,10 +158,10 @@
           <template v-slot:content>
             <q-input
               v-model="form.birthday"
-              borderless
-              input-class="single-line-input-pattern"
-              class="single-input"
-              mask="##-##-####"
+              outlined
+              input-class="single-input__birth-day text-main-alternate"
+              class="single-input pr-5 pl-5"
+              mask="##/##/####"
               no-error-icon
               :rules="[
                 val => val.length == 10 || $t('create.birthDate.error'),

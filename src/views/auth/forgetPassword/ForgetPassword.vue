@@ -18,7 +18,12 @@
                   type="email"
                   :label="$t('login.email.label')"
                   clearable
-                  :rules="[val => !!val || $t('login.email.error')]"
+                  :rules="[
+                    val => !!val || $t('login.email.error'),
+                    val =>
+                      /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(val) ||
+                      $t('login.email.invalid')
+                  ]"
                   icon="mail"
                   prepend
                 />
@@ -43,7 +48,9 @@
               />
             </div>
             <div class="col-12 error text-center mt-3" align="center" v-if="getSendTokenError">
-              <p class="text-status-danger">{{ getSendTokenError.data.message }}</p>
+              <p class="text-status-danger">
+                Nosso servidor está passando por problemas. Tente mais tarde.
+              </p>
             </div>
           </div>
         </div>

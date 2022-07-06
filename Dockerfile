@@ -1,4 +1,4 @@
-FROM node:14 as develop-stage
+FROM node:12 as develop-stage
 MAINTAINER JadsonLucena <jadsonlucena@gmail.com>
 
 RUN apt-get update && apt-get install -y \

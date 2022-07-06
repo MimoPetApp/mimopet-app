@@ -22,7 +22,7 @@ export default {
     FeedbackModal,
     SupportModal
   },
-  data () {
+  data() {
     return {
       form: {
         email: ''
@@ -38,21 +38,24 @@ export default {
   },
   computed: {
     ...mapGetters('auth', ['getSendTokenError']),
-    formIsValid () {
-      return this.form.email.length !== 0
+    formIsValid() {
+      return (
+        this.form.email.length !== 0 &&
+        /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.form.email)
+      )
     },
-    feedbackIcon () {
+    feedbackIcon() {
       return emailIcon
     }
   },
-  created () {
+  created() {
     this.RESET_ERROR_RECOVERSENDTOKEN()
   },
   methods: {
     ...mapActions('auth', ['ActionLogin', 'ActionRecoverSendToken']),
     ...mapMutations('auth', ['RESET_ERROR_RECOVERSENDTOKEN']),
-    nextStep () {},
-    async onSubmitEmail () {
+    nextStep() {},
+    async onSubmitEmail() {
       if (!this.formIsValid) return
       this.loading = true
       // await this.ActionLogin(this.form)
@@ -67,27 +70,27 @@ export default {
       // this.showFeedbackModal()
       this.loading = false
     },
-    async sendEmailToken () {
+    async sendEmailToken() {
       const params = {
         email: this.form.email
       }
       return await this.ActionRecoverSendToken(params)
     },
-    showFeedbackModal () {
+    showFeedbackModal() {
       this.feedbackModalStatus = true
     },
-    showSupportModal () {
+    showSupportModal() {
       this.supportModalStatus = true
     },
-    hideSupportModal () {
+    hideSupportModal() {
       this.supportModalStatus = false
     },
-    goToLogin () {
+    goToLogin() {
       this.$router.push({
         name: 'hub'
       })
     },
-    sendAgain () {
+    sendAgain() {
       // send e-mail again
     }
   }

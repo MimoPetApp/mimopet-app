@@ -193,6 +193,7 @@ export const ActionRecoverSendToken = async ({ commit, dispatch }, payload) => {
     commit(types.SUCCESS_RECOVERSENDTOKEN, response.data)
     return true
   } catch (error) {
+    if (error.response.status === 400) return true
     commit(types.ERROR_RECOVERSENDTOKEN, error.response)
     return false
   }
